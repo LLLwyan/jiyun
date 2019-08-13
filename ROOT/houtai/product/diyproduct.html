@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+    <script src="../public/main.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <style type="text/css">
+        .input_chk{
+            height: 16px; width: 16px; vertical-align: text-bottom;
+        }
+        .input_txt{
+            width: 40px; height: 28px;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight" id="main-block">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <input type="hidden" id="hidProductCode"/>
+                    <input type="hidden" id="hidProductClass"/>
+                    <table class="table table-bordered" style="margin-bottom:0px;">
+                        <thead>
+                        <tr>
+                            <th colspan="2">自定义产品详细设置</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td width="20%">产品类型</td>
+                            <td id="productClassName"></td>
+                        </tr>
+                        <tr>
+                            <td width="20%">子分类</td>
+                            <td id="subClassName"></td>
+                        </tr>
+                        <tr>
+                            <td width="20%">产品编号</td>
+                            <td id="productCode"></td>
+                        </tr>
+                        <tr>
+                            <td width="20%">产品名称</td>
+                            <td>
+                                <el-input id="productName" v-model="form.productName" placeholder="请输入产品名称" style="width: 300px"></el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">产品图片</td>
+                            <td>
+                                <el-select v-model="form.iconShow" placeholder="请选择">
+                                    <el-option
+                                            v-for="item in iconOptions"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                                <div v-show="form.iconShow == 'Y'">
+                                    <el-row style="line-height: 50px">
+                                        图片地址：<el-input v-model="form.iconUrl" placeholder="请输入图片地址" style="width: 380px"></el-input>
+                                        <el-upload
+                                                ref="uploader"
+                                                class="upload-demo"
+                                                :action="uploadUrl"
+                                                multiple
+                                                style="display: inline"
+                                                :limit="1"
+                                                :show-file-list="false"
+                                                :on-success="uploadSuccess"
+                                                :on-error="uploadError">
+                                            <el-button size="small" type="primary">点击上传</el-button>
+                                            <el-tooltip class="item" effect="dark" placement="right">
+                                                <div slot="content">
+                                                    只能上传jpg/png文件，且不超过500kb
+                                                </div>
+                                                <i class="el-icon-question"></i>
+                                            </el-tooltip>
+                                        </el-upload>
+
+                                    </el-row>
+                                    <el-row style="line-height: 50px">
+                                        显示设置：宽 - <el-input-number v-model="form.iconWidth" :min="1" label="宽"></el-input-number>px
+                                        高 - <el-input-number v-model="form.iconHeight" :min="1" label="宽"></el-input-number>px
+                                        <el-select v-model="form.iconLocal" placeholder="请选择" style="display: none">
+                                            <el-option
+                                                    v-for="item in iconLocalOptions"
+                                                    :key="item.value"
+                                                    :label="item.label"
+                                                    :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                    </el-row>
+                                    <el-row v-if="form.iconUrl!=''" style="margin-top: 10px">
+                                        列表显示预览：<br />
+                                        <div style="width: 600px; line-height: 30px">
+                                            <div :style="'float: left; width:' + form.iconWidth + 'px'">
+                                                <img :src="form.iconUrl" :width="form.iconWidth" :height="form.iconHeight" :align="form.iconLocal" />
+                                            </div>
+                                            <div :style="'float: left; margin-left: 5px; width:' + (590-form.iconWidth) + 'px'">
+                                                <p v-html="form.productName" style="font-weight: bold"></p>
+                                                <p v-html="form.description" style="border: 1px dashed #a9a9a9; padding: 8px; line-height: 28px"></p>
+                                            </div>
+                                        </div>
+                                    </el-row>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">列表简价</td>
+                            <td>
+                                <el-input
+                                        type="textarea"
+                                        :rows="3"
+                                        placeholder="请输入内容"
+                                        v-model="form.description"
+                                        style="width: 300px">
+                                </el-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">开通界面</td>
+                            <td>
+                                <el-select v-model="form.paramShow" placeholder="请选择">
+                                    <el-option
+                                            v-for="item in paramOptions"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                                <el-tooltip class="item" effect="dark" placement="right">
+                                    <div slot="content">
+                                        如果使用自定义开通，接入业务需要实现询价接口.
+                                    </div>
+                                    <i class="el-icon-question"></i>
+                                </el-tooltip>
+                                <div v-show="form.paramShow=='diy'" style="line-height: 50px">
+                                    <el-row>
+                                        所属服务：<el-select clearable v-model="form.miniServer" placeholder="请选择">
+                                            <el-option
+                                                    v-for="item in miniServices"
+                                                    :key="item.serviceCode"
+                                                    :label="item.serviceName"
+                                                    :value="item.serviceCode">
+                                            </el-option>
+                                        </el-select>
+                                        <el-tooltip class="item" effect="dark" placement="right">
+                                            <div slot="content">
+                                                使用自定义开通界面，需要配置对应自定义微服务，并按标准实现询价接口
+                                            </div>
+                                            <i class="el-icon-question"></i>
+                                        </el-tooltip>
+                                    </el-row>
+                                    <el-row>
+                                        页面地址：<el-input v-model="form.paramUrl" placeholder="请输入开通参数实现地址" style="width: 400px"></el-input>
+                                        <el-tooltip class="item" effect="dark" placement="right">
+                                            <div slot="content">
+                                                请填定开通参数实现页面的绝对径地址<br />
+                                                产品的详细配置信息将以postMessage方式通知自定义实现页面
+                                            </div>
+                                            <i class="el-icon-question"></i>
+                                        </el-tooltip>
+                                    </el-row>
+                                    <el-row>
+                                        页面设置：<el-input-number v-model="form.paramHeight" :min="1" label="高"></el-input-number>px
+                                    </el-row>
+                                    <el-row>
+                                        开通知通：<el-select clearable v-model="form.syncOpen" placeholder="请选择">
+                                            <el-option key="Y" label="开启" value="Y"></el-option>
+                                        <el-option key="N" label="关闭" value="N"></el-option>
+                                        </el-select>
+                                    </el-row>
+                                    <el-row>
+                                        续费知通：<el-select clearable v-model="form.syncRenew" placeholder="请选择">
+                                        <el-option key="Y" label="开启" value="Y"></el-option>
+                                        <el-option key="N" label="关闭" value="N"></el-option>
+                                    </el-select>
+                                    </el-row>
+                                    <el-row>
+                                        删除知通：<el-select clearable v-model="form.syncDelete" placeholder="请选择">
+                                        <el-option key="Y" label="开启" value="Y"></el-option>
+                                        <el-option key="N" label="关闭" value="N"></el-option>
+                                    </el-select>
+                                    </el-row>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">产品详细说明</td>
+                            <td>
+                                <textarea id="productDetail" cols="80" rows="10"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">产品状态</td>
+                            <td>
+                                <select id="status" class="form-control width200">
+                                    <option value="1">正常</option>
+                                    <option value="2">暂停</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr v-show="form.paramShow!='diy'">
+                            <td width="20%">价格（按元/月）</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="price" chknonull="yes"/>(单位：元/月)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">购买数量</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="buyMaxNum" chknonull="yes"/>(单位：台，注：本产品下每个会员单次购买的最大台数)
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th colspan="17">价格优惠</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td width="10%">购买时长</td>
+                            <td>1月</td>
+                            <td>2月</td>
+                            <td>3月</td>
+                            <td>4月</td>
+                            <td>5月</td>
+                            <td>6月</td>
+                            <td>7月</td>
+                            <td>8月</td>
+                            <td>9月</td>
+                            <td>10月</td>
+                            <td>11月</td>
+                            <td>1年</td>
+                            <td>2年</td>
+                            <td>3年</td>
+                        </tr>
+                        <tr>
+                            <td>购买优惠</td>
+                            <td colspan="14"><span style="color:red">注：赠送月、赠送天请输入整数</span></td>
+                        </tr>
+                        <tr>
+                            <td>允许选择</td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_1" time="m" value="1" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_2" time="m" value="2" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_3" time="m" value="3" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_4" time="m" value="4" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_5" time="m" value="5" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_6" time="m" value="6" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_7" time="m" value="7" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_8" time="m" value="8" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_9" time="m" value="9" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_10" time="m" value="10" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_11" time="m" value="11" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_y_1" time="y" value="1" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_y_2" time="y" value="2" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_y_3" time="y" value="3" class="input_chk"/></td>
+                        </tr>
+                        <tr>
+                            <td>促销类型</td>
+                            <td style="padding:2px;"><select id="st_buy_m_1" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_2" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_3" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_4" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_5" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_6" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_7" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_8" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_9" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_10" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_11" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_y_1" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_y_2" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_y_3" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>促销值</td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_1" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_2" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_3" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_4" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_5" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_6" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_7" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_8" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_9" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_10" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_11" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_y_1" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_y_2" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_y_3" /></td>
+                        </tr>
+                        <tr>
+                            <td>续费优惠</td>
+                            <td colspan="14"><span style="color:red">注：赠送月、赠送天请输入整数</span></td>
+                        </tr>
+                        <tr>
+                            <td>允许选择</td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_1" time="m" value="1" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_2" time="m" value="2" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_3" time="m" value="3" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_4" time="m" value="4" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_5" time="m" value="5" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_6" time="m" value="6" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_7" time="m" value="7" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_8" time="m" value="8" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_9" time="m" value="9" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_10" time="m" value="10" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_11" time="m" value="11" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_y_1" time="y" value="1" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_y_2" time="y" value="2" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_y_3" time="y" value="3" class="input_chk"/></td>
+                        </tr>
+                        <tr>
+                            <td>促销类型</td>
+                            <td style="padding:2px;"><select id="st_renew_m_1" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_2" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_3" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_4" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_5" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_6" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_7" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_8" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_9" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_10" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_11" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_y_1" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_y_2" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_y_3" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>促销值</td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_1" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_2" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_3" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_4" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_5" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_6" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_7" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_8" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_9" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_10" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_11" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_y_1" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_y_2" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_y_3" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <input type="button" class="btn btn-primary" onClick="saveProductData()"  value="保存设置">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="btn btn-primary" onClick="javascript:history.back(-1);"  value="返回上一页">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/diyproduct.js"></script>
+</html>

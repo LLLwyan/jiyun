@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>续费</title>
+	<script src="../../../publicD/membercss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<script src="../../../publicD/memberjs.js"></script>
+
+	<!--element vue start-->
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<!-- import Vue before Element -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- import JavaScript -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<!--element vue end-->
+
+	<script src="js/serverinfo.js"></script>
+</head>
+<body>
+<div id="MainContentDIV" v-cloak>
+<div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+            <li><a href="javascript:void(0);">我的服务器</a></li>
+        </ul>
+	</div>
+		<div class="ManagerRightuser">
+        <div class="pay_title">续费<input type="button" class="manager-btn ml-20" value="返回实例列表" onclick="gotoServerList()">
+        </div>
+      	<!--中间代码开始-->
+        <table class="manager-table form-table">
+        	<tr>
+            	<td colspan="6" align="left">当前配置：</td>
+        	</tr>
+        	<tbody id="view">
+        	</tbody>
+        </table>
+        <input type="hidden" id="productCode"/>
+        <div class="pay_title">续费</div>
+        <div id="detaliBoxd" style="display:block;">
+		<div class="kuang" style="width:100%">
+        <form class="form-horizontal mt-40" role="form" v-if="'hyperv' == hostType">
+            <div class="form-group">
+	        	<label class="col-sm-2" style="text-align:right;">续费时长：</label>
+	            <div class="col-sm-8" style="width:80%;margin-bottom:20px;">
+	                <dl id="timelist" class="config-time cl"></dl>
+	            	<span style="font-size:13px;" id="expiry"></span>
+	            	<input type="hidden" id="applyTime"/>
+	            	<input type="hidden" id="applyType"/>
+	            </div>
+        	</div>
+	        <div class="form-group">
+	        	<label class="col-sm-2" style="text-align:right;">费 用：</label>
+	       	 	<div class="col-sm-8">
+	        		<label class="col-sm-8 orange" style="padding-left:0px;width:80px;" id="payPrice">0元</label>
+	        		<div id="discountMsg" style="float:left;">
+	        			<s style="color:#CCC;font-size:14px;">价格￥<span id="totalPrice"></span></s>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#01bd01;font-size:14px;">省￥<span id="discountPrice"></span></span>
+	        		</div>
+	        		<div style="color:red;font-size:14px;float:left;"><span class="ml-30" id="discountInfo"></span></div>
+	        	</div>
+	        </div>
+        </form>
+			<el-form style="margin-top: 20px" label-width="100px"  class="demo-form-inline" v-if="'aliyun' == hostType">
+				<el-form-item label="续费时长：">
+					<el-select v-model="form.buyTime" @change="getPrice" placeholder="请选择" :clearable="true">
+						<el-option
+								v-for="item in timeLine"
+								:key="item.value"
+								:label="item.label"
+								:value="item.value">
+						</el-option>
+					</el-select>
+				</el-form-item>
+
+				<el-form-item label="续费费用：">
+					<span style="color: #FF0000" v-if="form.moneyTotal>0">￥<span v-html="form.moneyTotal"></span></span>
+					<span style="color: #d58512" v-if="form.moneyTotal==-1">计算中...</span>
+					<span v-if="form.moneyTotal==0">请选择续费时长</span>
+
+					<span style="color:#01bd01;font-size:14px;" v-if="price.discountPrice > 0">省￥<span v-html="price.discountPrice"></span></span>
+				</el-form-item>
+			</el-form>
+
+			<el-form style="margin-top: 20px" label-width="100px"  class="demo-form-inline" v-if="'huawei' == hostType">
+				<el-form-item label="续费时长：">
+					<el-select v-model="form.buyTime" @change="getPrice" placeholder="请选择" :clearable="true">
+						<el-option
+								v-for="item in timeLineHuawei"
+								:key="item.value"
+								:label="item.label"
+								:value="item.value">
+						</el-option>
+					</el-select>
+				</el-form-item>
+
+				<el-form-item label="续费费用：">
+					<span style="color: #FF0000" v-if="form.moneyTotal>0">￥<span v-html="form.moneyTotal"></span></span>
+					<span style="color: #d58512" v-if="form.moneyTotal==-1">计算中...</span>
+					<span v-if="form.moneyTotal==0">请选择续费时长</span>
+
+					<span style="color:#01bd01;font-size:14px;" v-if="price.discountPrice > 0">省￥<span v-html="price.discountPrice"></span></span>
+				</el-form-item>
+			</el-form>
+    	</div>
+        </div>
+        <div class="searchbtn" style="text-align:center;">
+        	<input type="button" class="manager-btn mr-10" value="确认" @click="submitRenew">
+		</div>
+    </div>
+</div>
+<script src="js/renew.js"></script>
+</body>
+</html>

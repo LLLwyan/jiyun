@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>重装系统</title>
+	<script src="../../../publicD/membercss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<link rel="stylesheet" type="text/css" href="../../../css/cloudservice.css">
+	<link rel="stylesheet" type="text/css" href="../../../public/css/rangeslider.css">
+	<script src="../../../publicD/memberjs.js"></script>
+
+	<!--element vue start-->
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<!-- import Vue before Element -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- import JavaScript -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<!--element vue end-->
+
+	<script src="js/serverinfo.js"></script>
+	<style>
+		.cloud-main-l .l-l{padding:0; min-height:36px;}
+		.el-input-number__decrease{height: 38px}
+		.el-input-number__decrease .el-icon-minus {line-height: 38px}
+		.el-input-number__increase{height: 38px}
+		.el-input-number__increase .el-icon-plus {line-height: 38px}
+		._this_td {font-size: 14px; line-height: 28px; width: 300px; padding-top: 8px; padding-bottom: 8px}
+	</style>
+</head>
+<body>
+<div id="MainContentDIV" v-cloak>
+<div id="SitePath">
+        <ul>
+             <li><a href="javascript:void(0);">会员中心</a></li>
+             <li><a href="javascript:void(0);">业务管理</a></li>
+             <li><a href="javascript:void(0);">我的服务器</a></li>
+        </ul>
+	</div>
+		<div class="ManagerRightuser">
+        <div class="pay_title">重装系统<input type="button" class="manager-btn ml-20" value="返回实例列表" onclick="gotoServerList()"></div>
+      	<!--中间代码开始-->
+        <table class="manager-table form-table">
+        	<tr>
+            	<td colspan="6" align="left">当前配置：</td>
+        	</tr>
+        	<tbody id="view">
+        	</tbody>
+        </table>
+        <input type="hidden" id="hostType"/>
+        <input type="hidden" id="productCode"/>
+        <input type="hidden" id="osType"/>
+        <input type="hidden" id="osVersion"/>
+        <input type="hidden" id="systemDiskType"/>
+        <input type="hidden" id="systemDiskSize"/>
+        <input type="hidden" id="windowsMinSize"/>
+   		<input type="hidden" id="otherMinSize"/>
+        <div class="pay_title">重装系统<span style="color:red;margin-left:50px;" v-if="hostType == 'hyperv'">注：系统默认赠送Windows操作系统40G，其它操作系统20G；切换操作系统或者升级容量不够将补差价。</span></div>
+        <div id="detaliBoxd" style="display:block;">
+		<div class="kuang" style="width:100%">
+        	<form class="form-horizontal mt-10" role="form" v-if="hostType == 'hyperv'">
+        	<div class="form-group">
+				<div id="resetLimit" style="margin-left:15px;color:green;font-size:14px;"></div>
+        	</div>
+	        <div class="form-group">
+	            <label class="col-sm-2">操作系统：</label>
+	            <div class="col-sm-9">
+	            	<div class="cloud-main-l">
+	            		<div class="l-l">
+			            	<div class="slider-m-o">
+			               		<div class="sel" id="sel">
+				                    <div class="sel-inp on">
+				                         <span></span>
+				                         <p id="defaultType"></p>
+				                         <i></i>
+				                         <div class="clear"></div>
+				                    </div>
+				                	<div id="osTypeList" class="sel-m" style="display: none;"></div>
+				                </div>
+			               		<div class="sys-m" id="osVersion">
+					                <div class="sel" style="display: block;">
+					                	<div class="sel-inp on">
+					                         <p id="defaultVersion"></p>
+					                         <i></i>
+					                         <div class="clear"></div>
+					                    </div>
+					                    <div id="osNameList" class="sel-m" style="display: none;"></div>
+					                    <input type="hidden" id="imageId"/>
+					                </div>
+			            		</div>
+	               				<div class="clear"></div>
+	            			</div>
+	        			</div>
+	        		</div>
+	        	</div>
+	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2">系统盘：</label>
+	            <div class="col-sm-10">
+	            	<div id="main" style="margin: 30px 0px 0px -110px;width:328px;">
+		                <div id="control-group">
+		                     <div class="scroll-bar" id="scroll-bar1" style="margin:-30px 0px 10px 110px;">
+		                         <div class="entire-bar" id="entire-bar1"></div>
+		                         <div class="action-bar" id="action-bar1"></div>
+		                         <div class="action-block" id="action-block1"></div>
+		                     </div>
+		                     <div class="showAmount" style="width:100px;position:absolute;left:245px;top:-2px;">
+		                         <input type="text" id="syssize" style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;<span>GB</span>
+		                     </div>
+		                </div>
+					</div>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2">登录密码：</label>
+	            <div class="col-sm-8" style="margin-bottom:10px">
+	               <input type="password" placeholder="请输入登录密码" class="manager-input m-input" id="loginPwd" style="width:220px;">
+	               <span style="color:red">8-30个字符，必须同时包含四项（大写字母，小写字母，数字和特殊字符）</span>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2">确认密码：</label>
+	            <div class="col-sm-8" style="margin-bottom:10px">
+	               <input type="password" placeholder="请输入确认密码" class="manager-input m-input" id="confirmPwd" style="width:220px;">
+	            </div>
+	        </div>
+	        <div class="form-group">
+	        	<label class="col-sm-2">支付费用：</label>
+	       	 	<div class="col-sm-8">
+	        		<label class="col-sm-8 orange" style="width:200px;" id="diskprice" data-value="0">0元</label>
+	        	</div>
+	        </div>
+        </form>
+
+			<el-form style="margin-top: 20px" label-width="140px"  class="demo-form-inline" v-if="'aliyun' == hostType">
+				<el-form-item label="操作系统：">
+					<el-select v-model="form.imageOsType"
+							   placeholder="请选择系统分类"
+							   @change="selectImage">
+						<el-option
+								v-for="cat in osType"
+								:key="cat"
+								:label="cat"
+								:value="cat">
+						</el-option>
+					</el-select>
+					<el-select v-model="form.imageId"
+							   placeholder="请选择镜像"
+							   @change="setImageName"
+							   style="width: 500px">
+						<el-option
+								v-for="item in imageList"
+								:key="item.imageId"
+								:label="item.oSName"
+								:value="item.imageId">
+						</el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item label="系统盘容量：">
+					<el-input-number @change="getPrice" v-model="form.sysDiskSize" :min="40" :max="500" label=""></el-input-number> G
+				</el-form-item>
+
+				<el-form-item label="安全设置：">
+					<el-switch
+							v-model="form.isSafe"
+							active-text="自定义密码"
+							style="margin-top: 15px"
+							inactive-text="创建后设置">
+					</el-switch>
+				</el-form-item>
+				<el-form-item label="登录密码：" v-if="form.isSafe">
+					<el-input type="password" style="width: 180px" v-model="form.userPassword" placeholder="可创建后设置"></el-input>
+					8 - 30 个字符，必须同时包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.? 中的特殊符号）
+				</el-form-item>
+				<el-form-item label="确认密码：" v-if="form.isSafe">
+					<el-input type="password" style="width: 180px" v-model="form.userPasswordSure" placeholder=""></el-input>
+				</el-form-item>
+
+				<el-form-item label="重装费用：">
+					<span style="color: #FF0000" v-if="form.moneyTotal>=0">￥<span v-html="form.moneyTotal"></span></span>
+					<span style="color: #d58512" v-if="form.moneyTotal==-1">计算中...</span>
+
+					<span style="color:#01bd01;font-size:14px;" v-if="price.discountPrice > 0">省￥<span v-html="price.discountPrice"></span></span>
+				</el-form-item>
+			</el-form>
+
+			<el-form style="margin-top: 20px" label-width="140px"  class="demo-form-inline" v-if="'huawei' == hostType">
+				<el-form-item label="操作系统：">
+					<el-select v-model="form.imageOsType"
+							   placeholder="请选择系统分类"
+							   @change="selectHuaweiImage">
+						<el-option
+								v-for="cat in osType"
+								:key="cat"
+								:label="cat"
+								:value="cat">
+						</el-option>
+					</el-select>
+					<el-select v-model="form.imageId"
+							   placeholder="请选择镜像"
+							   @change="setHuaweiImageName"
+							   style="width: 500px">
+						<el-option
+								v-for="item in imageList"
+								:key="item.imageId"
+								:label="item.oSName"
+								:value="item.imageId">
+						</el-option>
+					</el-select>
+				</el-form-item>
+
+				<el-form-item label="安全设置：">
+					<el-switch
+							v-model="form.isSafe"
+							active-text="设置新密码"
+							style="margin-top: 15px"
+							inactive-text="使用旧密码">
+					</el-switch>
+				</el-form-item>
+				<el-form-item label="登录密码：" v-if="form.isSafe">
+					<el-input type="password" style="width: 180px" v-model="form.userPassword" placeholder="可创建后设置"></el-input>
+					8 - 30 个字符，必须同时包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.? 中的特殊符号）
+				</el-form-item>
+				<el-form-item label="确认密码：" v-if="form.isSafe">
+					<el-input type="password" style="width: 180px" v-model="form.userPasswordSure" placeholder=""></el-input>
+				</el-form-item>
+			</el-form>
+    	</div>
+        </div>
+        <div class="searchbtn" style="text-align:center;">
+        	<input id="btnConfirm" type="button" class="manager-btn  mr-10" value="确认" @click="submitClick">
+		</div>
+    </div>
+</div>
+<script src="js/resetsystem.js"></script>
+</body>
+</html>

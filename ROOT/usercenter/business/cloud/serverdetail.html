@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<script src="../../../publicD/membercss.js"></script>
+	<style>
+	.cloud-main-l .l-l {
+		min-height:0;
+		padding:0;
+	    width: 400px;
+	}
+	.cloud-main-l .l-l .slider-m-o .sys-m .sel{
+		width:220px;
+	}
+	.cloud-main-l .l-l .slider-m-o .sys-m .sel-m-o {
+	    width: 220px;
+	}
+	</style>
+</head>
+<body id="thrColEls" style="overflow:auto;">
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+	    <li><a href="javascript:void(0);">会员中心</a></li>
+	    <li><a href="javascript:void(0);">业务管理</a></li>
+	    <li><a href="javascript:void(0);">我的服务器</a></li>
+	</ul>
+</div>
+<!--右侧内容区 开始-->
+<div class="ManagerRightuser">
+	<div style="margin:10px -20px 0px -20px">
+		<div class="server-title">
+			<b>实例：</b><span id="instanceId"></span>
+		</div>
+	</div>
+	<div style="margin:10px -20px 0px -20px">
+    	<ul class="manager-tab bind-tab">
+        	<li class="liactive"><a id="instanceDetail" href="javascript:;">当前实例详情</a></li>
+        	<li><a id="instanceDisk" href="javascript:;">当前实例硬盘</a></li>
+        	<li tag="nopayorders" style="display: none"><a id="instanceSnapshot" href="javascript:;">当前实例快照</a></li>
+        	<!--<li><a id="instanceResource" href="javascript:;">当前实例资源</a></li>-->
+    	</ul>
+    </div>
+    <div class="server-control">
+		<input type="button" class="manager-btn mr-10" id="btnBackList" value="返回实例列表">
+		<input type="button" class="manager-btn mr-10 disable" id="btnResetpwd" value="重置密码">
+       	<div class="btn-group autosuo">
+       		<a id="opt" href="javascript:void(0)" class="manager-btn editsnap disable">更多操作&nbsp;<span class="btn-caret"></span></a>
+       		<ul id="optItem" class="edit-ul" flag="0"  id="optbtn">
+       		</ul>
+       		<input type="hidden" id="hostType"/>
+       	</div>
+    </div>
+    <div style="margin-top:20px;border-left: 3px solid #6d7781">
+		<div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+			<b>产品详情</b>
+		</div>
+	</div>
+	<div class="right_side_bottom">
+		<table width="100%" class="gridtable" id="view">
+		</table>
+	</div>
+	<div style="margin-top:20px;border-left: 3px solid #6d7781">
+		<div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+			<b>服务器配置</b>
+		</div>
+	</div>
+          <table width="100%" class="gridtable" id="info">
+	</table>
+</div>
+<!-- 重置密码-->
+<div id="detaliBoxa" style="display:none">
+    <div class="kuang">
+        <div class="product-detail-desc m-20">
+        	<p><strong class="redColor">提示：</strong>只有当主机处于运行中才能修改密码，重置成功后请稍等1-2分钟再尝试登录。 </p>
+        </div>
+        <form id="uptPwdForm" class="form-horizontal" role="form">
+            <div class="form-group">
+            	<label class="col-sm-2 control-label"><strong class="redColor f-l10 ">*</strong>登录密码:</label>
+            	<div class="col-sm-8">
+            		<input type="password" id="password" class="manager-input m-input width300"  placeholder="请输入登录密码">
+            		<br />
+            		8-30个字符，必须同时包含四项（大写字母,小写字母，数字和特殊字符）
+           		 </div>
+            </div>
+            <div class="form-group">
+            	<label class="col-sm-2 control-label"><strong class="redColor f-l10 ">*</strong>确认密码:</label>
+            	<div class="col-sm-8">
+            		<input type="password" id="confirmPassword" class="manager-input m-input width300"  placeholder="请输入确认密码">
+            	</div>
+            </div>
+       		<br />
+            <div class="form-group">
+            	<label class="col-sm-2 control-label"><strong class="redColor f-l10 ">*</strong>验证码:</label>
+            	<div class="col-sm-8">
+            		<input type="text" class="manager-input m-input width200" id="checkcode" placeholder="请输入验证码">
+            		<img class="img-code" src="../../../images/loading.gif" onclick="refreshVcode();" alt="点击可更换" id="imgcode" title="点击可更换" width="100" height="38">
+            	</div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--右侧内容区 结束-->
+</div>
+</div>
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/serverdetail.js"></script>
+</body>
+</html>

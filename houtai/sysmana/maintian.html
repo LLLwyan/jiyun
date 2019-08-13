@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../public/maincss.js"></script>
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                 <div class="managertitle">
+                           <ul class="manager-tab full-manager-tab bind-tab" id="ulTab">
+                            <li tag="mysellerlist" class="liactive"><a href="javascript:;">首页轮播图</a></li>
+                            <li tag="mysellersure"><a href="javascript:;">合作伙伴</a></li> 
+                            <li tag="mysellersure"><a href="javascript:;">成功案例</a></li>
+                            <li tag="mysellersure"><a href="javascript:;">行业解决方法</a></li> 
+                          </ul>
+					</div>
+                    <div class="tab_box">
+                    <div class="ibox-content">
+                   
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                                <tr>
+                                    <th>序号1</th>
+                                   <th>标题</th>
+                                   <th>图片URL</th>
+                                   <th>目标链接页面URL</th>
+                                   <th>优先级</th>
+                                   <th width="30%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userlist">
+                               <tr>
+      <td>1</td>
+      <td>
+      <input class="buy_text" placeholder="标题">
+      </td>
+      <td>
+      <div class="form-group">
+		<input type="file" id="inputfile">
+	</div>
+      </td>
+      <td>
+      <input class="buy_text" placeholder="链接页面URL">
+      </td>
+      <td><input class="buy_text" value="1"></td>
+      <td>
+      <button type="button" class="btn btn-primary">添加</button>
+      </td>
+    </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                    <div class="ibox-content" style="display:none;">
+                   
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                                <tr>
+                                    <th>序号2</th>
+                                   <th>标题</th>
+                                   <th>图片URL</th>
+                                   <th>目标链接页面URL</th>
+                                   <th>优先级</th>
+                                   <th width="30%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userlist">
+                               <tr>
+      <td>1</td>
+      <td>
+      <input class="buy_text" placeholder="标题">
+      </td>
+      <td>
+      <div class="form-group">
+		<input type="file" id="inputfile">
+	</div>
+      </td>
+      <td>
+      <input class="buy_text" placeholder="链接页面URL">
+      </td>
+      <td><input class="buy_text" value="1"></td>
+      <td>
+      <button type="button" class="btn btn-primary">添加</button>
+      </td>
+    </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                    <div class="ibox-content" style="display:none;">
+                   
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                                <tr>
+                                    <th>序号3</th>
+                                   <th>标题</th>
+                                   <th>图片URL</th>
+                                   <th>目标链接页面URL</th>
+                                   <th>优先级</th>
+                                   <th width="30%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userlist">
+                               <tr>
+      <td>1</td>
+      <td>
+      <input class="buy_text" placeholder="标题">
+      </td>
+      <td>
+      <div class="form-group">
+		<input type="file" id="inputfile">
+	</div>
+      </td>
+      <td>
+      <input class="buy_text" placeholder="链接页面URL">
+      </td>
+      <td><input class="buy_text" value="1"></td>
+      <td>
+      <button type="button" class="btn btn-primary">添加</button>
+      </td>
+    </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                    <div class="ibox-content" style="display:none;">
+                   
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                                <tr>
+                                    <th>序号4</th>
+                                   <th>标题</th>
+                                   <th>图片URL</th>
+                                   <th>目标链接页面URL</th>
+                                   <th>优先级</th>
+                                   <th width="30%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userlist">
+                               <tr>
+      <td>1</td>
+      <td>
+      <input class="buy_text" placeholder="标题">
+      </td>
+      <td>
+      <div class="form-group">
+		<input type="file" id="inputfile">
+	</div>
+      </td>
+      <td>
+      <input class="buy_text" placeholder="链接页面URL">
+      </td>
+      <td><input class="buy_text" value="1"></td>
+      <td>
+      <button type="button" class="btn btn-primary">添加</button>
+      </td>
+    </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="../public/main.js"></script>
+<script>
+$(function(){
+ $(".managertitle ul li").click(function(){
+ $(this).addClass("liactive").siblings().removeClass("liactive"); //切换选中的按钮高亮状态
+ var index=$(this).index(); //获取被按下按钮的索引值，需要注意index是从0开始的
+ $(".tab_box > div").eq(index).show().siblings().hide(); //在按钮选中时在下面显示相应的内容，同时隐藏不需要的框架内容
+ });
+});
+</script>
+</body>
+</html>

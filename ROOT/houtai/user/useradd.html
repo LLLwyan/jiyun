@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    <div class="product-detail-desc mt-15">
+			      		<p class="pt-5"><p><strong class="redColor">友情提醒:</strong>带*号为必填项
+			            </p> 
+		      		</div>
+                    <table class="manager-table table table-hover ">
+          <form class="form-inline" role="form" id="uAddForm">
+          <tbody>
+          <tr>
+            <th width="150" >会员名：</th>
+            <td colspan="3" align="left"><input id="u_accout" class="manager-input m-input width288" value="" size="40"><strong class="redColor f-l10">*输入5-16位会员名，只能包含字母或数字，不能纯数字</strong></td>
+          </tr>
+          <tr>
+            <th width="150" >密码：</th>
+            <td colspan="3" align="left"><input type="password" id="u_pass" class="manager-input m-input width288" value="" size="40"><strong class="redColor f-l10">*输6-16位密码，由字母+数字+符号组成，例：abc!@123</strong></td>
+          </tr>
+          <tr>
+            <th width="150" >确认密码：</th>
+            <td colspan="3" align="left"><input type="password" id="u_newpass" class="manager-input m-input width288" value="" size="40"><strong class="redColor f-l10">*两次密码要一致</strong></td>
+          </tr>
+          <tr>
+            <th width="150" >手机：</th>
+            <td colspan="3" align="left"><input id="u_moblie" class="manager-input m-input width288" value="" size="40"><strong class="redColor f-l10">*</strong></td>
+          </tr>
+           <tr>
+            <th width="150">邮箱：</th>
+            <td colspan="3" align="left" class="t"><input id="u_email" class="manager-input m-input width288" value="" size="40"><strong class="redColor f-l10">*</strong></td>
+          </tr>
+          <tr class="no-border">
+          <td></td>
+            <td colspan="3" align="left">
+			<div class="tipinfo"></div>
+			  <input type="button" value="新 增" class="btn btn-primary" onclick="u_add();">
+              &nbsp;&nbsp;
+              <input type="reset" value="重 填" class="btn btn-primary">
+			  </td>
+          </tr>
+        </tbody>
+        </form>
+        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/useradd.js"></script>
+</html>

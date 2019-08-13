@@ -1,0 +1,357 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>虚拟主机</title>
+	<script type="text/javascript" src="../public/maincss.js"></script>
+	<link href="../css/cloudservice.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="../public/main.js"></script>
+
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<link rel="stylesheet" href="cloud.buy.css">
+	<!-- import Vue before Element -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- import JavaScript -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<style type="text/css">
+		.el-input-number__decrease{height: 30px}
+		.el-input-number__decrease .el-icon-minus {line-height: 30px}
+		.el-input-number__increase{height: 30px}
+		.el-input-number__increase .el-icon-plus {line-height: 30px}
+		.el-checkbox-button.is-disabled .el-checkbox-button__inner {
+			color: #C0C4CC;
+			cursor: not-allowed;
+			background-image: none;
+			background-color: #409eff;
+			border-color: #409eff;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+	</style>
+</head>
+<body>
+<!--头部开始-->
+<div id="header"></div>
+<!--头部结束-->
+<div id="content">
+	<div class="host-content">
+		<div class="wide1190">
+		    <!-- 选项卡 -->
+		    <ul class="wjf-ui-tab-style2 cl" id="productList">
+				<li v-for="(item,key) in productListParam">
+					<a href="javascript:void(0);" data-target="J_txHostDom" @click="changeProduct(key)" v-html="item.productName" :class="index == key ? 'active':''"></a>
+				</li>
+		    </ul>
+		 <div class="cloud-main">
+		 	<input type="hidden" id="hostType" value="vhost"/>
+		 	<input type="hidden" id="productCode" value=""/>
+		 	<input type="hidden" id="maxBandwidth"/>
+		 	<input type="hidden" id="windowsMinSize"/>
+		 	<input type="hidden" id="otherMinSize"/>
+		    <div id="main-m">
+		        <div class="cloud-main-l nav-main" id="a1">
+		            <div class="w-1200">
+		                <div class="sliderbox">
+							<el-form v-model="form" label-width="130px"  class="demo-form-inline" :inline="true">
+			                    <div class="l-l fl">
+									<div>
+										<div class="slider-m">
+											<div class="slice filter-web">服务选择</div>
+											<div class="slider-m-o" style="width: 790px">
+												<el-row>
+													<el-form-item label="地区：">
+														<el-radio-group v-model="form.regionName" @change="regionChange">
+															<el-radio-button v-for="item in regionList" :label="item.regionName"></el-radio-button>
+														</el-radio-group>
+													</el-form-item>
+												</el-row>
+												<el-row>
+													<el-form-item label="开通服务项：">
+														<el-checkbox-group v-model="form.openServerList" @change="getPrice">
+															<el-checkbox-button v-for="item in serviceTypeList" :label="item.name"
+																				:disabled="product.productParam.allowChooseType == 2 || (item.type=='ftp' && hasWeb())"
+															></el-checkbox-button>
+														</el-checkbox-group>
+													</el-form-item>
+												</el-row>
+											</div>
+										</div>
+									</div>
+
+									<div v-if="hasWeb()">
+										<div class="slider-m">
+											<div class="slice filter-web">WEB配置选择</div>
+											<div class="slider-m-o" style="width: 790px">
+												<el-row>
+													<el-form-item label="操作系统：">
+														<span v-html="product.productParam.webOs"></span>
+													</el-form-item>
+												</el-row>
+
+												<el-row>
+													<el-form-item label="可绑定域名数量：">
+														<span v-html="product.productParam.webHostNum"></span>
+													</el-form-item>
+												</el-row>
+
+												<el-row>
+													<el-form-item label="是否为独立IP：">
+														<span v-html="product.productParam.webAloneIP=='Y' ? '是' : '否'"></span>
+													</el-form-item>
+												</el-row>
+
+												<el-row>
+													<el-form-item label="支持运行的脚本：">
+														<span v-html="product.productParam.webScriptType"></span>
+													</el-form-item>
+												</el-row>
+
+												<el-row>
+													<el-form-item label="链接数（个）：">
+														<div class="block">
+															<el-slider
+																	v-model="form.webLinks"
+																	:min="product.productParam.webLinksMin"
+																	:max="product.productParam.webLinksMax"
+																	@change="getPrice"
+																	style="width: 500px"
+																	show-input>
+															</el-slider>
+														</div>
+													</el-form-item>
+												</el-row>
+
+												<el-row>
+													<el-form-item label="带宽（KBps）：">
+														<div class="block">
+															<el-slider
+																	v-model="form.webWidth"
+																	:min="product.productParam.webWidthMin"
+																	:max="product.productParam.webWidthMax"
+																	@change="getPrice"
+																	style="width: 500px"
+																	show-input>
+															</el-slider>
+														</div>
+													</el-form-item>
+												</el-row>
+
+												<el-row>
+													<el-form-item label="流量（GB）：">
+														<div class="block">
+															<el-slider
+																	v-model="form.webFlow"
+																	:min="product.productParam.webFlowMin"
+																	:max="product.productParam.webFlowMax"
+																	@change="getPrice"
+																	style="width: 500px"
+																	show-input>
+															</el-slider>
+														</div>
+													</el-form-item>
+												</el-row>
+
+												<el-row>
+													<el-form-item label="空间（MB）：">
+														<div class="block">
+															<el-slider
+																	v-model="form.ftpDiskQuota"
+																	:min="product.productParam.ftpDiskQuotaMin"
+																	:max="product.productParam.ftpDiskQuotaMax"
+																	@change="getPrice"
+																	style="width: 500px"
+																	show-input>
+															</el-slider>
+														</div>
+													</el-form-item>
+												</el-row>
+											</div>
+										</div>
+									</div>
+
+									<div v-if="hasFtp() && !hasWeb()">
+										<div class="slider-m">
+											<div class="slice filter-web">FTP配置选择</div>
+											<div class="slider-m-o" style="width: 790px">
+												<el-row>
+													<el-form-item label="空间（MB）：">
+														<div class="block">
+															<el-slider
+																	v-model="form.ftpDiskQuota"
+																	:min="product.productParam.ftpDiskQuotaMin"
+																	:max="product.productParam.ftpDiskQuotaMax"
+																	style="width: 500px"
+																	@change="getPrice"
+																	show-input>
+															</el-slider>
+														</div>
+													</el-form-item>
+												</el-row>
+											</div>
+										</div>
+									</div>
+
+									<div v-if="hasSqlServer()">
+										<div class="slider-m">
+											<div class="slice filter-web">SQL Server 配置选择</div>
+											<div class="slider-m-o" style="width: 790px">
+												<el-row>
+													<el-form-item label="数据空间(MB)：">
+														<div class="block">
+															<el-slider
+																	v-model="form.MSSQLSize"
+																	:min="product.productParam.MSSQLSizeMin"
+																	:max="product.productParam.MSSQLSizeMax"
+																	style="width: 500px"
+																	@change="getPrice"
+																	show-input>
+															</el-slider>
+														</div>
+													</el-form-item>
+												</el-row>
+												<el-row>
+													<el-form-item label="日志空间(MB)：">
+														<div class="block">
+															<el-slider
+																	v-model="form.MSSQLLogSize"
+																	:min="product.productParam.MSSQLLogSizeMin"
+																	:max="product.productParam.MSSQLLogSizeMax"
+																	style="width: 500px"
+																	@change="getPrice"
+																	show-input>
+															</el-slider>
+														</div>
+													</el-form-item>
+												</el-row>
+											</div>
+										</div>
+									</div>
+
+									<div v-if="hasMySQL()">
+										<div class="slider-m">
+											<div class="slice filter-web">MySQL 配置选择</div>
+											<div class="slider-m-o" style="width: 790px">
+												<el-row>
+													<el-form-item label="数据空间(MB)：">
+														<div class="block">
+															<el-slider
+																	v-model="form.mySQLSize"
+																	:min="product.productParam.mySQLSizeMin"
+																	:max="product.productParam.mySQLSizeMax"
+																	@change="getPrice"
+																	style="width: 500px"
+																	show-input>
+															</el-slider>
+														</div>
+													</el-form-item>
+												</el-row>
+											</div>
+										</div>
+									</div>
+
+
+
+									<div class="count-info">
+										<div class="config-box cl" id="J_buyCountContainerDom" style="padding-top:0;">
+											<span class="buycount">购买数量：</span>
+											<el-input-number v-model="form.num" :min="1" :max="parseInt(product.productParam.buyMaxNum)" size="small" label="购买数量" @change="getPrice"></el-input-number>
+										</span>
+										</div>
+										<div class="config-box cl" style="overflow: visible;">
+											<span class="buycount">购买时长：</span>
+											<dl id="timelist" class="config-time cl"></dl>
+										</div>
+										<div class="clear"></div>
+									</div>
+								</div>
+							</el-form>
+		                    </div>
+		                    <div class="l-r fr" style="height: 1200px;">
+		                        <div id="set-m" class="" style="top: 0px;">
+		                            <i class="discount-icon"></i>
+		                            <h4>当前配置</h4>
+		                            <ul>
+		                            	<li v-if="hasWeb()">
+		                                    <p class="p-o">链接数：</p>
+		                                    <p id="webLinksShow" data-value="" class="p-t" v-html="form.webLinks + '个'"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li v-if="hasWeb()">
+		                                    <p class="p-o">带宽：</p>
+		                                    <p id="webWidthShow" data-value="" class="p-t" v-html="form.webWidth + 'KBsp'"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+ 		                                <li v-if="hasWeb()">
+		                                    <p class="p-o">流量：</p>
+		                                    <p id="webFlowShow" data-value="" class="p-t" v-html="form.webFlow + 'G/月'"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li v-if="hasWeb() || hasFtp()">
+		                                    <p class="p-o">空间大小：</p>
+		                                    <p id="ftpDiskQuotaShow" data-value="" class="p-t" v-html="form.ftpDiskQuota + 'MB'"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+                                  		<li v-if="hasSqlServer()">
+		                                    <p class="p-o" style="width: 145px">SQL Server数据空间：</p>
+		                                    <p id="MSSQLSizeShow" data-value="" class="p-t" style="margin-left: 70px" v-html="form.MSSQLSize + 'MB'"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li v-if="hasSqlServer()">
+		                                    <p class="p-o" style="width: 145px">SQL Server日志空间：</p>
+		                                    <p id="MSSQLLogSizeShow" data-value="" class="p-t" style="margin-left: 70px"  v-html="form.MSSQLLogSize + 'MB'"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li v-if="hasMySQL()">
+		                                    <p class="p-o" style="width: 80px">MySQL空间：</p>
+		                                    <p id="mySQLSizeShow" data-value="" class="p-t" style="margin-left: 25px" v-html="form.mySQLSize + 'MB'"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p class="p-o">购买数量：</p>
+		                                    <p id="curNum" class="p-t" v-html="form.num + '台'"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p class="p-o">购买时长：</p>
+		                                    <p id="curApplyTime" time="" type="" class="p-t">1个月<span></span></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p style="color:#ff6800; font-size:16px; font-weight:bold; padding-top:10px;">按年支付更划算！        </p>
+		                                </li>
+		                                <li class="pri" style="padding-top:40px;">
+		                                    <p class="p-o" style="width:60px;">费用总计：</p>
+		                                    <p class="p-s">￥<span id="price"></span></p>
+		                                    <div class="clear"></div>
+		                                </li>
+                                        <li id="discountMsg">
+                                        	<s style="color:#CCC;font-size:14px;">价格￥<span id="totalPrice"></span></s>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#01bd01;font-size:14px;">省￥<span id="discountPrice"></span></span>
+                                        </li>
+                                        <li>
+                                        	<span style="color:red;font-size:14px;" id="discountInfo"></span>
+                                        </li>
+		                            </ul>
+		                            <a href="javascript:void(0);" id="btnBuy" class="but disable">添加到购物车</a>
+									<a href="javascript:void(0);" id="btnBuyNow" class="but disable">立即购买</a>
+		                            <div id="remark" style="color:red"></div>
+		                        </div>
+		                    </div>
+		                    <div class="clear"></div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		</div>
+	</div>
+</div>
+<!--底部开始-->
+<div id="footer"></div>
+<!--底部结束-->
+
+<script src="open.js"></script>
+</body>
+</html>

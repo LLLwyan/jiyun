@@ -1,0 +1,38 @@
+*{ padding:0; margin:0; list-style:none; }
+a{text-decoration:none; color:#000000;}
+a:hover{ color:#EDA84F;}
+body{background:#ffffff;}
+
+/*第一栏 用户信息*/
+#user { width:98%; height:100px; background:#FFFFFF; margin:20px auto; box-shadow:10px 10px 20px rgba(0,0,0,0.2);}
+.user_info{background:#f3f3f2; width:27%; height:100%; float:left;}
+.user_info div{ text-align:center; margin-top:4%;}
+.user_info p{ text-align:center; margin-top:10px;}
+
+.user_yue{ width:35%; height:100%; float:left; padding-left:1%;}
+.user_yue p{ margin-top:10px; font-weight:600;}
+.user_yue p:nth-child(2){ text-align:center;}
+.user_yue span{ font-size:30px;}
+
+.user_daiban{ width:35%; height:100%; float:left; padding-left:1%;}
+.user_daiban p{ margin-top:10px; font-weight:600;}
+.user_daiban p:nth-child(2){ text-align:center;}
+.user_daiban p span{ font-size:30px; margin-right:10px;}
+.pp span{ text-align:center; color:red; font-size:30px;}
+
+
+/*第二栏 概要*/
+.gaiyao{width:98%; height:158px; background:#FFFFFF; margin:25px auto; box-shadow:10px 14px 24px rgba(0,0,0,0.2);}
+.gaiyao p{ padding-left:20px; height:34px; line-height:34px; font-size:20px;}
+.gaiyao table{ text-align:center; width:98%; margin:0 auto; border-collapse:collapse;}
+.gaiyao table td{ width:25%; height:50px; border:1px solid #e0dfe1;}
+.gaiyao thead td{ font-size:14px; background:#f3f3f2; font-weight:600;}
+
+
+/*第三栏 业务统计*/
+#yewu{width:98%; height:360px; background:#FFFFFF; margin:0 auto; box-shadow:10px 10px 20px rgba(0,0,0,0.2);}
+#yewu p{ font-size:20px; padding-left:20px; height:36px; line-height:36px;}
+#yewu table{ text-align:center; width:98%; margin:0 auto; border-collapse:collapse;}
+#yewu table td{ width:20%; height:50px; border:1px solid #e0dfe1;}
+#yewu thead td{ font-size:14px; background:#f3f3f2; font-weight:600;}
+#yewu tbody tr td:first-child{ font-size:14px; background:#f3f3f2; font-weight:600;}

@@ -1,0 +1,142 @@
+@charset "utf-8";
+/* CSS Document */
+@CHARSET "UTF-8";
+ul{ margin:0px; padding:0px; list-style:none;}
+ul li{ margin:0px; float:left; padding:0px;}
+/*密码找回*/
+ul{ margin:0px; padding:0px; list-style:none;}
+ul li{ margin:0px; padding:0px;}
+.shoppingcart_center{ overflow:hidden; background:url(../images/bj.jpg);background-size:100%;}
+.shoppingcart_center2{ width:1000px;padding:50px 0; margin:0 auto;}
+.getpass_center{ background:#fff; width:1000px; margin:0 auto;}
+.getpass_center_lc{ padding:35px 0; border-bottom:1px solid #f2f2f2}
+.getpass_center_lc p.p2{ background-position:0 -58px;}
+.getpass_center_lc p.p3{ background-position:0 -117px;}
+.getpass_center_lc p.p4{ background-position:0 -175px;}
+.getpass_center_lc ul{ margin-left:178px;}
+.getpass_center_lc li{ margin-right:115px; margin-top:5px; width:75px; text-align:center;}
+.getpass_center_lc li.on{ color:#ff6800;}
+.getpass_center_m1{ width:355px; padding:90px 0 90px 0; margin:0 auto;}
+.getpass_center_m1 .register_msg{ margin-left:60px;}
+.getpass_center_m1 ul{ margin-bottom:15px;}
+.getpass_center li.li1{ color:#999999; font-size:14px; height:40px; line-height:40px; margin-right:5px; }
+.getpass_center li.li2 input{ width:260px; height:38px; border:1px solid #cbcbcb; text-indent:10px; font-family:"Microsoft Yahei"; font-size:14px; padding:0; }
+.getpass_center li.li2 input.on1{ border:1px solid #ff6800;}
+.getpass_center li.li2 input.on2{ border:1px solid #69b3e6;}
+.getpass_center_m1 .ul2 li.li2 input{ width:115px;}
+.getpass_center_m1 .ul2 li.li2 i{ display:block; width:73px; height:38px; margin:0 10px}
+.getpass_center_m1 .ul2 li.li2 b{ font-weight:normal; display:block; color:#999999; line-height:40px; cursor:pointer;}
+.getpass_center_m1 .btn{ margin:10px 0 0 60px; float:left;}
+.getpass_center .btn input{ width:123px; height:41px; line-height:40px; background:#2086ee; text-align:center; color:#fff; font-size:18px; font-family:"Microsoft Yahei"; border:none; padding:0; cursor:pointer;}
+.getpass_center .btn input:hover{filter:alpha(opacity=90); /*IE滤镜，透明度50%*/ -moz-opacity:0.9; opacity:0.9;}
+
+.getpass_center_m2{ width:790px; margin:0 auto; padding:50px 0;}
+.getpass_center h3{ color:#666666; font-size:16px; line-height:16px; margin-bottom:20px;}
+.getpass_center_m2_m{ position:relative; width:790px; height:290px;}
+.getpass_center_m2 .meau{ border-top:1px solid #ececec; position:absolute; left:0; top:0; z-index:2}
+.getpass_center_m2 .meau li{ float:none; width:170px; height:40px; line-height:40px; text-align:center; color:#666666; background:#fff; font-size:14px; border:1px solid #ececec; border-top:none; cursor:pointer;}
+.getpass_center_m2 .meau li:hover{ color:#ff6800;}
+.getpass_center_m2 .meau li.on{color:#ff6800; border-right-color:#fff; border-left:2px solid #ff6800; width:169px;}
+.getpass_center_m2 .nr{ border:1px solid #ececec; width:617px; padding:45px 0; position:absolute; right:0; top:0; z-index:1}
+.getpass_center_m2 .nr li ul{ margin:0 0 15px 90px;}
+.getpass_center_m2 .nr li li.li1{ width:168px; text-align:right;}
+.getpass_center_m2 .nr li li.li2{ margin-right:10px;}
+.getpass_center_m2 .nr li li.register_msg.msg3{ color:#999;}
+.getpass_center_m2 .nr li li.li2 input{ width:150px;}
+.getpass_center_m2 .nr li li.li2 a{display:block; color:#666666; line-height:12px; padding:13px 8px; margin-left:10px; border:1px solid #dcdcdb; border-radius:2px;}
+.getpass_center_m2 .nr li li.li2 a:hover{color:#f86d0d;}
+.getpass_center_m2 .nr li li.li2 b{ line-height:40px; color:#999999; margin-left:10px; font-weight:normal;}
+.getpass_center_m2 .nr li li.li3 .p1{ color:#ff6800; font-size:14px; line-height:40px; height:40px;}
+.getpass_center_m2 .nr li li.li3 .p2 a{ display:block; color:#666666; line-height:12px; padding:8px 8px; border:1px solid #dcdcdb; border-radius:2px;}
+.getpass_center_m2 .nr li li.li3 .p2 a:hover{ color:#f86d0d;}
+.getpass_center_m2 .nr li li.li3 .p2 b{ line-height:30px; color:#999999; margin-left:10px; font-weight:normal;}
+.getpass_center_m2 .btn{ float:left; margin:10px 0 0 263px;}
+
+.getpass_center_m3{ width:790px; padding:50px 0 90px 0; margin:0 auto;}
+.getpass_center_m3 ul{ margin:0 0 15px 215px; position:relative;}
+.getpass_center_m3 .msg{ position:absolute; left:315px; top:0; padding:5px 8px; border:1px solid #dbdbdb; color:#333333;}
+.getpass_center_m3 .msg i{ display:block; width:5px; height:8px; background:url(http://img.cndns.com/members/images/getp_4.gif) no-repeat; position:absolute; left:-5px; top:10px}
+.getpass_center_m3 .msg b{ display:block; height:5px; width:152px; background:#f1f1f1; margin:7px 0 0 5px;}
+.getpass_center_m3 li.li1{ width:84px; text-align:right;}
+.getpass_center_m3 li.li2 input{ width:208px;}
+.getpass_center_m3 .btn{ float:left; margin:10px 0 0 304px;}
+.getpass_center_m3 .tip{ color:#999; padding-left:90px;}
+
+.getpass_center_m4{ padding:90px 0 150px 0; }
+.getpass_center_m4 p{padding-left:38px; margin-left:335px;}
+.getpass_center_m4 .p1{ color:#ff6800; font-size:20px; background:url(http://img.cndns.com/members/images/getp_3.gif) no-repeat left center;  height:29px; line-height:29px; }
+.getpass_center_m4 .p2{ color:#999999; font-size:14px; padding:5px 0 5px 38px;}
+.getpass_center_m4 .p3{ color:#333333; font-size:14px;}
+.getpass_center_m4 .p3 a{ color:#73b400;}
+.getpass_center_m4 .p3 a:hover{ text-decoration:underline;}
+
+
+/*找回密码结束*/
+
+
+/*密码找回*/
+.shoppingcart_center{ overflow:hidden; background:url(../images/bj.jpg);background-size:100%;}
+.shoppingcart_center2{ width:1000px;padding:50px 0; margin:0 auto;}
+.getpass_center{ background:#fff; width:1000px; margin:0 auto;}
+.getpass_center_lc{ padding:40px 0; border-bottom:1px solid #f2f2f2}
+.getpass_center_lc p{ height:30px; width:600px; background:url(../images/getp_1.gif) no-repeat left top; margin:0 auto;}
+.getpass_center_lc p.p2{ background-position:0 -58px;}
+.getpass_center_lc p.p3{ background-position:0 -117px;}
+.getpass_center_lc p.p4{ background-position:0 -175px;}
+.getpass_center_lc ul{ margin-left:178px;}
+.getpass_center_lc li{ margin-right:81px; margin-top:5px; width:100px; text-align:center;}
+.getpass_center_lc li.on{ color:#ff6800;}
+.getpass_center_m1{ width:355px; padding:30px 0 75px 0; margin:0 auto;}
+.getpass_center_m1 .register_msg{ margin-left:10px;width:130px;} 
+.getpass_center_m1 ul{ margin-bottom:5px;}
+.getpass_center li.li1{ color:#999999; font-size:14px; height:40px; line-height:40px; margin-right:5px; }
+.getpass_center li.li2 input{ width:260px; height:38px; border:1px solid #cbcbcb; text-indent:10px; font-family:"Microsoft Yahei"; font-size:14px; padding:0; }
+.getpass_center li.li2 input.on1{ border:1px solid #ff6800;}
+.getpass_center li.li2 input.on2{ border:1px solid #69b3e6;}
+.getpass_center_m1 .ul2 li.li2 input{ width:115px;}
+.getpass_center_m1 .ul2 li.li2 i{ display:block; width:73px; height:38px; margin:0 10px;float:right;}
+.getpass_center_m1 .ul2 li.li2 b{ font-weight:normal; display:block; color:#999999; line-height:40px; cursor:pointer;}
+.getpass_center_m1 .btn{ margin:20px 0 0 60px; float:left;}
+.getpass_center .btn input{ width:123px; height:41px; line-height:40px; background:#2086ee; text-align:center; color:#fff; font-size:18px; font-family:"Microsoft Yahei"; border:none; padding:0; cursor:pointer;}
+.getpass_center .btn input:hover{filter:alpha(opacity=90); /*IE滤镜，透明度50%*/ -moz-opacity:0.9; opacity:0.9;}
+
+.getpass_center_m2{ width:790px; margin:0 auto; padding:50px 0;}
+.getpass_center h3{ color:#666666; font-size:16px; line-height:16px; margin-bottom:20px;}
+.getpass_center_m2_m{ position:relative; width:790px; height:290px;}
+.getpass_center_m2 .meau{ border-top:1px solid #ececec; position:absolute; left:0; top:0; z-index:2}
+.getpass_center_m2 .meau li{ float:none; width:170px; height:40px; line-height:40px; text-align:center; color:#666666; background:#fff; font-size:14px; border:1px solid #ececec; border-top:none; cursor:pointer;}
+.getpass_center_m2 .meau li:hover{ color:#ff6800;}
+.getpass_center_m2 .meau li.on{color:#ff6800; border-right-color:#fff; border-left:2px solid #ff6800; width:169px;}
+.getpass_center_m2 .nr{ border:1px solid #ececec; width:617px; padding:45px 0; position:absolute; right:0; top:0; z-index:1}
+.getpass_center_m2 .nr li ul{ margin:0 0 15px 90px;}
+.getpass_center_m2 .nr li li.li1{ width:168px; text-align:right;}
+.getpass_center_m2 .nr li li.li2{ margin-right:10px;}
+.getpass_center_m2 .nr li li.register_msg.msg3{ color:#999;}
+.getpass_center_m2 .nr li li.li2 input{ width:150px;}
+.getpass_center_m2 .nr li li.li2 a{display:block; color:#666666; line-height:12px; padding:13px 8px; margin-left:10px; border:1px solid #dcdcdb; border-radius:2px;}
+.getpass_center_m2 .nr li li.li2 a:hover{color:#f86d0d;}
+.getpass_center_m2 .nr li li.li2 b{ line-height:40px; color:#999999; margin-left:10px; font-weight:normal;}
+.getpass_center_m2 .nr li li.li3 .p1{ color:#ff6800; font-size:14px; line-height:40px; height:40px;}
+.getpass_center_m2 .nr li li.li3 .p2 a{ display:block; color:#666666; line-height:12px; padding:8px 8px; border:1px solid #dcdcdb; border-radius:2px;}
+.getpass_center_m2 .nr li li.li3 .p2 a:hover{ color:#f86d0d;}
+.getpass_center_m2 .nr li li.li3 .p2 b{ line-height:30px; color:#999999; margin-left:10px; font-weight:normal;}
+.getpass_center_m2 .btn{ float:left; margin:10px 0 0 263px;}
+
+.getpass_center_m3{ width:790px; padding:50px 0 90px 0; margin:0 auto;}
+.getpass_center_m3 ul{ margin:0 0 15px 215px; position:relative;}
+.getpass_center_m3 .msg{ position:absolute; left:315px; top:0; padding:5px 8px; border:1px solid #dbdbdb; color:#333333;}
+.getpass_center_m3 .msg i{ display:block; width:5px; height:8px; background:url(http://img.cndns.com/members/images/getp_4.gif) no-repeat; position:absolute; left:-5px; top:10px}
+.getpass_center_m3 .msg b{ display:block; height:5px; width:152px; background:#f1f1f1; margin:7px 0 0 5px;}
+.getpass_center_m3 li.li1{ width:84px; text-align:right;}
+.getpass_center_m3 li.li2 input{ width:208px;}
+.getpass_center_m3 .btn{ float:left; margin:10px 0 0 304px;}
+.getpass_center_m3 .tip{ color:#999; padding-left:90px;}
+
+.getpass_center_m4{ padding:90px 0 150px 0; }
+.getpass_center_m4 p{padding-left:38px; margin-left:335px;}
+.getpass_center_m4 .p1{ color:#ff6800; font-size:20px; background:url(http://img.cndns.com/members/images/getp_3.gif) no-repeat left center;  height:29px; line-height:29px; }
+.getpass_center_m4 .p2{ color:#999999; font-size:14px; padding:5px 0 5px 38px;}
+.getpass_center_m4 .p3{ color:#333333; font-size:14px;}
+.getpass_center_m4 .p3 a{ color:#73b400;}
+.getpass_center_m4 .p3 a:hover{ text-decoration:underline;}
+

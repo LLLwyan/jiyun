@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../publicD/membercss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+	<link rel="stylesheet" type="text/css" href="../../public/smoothness/jquery.ui.css">
+	<style>
+	.wz {margin-bottom:20px;color: #666666;font-size: 14px;padding: 20px 0 18px 0;border-bottom: 1px solid #ededed;line-height: 12px;}
+	</style>
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+	    <li><a href="javascript:void(0);">会员中心</a></li>
+	    <li><a href="javascript:void(0);">财务管理</a></li>
+		<li><a href="javascript:void(0);">充值</a></li>
+	</ul>
+</div>
+		<div class="ManagerRightuser">
+        	<div class="managertitle">
+            <ul class="manager-tab bind-tab">
+	            <li tag="allorders" class="liactive"><a href="javascript:;" onclick="tab('tab1')">充值统计</a></li>
+	            <li tag="completedorders"><a href="javascript:;" onclick="tab('tab2')">消费统计</a></li>
+            </ul>
+        </div>
+           <div class="m_pay">
+         		  <div class="zxzf">
+          			<div class="padding"> 
+                    <div id="tab1">
+                    <form class="form-inline" role="form"> 
+                        <div class="form-group col-md-7"> 
+                            <label class="control-label">查询时间：</label>
+                            <input type="text" placeholder="请选择起始时间"  class="form-control laydate-icon" id="startTime">
+                            <label class="control-label">-</label>  
+                            <input type="text" placeholder="请选择截止时间"  class="form-control laydate-icon" id="endDate"> 
+                        </div><br/><br/>
+	                    <div class="searchbtn"> 
+	                    	<input type="button" onClick="getRechargeCount();" class="manager-btn  mr-10" value="查 询">
+	                    </div> 
+	                    <div id="cResult" style="margin-top:20px;display:none;font-size:12pt;"> 
+	                    	查询结果：自<span id="cStartTime" class="red"></span>至<span id="cEndTime" class="red"></span>，共累计充值：<span id="cTotal" class="red"></span>
+	                    </div>
+                    </form>
+                    </div>
+                    <div id="tab2" style="display:none;">  
+                    <form class="form-inline" role="form"> 
+                        <div class="form-group col-md-4" >
+                           <label for="name" class="control-label">类型：</label>
+                           <select class="form-control width-100" id="itemId"></select>
+                        </div> 
+                        <div class="form-group col-md-7">
+                            <label class="control-label">查询时间：</label>
+                            <input type="text" placeholder="请选择起始时间"  class="form-control laydate-icon" id="astartTime">
+                            <label class="control-label">-</label>  
+                            <input type="text" placeholder="请选择截止时间"  class="form-control laydate-icon" id="aendDate">
+                        </div><br/><br/>
+	                    <div class="searchbtn">
+	                    	<input type="button" onClick="AccountDetailCount();" class="manager-btn  mr-10" value="查 询">
+	                    </div>
+	                    <div id="aResult" style="margin-top:20px;display:none;font-size:12pt;"> 
+	                    	查询结果：自<span id="aStartTime" class="red"></span>至<span id="aEndTime" class="red"></span>，</span>总额：<span id="aTotal" class="red"></span>
+	                    </div>
+                    </form>
+                            </div>                       
+                      </div>
+          		 </div>
+             </div>     
+        </div>
+</div>
+<script src="../../publicD/memberjs.js"></script>
+<script>
+	$('#startTime').datepicker({
+		dateFormat:'yy-mm-dd',	
+		dayNamesMin:['日','一','二','三','四','五','六'],
+		firstDay:'1',			
+		changeYear:true,		
+		yearRange:'1950:2020',  
+		changeMonth:true,		
+		monthNamesShort:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+	});
+	
+	$('#endDate').datepicker({
+		dateFormat:'yy-mm-dd',	
+		dayNamesMin:['日','一','二','三','四','五','六'],
+		firstDay:'1',			
+		changeYear:true,		
+		yearRange:'1950:2020',  
+		changeMonth:true,		
+		monthNamesShort:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+	});
+	$('#astartTime').datepicker({
+		dateFormat:'yy-mm-dd',	
+		dayNamesMin:['日','一','二','三','四','五','六'],
+		firstDay:'1',			
+		changeYear:true,		
+		yearRange:'1950:2020',  
+		changeMonth:true,		
+		monthNamesShort:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+	});
+	
+	$('#aendDate').datepicker({
+		dateFormat:'yy-mm-dd',	
+		dayNamesMin:['日','一','二','三','四','五','六'],
+		firstDay:'1',			
+		changeYear:true,		
+		yearRange:'1950:2020',  
+		changeMonth:true,		
+		monthNamesShort:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+	});
+</script>
+<script src="js/financesum.js"></script>
+</body>
+</html>

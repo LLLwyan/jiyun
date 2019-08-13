@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../publicD/membercss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+</head>
+<body>
+<div id="MainContentDIV">
+	<div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">用户管理</a></li>
+            <li><a href="javascript:void(0);">实名认证</a></li>
+        </ul>
+	</div>
+	  <div class="ManagerRightuser">
+      	<div class="product-detail-desc mt-15">
+            <p class="pt-5"><p>
+            <svg id="certified" class="icon" aria-hidden="true" style="width: 50px; height: 30px; display: none" title="已认证"><use xlink:href="#icon-yirenzheng"></use></svg>
+            <svg id="certify" class="icon" aria-hidden="true" style="width: 50px; height: 30px; display: none" title="未认证"><use xlink:href="#icon-weirenzheng"></use></svg>
+            <span id="statusName"></span>
+        </p></p>
+      </div>
+      <!--中间代码开始-->
+      <form action="#">
+        <table class="manager-table form-table">
+          <tbody><tr>
+            <th width="150"  align="right">帐号：</th>
+            <td align="left"><strong style="color:green;font-size:14px;margin-right:10px;" id="uid"></strong></td>
+              <th width="150" align="right"><strong class="redColor f-l10 ">*</strong> 真实姓名：</th>
+              <td align="left"><input id="u_fullName" class="manager-input m-input width200" value="" size="20"></td>
+          </tr>
+          <tr>
+            <th width="150" align="right"><strong class="redColor f-l10 ">*</strong> 证件类型：</th>
+            <td align="left">
+	            <select class="manager-select m-select width200" id="u_certType" >
+	                <option value="1" selected="selected">身份证</option>
+	                <option value="2">营业执照</option>
+	    		</select>
+            </td>
+            <th width="150" align="right" class="personalCol" style="display: none"><strong class="redColor f-l10 ">*</strong> 证件号码：</th>
+            <td align="left" class="personalCol" style="display: none">
+                <span id="showCertCode"><span></span> <a href="javascript:void(0)"></a></span>
+                <input id="u_certCode" class="manager-input m-input width200" value="" size="40" style="display: none;">
+            </td>
+              <th width="150" align="right" class="enterpriseCol" style="display: none"><strong class="redColor f-l10 ">*</strong> 公司名称：</th>
+              <td align="left" class="enterpriseCol" style="display: none"><input id="u_companyName" class="manager-input m-input width200" value="" size="20"></td>
+          </tr>
+          <tr>
+            <th width="150" align="right"><strong class="redColor f-l10 ">*</strong> 证件：</th>
+            <td align="left" colspan="3">
+                <div id="personal" style="display: none">
+                    <div style="float: left">
+                        身份证正面：
+                        <div  id="updateIdCardA" class="doctor-info-img" style="text-align:left; " >
+                            <input type="file" title="点击上传图片" value="点击上传图片" id="cardA" class="SmallImg" onpaste="return false" name="0" />
+                            <img id="idCardASlow"  src="../../images/show.jpg" style="height:120px;width:190px;"  />
+                        </div>
+                    </div>
+                    <div style="float: left">
+                        身份证反面：
+                        <div  id="updateIdCardB" class="doctor-info-img" style="text-align:left; " >
+                            <input type="file" title="点击上传图片" value="点击上传图片" id="cardB" class="SmallImg" onChange="upload('SmallImg','SmallImgV');" onpaste="return false" name="0" />
+                            <img id="idCardBSlow"  src="../../images/show.jpg" style="height:120px;width:190px;"  />
+                        </div>
+                    </div>
+                </div>
+                <div id="enterprise" style="display: none">
+                    <div style="float: left">
+                        营业执照：
+                        <div  id="updateEnterprise" class="doctor-info-img" style="text-align:left; " >
+                            <input type="file" title="点击上传图片" value="点击上传图片" id="SmallImg" class="SmallImg" onChange="upload('SmallImg','SmallImgV');" onpaste="return false" name="0" />
+                            <img id="idEnterpriseSlow"  src="../../images/show.jpg" style="height:120px;width:190px;"  />
+                        </div>
+                    </div>
+                </div>
+            </td>
+          </tr>
+          <tr class="no-border">
+            <td colspan="4" align="center">
+				<div class="tipinfo"></div>
+				<div class="searchbtn">
+                	<input type="button" id="saveBtn" class="manager-btn  mr-10" value="提交">
+                </div>
+			</td>
+          </tr>
+        </tbody></table>
+        </form>
+    </div>
+</div>
+<script src="../../publicD/memberjs.js"></script>
+<script src="../../../public/js/upload.js"></script>
+<script src="js/certify.js"></script>
+</body>
+</html>

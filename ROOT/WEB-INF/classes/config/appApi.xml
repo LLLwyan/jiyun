@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+	<!-- 会员帐号接口 -->
+	<data desc="会员注册" apiName="register" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="userRegister" loginAccess="N"/>
+	<data desc="发送邮箱激活" apiName="mailValidate" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="MailValidate" loginAccess="N"/>
+	<data desc="邮箱激活验证" apiName="verifymail" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="verifyMail" loginAccess="N"/>
+	<data desc="会员激活" apiName="activeUser" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="activeAccount" loginAccess="N"/>
+	<data desc="重发激活会员邮件" apiName="sendActiveUser" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="sendActiveAccountMail" loginAccess="N"/>
+	<data desc="更新会员资料" apiName="updateUserDoc" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="updateAccountDetail" loginAccess="N"/>
+	<data desc="更新实名认证资料" apiName="updateUserCert" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="updateUserCert" loginAccess="N" />
+	<data desc="更新会员密码" apiName="updatePwd" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="updateAccountPassword" loginAccess="N"/>
+	<data desc="会员详情" apiName="getAccountDetail" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="getAccountDetail" loginAccess="N"/>
+	<data desc="会员登录" apiName="login" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="userLogin" loginAccess="N"/>
+	<data desc="是否已登录" apiName="logined" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="logined" loginAccess="N"/>
+	<data desc="会员注销" apiName="logout" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="userLogout" loginAccess="N"/>
+	<data desc="找回密码" apiName="sendFindPwdMail" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="sendFindPasswordMail" loginAccess="N"/>
+	<data desc="重置密码" apiName="resetPwd" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="resetPassword" loginAccess="N"/>
+	<data desc="根据会员Id查询会员等级" apiName="queryDicVipgradeByUid" className="com.winiis.cloudhost.dic.service.DicVipgradeService" functionName="queryDicVipgradeByUid" loginAccess="N"/>
+	<data desc="查询会员已注册" apiName="isRegister" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="isRegister" loginAccess="N"/>
+	<data desc="查询邮箱已注册" apiName="isRegisterEmail" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="isRegisterEmail" loginAccess="N"/>
+	<data desc="会员级别列表" apiName="queryVipgradeList" className="com.winiis.cloudhost.dic.service.DicVipgradeService" functionName="queryVipgradeList" loginAccess="N"/>
+	<data desc="会员查询(管理员功能)" apiName="queryUser" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="queryAccount" loginAccess="N" funId="queryAccount"/>
+	<data desc="会员详情(管理员功能)" apiName="getUserDetail" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="getUserDetail" loginAccess="N" funId="getUserDetail"/>
+	<data desc="会员添加(管理员功能)" apiName="addUserAccount" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="addUserAccount" loginAccess="N" funId="addUserAccount"/>
+	<data desc="会员删除(管理员功能)" apiName="deleteAccount" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="deleteAccount" loginAccess="N" funId="deleteAccount"/>
+	<data desc="更新会员资料(管理员功能)" apiName="updateUserInfo" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="updateAdminAccountDetail" loginAccess="N" funId="updateUserInfo"/>
+	<data desc="修改会员状态(管理员功能)" apiName="uptAccountState" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="uptAccountState" loginAccess="N" funId="uptAccountState"/>
+	<data desc="修改会员等级(管理员功能)" apiName="uptAccountLevel" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="uptAccountLevel" loginAccess="N" funId="uptAccountLevel"/>
+	<data desc="重置会员密码(管理员功能)" apiName="adminResetPwd" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="adminResetPwd" loginAccess="N" funId="adminResetPwd"/>
+	<data desc="统计新增会员(管理员功能)" apiName="getAccountCount" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="getAccountCount" loginAccess="N"/>
+	<data desc="修改后台密码(管理员功能)" apiName="uptadminpas" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="uptadminpas" loginAccess="N"/>
+	<data desc="查询会员级别(管理员功能)" apiName="queryVipgrade" className="com.winiis.cloudhost.dic.service.DicVipgradeService" functionName="queryVipgrade" loginAccess="N" funId="queryVipgrade"/>
+	<data desc="会员级别新增(管理员功能)" apiName="addVipgrade" className="com.winiis.cloudhost.dic.service.DicVipgradeService" functionName="addVipgrade" loginAccess="N" funId="addVipgrade"/>
+	<data desc="会员级别修改(管理员功能)" apiName="updateVipgrade" className="com.winiis.cloudhost.dic.service.DicVipgradeService" functionName="updateVipgrade" loginAccess="N" funId="updateVipgrade"/>
+	<data desc="会员级别删除(管理员功能)" apiName="delVipgrade" className="com.winiis.cloudhost.dic.service.DicVipgradeService" functionName="delVipgrade" loginAccess="N" funId="delVipgrade"/>
+	<data desc="会员实名审核（管理员功能）" apiName="updateUserCertCheck" className="com.winiis.cloudhost.user.service.UserAccountService" functionName="updateUserCertCheck" loginAccess="N" funId="certifyCheck" />
+
+	<data desc="验证码方式登录：获取验证码" apiName="getLoginCode" className="com.winiis.cloudhost.user.service.UserCodeLoginService" functionName="getLoginCode" loginAccess="N" />
+	<data desc="验证码方式登录：登录" apiName="codeLogin" className="com.winiis.cloudhost.user.service.UserCodeLoginService" functionName="codeLogin" loginAccess="N" />
+
+	<!-- 会员财务功能 -->
+	<data desc="会员财务明细(管理员)" apiName="queryAdminAccount" className="com.winiis.cloudhost.user.service.UserAccountDetailService" functionName="queryAdminAccount" loginAccess="N"/>
+	<data desc="会员消费记录(前台)" apiName="queryAccountConsume" className="com.winiis.cloudhost.user.service.UserAccountDetailService" functionName="queryAccountConsume" loginAccess="N"/>
+	<data desc="添加会员入款扣款记录" apiName="addUserAccountDetail" className="com.winiis.cloudhost.user.service.UserAccountDetailService" functionName="addUserAccountDetail" loginAccess="N"/>
+	<data desc="统计消费记录" apiName="queryAccountAmount" className="com.winiis.cloudhost.user.service.UserAccountDetailService" functionName="queryAccountDetailAmount" loginAccess="N"/>
+	<data desc="获取用户可开票总金额" apiName="getAllSureInvoice" className="com.winiis.cloudhost.user.service.UserAccountDetailService" functionName="getAllSureInvoice" loginAccess="N"/>
+	<data desc="财务分类统计" apiName="UserAccountDetailCount" className="com.winiis.cloudhost.user.service.UserAccountDetailService" functionName="UserAccountDetailCount" loginAccess="N"/>
+	<data desc="财务统计(管理员功能)" apiName="AdminAccountDetailCount" className="com.winiis.cloudhost.user.service.UserAccountDetailService" functionName="AdminAccountDetailCount" loginAccess="N"/>
+	<data desc="获取财务记账详情(会员)" apiName="queryUserAccountDetail" className="com.winiis.cloudhost.user.service.UserAccountDetailService" functionName="queryUserAccountDetail" loginAccess="N"/>
+	<data desc="获取财务记账详情(管理员)" apiName="queryAdminAccountDetail" className="com.winiis.cloudhost.user.service.UserAccountDetailService" functionName="queryAdminAccountDetail" loginAccess="N"/>
+	<data desc="收入统计(管理员)" apiName="queryAccountIncome" className="com.winiis.cloudhost.user.service.UserAccountDetailService" functionName="queryAccountIncome" loginAccess="N"/>
+
+	<!-- 产品配置 -->
+	<data desc="获取产品列表(前台)" apiName="getCustomerProductList" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="getCustomerProductList" loginAccess="N"/>
+	<data desc="获取产品列表(管理员)" apiName="getProductList" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="getProductList" loginAccess="N"/>
+	<data desc="修改产品" apiName="uptSysProduct" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="uptSysProduct" loginAccess="N" funId="uptSysProduct"/>
+	<data desc="删除产品" apiName="delSysProduct" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="delSysProduct" loginAccess="N" funId="delSysProduct"/>
+	<data desc="添加产品" apiName="addSysProduct" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="addSysProduct" loginAccess="N" funId="addSysProduct"/>
+	<data desc="获取云主机产品" apiName="getCloudProduct" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="getCloudProduct" loginAccess="N"/>
+	<data desc="保存云主机产品设置" apiName="saveCloudProductSet" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="saveCloudProductSet" funId="uptSysProduct" loginAccess="N"/>
+	<data desc="保存虚拟主机产品设置" apiName="saveVhostProductSet" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="saveVhostProductSet" funId="uptSysProduct" loginAccess="N"/>
+	<data desc="保存自定义产品设置" apiName="saveDiyProductSet" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="saveDiyProductSet" funId="uptSysProduct" loginAccess="N" />
+	<data desc="获取域名产品" apiName="getDomainProduct" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="getDomainProduct" loginAccess="N"/>
+	<data desc="保存域名产品设置" apiName="saveDomainProductSet" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="saveDomainProductSet" loginAccess="N"/>
+	<data desc="获取云硬盘产品" apiName="getCloudDiskProduct" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="getCloudDiskProduct" loginAccess="N"/>
+	<data desc="保存云硬盘产品设置" apiName="saveCloudDiskProductSet" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="saveCloudDiskProductSet" loginAccess="N"/>
+	<data desc="查询云硬盘产品" apiName="queryCloudDiskProduct" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="queryCloudDiskProduct" loginAccess="N"/>
+	<data desc="获取促销时长" apiName="getPromotionTime" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="getPromotionTime" loginAccess="N"/>
+	<data desc="根据类型查询数据" apiName="queryProductClass" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="queryProductClass" loginAccess="N"/>
+	<data desc="根据实例Id查询产品" apiName="querySysProductByiId" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="querySysProductByiId" loginAccess="N"/>
+
+	<!--固定价格 -->
+	<data desc="获取产品默认价格" apiName="getProDefaultPrice" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="getProDefaultPrice" loginAccess="N"/>
+	<data desc="获取产品购买时长" apiName="getProductBuyTime" className="com.winiis.cloudhost.sys.service.SysProductService" functionName="getProductBuyTime" loginAccess="N"/>
+
+	<!-- 域名后缀 -->
+	<data desc="查询域名后缀信息" apiName="querDicSuffix" className="com.winiis.cloudhost.dic.service.DicSuffixService" functionName="querDicSuffix" loginAccess="N"/>
+	<data desc="更新域名后缀信息" apiName="uptDicSuffix" className="com.winiis.cloudhost.dic.service.DicSuffixService" functionName="uptDicSuffix" loginAccess="N" funId="uptDicSuffix"/>
+	<data desc="删除域名后缀信息" apiName="delDicSuffix" className="com.winiis.cloudhost.dic.service.DicSuffixService" functionName="delDicSuffix" loginAccess="N" funId="delDicSuffix"/>
+	<data desc="添加域名后缀信息" apiName="addDicSuffix" className="com.winiis.cloudhost.dic.service.DicSuffixService" functionName="addDicSuffix" loginAccess="N" funId="addDicSuffix"/>
+	<data desc="查询所有域名后缀" apiName="querDicAllSuffix" className="com.winiis.cloudhost.dic.service.DicSuffixService" functionName="querDicSuffixList" loginAccess="N"/>
+
+	<!-- 镜像管理 -->
+	<data desc="镜像查询(管理员)" apiName="queryOsImage" className="com.winiis.cloudhost.dic.service.DicOsImageService" functionName="queryOsImage" loginAccess="N" funId="queryOsImage"/>
+	<data desc="添加镜像(管理员)" apiName="addOsImage" className="com.winiis.cloudhost.dic.service.DicOsImageService" functionName="addOsImage" loginAccess="N" funId="addOsImage"/>
+	<data desc="修改镜像(管理员)" apiName="uptOsImage" className="com.winiis.cloudhost.dic.service.DicOsImageService" functionName="updateOsImage" loginAccess="N" funId="uptOsImage"/>
+	<data desc="删除镜像(管理员)" apiName="delOsImage" className="com.winiis.cloudhost.dic.service.DicOsImageService" functionName="delOsImage" loginAccess="N" funId="delOsImage"/>
+	<data desc="获取镜像操作系统类型" apiName="getImageOsTypeList" className="com.winiis.cloudhost.dic.service.DicOsImageService" functionName="getImageOsTypeList" loginAccess="N"/>
+	<data desc="获取镜像操作系统版本" apiName="getImageOsNameList" className="com.winiis.cloudhost.dic.service.DicOsImageService" functionName="getImageOsNameList" loginAccess="N"/>
+
+	<!-- 地域管理 -->
+	<data desc="地域分页查询" apiName="queryHostlocation" className="com.winiis.cloudhost.dic.service.DicHostlocationService" functionName="queryHostlocation" loginAccess="N"/>
+	<data desc="地域列表查询" apiName="queryHostlist" className="com.winiis.cloudhost.dic.service.DicHostlocationService" functionName="queryHostlocationlist" loginAccess="N"/>
+	<data desc="地域添加(管理员)" apiName="addHostlocation" className="com.winiis.cloudhost.dic.service.DicHostlocationService" functionName="addHostlocation" loginAccess="N" funId="addHostlocation"/>
+	<data desc="地域删除(管理员)" apiName="delHostlocation" className="com.winiis.cloudhost.dic.service.DicHostlocationService" functionName="delHostlocation" loginAccess="N" funId="delHostlocation"/>
+	<data desc="修改地域名称(管理员)" apiName="uptregionName" className="com.winiis.cloudhost.dic.service.DicHostlocationService" functionName="uptregionName" loginAccess="N" funId="uptregionName"/>
+
+	<!-- 可用区管理 -->
+	<data desc="查询可用区列表" apiName="queryDicZoneList" className="com.winiis.cloudhost.dic.service.DicZoneService" functionName="queryDicZoneList" loginAccess="N"/>
+	<data desc="查询可用区信息" apiName="queryDicZone" className="com.winiis.cloudhost.dic.service.DicZoneService" functionName="queryDicZone" loginAccess="N"/>
+	<data desc="查询可用区分页(管理员)" apiName="queryDicZonePage" className="com.winiis.cloudhost.dic.service.DicZoneService" functionName="queryDicZonePage" loginAccess="N" funId="queryDicZonePage"/>
+	<data desc="添加可用区(管理员)" apiName="addDicZone" className="com.winiis.cloudhost.dic.service.DicZoneService" functionName="addDicZone" loginAccess="N" funId="addDicZone"/>
+	<data desc="删除可用区(管理员)" apiName="delDicZone" className="com.winiis.cloudhost.dic.service.DicZoneService" functionName="delDicZone" loginAccess="N" funId="delDicZone"/>
+	<data desc="修改可用区名称(管理员)" apiName="uptZoneName" className="com.winiis.cloudhost.dic.service.DicZoneService" functionName="uptZoneName" loginAccess="N" funId="uptZoneName"/>
+	<data desc="可用区接口设置(管理员)" apiName="zoneInterfaceSet" className="com.winiis.cloudhost.dic.service.DicZoneService" functionName="zoneInterfaceSet" loginAccess="N" funId="zoneInterfaceSet"/>
+	<data desc="区域服务器设置查询" apiName="queryZoneHostList" className="com.winiis.cloudhost.dic.service.DicZoneHostService" functionName="queryZoneHostlist" loginAccess="N" funId="queryZoneHostList" />
+	<data desc="区域服务器设置删除" apiName="delDicZoneHost" className="com.winiis.cloudhost.dic.service.DicZoneHostService" functionName="delDicZoneHost" loginAccess="N" funId="queryZoneHostList" />
+	<data desc="区域服务器设置可用服务器查询" apiName="queryZoneHostSelect" className="com.winiis.cloudhost.dic.service.DicZoneHostService" functionName="queryZoneHostSelect" loginAccess="N" funId="queryZoneHostList" />
+	<data desc="区域服务器设置添加" apiName="addDicZoneHost" className="com.winiis.cloudhost.dic.service.DicZoneHostService" functionName="addDicZoneHost" loginAccess="N" funId="queryZoneHostList" />
+
+	<!-- 实例系列 -->
+	<data desc="查询实例系列" apiName="queryDicSeriesList" className="com.winiis.cloudhost.dic.service.DicSeriesService" functionName="queryDicSeriesList" loginAccess="N"/>
+	<data desc="查询实例系列分页(管理员)" apiName="queryDicSeriesPage" className="com.winiis.cloudhost.dic.service.DicSeriesService" functionName="queryDicSeriesPage" loginAccess="N" funId="queryDicSeriesPage"/>
+	<data desc="添加实例系列(管理员)" apiName="addDicSeries" className="com.winiis.cloudhost.dic.service.DicSeriesService" functionName="addDicSeries" loginAccess="N" funId="addDicSeries"/>
+	<data desc="删除实例系列(管理员)" apiName="delDicSeries" className="com.winiis.cloudhost.dic.service.DicSeriesService" functionName="delDicSeries" loginAccess="N" funId="delDicSeries"/>
+	<data desc="查询可用区对应系列" apiName="queryZoneInSeriesList" className="com.winiis.cloudhost.dic.service.DicSeriesService" functionName="queryZoneInSeriesList" loginAccess="N"/>
+	<data desc="查询系列可用区" apiName="queryDicSeriesZonePage" className="com.winiis.cloudhost.dic.service.DicSeriesZoneService" functionName="queryDicSeriesZonePage" loginAccess="N"/>
+	<data desc="添加系列可用区(管理员)" apiName="addDicSeriesZone" className="com.winiis.cloudhost.dic.service.DicSeriesZoneService" functionName="addDicSeriesZone" loginAccess="N" funId="addDicSeriesZone"/>
+	<data desc="删除系列可用区(管理员)" apiName="delDicSeriesZone" className="com.winiis.cloudhost.dic.service.DicSeriesZoneService" functionName="delDicSeriesZone" loginAccess="N" funId="delDicSeriesZone"/>
+
+	<!-- 实例机型 -->
+	<data desc="查询实例机型" apiName="queryDicModelList" className="com.winiis.cloudhost.dic.service.DicModelService" functionName="queryDicModelList" loginAccess="N"/>
+	<data desc="根据地域获取机型" apiName="getDicModelList" className="com.winiis.cloudhost.dic.service.DicModelService" functionName="getDicModelList" loginAccess="N"/>
+	<data desc="根据系列获取机型" apiName="getDicModelInSeries" className="com.winiis.cloudhost.dic.service.DicModelService" functionName="getDicModelInSeries" loginAccess="N"/>
+	<data desc="查询机型对应磁盘类型" apiName="queryDicModelDiskPage" className="com.winiis.cloudhost.dic.service.DicModelDiskService" functionName="queryDicModelDiskPage" loginAccess="N"/>
+	<data desc="查询机型对应磁盘" apiName="queryDicModelDiskList" className="com.winiis.cloudhost.dic.service.DicModelDiskService" functionName="queryDicModelDiskList" loginAccess="N"/>
+	<data desc="添加机型对应磁盘类型(管理员)" apiName="addDicModelDisk" className="com.winiis.cloudhost.dic.service.DicModelDiskService" functionName="addDicModelDisk" loginAccess="N" funId="addDicModelDisk"/>
+	<data desc="删除机型对应磁盘类型(管理员)" apiName="delDicModelDisk" className="com.winiis.cloudhost.dic.service.DicModelDiskService" functionName="delDicModelDisk" loginAccess="N" funId="delDicModelDisk"/>
+	<data desc="查询实例机型分页(管理员)" apiName="queryDicModelPage" className="com.winiis.cloudhost.dic.service.DicModelService" functionName="queryDicModelPage" loginAccess="N" funId="queryDicModelPage"/>
+	<data desc="添加实例机型(管理员)" apiName="addDicModel" className="com.winiis.cloudhost.dic.service.DicModelService" functionName="addDicModel" loginAccess="N" funId="addDicModel"/>
+	<data desc="删除实例机型(管理员)" apiName="delDicModel" className="com.winiis.cloudhost.dic.service.DicModelService" functionName="delDicModel" loginAccess="N" funId="delDicModel"/>
+	<data desc="修改机型名称(管理员)" apiName="uptModelName" className="com.winiis.cloudhost.dic.service.DicModelService" functionName="uptModelName" loginAccess="N" funId="uptModelName"/>
+
+	<!-- 弹性价格 -->
+	<data desc="查询价格" apiName="queryDicPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="queryDicPrice" loginAccess="N" funId="queryDicPrice"/>
+	<data desc="修改价格" apiName="uptDicPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="uptDicPrice" loginAccess="N" funId="uptDicPrice"/>
+	<data desc="删除价格" apiName="delDicPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="delDicPrice" loginAccess="N" funId="delDicPrice"/>
+	<data desc="获取购买价格" apiName="getPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="getPrice" loginAccess="N"/>
+	<data desc="获取购买价格（虚拟主机）" apiName="getVHostPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="getVHostPrice" loginAccess="N"/>
+	<data desc="获取购买价格（自定义商品）" apiName="getDiyPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="getDiyPrice" loginAccess="N" />
+	<data desc="获取续费价格（自定义商品）" apiName="getDiyRenewPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="getDiyRenewPrice" loginAccess="N" />
+	<data desc="获取续费价格" apiName="getRenewPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="getRenewPrice" loginAccess="N"/>
+	<data desc="获取升级实例规格差价" apiName="getResizeSpecPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="getResizeSpecPrice" loginAccess="N"/>
+	<data desc="获取升级带宽差价" apiName="getResizeBandwidthPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="getResizeBandwidthPrice" loginAccess="N"/>
+	<data desc="获取升级系统盘差价" apiName="getResizeSystemDiskPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="getResizeSystemDiskPrice" loginAccess="N"/>
+	<data desc="获取升级数据盘差价" apiName="getResizeDataDiskPrice" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="getResizeDataDiskPrice" loginAccess="N"/>
+	<data desc="获取添加云硬盘价格" apiName="getAddDiskPirce" className="com.winiis.cloudhost.dic.service.DicPriceService" functionName="getAddDiskPirce" loginAccess="N"/>
+
+	<!-- 磁盘类型 -->
+	<data desc="查询磁盘类型" apiName="queryDicDiskList" className="com.winiis.cloudhost.dic.service.DicDiskService" functionName="queryDicDiskList" loginAccess="N"/>
+	<data desc="获取磁盘类型" apiName="getDicDiskInfo" className="com.winiis.cloudhost.dic.service.DicDiskService" functionName="getDicDiskInfo" loginAccess="N"/>
+	<data desc="删除磁盘类型(管理员)" apiName="delDicDisk" className="com.winiis.cloudhost.dic.service.DicDiskService" functionName="delDicDisk" loginAccess="N" funId="delDicDisk"/>
+	<data desc="添加磁盘类型(管理员)" apiName="addDicDisk" className="com.winiis.cloudhost.dic.service.DicDiskService" functionName="addDicDisk" loginAccess="N" funId="addDicDisk"/>
+	<data desc="修改磁盘类型(管理员)" apiName="uptDicDisk" className="com.winiis.cloudhost.dic.service.DicDiskService" functionName="uptDicDisk" loginAccess="N"/>
+	<data desc="查询磁盘类型(管理员)" apiName="queryDicDiskPage" className="com.winiis.cloudhost.dic.service.DicDiskService" functionName="queryDicDiskPage" loginAccess="N" funId="queryDicDiskPage"/>
+
+	<!-- 服务器管理 -->
+	<data desc="服务器查询" apiName="queryService" className="com.winiis.cloudhost.dic.service.DicHostService" functionName="queryHost" loginAccess="N" funId="queryHyperVHost" />
+	<data desc="服务器查询公共查询" apiName="queryServicePublic" className="com.winiis.cloudhost.dic.service.DicHostService" functionName="queryServicePublic" loginAccess="N" />
+	<data desc="服务器添加" apiName="addService" className="com.winiis.cloudhost.dic.service.DicHostService" functionName="addHost" loginAccess="N" funId="addHyperVHost" />
+	<data desc="服务器修改" apiName="uptService" className="com.winiis.cloudhost.dic.service.DicHostService" functionName="uptHost" loginAccess="N" funId="uptHyperVHost" />
+	<data desc="服务器删除" apiName="delService" className="com.winiis.cloudhost.dic.service.DicHostService" functionName="delHost" loginAccess="N" funId="delHyperVHost" />
+	<data desc="查询服务器IP" apiName="queryServiceIp" className="com.winiis.cloudhost.dic.service.DicHostService" functionName="queryHostIp" loginAccess="N" funId="uptHyperVHostIp" />
+	<data desc="添加服务器IP" apiName="addServiceIp" className="com.winiis.cloudhost.dic.service.DicHostService" functionName="addHostIp" loginAccess="N" funId="uptHyperVHostIp" />
+	<data desc="修改服务器IP" apiName="uptServiceIp" className="com.winiis.cloudhost.dic.service.DicHostService" functionName="uptHostIp" loginAccess="N" funId="uptHyperVHostIp" />
+	<data desc="删除服务器IP" apiName="delServiceIp" className="com.winiis.cloudhost.dic.service.DicHostService" functionName="delHostIp" loginAccess="N" funId="uptHyperVHostIp" />
+	<data desc="删除所有服务器IP" apiName="delServiceIpAll" className="com.winiis.cloudhost.dic.service.DicHostService" functionName="delHostIpAll" loginAccess="N" funId="uptHyperVHostIp" />
+
+	<!-- 实例规格 -->
+	<data desc="查询实例规格" apiName="queryDicSpecList" className="com.winiis.cloudhost.dic.service.DicSpecService" functionName="queryDicSpecList" loginAccess="N" funId="queryDicSpecList"/>
+	<data desc="获取实例规格" apiName="getDicSpecList" className="com.winiis.cloudhost.dic.service.DicSpecService" functionName="getDicSpecList" loginAccess="N"/>
+	<data desc="添加实例规格" apiName="addDicSpec" className="com.winiis.cloudhost.dic.service.DicSpecService" functionName="addDicSpec" loginAccess="N" funId="addDicSpec"/>
+	<data desc="删除实例规格" apiName="delDicSpec" className="com.winiis.cloudhost.dic.service.DicSpecService" functionName="delDicSpec" loginAccess="N" funId="delDicSpec"/>
+	<data desc="获取实例规格CPU" apiName="getDicSpecCPU" className="com.winiis.cloudhost.dic.service.DicSpecService" functionName="getDicSpecCPU" loginAccess="N"/>
+	<data desc="获取实例规格内存" apiName="getDicSpecMemory" className="com.winiis.cloudhost.dic.service.DicSpecService" functionName="getDicSpecMemory" loginAccess="N"/>
+
+	<!-- 订单管理 -->
+	<data desc="查询用户订单" apiName="queryUserOrder" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="queryUserOrder" loginAccess="N"/>
+	<data desc="获取订单详情" apiName="getUserOrder" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="getUserOrderInfo" loginAccess="N"/>
+	<data desc="删除订单信息" apiName="delUserOrder" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="delUserOrder" loginAccess="N"/>
+	<data desc="添加订单" apiName="addUserOrder" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="addUserOrder" loginAccess="N"/>
+	<data desc="获取待支付订单" apiName="getPayUserOrder" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="getPayUserOrder" loginAccess="N"/>
+	<data desc="处理订单" apiName="handleOrder" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="handleOrder" loginAccess="N"/>
+	<data desc="修改订单" apiName="modUserOrder" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="modOrderDataUser" loginAccess="N"/>
+	<data desc="修改订单(管理员)" apiName="modUserOrderDataAdmin" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="modOrderDataAdmin" loginAccess="N"/>
+	<data desc="修改订单值处理状态(管理员)" apiName="modUserOrderAdmin" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="modUserOrderAdmin" loginAccess="N"/>
+	<data desc="会员获取指定订单" apiName="getUserOrderList" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="getUserOrderList" loginAccess="N"/>
+	<data desc="管理员获取指定订单" apiName="getAdminOrderList" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="getAdminOrderList" loginAccess="N"/>
+	<data desc="用户订单统计" apiName="queryOrderCount" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="queryUserOrderCount" loginAccess="N"/>
+	<data desc="查询用户订单(管理员)" apiName="queryAdminOrder" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="queryAdminOrder" loginAccess="N" funId="queryAdminOrder"/>
+	<data desc="订单删除(管理员)" apiName="adminDelOrder" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="adminDelOrder" loginAccess="N" funId="adminDelOrder"/>
+	<data desc="查询订单报错(阿里云)" apiName="qryOrderErrMsg" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="queryOrderErrorMsg" loginAccess="N" />
+	<data desc="查询订单处理状态(阿里云)" apiName="qryOrderHandleStatus" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="queryOrderHandleState" loginAccess="N" />
+
+	<!-- 工单管理 -->
+	<data desc="查询工单信息" apiName="queryIssue" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="queryIssue" loginAccess="N"/>
+	<data desc="工单查询详情" apiName="queryIssueDetails" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="queryIssueDetails" loginAccess="N"/>
+	<data desc="工单回复内容" apiName="queryContent" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="queryContent" loginAccess="N"/>
+	<data desc="工单回复保存" apiName="replyIssue" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="replyIssue" loginAccess="N"/>
+	<data desc="提交工单" apiName="addUserIssue" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="addUserIssue" loginAccess="N"/>
+	<data desc="修改工单" apiName="uptUserIssue" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="uptUserIssue" loginAccess="N"/>
+	<data desc="统计工单" apiName="queryIssueCount" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="queryIssueCount" loginAccess="N"/>
+	<data desc="删除上传文件" apiName="delloadwork" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="delloadwork" loginAccess="N"/>
+	<data desc="查询工单(管理员)" apiName="queryAdminIssue" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="queryAdminIssue" loginAccess="N" funId="queryAdminIssue"/>
+	<data desc="删除工单(管理员)" apiName="delIssue" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="delIssue" loginAccess="N" funId="delIssue"/>
+	<data desc="关闭工单(管理员)" apiName="adminUptIssue" className="com.winiis.cloudhost.user.service.UserIssueService" functionName="adminUptIssue" loginAccess="N" funId="adminUptIssue"/>
+
+	<!-- 消息管理 -->
+	<data desc="查询用户消息" apiName="queryUserMessage" className="com.winiis.cloudhost.user.service.UserMessageService" functionName="queryUserMessage" loginAccess="N"/>
+	<data desc="添加用户消息" apiName="addUseMessage" className="com.winiis.cloudhost.user.service.UserMessageService" functionName="addUseMessage" loginAccess="N"/>
+	<data desc="删除用户消息" apiName="delUserMessage" className="com.winiis.cloudhost.user.service.UserMessageService" functionName="delUserMessage" loginAccess="N"/>
+	<data desc="批量删除用户消息" apiName="delUserMessageList" className="com.winiis.cloudhost.user.service.UserMessageService" functionName="delUserMessageList" loginAccess="N"/>
+	<data desc="标记已读消息" apiName="updateState" className="com.winiis.cloudhost.user.service.UserMessageService" functionName="updateState" loginAccess="N"/>
+	<data desc="批量标记已读消息" apiName="updateStateList" className="com.winiis.cloudhost.user.service.UserMessageService" functionName="updateStateList" loginAccess="N"/>
+
+	<!-- 域名管理  -->
+	<data desc="域名查询" apiName="queryUserDomainList" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="queryUserDomainList" loginAccess="N"/>
+	<data desc="修改DNS" apiName="uptDomainDns" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="uptDomainDns" loginAccess="N"/>
+	<data desc="获取个人模板" apiName="getTemplateListPage" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="getTemplateListPage" loginAccess="N"/>
+	<data desc="查看模板详情" apiName="getTemplateInfo" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="getTemplateInfo" loginAccess="N"/>
+	<data desc="添加域名模板" apiName="addTemplate" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="addTemplate" loginAccess="N"/>
+	<data desc="删除域名模板" apiName="delTemplate" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="delTemplate" loginAccess="N"/>
+	<data desc="修改域名模板" apiName="uptTemplate" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="uptTemplate" loginAccess="N"/>
+	<data desc="上传模板资料" apiName="uploadcert" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="uploadCert" loginAccess="N"/>
+	<data desc="设置默认模板" apiName="setDefaultTemplate" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="setDefaultTemplate" loginAccess="N"/>
+	<data desc="检查域名是否注册" apiName="checkDomainIsReg" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="checkDomainIsReg" loginAccess="N"/>
+	<data desc="获取域名联系人信息" apiName="queryUserDomaincontactsList" className="com.winiis.cloudhost.user.service.UserDomaincontactsService" functionName="queryUserDomaincontactsList" loginAccess="N"/>
+	<data desc="修改域名联系人信息" apiName="modUserDomaincontacts" className="com.winiis.cloudhost.user.service.UserDomaincontactsService" functionName="modUserDomaincontacts" loginAccess="N"/>
+	<data desc="统计过期域名产品" apiName="queryExpiryDomainCount" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="queryExpiryDomainCount" loginAccess="N"/>
+	<data desc="统计新买域名产品" apiName="queryNewDomainCount" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="queryNewDomainCount" loginAccess="N"/>
+	<data desc="查询域名whois信息" apiName="whois" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="DomainWhoisSearch" loginAccess="N"/>
+	<data desc="查询域名whois信息(原始)" apiName="rawwhois" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="DomainRawWhoisSearch" loginAccess="N"/>
+	<data desc="查询域名详情" apiName="getDomainDetail" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="getDomainDetail" loginAccess="N"/>
+	<data desc="获取域名证书" apiName="getdomaincrert" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="getDomianCert" loginAccess="N"/>
+	<data desc="域名控制面板" apiName="domainControl" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="domainControl" loginAccess="N"/>
+	<data desc="域名查询(管理员)" apiName="queryAdminDomainList" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="queryAdminDomainList" loginAccess="N" funId="queryAdminDomainList"/>
+	<data desc="删除域名(管理员)" apiName="delUserDomain" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="delUserDomain" loginAccess="N" funId="delUserDomain"/>
+	<data desc="修改DNS(管理员)" apiName="adminUptDomainDns" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="adminUptDomainDns" loginAccess="N" funId="adminUptDomainDns"/>
+	<data desc="修改域名联系人信息(管理员)" apiName="adminUptDomainContacts" className="com.winiis.cloudhost.user.service.UserDomaincontactsService" functionName="adminUptDomainContacts" loginAccess="N" funId="adminUptDomainContacts"/>
+
+	<data desc="查询DNS修改后的结果" apiName="qryUptDnsStatus" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="qryUptDomainDnsStatus" loginAccess="N"/>
+	<!-- 阿里域名解析接口 -->
+	<data desc="获取阿里域名解析" apiName="queryAliyunDomainSolutionRecord" className="com.winiis.cloudhost.user.service.UserDomainRRService" functionName="qryAliyunDomainRR" loginAccess="N"/>
+	<data desc="删除阿里域名解析" apiName="deleteAliyunDomainSolutionRecord" className="com.winiis.cloudhost.user.service.UserDomainRRService" functionName="delAliyunDomainRR" loginAccess="N"/>
+	<data desc="新增阿里域名解析" apiName="addAliyunDomainSolutionRecord" className="com.winiis.cloudhost.user.service.UserDomainRRService" functionName="addAliyunDomainRR" loginAccess="N"/>
+	<data desc="修改阿里域名解析" apiName="uptAliyunDomainSolutionRecord" className="com.winiis.cloudhost.user.service.UserDomainRRService" functionName="uptAliyunDomainRR" loginAccess="N"/>
+	<data desc="设置阿里域名解析状态" apiName="setAliyunDomainSolutionRecordStatus" className="com.winiis.cloudhost.user.service.UserDomainRRService" functionName="setAliyunDomainStatusRR" loginAccess="N"/>
+
+	<!-- 云主机业务 -->
+	<data desc="查询云主机" apiName="queryUserServiceList" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryUserServiceList" loginAccess="N"/>
+	<data desc="云主机详情" apiName="queryUserService" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryUserService" loginAccess="N"/>
+	<data desc="启动云主机" apiName="startInstance" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="startInstance" loginAccess="N"/>
+	<data desc="停止云主机" apiName="stopInstance" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="stopInstance" loginAccess="N"/>
+	<data desc="重启云主机" apiName="rebootInstance" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="rebootInstance" loginAccess="N"/>
+	<data desc="服务器密码修改" apiName="uptPassWordUserService" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="uptPassWordUserService" loginAccess="N"/>
+	<data desc="查询主机状态" apiName="queryHostStatus" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryHostStatus" loginAccess="N"/>
+	<data desc="云主机续费" apiName="resetUserService" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="resetUserService" loginAccess="N"/>
+	<data desc="获取浮动IP" apiName="GetFloatingIP" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="GetFloatingIP" loginAccess="N"/>
+	<data desc="根据IP查询服务器" apiName="queryUsByIP" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryUsByIP" loginAccess="N"/>
+	<data desc="查询最后一次重装记录" apiName="queryLastResetUsR" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryLastResetUsR" loginAccess="N"/>
+	<data desc="获取VNC控制台" apiName="getVNCConsole" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="getVNCConsole" loginAccess="N"/>
+	<data desc="获取数据状态列表" apiName="getDataStatusList" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="getDataStatusList" loginAccess="N"/>
+	<data desc="更改主机状态(管理员)" apiName="uptHostStatus" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="uptHostStatus" loginAccess="N" funId="uptHostStatus"/>
+	<data desc="检测主机状态(管理员)" apiName="checkHostStatus" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="checkHostStatus" loginAccess="N" funId="checkHostStatus"/>
+	<data desc="创建删除订单(管理员)" apiName="createDeleteOrder" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="createDeleteOrder" loginAccess="N" funId="createDeleteOrder"/>
+	<data desc="更新改云主机信息(管理员)" apiName="uptUserService" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="uptUserService" loginAccess="N" funId="uptUserService"/>
+	<data desc="暂停云主机(管理员)" apiName="pausedInstance" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="pausedInstance" loginAccess="N" funId="pausedInstance"/>
+	<data desc="查询云主机(管理员)" apiName="queryAdminServiceList" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryAdminServiceList" loginAccess="N" funId="queryAdminServiceList"/>
+	<data desc="云主机详情(管理员)" apiName="queryAdminService" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryAdminService" loginAccess="N" funId="queryAdminService"/>
+	<data desc="统计过期云主机(管理员)" apiName="queryExpiryServiceCount" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryExpiryServiceCount" loginAccess="N"/>
+	<data desc="统计新开云主机(管理员)" apiName="queryNewServiceCount" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryNewServiceCount" loginAccess="N"/>
+	<data desc="绑定浮动IP(管理员)" apiName="BindingFloatingIP" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="BindingFloatingIP" loginAccess="N" funId="BindingFloatingIP"/>
+	<data desc="移除浮动IP(管理员)" apiName="RemoveFloatingIP" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="RemoveFloatingIP" loginAccess="N" funId="RemoveFloatingIP"/>
+	<data desc="到期服务器提醒(管理员)" apiName="ExpireUsRemind" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="ExpireUsRemind" loginAccess="N" funId="ExpireUsRemind"/>
+	<data desc="到期服务器停用(管理员)" apiName="ExpireUsDisable" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="ExpireUsDisable" loginAccess="N" funId="ExpireUsDisable"/>
+	<data desc="到期服务器恢复(管理员)" apiName="ExpireUsResume" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="ExpireUsResume" loginAccess="N" funId="ExpireUsResume"/>
+	<data desc="查询云主机操作记录(管理员)" apiName="queryUsRecordList" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryUsRecordList" loginAccess="N" funId="queryUsRecordList"/>
+	<data desc="查询云主机操作记录详情(管理员)" apiName="queryUsRecordDetail" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryUsRecordDetail" loginAccess="N" funId="queryUsRecordDetail"/>
+	<data desc="开启VNC服务" apiName="startVNCServer" className="com.winiis.cloudhost.user.service.UserServiceVncService" functionName="startVNCServer" loginAccess="N" />
+
+	<!--共享VPS域名管理-->
+	<data desc="vps域名：用户获取列表" apiName="vpsDomainList" className="com.winiis.cloudhost.user.service.hyperv.UserHyperVVpsDomainService" functionName="vpsDomainList" loginAccess="N" />
+	<data desc="vps域名：添加域名" apiName="vpsDomainAdd" className="com.winiis.cloudhost.user.service.hyperv.UserHyperVVpsDomainService" functionName="vpsDomainAdd" loginAccess="N" />
+	<data desc="vps域名：删除域名" apiName="vpsDomainDel" className="com.winiis.cloudhost.user.service.hyperv.UserHyperVVpsDomainService" functionName="vpsDomainDel" loginAccess="N" />
+
+	<!--共享VPS端口管理-->
+	<data desc="vps端口：用户获取列表" apiName="vpsPortMapList" className="com.winiis.cloudhost.user.service.hyperv.UserHyperVVpsPortMapService" functionName="vpsPortMapList" loginAccess="N" />
+	<data desc="vps端口：添加端口" apiName="vpsPortMapAdd" className="com.winiis.cloudhost.user.service.hyperv.UserHyperVVpsPortMapService" functionName="vpsPortMapAdd" loginAccess="N" />
+	<data desc="vps端口：删除端口" apiName="vpsPortMapDel" className="com.winiis.cloudhost.user.service.hyperv.UserHyperVVpsPortMapService" functionName="vpsPortMapDel" loginAccess="N" />
+
+	<!-- 磁盘 -->
+	<data desc="查询磁盘列表" apiName="queryUserDiskList" className="com.winiis.cloudhost.user.service.UserDiskService" functionName="queryUserDiskList" loginAccess="N"/>
+	<data desc="查询磁盘列表(管理员)" apiName="queryAdminDiskList" className="com.winiis.cloudhost.user.service.UserDiskService" functionName="queryAdminDiskList" loginAccess="N"/>
+	<data desc="查询磁盘数据" apiName="queryUserDisk" className="com.winiis.cloudhost.user.service.UserDiskService" functionName="queryUserDisk" loginAccess="N"/>
+
+	<!-- 快照 -->
+	<data desc="创建快照" apiName="createSnapshot" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="createSnapshot" loginAccess="N"/>
+	<data desc="用户查询快照列表" apiName="queryUserSnapshotList" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="queryUserSnapshotList" loginAccess="N"/>
+	<data desc="管理员查询快照列表" apiName="queryAdminSnapshotList" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="queryAdminSnapshotList" loginAccess="N"/>
+	<data desc="删除快照" apiName="delSnapshot" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="delSnapshot" loginAccess="N"/>
+	<data desc="查询快照总数" apiName="queryUserSnapshotCount" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="queryUserSnapshotCount" loginAccess="N"/>
+	<data desc="查询快照状态" apiName="querySnapshotStatus" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="querySnapshotStatus" loginAccess="N"/>
+	<data desc="还原快照" apiName="restoreSnapshot" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="restoreSnapshot" loginAccess="N"/>
+	<data desc="查询快照(hyper-v)" apiName="queryUserSnapshotListHyperV" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="queryUserSnapshotListHyperV" loginAccess="N" />
+	<data desc="查询快照总数（hyper-v）" apiName="queryUserSnapshotCountHyperV" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="queryUserSnapshotCountHyperV" loginAccess="N" />
+	<data desc="快照删除(hyper-v)" apiName="delSnapshotHyperV" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="delSnapshotHyperV" loginAccess="N" />
+	<data desc="快照还原(hyper-v)" apiName="restoreSnapshotHyperV" className="com.winiis.cloudhost.user.service.UserSnapshotService" functionName="restoreSnapshotHyperV" loginAccess="N" />
+
+	<!-- 虚拟主机业务 -->
+	<data desc="虚拟主机：用户获取开通的虚拟主机业务列表" apiName="queryUserVhostList" className="com.winiis.cloudhost.user.service.UserVhostService" functionName="queryUserVhostList" loginAccess="N" />
+	<data desc="虚拟主机：用户获取开通的虚拟主机业务" apiName="queryUserVhost" className="com.winiis.cloudhost.user.service.UserVhostService" functionName="queryUserVhost" loginAccess="N" />
+	<data desc="虚拟主机：用户升级虚拟主机业务价格获取" apiName="getVHostPriceUpgrade" className="com.winiis.cloudhost.user.service.UserVhostService" functionName="getVHostPriceUpgrade" loginAccess="N" />
+	<data desc="虚拟主机：用户升级虚拟主机业务添加购物车" apiName="addUserCartVHostUpdate" className="com.winiis.cloudhost.user.service.UserVhostService" functionName="addUserCartVHostUpdate" loginAccess="N" />
+	<data desc="虚拟主机：用户续费虚拟主机业务价格获取" apiName="getVHostPriceRenew" className="com.winiis.cloudhost.user.service.UserVhostService" functionName="getVHostPriceRenew" loginAccess="N" />
+	<data desc="虚拟主机：用户续费虚拟主机业务可选区段获取" apiName="getVHostPriceRenewPromotionList" className="com.winiis.cloudhost.user.service.UserVhostService" functionName="getVHostPriceRenewPromotionList" loginAccess="N" />
+	<data desc="虚拟主机：用户续费虚拟主机业务添加购物车" apiName="addUserCartVHostRenew" className="com.winiis.cloudhost.user.service.UserVhostService" functionName="addUserCartVHostRenew" loginAccess="N" />
+
+	<data desc="虚拟主机：管理员获取获通的虚拟主机业务列表" apiName="adminINTQueryUserVhostList" className="com.winiis.cloudhost.user.service.UserVhostAdminService" functionName="adminINTQueryUserVhostList" funId="queryVhostList" loginAccess="N" />
+	<data desc="虚拟主机：管理员获取开通的虚拟主机业务" apiName="adminINTQueryUserVhost" className="com.winiis.cloudhost.user.service.UserVhostAdminService" functionName="adminINTQueryUserVhost" funId="queryVhostDetail" loginAccess="N" />
+	<data desc="虚拟主机：管理员批量同步实例状态" apiName="adminINTSyncVhost" className="com.winiis.cloudhost.user.service.UserVhostAdminService" functionName="adminINTSyncVhost" funId="syncHostStatus" loginAccess="N" />
+	<data desc="虚拟主机：管理员批量暂停实例" apiName="adminINTPauseVhost" className="com.winiis.cloudhost.user.service.UserVhostAdminService" functionName="adminINTPauseVhost" funId="pausedVhostInstance" loginAccess="N" />
+	<data desc="虚拟主机：管理员批量恢复实例使用" apiName="adminINTVhostExpireUsResume" className="com.winiis.cloudhost.user.service.UserVhostAdminService" functionName="adminINTVhostExpireUsResume" funId="vhostExpireUsResume" loginAccess="N" />
+	<data desc="虚拟主机：管理员批量操作到期停用" apiName="adminINTVhostExpireUsDisable" className="com.winiis.cloudhost.user.service.UserVhostAdminService" functionName="adminINTVhostExpireUsDisable" funId="vhostExpireUsDisable" loginAccess="N" />
+	<data desc="虚拟主机：管理员批量删除实例" apiName="adminINTVhostDelete" className="com.winiis.cloudhost.user.service.UserVhostAdminService" functionName="adminINTVhostDelete" funId="createVhostDeleteOrder" loginAccess="N" />
+	<data desc="虚拟主机：管理员到期提醒通知" apiName="adminINTVhostAlert" className="com.winiis.cloudhost.user.service.UserVhostAdminService" functionName="adminINTVhostAlert" funId="vhostExpireUsRemind" loginAccess="N" />
+	<data desc="虚拟主机：管理员警获取主机数量统计" apiName="queryNewVhostState" className="com.winiis.cloudhost.user.service.UserVhostAdminService" functionName="queryNewVhostState" loginAccess="N" />
+	<data desc="虚拟主机：管理员修复虚拟主机参数" apiName="vHostRepair" className="com.winiis.cloudhost.user.service.UserVHostAdminInfoService" functionName="vHostRepair" funId="vHostRepair" loginAccess="N" />
+	<data desc="虚拟主机：管理员修改虚拟主机配置" apiName="vHostConfigEdit" className="com.winiis.cloudhost.user.service.UserVHostAdminInfoService" functionName="vHostConfigEdit" funId="vHostInfoEdit" loginAccess="N" />
+
+	<data desc="虚拟主机：用户获取虚拟主机Web网站实时信息" apiName="queryTimeWebInfo" className="com.winiis.cloudhost.user.service.UserVhostControlService" functionName="queryTimeWebInfo" loginAccess="N" />
+	<data desc="虚拟主机：用户设置网站状态" apiName="setWebSiteState" className="com.winiis.cloudhost.user.service.UserVhostControlService" functionName="setWebSiteState" loginAccess="N" />
+	<data desc="虚拟主机：用户设置默认首页" apiName="setWebSiteDefault" className="com.winiis.cloudhost.user.service.UserVhostControlService" functionName="setWebSiteDefault" loginAccess="N" />
+	<data desc="虚拟主机：用户获取绑定域名" apiName="queryWebSiteDomains" className="com.winiis.cloudhost.user.service.UserWebDomainService" functionName="queryWebSiteDomains" loginAccess="N" />
+	<data desc="虚拟主机：用户添加绑定域名" apiName="addWebSiteDomains" className="com.winiis.cloudhost.user.service.UserWebDomainService" functionName="addWebSiteDomains" loginAccess="N" />
+	<data desc="虚拟主机：用户删除绑定域名" apiName="delWebSiteDomains" className="com.winiis.cloudhost.user.service.UserWebDomainService" functionName="delWebSiteDomains" loginAccess="N" />
+	<data desc="虚拟主机：用户检查域名绑定" apiName="reCheckWebSiteDomains" className="com.winiis.cloudhost.user.service.UserWebDomainService" functionName="reCheckWebSiteDomains" loginAccess="N" />
+	<data desc="虚拟主机：用户重置网站权限" apiName="resetWebSiteRight" className="com.winiis.cloudhost.user.service.UserVhostControlService" functionName="resetWebSiteRight" loginAccess="N" />
+	<data desc="虚拟主机：用户设置目录读写权限" apiName="resetWebSiteDirRight" className="com.winiis.cloudhost.user.service.UserVhostControlService" functionName="resetWebSiteDirRight" loginAccess="N" />
+	<data desc="虚拟主机：用户切换php版本" apiName="resetWebSitePhp" className="com.winiis.cloudhost.user.service.UserVhostControlService" functionName="resetWebSitePhp" loginAccess="N" />
+	<data desc="虚拟主机：用户切换.net版本" apiName="resetWebSiteNet" className="com.winiis.cloudhost.user.service.UserVhostControlService" functionName="resetWebSiteNet" loginAccess="N" />
+	<data desc="虚拟主机：用户获取.net版本" apiName="getWebSiteNet" className="com.winiis.cloudhost.user.service.UserVhostControlService" functionName="getWebSiteNet" loginAccess="N" />
+
+	<data desc="虚拟主机：用户获取ftp已使用空间" apiName="getFtpQuota" className="com.winiis.cloudhost.user.service.UserVhostControlFtpService" functionName="getFtpQuota" loginAccess="N" />
+	<data desc="虚拟主机：用户修改ftp密码" apiName="modFtpPass" className="com.winiis.cloudhost.user.service.UserVhostControlFtpService" functionName="modFtpPass" loginAccess="N" />
+	<data desc="虚拟主机：用户查询ftp信息" apiName="queryFtp" className="com.winiis.cloudhost.user.service.UserVhostControlService" functionName="queryFtp" loginAccess="N" />
+	<data desc="虚拟主机：用户启停FTP" apiName="setFtpState" className="com.winiis.cloudhost.user.service.UserVhostControlFtpService" functionName="setFtpState" loginAccess="N" />
+	<data desc="虚拟主机：用户FTP压缩文件" apiName="ftpTar" className="com.winiis.cloudhost.user.service.UserVhostControlFtpService" functionName="ftpTar" loginAccess="N" />
+	<data desc="虚拟主机：用户FTP文件解压" apiName="ftpUnTar" className="com.winiis.cloudhost.user.service.UserVhostControlFtpService" functionName="ftpUnTar" loginAccess="N" />
+
+	<data desc="虚拟主机：用户查询Mysql" apiName="queryMysql" className="com.winiis.cloudhost.user.service.UserVhostControlMysqlService" functionName="queryMysql" loginAccess="N" />
+	<data desc="虚拟主机：用户修改MySQL密码" apiName="editMysqlPass"  className="com.winiis.cloudhost.user.service.UserVhostControlMysqlService" functionName="editMysqlPass" loginAccess="N" />
+	<data desc="虚拟主机：用户备份MySQL" apiName="backMysql" className="com.winiis.cloudhost.user.service.UserVhostControlMysqlService" functionName="backMysql" loginAccess="N" />
+	<data desc="虚拟主机：用户还原MySQL" apiName="restoreMysql" className="com.winiis.cloudhost.user.service.UserVhostControlMysqlService" functionName="restoreMysql" loginAccess="N" />
+
+	<data desc="虚拟主机：用户查询SQL Server" apiName="queryMssql" className="com.winiis.cloudhost.user.service.UserVhostControlMssqlService" functionName="queryMssql" loginAccess="N" />
+	<data desc="虚拟主机：用户修改SQL Server密码" apiName="editMssqlPass" className="com.winiis.cloudhost.user.service.UserVhostControlMssqlService" functionName="editMssqlPass" loginAccess="N" />
+	<data desc="虚拟主机：用户备份SQL Server" apiName="backMssql" className="com.winiis.cloudhost.user.service.UserVhostControlMssqlService" functionName="backMssql" loginAccess="N" />
+	<data desc="虚拟主机：用户还原SQL Server" apiName="restoreMssql" className="com.winiis.cloudhost.user.service.UserVhostControlMssqlService" functionName="restoreMssql" loginAccess="N" />
+	<data desc="虚拟主机：用户清理SQL Server日志" apiName="deleteMssqlLog" className="com.winiis.cloudhost.user.service.UserVhostControlMssqlService" functionName="deleteMssqlLog" loginAccess="N" />
+
+	<data desc="虚拟主机：用户获取虚拟主机服务组件密码" apiName="getControlPass" className="com.winiis.cloudhost.user.service.UserVhostControlCommonService" functionName="getControlPass" loginAccess="N" />
+	<data desc="虚拟主机：重置管理密码" apiName="vHostSetManagePwd" className="com.winiis.cloudhost.user.service.UserVhostControlCommonService" functionName="vHostSetManagePwd" loginAccess="N" cloudLogin="Y" />
+
+	<!-- 邮件配置-->
+	<data desc="查询邮件模板" apiName="querEmailConfig" className="com.winiis.cloudhost.sys.service.SysNotifyTemplateService" functionName="querEmailConfig" loginAccess="N"/>
+	<data desc="根据ID查询模板" apiName="querEmailById" className="com.winiis.cloudhost.sys.service.SysNotifyTemplateService" functionName="querEmailById" loginAccess="N"/>
+	<data desc="更新邮件模板" apiName="uptemailconfig" className="com.winiis.cloudhost.sys.service.SysNotifyTemplateService" functionName="uptemailconfig" loginAccess="N"/>
+	<data desc="查询短信模板" apiName="querSmsConfig" className="com.winiis.cloudhost.sys.service.SysNotifyTemplateService" functionName="querSmsConfig" loginAccess="N"/>
+	<data desc="更新短信模板" apiName="upteSmsconfig" className="com.winiis.cloudhost.sys.service.SysNotifyTemplateService" functionName="uptemailconfig" loginAccess="N"/>
+
+	<!-- 通知记录-->
+	<data desc="查询通知记录" apiName="queryNotifyRecord" className="com.winiis.cloudhost.sys.service.SysNotifyRecordService" functionName="querySysNotifyRecordByPage" loginAccess="N"/>
+	<data desc="查询通知记录详情" apiName="queryNotifyRecordDetails" className="com.winiis.cloudhost.sys.service.SysNotifyRecordService" functionName="queryNotifyRecordDetails" loginAccess="N"/>
+	<data desc="群发邮件" apiName="bathSendEmail" className="com.winiis.cloudhost.sys.service.SysNotifyRecordService" functionName="bathSendEmail" loginAccess="N"/>
+
+	<!-- 充值管理 -->
+	<data desc="消费记录查询" apiName="getUserChargeListByPage" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="getUserChargeListByPage" loginAccess="N"/>
+	<data desc="在线充值" apiName="OnlineRecharge" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="UserOnlineRecharge" loginAccess="N"/>
+	<data desc="在线充值(订单支付充值)" apiName="OrderRecharge" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="OrderOnlineRecharge" loginAccess="N"/>
+	<data desc="充值记录查询(管理员功能)" apiName="getAllUserCharge" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="getAllUserCharge" loginAccess="N"/>
+	<data desc="充值详情查询(管理员功能)" apiName="getChargeByOId" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="getChargeByOId" loginAccess="N"/>
+	<data desc="手工处理充值订单(管理员功能)" apiName="rechargeManual" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="rechargeManual" loginAccess="N"/>
+	<data desc="充值金额统计(管理员功能)" apiName="rechargeCount" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="rechargeAmount" loginAccess="N"/>
+	<data desc="充值金额分类统计" apiName="UserRechargeCount" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="UserRechargeCount" loginAccess="N"/>
+	<data desc="充值金额分类统计(管理员功能)" apiName="AdminRechargeCount" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="AdminRechargeCount" loginAccess="N"/>
+	<data desc="查询可用充值渠道" apiName="getPayChannl" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="getPayChannl" loginAccess="N"/>
+
+	<!-- 文章管理 -->
+	<data desc="根据ID获取文章" apiName="getSysArticle" className="com.winiis.cloudhost.sys.service.SysArticleService" functionName="getSysArticle" loginAccess="N"/>
+	<data desc="根据标记获取文章" apiName="getAgreement" className="com.winiis.cloudhost.sys.service.SysArticleService" functionName="getSysAgreement" loginAccess="N"/>
+	<data desc="修改文章" apiName="modSysArticle" className="com.winiis.cloudhost.sys.service.SysArticleService" functionName="modSysArticle" loginAccess="N" funId="modSysArticle"/>
+	<data desc="删除公告" apiName="delSysArticle" className="com.winiis.cloudhost.sys.service.SysArticleService" functionName="delSysArticle" loginAccess="N" funId="delSysArticle"/>
+	<data desc="添加文章" apiName="addSysArticle" className="com.winiis.cloudhost.sys.service.SysArticleService" functionName="addSysArticle" loginAccess="N" funId="addSysArticle"/>
+	<data desc="分页查询文章列表" apiName="querySysArticle" className="com.winiis.cloudhost.sys.service.SysArticleService" functionName="querySysArticle" loginAccess="N"/>
+	<data desc="查询文章列表" apiName="querySysArticleList" className="com.winiis.cloudhost.sys.service.SysArticleService" functionName="querySysArticleList" loginAccess="N"/>
+	<data desc="查询文章列表" apiName="querySysArticleFlag" className="com.winiis.cloudhost.sys.service.SysArticleService" functionName="querySysArticleFlag" loginAccess="N"/>
+
+	<!-- 阿里云接口 -->
+	<data desc="测试" apiName="test" className="com.winiis.cloudhost.user.service.AliyunTestServer" functionName="getAliRegionList" loginAccess="N"/>
+
+	<!-- 备案接口 -->
+	<data desc="备案登录(必须登录)" apiName="icplogin" className="com.winiis.cloudhost.user.service.UserBeianService" functionName="icpLogin" loginAccess="N"/>
+	<data desc="备案登录(允许未登录)" apiName="unicplogin" className="com.winiis.cloudhost.user.service.UserBeianService" functionName="unicpLogin" loginAccess="N"/>
+
+	<!-- 购物车 -->
+	<data desc="添加购物车" apiName="addUserCart" className="com.winiis.cloudhost.user.service.UserCartService" functionName="addUserCart" loginAccess="N"/>
+	<data desc="添加购物车(云服务器开通)" apiName="addUserCartCloud" className="com.winiis.cloudhost.user.service.UserCartService" functionName="addUserCartCloud" loginAccess="N"/>
+	<data desc="添加购物车(虚拟主机开通)" apiName="addUserCartVHost" className="com.winiis.cloudhost.user.service.UserCartService" functionName="addUserCartVHost" loginAccess="N"/>
+	<data desc="添加购物车（自下定义产品）" apiName="addUserCartDiy" className="com.winiis.cloudhost.user.service.UserCartService" functionName="addUserCartDiy" loginAccess="N" />
+	<data desc="添加购物车(云服务器续费)" apiName="addUserCartRenew" className="com.winiis.cloudhost.user.service.UserCartService" functionName="addUserCartRenew" loginAccess="N"/>
+	<data desc="删除购物车" apiName="delUserCart" className="com.winiis.cloudhost.user.service.UserCartService" functionName="delUserCart" loginAccess="N"/>
+	<data desc="修改购物车" apiName="uptUserCart" className="com.winiis.cloudhost.user.service.UserCartService" functionName="uptUserCart" loginAccess="N"/>
+	<data desc="修改购物车域名产品注册商" apiName="uptUserCartDomainRegtype" className="com.winiis.cloudhost.user.service.UserCartService" functionName="uptUserCartDomainRegtype" loginAccess="N"/>
+	<data desc="获取购物车总数" apiName="queryUserCartCount" className="com.winiis.cloudhost.user.service.UserCartService" functionName="queryUserCartCount" loginAccess="N"/>
+	<data desc="获取购物车列表" apiName="getUserCartList" className="com.winiis.cloudhost.user.service.UserCartService" functionName="getUserCartList" loginAccess="N"/>
+	<data desc="统计购物车总价格" apiName="countTotalPrice" className="com.winiis.cloudhost.user.service.UserCartService" functionName="countTotalPrice" loginAccess="N"/>
+	<data desc="修改购物车域名联系人信息" apiName="upDomainUserCart" className="com.winiis.cloudhost.user.service.UserCartService" functionName="upDomainUserCart" loginAccess="N"/>
+	<data desc="添加购物车(升级实例规格)" apiName="addUserCartResizeSpec" className="com.winiis.cloudhost.user.service.UserCartService" functionName="addUserCartResizeSpec" loginAccess="N"/>
+	<data desc="添加购物车(升级带宽)" apiName="addUserCartResizeBandwidth" className="com.winiis.cloudhost.user.service.UserCartService" functionName="addUserCartResizeBandwidth" loginAccess="N"/>
+	<data desc="添加购物车(升级数据盘)" apiName="addUserCartResizeDataDisk" className="com.winiis.cloudhost.user.service.UserCartService" functionName="addUserCartResizeDataDisk" loginAccess="N"/>
+	<data desc="添加购物车(添加云硬盘)" apiName="addUserCartAddDisk" className="com.winiis.cloudhost.user.service.UserCartService" functionName="addUserCartAddDisk" loginAccess="N"/>
+
+	<!-- 发票管理  -->
+	<data desc="新增发票" apiName="addUserInvoice" className="com.winiis.cloudhost.user.service.UserInvoiceService" functionName="addUserInvoice" loginAccess="N"/>
+	<data desc="查询全部发票" apiName="getAllInvoice" className="com.winiis.cloudhost.user.service.UserInvoiceService" functionName="getAllInvoice" loginAccess="N"/>
+	<data desc="删除发票记录" apiName="delinvoice" className="com.winiis.cloudhost.user.service.UserInvoiceService" functionName="delinvoice" loginAccess="N"/>
+	<data desc="更新发票记录" apiName="uptInvoice" className="com.winiis.cloudhost.user.service.UserInvoiceService" functionName="uptInvoice" loginAccess="N"/>
+	<data desc="发票审核" apiName="invoiceAudit" className="com.winiis.cloudhost.user.service.UserInvoiceService" functionName="invoiceAudit" loginAccess="N"/>
+	<data desc="查询历史" apiName="queryHistory" className="com.winiis.cloudhost.user.service.UserInvoiceService" functionName="queryHistory" loginAccess="N"/>
+	<data desc="查询发票详情" apiName="queryUserInvoice" className="com.winiis.cloudhost.user.service.UserInvoiceService" functionName="queryUserInvoice" loginAccess="N"/>
+	<data desc="批量导出发票" apiName="exportExcel" className="com.winiis.cloudhost.user.service.UserInvoiceService" functionName="exportExcel" loginAccess="N"/>
+
+	<!-- 安全组  -->
+	<data desc="查询安全组列表(会员)" apiName="queryUserSecGroupList" className="com.winiis.cloudhost.user.service.UserSecGroupService" functionName="queryUserSecGroupList" loginAccess="N"/>
+	<data desc="查询安全组" apiName="queryUserSecGroup" className="com.winiis.cloudhost.user.service.UserSecGroupService" functionName="queryUserSecGroup" loginAccess="N"/>
+	<data desc="添加安全组" apiName="addUserSecGroup" className="com.winiis.cloudhost.user.service.UserSecGroupService" functionName="addUserSecGroup" loginAccess="N"/>
+	<data desc="修改安全组" apiName="uptUserSecGroup" className="com.winiis.cloudhost.user.service.UserSecGroupService" functionName="uptUserSecGroup" loginAccess="N"/>
+	<data desc="删除安全组" apiName="delUserSecGroup" className="com.winiis.cloudhost.user.service.UserSecGroupService" functionName="delUserSecGroup" loginAccess="N"/>
+	<data desc="获取云主机列表" apiName="getUserServiceList" className="com.winiis.cloudhost.user.service.UserSecGroupService" functionName="getUserServiceList" loginAccess="N"/>
+	<data desc="查询安全组中实例列表" apiName="queryUsgHostList" className="com.winiis.cloudhost.user.service.UserSecGroupService" functionName="queryUsgHostList" loginAccess="N"/>
+	<data desc="安全组关联实例" apiName="SecGroupAddInstance" className="com.winiis.cloudhost.user.service.UserSecGroupService" functionName="SecGroupAddInstance" loginAccess="N"/>
+	<data desc="安全组移除实例" apiName="SecGroupRemoveInstance" className="com.winiis.cloudhost.user.service.UserSecGroupService" functionName="SecGroupRemoveInstance" loginAccess="N"/>
+
+	<!-- 安全组规则  -->
+	<data desc="查询安全组列表(会员)" apiName="queryUserSecGroupRuleList" className="com.winiis.cloudhost.user.service.UserSecGroupRuleService" functionName="queryUserSecGroupRuleList" loginAccess="N"/>
+	<data desc="添加安全组规则" apiName="addUserSecGroupRule" className="com.winiis.cloudhost.user.service.UserSecGroupRuleService" functionName="addUserSecGroupRule" loginAccess="N"/>
+	<data desc="删除安全组规则" apiName="delUserSecGroupRule" className="com.winiis.cloudhost.user.service.UserSecGroupRuleService" functionName="delUserSecGroupRule" loginAccess="N"/>
+
+	<!-- 云主机资源  -->
+	<data desc="获取计量数据" apiName="getUserMeterData" className="com.winiis.cloudhost.user.service.UserHostResourceService" functionName="getUserMeterData" loginAccess="N"/>
+
+	<!-- 管理员主页数据统计 -->
+	<data desc="按时间段统计订单数" apiName="queryOrderCountByDatetime" className="com.winiis.cloudhost.user.service.UserOrderService" functionName="queryOrderCountByDatetime" loginAccess="N"/>
+	<data desc="按时间段统计充值金额" apiName="queryRechargeCountByDatetime" className="com.winiis.cloudhost.user.service.UserChargeService" functionName="queryRechargeCountByDatetime" loginAccess="N"/>
+	<data desc="按时间段统计新开实例" apiName="queryServiceCountByDatetime" className="com.winiis.cloudhost.user.service.UserServiceService" functionName="queryServiceCountByDatetime" loginAccess="N"/>
+	<data desc="按时间段统计新开域名" apiName="queryDomainCountByDatetime" className="com.winiis.cloudhost.user.service.UserWebDomainService" functionName="queryDomainCountByDatetime" loginAccess="N" />
+	<data desc="按时间段统计新开虚机" apiName="queryWebCountByDatetime" className="com.winiis.cloudhost.user.service.UserWebDomainService" functionName="queryWebCountByDatetime" loginAccess="N" />
+
+	<!-- 会员 -->
+	<data desc="域名模板模板提交上级审核" apiName="submitTemplate" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="submitTemplate" loginAccess="N"/>
+	<data desc="刷新域名模板模板审核状态" apiName="qryTemplateStatus" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="qryTemplateStatus" loginAccess="N"/>
+	<data desc="提交域名实名（过户实名）" apiName="domianRealname" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="domianRealname" loginAccess="N"/>
+	<data desc="查询域名实名转态" apiName="queryDoianRealStatus" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="queryDomianRealStatus" loginAccess="N"/>
+	<data desc="获取已实名模板" apiName="getUserRealSuccessTemplateList" className="com.winiis.cloudhost.user.service.UserDomainTemplateService" functionName="getUserRealSuccessTemplateList" loginAccess="N"/>
+	<data desc="获取已配置域名接口" apiName="queryUseRegType" className="com.winiis.cloudhost.user.service.UserDomainService" functionName="queryUseRegType" loginAccess="N"/>
+
+	<!-- 自定义产品分类 -->
+	<data desc="管理获取自定义分类" apiName="queryDiyProCatList" className="com.winiis.cloudhost.sys.service.SysDiyCatService" functionName="queryDiyProCatList" funId="queryDiyProCatList" loginAccess="N" />
+	<data desc="管理添加自定义分类" apiName="newDiyProCat" className="com.winiis.cloudhost.sys.service.SysDiyCatService" functionName="newDiyProCat" funId="newDiyProCat" loginAccess="N" />
+	<data desc="管理修改自定义分类状态" apiName="editDiyProCatStatus" className="com.winiis.cloudhost.sys.service.SysDiyCatService" functionName="editDiyProCatStatus" funId="editDiyProCatStatus" loginAccess="N" />
+	<data desc="管理修改自定义分类" apiName="editDiyProCat" className="com.winiis.cloudhost.sys.service.SysDiyCatService" functionName="editDiyProCat" funId="editDiyProCat" loginAccess="N" />
+	<data desc="管理删除自定义分类" apiName="deleteDiyProCat" className="com.winiis.cloudhost.sys.service.SysDiyCatService" functionName="deleteDiyProCat" funId="deleteDiyProCat" loginAccess="N" />
+	<data desc="通用获取自定义可用分类" apiName="usableDiyProCat" className="com.winiis.cloudhost.sys.service.SysDiyCatService" functionName="usableDiyProCat" loginAccess="N" />
+
+	<!--自定义产品业务实例管理-->
+	<data desc="管理获取开通的自定义产品列表" apiName="queryDiy" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="queryDiy" funId="queryDiy" loginAccess="N" />
+	<data desc="管理保存自定义产品配置" apiName="diyConfig" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="diyConfig" funId="diyConfig" loginAccess="N" />
+	<data desc="管理暂停自定义产品" apiName="pausedDiy" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="pausedDiy" funId="pausedDiy" loginAccess="N" />
+	<data desc="管理到期停用自定义产品" apiName="diyExpireUsDisable" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="diyExpireUsDisable" funId="diyExpireUsDisable" loginAccess="N" />
+	<data desc="管理恢复使用自定义产品" apiName="diyResume" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="diyResume" funId="diyResume" loginAccess="N" />
+	<data desc="管理自定义产品到期提醒" apiName="diyExpireUsRemind" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="diyExpireUsRemind" funId="diyExpireUsRemind" loginAccess="N" />
+	<data desc="管理删除自定义产品" apiName="deleteDiy" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="deleteDiy" funId="deleteDiy" loginAccess="N" />
+	<data desc="管理获取自定义产品" apiName="getDiy" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="getDiy" funId="getDiy" loginAccess="N" />
+	<data desc="管理自定义产品统计" apiName="queryNewDiyState" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="queryNewDiyState" loginAccess="N" />
+	<data desc="用户获取自定义业务实例" apiName="queryUserDiyList" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="queryUserDiyList" loginAccess="N" />
+	<data desc="用户获取自定义业务详情" apiName="queryUserDiyDetail" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="queryUserDiyDetail" loginAccess="N" />
+
+	<data desc="微服务接口：修改业务状态和配置信息" apiName="diyProductPublicModify" className="com.winiis.cloudhost.user.service.UserDiyService" functionName="diyProductPublicModify" loginAccess="N" miniServer="Y" />
+
+	<!--阿里云：管理配置-->
+	<data desc="管理配置价格" apiName="saveAliyunConfig" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunConfigService" functionName="saveAliyunConfig" funId="saveAliyunConfig" loginAccess="N" />
+	<data desc="管理配置获取" apiName="getAliyunConfig" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunConfigService" functionName="getAliyunConfig" funId="saveAliyunConfig" loginAccess="N" />
+
+	<!--阿里云：开通-->
+	<data desc="开通：获取地域" apiName="aliyunRegions" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOpenService" functionName="aliyunRegions" loginAccess="N" />
+	<data desc="开通：获取可用区" apiName="aliyunZones" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOpenService" functionName="aliyunZones" loginAccess="N" />
+	<data desc="开通：获取规格族" apiName="aliyunInstanceTypeFamily" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOpenService" functionName="aliyunInstanceTypeFamily" loginAccess="N" />
+	<data desc="开通：获取实例规格" apiName="aliyunInstanceType" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOpenService" functionName="aliyunInstanceType" loginAccess="N" />
+	<data desc="开通：获取镜像" apiName="aliyunImages" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOpenService" functionName="aliyunImages" loginAccess="N" />
+	<data desc="开通：获取开通价格" apiName="aliyunEcsBuyPrice" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOpenService" functionName="aliyunEcsBuyPrice" loginAccess="N" />
+	<data desc="开通：获取有IO优化的实例" apiName="aliyunIoOptimized" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOpenService" functionName="aliyunIoOptimized" loginAccess="N" />
+	<data desc="开通：添加到购物车" apiName="aliyunAddCat" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOpenService" functionName="aliyunAddCat" loginAccess="N" />
+	<data desc="升级：配置升级价格获取" apiName="getUpgradePrice" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunUpgradeService" functionName="getUpgradePrice" loginAccess="N" />
+	<data desc="升级：配置升级添加到购物车" apiName="addUserCartAliyunUpgrade" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunUpgradeService" functionName="addUserCartAliyunUpgrade" loginAccess="N" />
+	<data desc="升级：磁盘扩容价格获取" apiName="getResizeDataDiskPriceAliyun" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunUpgradeService" functionName="getResizeDataDiskPriceAliyun" loginAccess="N" />
+	<data desc="续费：获取续费价格" apiName="getRenewPriceAliyun" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunRenewService" functionName="getRenewPriceAliyun" loginAccess="N" />
+	<data desc="续费：添加到购物车" apiName="addUserCartRenewAliyun" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunRenewService" functionName="addUserCartRenewAliyun" loginAccess="N" />
+	<data desc="重装：获取价格" apiName="getReplaceSystemPriceAliyun"  className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunUpgradeService" functionName="getReplaceSystemPriceAliyun" loginAccess="N" />
+	<data desc="重装：添加到购物车" apiName="resetUserServiceAliyun" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunUpgradeService" functionName="resetUserServiceAliyun" loginAccess="N" />
+	<data desc="磁盘：挂载" apiName="attachDiskAliyun" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOperationService" functionName="attachDiskAliyun" loginAccess="N" />
+	<data desc="磁盘：卸载" apiName="detachDiskAliyun" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOperationService" functionName="detachDiskAliyun" loginAccess="N" />
+	<data desc="快照：创建快照" apiName="createSnapshotAliyun" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOperationService" functionName="createSnapshotAliyun" loginAccess="N" />
+	<data desc="快照：获取快照" apiName="querySnapshotAliyun" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOperationService" functionName="querySnapshotAliyun" loginAccess="N" />
+	<data desc="快照：删除快照" apiName="deleteSnapshotAliyun" className="com.winiis.cloudhost.thridparty.aliyun.ecs.service.AliyunOperationService" functionName="deleteSnapshotAliyun" loginAccess="N" />
+
+	<!-- 华为云相关：配置管理 -->
+	<data desc="华为云配置：获取产品配置" apiName="getHuaweiConfig" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiConfigService" functionName="getHuaweiConfig" funId="saveHuaweiConfig" loginAccess="N" />
+	<data desc="华为云配置：保存产品配置" apiName="saveHuaweiConfig" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiConfigService" functionName="saveHuaweiConfig" funId="saveHuaweiConfig" loginAccess="N" />
+
+	<!-- 华为云相关：开通 -->
+	<data desc="华为云开通：获取产品配置" apiName="huaweiRegions" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiOpenService" functionName="huaweiRegions" loginAccess="N" />
+	<data desc="华为云开通：获取可用区" apiName="huaweiZones" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiOpenService" functionName="huaweiZones" loginAccess="N" />
+	<data desc="华为云开通：可用实例规格" apiName="huaweiInstanceType" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiOpenService" functionName="huaweiInstanceType" loginAccess="N" />
+	<data desc="华为云开通：获取镜像" apiName="huaweiImages" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiOpenService" functionName="huaweiImages" loginAccess="N" />
+	<data desc="华为云开通：获取价格" apiName="huaweiEcsBuyPrice" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiOpenService" functionName="huaweiEcsBuyPrice" loginAccess="N" />
+	<data desc="华为云开通：添加购物车" apiName="huaweiAddCat" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiOpenService" functionName="huaweiAddCat" loginAccess="N" />
+	<data desc="华为云用户管理：重装操作系统" apiName="resetUserServiceHuawei" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiImageService" functionName="resetUserServiceHuawei" loginAccess="N" />
+	<data desc="华为云管理：获取可升级实例规格列表" apiName="huaweiGetCanChangeFlavors" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiUpgradeService" functionName="huaweiGetCanChangeFlavors" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：用户获取实例升级价格" apiName="huaweiUpgradeFlavorsPrice" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiUpgradeService" functionName="huaweiUpgradeFlavorsPrice" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：用户实例升级" apiName="huaweiUpgradeFlavor" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiUpgradeService" functionName="huaweiUpgradeFlavor" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：继续提交订单到上级" apiName="huaweiOrderContinueSubmit" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiUpgradeService" functionName="huaweiOrderContinueSubmit" loginAccess="N" cloudLogin="Y" funId="queryAdminOrder" />
+	<data desc="华为云管理：直接入库" apiName="huaweiOrderGoHead" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiUpgradeService" functionName="huaweiOrderGoHead" loginAccess="N" cloudLogin="Y" funId="queryAdminOrder" />
+	<data desc="华为云管理：获取带宽升级价格" apiName="huaweiReiszeBandwidthPrice" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiUpgradeService" functionName="huaweiReiszeBandwidthPrice" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：带宽升级下单" apiName="huaweiReiszeBandWidthOrder" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiUpgradeService" functionName="huaweiReiszeBandWidthOrder" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：获取磁盘扩容价格" apiName="huaweiUpgradeDiskPrice" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiUpgradeService" functionName="huaweiUpgradeDiskPrice" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：获取续费价格" apiName="huaweiRenewPrice" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiRenewService" functionName="huaweiRenewPrice" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：添加续费订单" apiName="huaweiRenewOrder" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiRenewService" functionName="huaweiRenewOrder" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：硬盘卸载" apiName="huaweiDiskDetach" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiDiskService" functionName="huaweiDiskDetach" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：硬盘挂载" apiName="huaweiDiskAttach" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiDiskService" functionName="huaweiDiskAttach" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：华为磁盘信息同步" apiName="huaweiDiskSync" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiDiskService" functionName="huaweiDiskSync" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：创建快照" apiName="huaweiCreateSnapshot" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiDiskSnapshotService" functionName="huaweiCreateSnapshot" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：获取快照列表" apiName="huaweiListSnapshot" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiDiskSnapshotService" functionName="huaweiListSnapshot" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：删除快照" apiName="huaweiDeleteSnapshot" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiDiskSnapshotService" functionName="huaweiDeleteSnapshot" loginAccess="N" cloudLogin="Y" />
+	<data desc="华为云管理：回滚快照" apiName="huaweiRollbackSnapshot" className="com.winiis.cloudhost.thridparty.huawei.ecs.service.HuaweiDiskSnapshotService" functionName="huaweiRollbackSnapshot" loginAccess="N" cloudLogin="Y" />
+
+	<!-- 云通用接口 -->
+	<data desc="通用云用户操作：重装系统" apiName="currencyEcsImages" className="com.winiis.cloudhost.thridparty.currency.ecs.service.ImageService" functionName="currencyEcsImages" loginAccess="N" />
+
+	<!--用户个人信息编辑：修改手机号-->
+	<data desc="用户修改个人信息验证码" apiName="userPersonalOldCheckCode" className="com.winiis.cloudhost.user.service.UserPersonalService" functionName="userPersonalOldCheckCode" loginAccess="N" />
+	<data desc="用户手机号修改：获取新手机号验证码" apiName="userPersonalMobileCheckCode" className="com.winiis.cloudhost.user.service.UserPersonalService" functionName="userPersonalMobileCheckCode" loginAccess="N" />
+	<data desc="用户手机号修改：修改手机号" apiName="userPersonalMobileEdit" className="com.winiis.cloudhost.user.service.UserPersonalService" functionName="userPersonalMobileEdit" loginAccess="N" />
+
+	<!--用户个人信息编辑：修改邮箱-->
+	<data desc="用户邮箱修改：获取新邮箱验证码" apiName="userPersonalMailCheckCode" className="com.winiis.cloudhost.user.service.UserPersonalService" functionName="userPersonalMailCheckCode" loginAccess="N" />
+	<data desc="用户邮箱修改：修改邮箱" apiName="userPersonalMailEdit" className="com.winiis.cloudhost.user.service.UserPersonalService" functionName="userPersonalMailEdit" loginAccess="N" />
+
+	<data desc="获取可用云产品" apiName="usableCloudPro" className="com.winiis.cloudhost.sys.service.SysProductCloudService" functionName="usableCloudPro" loginAccess="N" />
+
+	<data desc="微信支付二维码生成" apiName="qrCode" className="com.winiis.cloudhost.user.service.QrCodeService" functionName="qrCode" loginAccess="N" />
+	<data desc="阿里云测试" apiName="testYun" className="com.winiis.cloudhost.user.service.AliyunTestService" functionName="testYun" loginAccess="N" />
+
+
+	<!-- 业务迁入 -->
+	<data desc="域名业务迁入-上传文件" apiName="proInDomainUpload" className="com.winiis.cloudhost.user.service.proin.ProInDomainService" functionName="proInDomainUpload" funId="domainProIn" loginAccess="N" cloudLogin="Y" />
+	<data desc="域名业务迁入-保存" apiName="proInDomainSave" className="com.winiis.cloudhost.user.service.proin.ProInDomainService" functionName="proInDomainSave" funId="domainProIn" loginAccess="N" cloudLogin="Y" />
+	<data desc="云主机业务迁入-上传文件" apiName="proInCloudUpload" className="com.winiis.cloudhost.user.service.proin.ProInCloudService" functionName="proInCloudUpload" funId="cloudProIn" loginAccess="N" cloudLogin="Y" />
+	<data desc="云主机业务迁入-保存" apiName="proInCloudSave" className="com.winiis.cloudhost.user.service.proin.ProInCloudService" functionName="proInCloudSave" funId="cloudProIn" loginAccess="N" cloudLogin="Y" />
+	<data desc="虚拟主机业务迁入-上传文件" apiName="proInVHostUpload" className="com.winiis.cloudhost.user.service.proin.ProInVHostService" functionName="proInVHostUpload" funId="vhostProIn" loginAccess="N" cloudLogin="Y" />
+	<data desc="虚拟主机业务迁入-上传文件" apiName="proInVHostSave" className="com.winiis.cloudhost.user.service.proin.ProInVHostService" functionName="proInVHostSave" funId="vhostProIn" loginAccess="N" cloudLogin="Y" />
+
+	<!--独立控制面板-->
+	<data desc="产品控制面板-登录" apiName="controlPanelLogin" className="com.winiis.cloudhost.controlpanel.service.ControlPanelLoginService" functionName="controlPanelLogin" loginAccess="N" />
+	<data desc="产品控制面板-生成自动登录凭证" apiName="controlPanelCreateToken" className="com.winiis.cloudhost.controlpanel.service.ControlPanelLoginService" functionName="controlPanelCreateToken" loginAccess="N" cloudLogin="Y" />
+
+	<!--业务转让(过户)-->
+	<data desc="业务转让：查询我发起的转让记录" apiName="bizTransferDealingInfo" className="com.winiis.cloudhost.user.service.transfer.UserTransferService" functionName="bizTransferDealingInfo" loginAccess="N" cloudLogin="Y" />
+	<data desc="业务转让：发起转让" apiName="bizTransferMakeDeal" className="com.winiis.cloudhost.user.service.transfer.UserTransferService" functionName="bizTransferMakeDeal" loginAccess="N" cloudLogin="Y" />
+	<data desc="业务转让：取消交易" apiName="bizTransferCancelDeal" className="com.winiis.cloudhost.user.service.transfer.UserTransferService" functionName="bizTransferCancelDeal" loginAccess="N" cloudLogin="Y" />
+	<data desc="业务转让：获取转让记录" apiName="bizTransferUserList" className="com.winiis.cloudhost.user.service.transfer.UserTransferService" functionName="bizTransferUserList" loginAccess="N" cloudLogin="Y" />
+	<data desc="业务转让：接收" apiName="bizTransferAcceptDeal" className="com.winiis.cloudhost.user.service.transfer.UserTransferService" functionName="bizTransferAcceptDeal" loginAccess="N" cloudLogin="Y" />
+
+	<data desc="业务转让：管理员查看列表" apiName="bizTransferAdminList" className="com.winiis.cloudhost.user.service.transfer.UserTransferAdminService" functionName="bizTransferAdminList" loginAccess="N" funId="queryBizTransfer" />
+
+	<!--会员导入-->
+	<data desc="会员导入：文件上传" apiName="memberImportUserUpload" className="com.winiis.cloudhost.user.service.member.MemberImportService" functionName="memberImportUserUpload" funId="memberImport" loginAccess="N" cloudLogin="Y" />
+	<data desc="会员导入：保存" apiName="memberImportUser" className="com.winiis.cloudhost.user.service.member.MemberImportService" functionName="memberImportUser" funId="memberImport" loginAccess="N" cloudLogin="Y" />
+	<data desc="会员财务明细导入：文件上传" apiName="memberImportDetailUpload" className="com.winiis.cloudhost.user.service.member.DetailImportService" functionName="memberImportDetailUpload" funId="memberImport" loginAccess="N" cloudLogin="Y" />
+	<data desc="会员财务明细导入：保存" apiName="memberImportDetail" className="com.winiis.cloudhost.user.service.member.DetailImportService" functionName="memberImportDetail" funId="memberImport" loginAccess="N" cloudLogin="Y" />
+
+	<!--导航设置-->
+	<data desc="导航设置：获取配置" apiName="navigationGet" className="com.winiis.cloudhost.sys.service.NavigationService" functionName="navigationGet" funId="performNavigation" loginAccess="N" cloudLogin="Y" />
+	<data desc="导航设置：保存配置" apiName="navigationSave" className="com.winiis.cloudhost.sys.service.NavigationService" functionName="navigationSave" funId="performNavigation" loginAccess="N" cloudLogin="Y" />
+	<data desc="导航设置：生成" apiName="navigationBuild" className="com.winiis.cloudhost.sys.service.NavigationService" functionName="navigationBuild" funId="performNavigation" loginAccess="N" cloudLogin="Y" />
+
+	<!--自定义上级域名注册商-->
+	<data desc="添加自定义域名注册商" apiName="addDivDomainRegtype" className="com.winiis.cloudhost.user.service.UserDivRegtypeService" functionName="newUserDivRegtype" loginAccess="N"/>
+	<data desc="删除自定义域名注册商" apiName="delDivDomainRegtype" className="com.winiis.cloudhost.user.service.UserDivRegtypeService" functionName="delUserDivRegtype" loginAccess="N"/>
+	<data desc="修改自定义域名注册商" apiName="uptDivDomainRegtype" className="com.winiis.cloudhost.user.service.UserDivRegtypeService" functionName="modUserDivRegtype" loginAccess="N"/>
+	<data desc="查询自定义域名注册商(分页)" apiName="qryDivDomainRegtype" className="com.winiis.cloudhost.user.service.UserDivRegtypeService" functionName="queryUserDivRegtype" loginAccess="N"/>
+	<data desc="获取自定义域名注册商详情" apiName="dtlDivDomainRegtype" className="com.winiis.cloudhost.user.service.UserDivRegtypeService" functionName="getUserDivRegtype" loginAccess="N"/>
+	<data desc="根据注册商标识获取接口参数(中间件使用)" apiName="getRegtypeParam" className="com.winiis.cloudhost.user.service.UserDivRegtypeService" functionName="getUserDivRegtypeByRegType" loginAccess="N"/>
+	
+	<!--TOKEN相关接口-->
+	<data desc="生成TOKEN" apiName="createToken" className="com.winiis.cloudhost.user.service.ProductTokenService" functionName="createToken" loginAccess="N"/>
+	<data desc="校验TOKEN" apiName="checkToken" className="com.winiis.cloudhost.user.service.ProductTokenService" functionName="checkToken" loginAccess="N"/>
+
+	<!--自定义微服务-->
+	<data desc="微服务：获取微服务管理列表" apiName="miniServiceQuery" className="com.winiis.cloudhost.miniservice.service.MiniServiceService" functionName="miniServiceQuery" loginAccess="N" cloudLogin="Y" funId="miniServiceQuery" />
+	<data desc="微服务：添加微服务" apiName="miniServiceAdd" className="com.winiis.cloudhost.miniservice.service.MiniServiceService" functionName="miniServiceAdd" loginAccess="N" cloudLogin="Y" funId="miniServiceAdd" />
+	<data desc="微服务：修改微服务" apiName="miniServiceEdit" className="com.winiis.cloudhost.miniservice.service.MiniServiceService" functionName="miniServiceEdit" loginAccess="N" cloudLogin="Y" funId="miniServiceAdd" />
+	<data desc="微服务：删除微服务" apiName="mimiServiceDelete" className="com.winiis.cloudhost.miniservice.service.MiniServiceService" functionName="mimiServiceDelete" loginAccess="N" cloudLogin="Y" funId="miniServiceAdd" />
+	<data desc="微服务：获取所有微服务" apiName="mimiServiceSelect" className="com.winiis.cloudhost.miniservice.service.MiniServiceService" functionName="mimiServiceSelect" loginAccess="N" cloudLogin="Y" />
+
+	<!--自定义微服务 外部接口-->
+	<data desc="微服务：生成管理Token" apiName="mimiServicePublicManageToken" className="com.winiis.cloudhost.miniservice.service.MiniServicePublicService" functionName="mimiServicePublicManageToken" funId="mimiServiceManage" loginAccess="N" cloudLogin="Y" />
+	<data desc="微服务：验证管理Token" apiName="mimiServicePublicManageCheck" className="com.winiis.cloudhost.miniservice.service.MiniServicePublicService" functionName="mimiServicePublicManageCheck" loginAccess="N" cloudLogin="Y" />
+	<data desc="微服务：获取配置" apiName="mimiServicePublicInfo" className="com.winiis.cloudhost.miniservice.service.MiniServicePublicService" functionName="mimiServicePublicInfo" loginAccess="N" cloudLogin="Y" />
+
+</functions>

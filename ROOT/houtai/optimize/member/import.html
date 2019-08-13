@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品迁入引导首页</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="../cloud/yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        .time {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .bottom {
+            line-height: 12px;
+        }
+
+        .button {
+            padding: 0;
+            float: right;
+        }
+
+        .image {
+            width: 128px;
+            display: block;
+        }
+
+        .clearfix:before,
+        .clearfix:after {
+            display: table;
+            content: "";
+        }
+
+        .clearfix:after {
+            clear: both
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div id="main-block" v-cloak>
+    <div style="width: 100%;">
+        <div class="yunconfig-header">
+                <div style="float: left"><svg class="icon" aria-hidden="true" style="height: 40px; width: 40px"><use xlink:href="#icon-kuaisuxiangdao"></use></svg></div>
+            <div style="float: left; line-height: 50px; margin-left: 15px">会员迁入向导</div>
+        </div>
+    </div>
+    <el-tabs type="border-card" style="margin-top: 10px">
+        <el-tab-pane label="会员导入">
+            <div  _funCode="memberImport">
+                <div style="width: 430px">
+                    <el-upload
+                            ref="uploader"
+                            class="upload-demo"
+                            drag
+                            action="/web.do?fn=memberImportUserUpload"
+                            :limit="1"
+                            :on-success="memberUploadSuccess">
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                        <div class="el-upload__tip" slot="tip">
+                            只能上传xls,xlsx文件，且不超过5M。
+                             <a href="/source/member/member_import.xlsx" target="_blank" style="color: #FF0000; font-weight: bolder">下载模板</a>
+                        </div>
+                    </el-upload>
+                </div>
+                <div v-if="!member.scanFlag" v-html="member.error"></div>
+                <div v-if="member.scanFlag">
+                    <el-table
+                            :data="member.scanTable"
+                            style="width: 100%"
+                            heigth="300"
+                            @selection-change="handleSelectionChangeMember"
+                    >
+                        <el-table-column
+                                type="selection"
+                                :selectable="selectAble"
+                                width="55">
+                        </el-table-column>
+                        <el-table-column
+                                prop="userName"
+                                label="会员账号"
+                                width="120"
+                                fixed
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="email"
+                                label="邮箱账号"
+                                width="160"
+                                fixed
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="balance"
+                                label="账号余额"
+                                width="100"
+                                fixed
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                label="密码"
+                                width="120"
+                                sortable>
+                            <template scope="scope">
+                                <span v-html="scope.row.password" v-if="scope.row.password != ''"></span>
+                                <span v-if="scope.row.password == ''">（自动生成）</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="mobile"
+                                label="手机号"
+                                width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="fullName"
+                                label="真实姓名"
+                                width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="companyName"
+                                label="公司名称"
+                                width="200"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="certType"
+                                label="性质"
+                                width="80"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="provinceCode"
+                                label="所在省"
+                                width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="cityCode"
+                                label="所在市"
+                                width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="address"
+                                label="详细地址"
+                                width="300"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="isCertified"
+                                label="是否认证"
+                                width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="isCertified"
+                                label="证书图片"
+                                width="120"
+                                sortable>
+                            <template scope="scope">
+                                <div v-for="item in scope.row.certFileList" style="padding: 5px">
+                                    <img src="item" width="100" />
+                                </div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="certCode"
+                                label="证书编号"
+                                width="200"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                label="是否可导入"
+                                fixed="right"
+                                width="120"
+                                sortable>
+                            <template scope="scope">
+                                <span v-if="scope.row.refer==1" style="color: #0aaf52">是</span>
+                                <span v-if="scope.row.refer==0" style="color: #FF0000">否</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="remark"
+                                fixed="right"
+                                label="说明">
+                        </el-table-column>
+                    </el-table>
+
+                    <div style="margin-top: 15px">
+                        <el-button type="primary" @click="importMember">导入选中项</el-button>
+                        <el-button type="danger" @click="deleteMember">删除选中项</el-button>
+                        <el-button type="success" @click="clearMember">清除不能导入项</el-button>
+                    </div>
+                </div>
+            </div>
+        </el-tab-pane>
+        <el-tab-pane label="财务记录入">
+            <div  _funCode="memberDetailImport">
+                <div style="width: 430px">
+                    <el-upload
+                            ref="uploaderCloud"
+                            class="upload-demo"
+                            drag
+                            action="/web.do?fn=memberImportDetailUpload"
+                            :limit="1"
+                            :on-success="detailUploadSuccess">
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                        <div class="el-upload__tip" slot="tip">
+                            只能上传xls,xlsx文件，且不超过5M。
+                            <a href="/source/member/member_detail_import.xlsx" target="_blank" style="color: #FF0000; font-weight: bolder">下载模板</a>
+                        </div>
+                    </el-upload>
+                </div>
+                <div v-if="!detail.scanFlag" v-html="detail.error"></div>
+                <div v-if="detail.scanFlag">
+                    <el-table
+                            :data="detail.scanTable"
+                            style="width: 100%"
+                            heigth="300"
+                            @selection-change="handleSelectionChangeDetail"
+                    >
+                        <el-table-column
+                                type="selection"
+                                :selectable="domainSelectAble"
+                                fixed
+                                width="55">
+                        </el-table-column>
+                        <el-table-column
+                                prop="userName"
+                                label="会员账号"
+                                min-width="180"
+                                fixed
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="amount"
+                                label="发生额"
+                                fixed
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="balance"
+                                label="账号余额"
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="bankCodeName"
+                                label="付款方式"
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="billNo"
+                                label="订单编号"
+                                min-width="180"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="itemIdName"
+                                label="记账摘要"
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="regDate"
+                                label="操作时间"
+                                min-width="130"
+                                sortable>
+                            <template scope="scope">
+                                <span v-html="formatTime(scope.row.regDate)"></span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="remarkRecord"
+                                label="说明"
+                                min-width="130">
+                        </el-table-column>
+                        <el-table-column
+                                prop="snId"
+                                label="流水号"
+                                min-width="180"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="voucherId"
+                                label="原始凭证Id"
+                                min-width="180"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                label="是否可导入"
+                                min-width="130"
+                                fixed="right"
+                                sortable>
+                            <template scope="scope">
+                                <span v-if="scope.row.refer==1">是</span>
+                                <span v-if="scope.row.refer==0">否</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="remark"
+                                label="说明"
+                                fixed="right"
+                                min-width="130">
+                        </el-table-column>
+                    </el-table>
+
+                    <div style="margin-top: 15px">
+                        <el-button type="primary" @click="importDetail">导入选中项</el-button>
+                        <el-button type="danger" @click="deleteDetail">删除选中项</el-button>
+                        <el-button type="success" @click="clearDetail">清除不能导入项</el-button>
+                    </div>
+                </div>
+            </div>
+        </el-tab-pane>
+    </el-tabs>
+</div>
+</body>
+<script src="../../public/main.js"></script>
+<script language="JavaScript">
+    document.write('<link rel="stylesheet" href="'+realPath+'/public/fonts/iconfont.css">');
+</script>
+<script src="../../public/right.js"></script>
+<script src="import.js"></script>
+</html>

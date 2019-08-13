@@ -1,0 +1,143 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title id="webtitle"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <script type="text/javascript" src="/publicD/maincss.js"></script>
+    <script type="text/javascript" src="/publicD/jmaincss.js"></script>
+    <script type="text/javascript" src="/publicD/main.js"></script>
+    <script type="text/javascript" src="js/codeLogin.js"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		input{
+			appearance:none;
+			-moz-appearance:none;
+			-webkit-appearance:none;
+			background: none;
+			border:none;
+		}
+
+		.wrap{
+			margin: 200px 0 0 200px;
+		}
+
+		.box {
+			position: relative;
+			width: 200px;
+			height: 30px;
+			border-radius: 20px;
+			background: #686B69;
+			line-height: 30px;
+			overflow: hidden;
+			color: #fff;
+			font-size: 12px;
+		}
+
+		.btn {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 30px;
+			width: 30px;
+			background: #0e81cc;
+			border-radius: 20px;
+			text-align: center;
+		}
+
+		.tips {
+			text-align: center;
+		}
+		.login-wrap{
+    		position: absolute;
+    		top: 30%;
+    		left: 80%;
+    		transform: translate(-100%,-50%);
+    		-webkit-transform: translate(-50%,-50%);
+            -moz-transform: translate(-50%,-50%);
+    	}
+	</style>
+</head>
+<body >
+<!--头部开始-->
+<div id="header"></div>
+<!--头部结束-->
+<!--登录开始-->
+<div class="clear"></div>
+<!-- 内容区 开始 -->
+<div class="content" id="content">
+  	<img src="images/login-bg.png" style="width: 100%;" />
+  	<div class="login-wrap">
+    <!--登陆表单容器 开始-->
+    <div class="login-box">
+        <div class="text-center hide m-login-logo"></div>
+        <div class="login-title">会员登录</div>
+        <div class="login-from">
+        	<form method="post" id="login" name="userLogin" action="#">
+	          <div class="cl pt-10">
+	            <label for="u_name" class="label-username label-icon"></label>
+	            <input id="u_name" class="fix-autofill-bg form-input" name="loginUserName"  type="text" value="" placeholder="请输入您的会员名\邮箱\手机号" autocomplete="off">
+	           	 <div id="u_name_msg" ></div>
+	            </div>
+				<div class="pt-10">
+					<label class="label-password label-icon" for="u_password"></label>
+					<input id="u_password" class="fix-autofill-bg form-input" name="loginPassword" type="text" value="" placeholder="请输入您的验证码" autocomplete="off">
+					<div id="u_password_msg" ></div>
+				</div>
+	          <div class="cl pt-10">
+				  <div class="box">
+					  <div class="btn" id="dragEle"></div>
+					  <div class="tips">>>拖动滑块获取验证码<<</div>
+				  </div>
+	            <div id="u_code_msg"></div>
+	          </div>
+	          <div class="cl pt-10">
+	          	<a href="login.html" style="color:#ff6800; margin-left: 10px;">账号密码登录</a>
+	          	<span id="msg" style="padding-top:5px;color:#ff6800"></span>
+	            <a href="retrievepwd/forgetpwd.html" class="forget-pwd">忘记密码？</a></div>
+	          <div class="cl">
+	            <button class="g-common-btn g-blue-btn" onClick="logMember(this);" type="button">登&nbsp;录</button>
+	            <input type="hidden" name="back_path2" value="">
+	            <input type="hidden" name="m" value="">
+	            <input type="hidden" value="enterzone" name="module">
+	          </div>
+	          <div class="pt-10 text-center">还没有账号？
+	            <a class="free-reg" href="register/register.html">免费注册</a>
+				  
+	          </div>
+	    	</form>
+        </div>
+        </div>
+    </div>
+    <!--登陆表单容器 结束-->
+  </div>
+</div>
+<!--登录结束-->
+<!--底部开始-->
+<!--<div id="loginfooter"></div>-->
+<!--底部结束-->
+<script type="text/javascript">
+$(function(){
+	$('.login-from').keydown(function(ev){
+	var e=ev||event;
+	keycode=e.keycode||e.which;
+	if(keycode==13){
+		$('.g-blue-btn').trigger("click");
+	}
+});
+var windowWidth = window.screen.width;
+  if(windowWidth < 768){
+   $(".login-wrap").css("top","144px");
+   $(".login-wrap").css("right","-288px");
+  }
+});
+</script>
+</body>

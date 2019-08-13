@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script src="../public/maincss.js"></script>
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    <div class="mt-20" style="overflow:visible;position:relative;text-align: center;">
+
+                     <div class="ibox-content">
+                       <form class="form-inline" role="form">
+                           <table class="table table-striped table-bordered table-hover " id="editable" style="display: none;">
+                               <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">系统信息设置</caption>
+                               <tbody>
+                               <tr colspan="3">
+                                   <th width="20%" class="text-right" >主控地址：</th>
+                                   <td class="text-left">
+                                       <input type="text"  class="form-control" value="" id="sysWiniisMainIP" style="width: 330px" />
+                                   </td>
+                               </tr>
+                               <tr colspan="3">
+                                   <th width="20%" class="text-right" >主控端口：</th>
+                                   <td class="text-left">
+                                       <input type="text"  class="form-control" value="" id="sysWiniisMainPort" />
+                                   </td>
+                               </tr>
+                               <tr colspan="3">
+                                   <th width="20%" class="text-right" >主控用户名：</th>
+                                   <td class="text-left">
+                                       <input type="text"  class="form-control" value="" id="sysWiniisMainUser" />
+                                   </td>
+                               </tr>
+                               <tr colspan="3">
+                                   <th width="20%" class="text-right" >主控用密码：</th>
+                                   <td class="text-left">
+                                       <input type="text"  class="form-control" value="" id="sysWiniisMainPwd" />
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <th class="text-right">业务系统机器码：</th>
+                                   <td colspan="3" class="text-left">
+                                       <input type="text"  class="form-control" value="" id="sysWiniisCertMode" disabled style="width: 330px" />
+                                   </td>
+                               </tr>
+                               <tr colspan="3">
+                                   <th width="20%" class="text-right" >主系统注册码：</th>
+                                   <td class="text-left">
+                                       <input type="text"  class="form-control" value="" id="sysWiniisCert" style="width: 330px" />
+                                       <span style="color: #336699">WinIIS主业务系统的注册码</span>
+                                   </td>
+                               </tr>
+                               </tbody>
+                           </table>
+
+                           <table class="table table-striped table-bordered table-hover " id="editable">
+                        <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">点集科技短信接口设置</caption>
+                            <tbody>
+                              <tr>
+                                <th class="text-right">是否开启短信通知：</th>
+                                <td colspan="3" class="text-left"><select class="form-control" id="ifOpenSms" style="width: 196px;size: 196px;">
+                                        <option value="1">开启</option>
+                                        <option value="2">关闭</option>
+                                    </select></td>
+                                </tr>
+                                <tr colspan="3">
+                                <th width="20%" class="text-right" >短信平台地址：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="hlSmsUrl"/></td>
+                  				</tr>
+                  				<tr>
+                                <th width="20%" class="text-right">用户名：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value=""  id="hlUsername"/><font color="#336699">&nbsp; 在点集科技注册的用户名</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">Token值：</th>
+                                <td class="text-left"><input type="password"  class="form-control" value=""  id="hlToken"/><font color="#336699">&nbsp; 由点集科技提供的Token值</font></td>
+                                </tr>
+
+                                </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                        <caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">系统邮件设置</caption>
+                            <tbody>
+                           	  <tr>
+                                <th class="text-right">邮件发送服务器：</th>
+                                <td colspan="4" class="text-left"><input type="text"  class="form-control" value="" id="mailService"/>
+                                <font color="#336699">&nbsp;如：mail.winiis.com</font></td>
+                                </tr>
+                              <tr>
+                                <th class="text-right">邮箱名：</th>
+                                <td colspan="4" class="text-left"><input type="text"  class="form-control" value="" id="mailName"/>
+                                <font color="#336699">&nbsp;如：web@winiis.com</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">邮箱密码：</th>
+                                <td class="text-left"><input type="password"  class="form-control" value="" id="mailPassword"/>
+                                <font color="#336699">&nbsp;如：123456</font></td>
+                  				</tr>
+                  				<tr>
+                                <th width="20%" class="text-right">邮件端口：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="mailPort"/>
+                                <font color="#336699">&nbsp;如：80</font></td>
+                  				</tr>
+                                </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                        <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">支付宝在线支付设置</caption>
+                            <tbody >
+                              <tr>
+                                <th class="text-right">使用自己的签约账号：</th>
+                                <td colspan="3" class="text-left">
+                                	<select class="form-control" id="alipayac_way" style="width: 196px;size: 196px;">
+                                        <option value="1">使用自己的支付宝签约账号</option>
+                                    </select></td>
+                                </tr>
+                            </tbody>
+                                <tbody id="alipayachide">
+	                                <tr>
+	                                <th width="20%" class="text-right">合作伙伴ID：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="alipaypartnerid"/>
+	                                <font color="#336699">&nbsp;由支付宝提供的合作伙伴ID</font></td>
+	                  				</tr>
+	                  				<tr>
+	                                <th width="20%" class="text-right">安全校验码：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="alipaykey"/>
+	                                <font color="#336699">&nbsp;由支付宝提供的安全校验码</font></td>
+	                                </tr>
+                                </tbody>
+                                <div>
+	                                <tr>
+	                                <th width="20%" class="text-right">支付宝账号：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="alipayac"/>
+	                                <font color="#336699">&nbsp;如果不需要支付宝在线支付，请置空</font></td>
+	                  				</tr>
+	                  				<tr>
+	                                <th width="20%" class="text-right">本网站域名：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="alipaycomweb"/>
+	                                <font color="#336699">&nbsp;例：http://www.winiis.com</font></td>
+	                                </tr>
+                                </div>
+                                </tbody>
+                        </table>
+
+                           <table class="table table-striped table-bordered table-hover ">
+                               <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">微信扫码支付设置</caption>
+                               <tr>
+                                   <th width="20%" class="text-right">是否开启</th>
+                                   <td class="text-left">
+                                       <select class="form-control" id="ifOpenWxPay" style="width: 196px;size: 196px;">
+                                           <option value="1">开启</option>
+                                           <option value="2">关闭</option>
+                                       </select>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <th width="20%" class="text-right">APPID：</th>
+                                   <td class="text-left"><input type="text"  class="form-control" value="" id="wechatappid"/>
+                                       <font color="#336699">&nbsp;appid是微信公众账号或开放平台APP的唯一标识，在公众平台申请公众账号或者在开放平台申请APP账号后，微信会自动分配对应的appid，用于标识该应用。可在微信公众平台-->开发-->基本配置里面查看，商户的微信支付审核通过邮件中也会包含该字段值。</font></td>
+                               </tr>
+                               <tr>
+                                   <th width="20%" class="text-right">微信支付商户号：</th>
+                                   <td class="text-left"><input type="text"  class="form-control" value="" id="wechatmchid"/>
+                                       <font color="#336699">&nbsp;商户申请微信支付后，由微信支付分配的商户收款账号。</font></td>
+                               </tr>
+                               <div>
+                                   <tr>
+                                       <th width="20%" class="text-right">API密钥：</th>
+                                       <td class="text-left"><input type="password"  class="form-control" value="" id="wechatkey"/>
+                                           <font color="#336699">&nbsp;	交易过程生成签名的密钥，仅保留在商户系统和微信支付后台，不会在网络中传播。商户妥善保管该Key，切勿在网络中传输，不能在其他客户端中存储，保证key不会被泄漏。商户可根据邮件提示登录微信商户平台进行设置。也可按一下路径设置：微信商户平台(pay.weixin.qq.com)-->账户中心-->账户设置-->API安全-->密钥设置。</font></td>
+                                   </tr>
+                                   <tr>
+                                       <th width="20%" class="text-right">Appsecret：</th>
+                                       <td class="text-left"><input type="password"  class="form-control" value="" id="wechatappsecret"/>
+                                           <font color="#336699">&nbsp;AppSecret是APPID对应的接口密码，用于获取接口调用凭证access_token时使用。在微信支付中，先通过OAuth2.0接口获取用户openid，此openid用于微信内网页支付模式下单接口使用。可登录公众平台-->微信支付，获取AppSecret（需成为开发者且帐号没有异常状态）。</font></td>
+                                   </tr>
+                               </div>
+                               </tbody>
+                           </table>
+
+                        <table class="table table-striped table-bordered table-hover " >
+                        <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">盛付通在线支付设置</caption>
+                            <tbody >
+                                <tr>
+	                                <th width="20%" class="text-right">商户号：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="sftpayac"/>
+	                                <font color="#336699">&nbsp;由盛付通提供的商户号</font></td>
+	                  				</tr>
+	                  				<tr>
+	                                <th width="20%" class="text-right">商户密钥：</th>
+	                                <td class="text-left"><input type="password"  class="form-control" value="" id="sftpayackey"/>
+	                                <font color="#336699">&nbsp;由盛付通提供的商户密钥</font></td>
+	                            </tr>
+                                </tbody>
+                        </table>
+
+
+                           <table class="table table-striped table-bordered table-hover ">
+                        <caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">阿里云接口设置</caption>
+                            <tbody >
+                              <tr>
+                                <th class="text-right">Access Key Id：</th>
+                                <td  class="text-left"><input type="text"  class="form-control" value="" id="aliyunAccessKeyId"/>
+                                <font color="#336699">&nbsp;阿里云颁发给用户的访问服务所用的密钥 ID</font></td>
+                                </td>
+                             </tr>
+                             <tr>
+                                <th width="20%" class="text-right">Access Key Secret：</th>
+                                <td class="text-left"><input type="password"  class="form-control" value="" id="aliyunAccessKeySecret"/>
+                                <font color="#336699">&nbsp;阿里云颁发给用户的访问服务所用的密钥</font></td>
+                  			 </tr>
+                             <tr>
+                                   <th width="20%" class="text-right">是否开启域名接口</th>
+                                   <td class="text-left">
+                                       <select class="form-control" id="ifOpenDomainMgr" style="width: 100px;size: 196px;">
+                                           <option value="1">开启</option>
+                                           <option value="2">关闭</option>
+                                       </select>
+                                       <font color="#336699">&nbsp;授权域名接口时，要同时授权云解析接口，否则域名解析功能无法使用</font>
+                                   </td>
+                              </tr>
+                            </tbody>
+                        </table>
+
+
+                           <table class="table table-striped table-bordered table-hover ">
+                               <caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">华为云接口设置</caption>
+                               <tbody >
+                               <tr>
+                                   <th class="text-right">用户名：</th>
+                                   <td  class="text-left"><input type="text"  class="form-control" value="" id="huaweiAccount"/>
+                                       <font color="#336699">&nbsp;华为云注册账号</font></td>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <th width="20%" class="text-right">用户密码：</th>
+                                   <td class="text-left"><input type="password"  class="form-control" value="" id="huaweiPassword"/>
+                                       <font color="#336699">&nbsp;账号登录密码</font></td>
+                               </tr>
+                               <tr>
+                                   <th width="20%" class="text-right">账号ID：</th>
+                                   <td class="text-left"><input type="text"  class="form-control" value="" id="huaweiAccountId"/>
+                                       <font color="#336699">&nbsp;华为云为账号分配的ID，在账号中心，凭证管理中查询</font></td>
+                               </tr>
+                               </tbody>
+                           </table>
+
+
+                          <table class="table table-striped table-bordered table-hover ">
+                        <caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">万网接口设置<font color="#ff0000">&nbsp;(如未使用，请勿填写)</font></caption>
+                            <tbody>
+                              <!--<tr>
+                                <th class="text-right">接口地址：</th>
+                                <td colspan="3" class="text-left"><input type="text"  class="form-control" value="" id="netcnApiUrl"/>
+                                <font color="#336699">&nbsp;填入万网提供的接口地址</font></td>
+                                </tr>-->
+                                <tr>
+                                <th width="20%" class="text-right">用户名：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="netcnApiAccount"/>
+                                <font color="#336699">&nbsp;填入万网提供的实时注册用户名</font></td>
+                 				</tr>
+                  				<tr>
+                                <th width="20%" class="text-right">密码：</th>
+                                <td class="text-left"><input type="password"  class="form-control" value="" id="netcnApiPass"/>
+                                <font color="#336699">&nbsp;填入万网提供的实时注册密码</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">邮箱：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="netcnApiEmail"/>
+                                <font color="#336699">&nbsp;填入万网会员的邮箱</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">万网主DNS：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="netcnApiDNS1"/>
+                                <font color="#336699">&nbsp;填入万网辅DNS,如果使用自已的DNS,请设置为空</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">万网辅DNS：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="netcnApiDNS2"/>
+                                <font color="#336699">&nbsp;填入万网辅DNS,如果使用自已的DNS,请设置为空</font></td>
+                                </tr>
+                                </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover ">
+                        <caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">西部数码接口设置<font color="#ff0000">&nbsp;(如未使用，请勿填写)</font></caption>
+                            <tbody>
+                              <tr>
+                                <tr>
+                                <th width="20%" class="text-right">用户名：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="west263ApiAccount"/>
+                                <font color="#336699">&nbsp;填入西部数码提供的实时注册用户名</font></td>
+                 				</tr>
+                  				<tr>
+                                <th width="20%" class="text-right">密码：</th>
+                                <td class="text-left"><input type="password"  class="form-control" value="" id="west263ApiPass"/>
+                                <font color="#336699">&nbsp;填入西部数码提供的实时注册密码</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">邮箱：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="west263ApiEmail"/>
+                                <font color="#336699">&nbsp;填入西部数码会员的邮箱</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">西部数码主DNS：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="west263ApiDNS1"/>
+                                <font color="#336699">&nbsp;填入西部数码主DNS,如果使用自已的DNS,请设置为空</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">西部数码辅DNS：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="west263ApiDNS2"/>
+                                <font color="#336699">&nbsp;填入西部数码辅DNS,如果使用自已的DNS,请设置为空</font></td>
+                                </tr>
+                                </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover ">
+                        <caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">新网接口设置<font color="#ff0000">&nbsp;(如未使用，请勿填写)</font></caption>
+                            <tbody>
+                              <tr>
+                                <tr>
+                                <th width="20%" class="text-right">用户名：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="xinnetApiAccount"/>
+                                <font color="#336699">&nbsp;填入新网提供的实时注册用户名</font></td>
+                 				</tr>
+                  				<tr>
+                                <th width="20%" class="text-right">密码：</th>
+                                <td class="text-left"><input type="password"  class="form-control" value="" id="xinnetApiPass"/>
+                                <font color="#336699">&nbsp;填入新网提供的实时注册密码</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">新网主DNS：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="xinnetApiDNS1"/>
+                                <font color="#336699">&nbsp;填入新网主DNS,如果使用自已的DNS,请设置为空</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">新网辅DNS：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="xinnetApiDNS2"/>
+                                <font color="#336699">&nbsp;填入新网辅DNS,如果使用自已的DNS,请设置为空</font></td>
+                                </tr>
+                                </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover ">
+                        <caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">中国数据接口设置<font color="#ff0000">&nbsp;(如未使用，请勿填写)</font></caption>
+                            <tbody>
+                              <tr>
+                                <tr>
+                                <th width="20%" class="text-right">用户名：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="zgsjApiAccount"/>
+                                <font color="#336699">&nbsp;填入中国数据提供的实时注册用户名</font></td>
+                 				</tr>
+                  				<tr>
+                                <th width="20%" class="text-right">密码：</th>
+                                <td class="text-left"><input type="password"  class="form-control" value="" id="zgsjApiPass"/>
+                                <font color="#336699">&nbsp;填入中国数据提供的实时注册密码</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">中国数据主DNS：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="zgsjApiDNS1"/>
+                                <font color="#336699">&nbsp;填入中国数据主DNS,如果使用自已的DNS,请设置为空</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">中国数据辅DNS：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="zgsjApiDNS2"/>
+                                <font color="#336699">&nbsp;填入中国数据辅DNS,如果使用自已的DNS,请设置为空</font></td>
+                                </tr>
+                                </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover " style="display: none;">
+                        <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">&nbsp;慧林主机系统接口设置</caption>
+                            <tbody >
+                              <tr>
+	                             <tr>
+	                                <th width="20%" class="text-right">主机接口地址：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="InterfaceUrl"/>
+	                                <font color="#336699">&nbsp;填入慧林主机系统的接口URL地址 例：http://www.66ns.com/api/CloudactionsAPI.asp</font></td>
+	                  			</tr>
+                                <div>
+	                                <tr>
+	                                <th width="20%" class="text-right">账号：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="InterfaceUserName"/>
+	                                <font color="#336699">&nbsp;填入慧林主机系统接口帐号</font></td>
+	                  				</tr>
+	                  				<tr>
+	                                <th width="20%" class="text-right">接口密码：</th>
+	                                <td class="text-left"><input type="password"  class="form-control" value="" id="InterfaceUserPass"/>
+	                                <font color="#336699">&nbsp;填入慧林主机系统接口密码，注意不是登录密码</font></td>
+	                                </tr>
+                                </div>
+                                </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover " style="display: none;">
+                        <caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">信息安全管理系统(IRCS)</caption>
+                            <tbody>
+                              <tr>
+                                <th class="text-right">用户名：</th>
+                                <td colspan="3" class="text-left"><input type="text"  class="form-control" value="" id="IRCSUserName"/></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">密码：</th>
+                                <td class="text-left"><input type="password"  class="form-control" value="" id="IRCSPassword"/></td>
+                 				</tr>
+                  				<tr>
+                                <th width="20%" class="text-right">通信地址：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="IRCSUrl"/></td>
+                                </tr>
+                                                  				<tr>
+                                <th width="20%" class="text-right">启用：</th>
+                                <td class="text-left"><select class="form-control" id="IRCSIsStart" style="width: 196px;size: 196px;">
+                                        <option value="1">开启</option>
+                                        <option value="2">关闭</option>
+                                    </select></td>
+                                </tr>
+                        	</tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                        <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">&nbsp;慧林备案系统接口设置</caption>
+                            <tbody >
+                              <tr>
+                               <!--  <th class="text-right">慧林企业端备系统：</th>
+                                 <td colspan="3" class="text-left"><select class="form-control" id="winicpurlinstall" style="width: 196px;size: 196px;">
+                                      <option value="1">不，我没有慧林企业端备系统</option>
+                                        <option value="2">是,我已安装了慧林企业端备系统</option>
+                                    </select></td>
+                                </tr> -->
+	                             <tr>
+	                                <th width="20%" class="text-right">备案接口地址：</th>
+	                                <td class="text-left">
+                                        <input type="text"  class="form-control" value="" id="winicpurl" style="width: 380px" />
+	                                <font color="#336699">&nbsp;填入慧林备案系统的接口URL地址 例：http://www.winiis.com/api/regapi.php</font></td>
+	                  			</tr>
+	                  			<tr>
+	                                <th width="20%" class="text-right">备案查询地址：</th>
+	                                <td class="text-left">
+                                        <input type="text"  class="form-control" value="" id="winicpurl_query" style="width: 380px;" />
+	                                <font color="#336699">&nbsp;填入慧林备案系统的接口URL地址 例：http://www.winiiw.com/api/search/pubSearch.php</font></td>
+	                            </tr>
+                                <div>
+	                                <tr>
+	                                <th width="20%" class="text-right">代理账号：</th>
+	                                <td class="text-left">
+                                        <input type="text"  class="form-control" value="" id="winicpuser" />
+	                                    <font color="#336699">&nbsp;填入接口帐号</font>
+                                    </td>
+	                  				</tr>
+	                  				<tr>
+	                                <th width="20%" class="text-right">接口密码：</th>
+	                                <td class="text-left">
+                                        <input type="password"  class="form-control" value="" id="winicppass" />
+	                                    <font color="#336699">&nbsp;填入接口密码，注意不是备案系统的登录密码</font>
+                                    </td>
+	                                </tr>
+                                </div>
+                                <tr>
+                              <tr>
+                                  <th width="20%" class="text-right">自动重新审核备案：</th>
+                                  <td class="text-left">
+                                      <select id="AutoIcpReQuery" class="form-control">
+                                          <option value="N">不，没有需要</option>
+                                          <option value="Y">是,需要自动重新审核备案</option>
+                                      </select>
+                                      <font color="#336699">&nbsp;自动重新审核备案功能需要使用自己的备案查询接口</font></td>
+                              </tr>
+                              <tr>
+                                  <th width="20%" class="text-right">审核频率：</th>
+                                  <td class="text-left"><input id="AutoIcpReQueryDayNum" type="text" size="4" value="15" class="form-control">
+                                      <font color="#336699">&nbsp;填入接口密码，注意不是备案系统的登录密码</font></td>
+                              </tr>
+                                </tr>
+                                </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                        <caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">系统默认DNS</caption>
+                            <tbody>
+                              <tr>
+                                <th class="text-right">主DNS：</th>
+                                <td colspan="4" class="text-left"><input type="text"  class="form-control" value="" id="defaultDNS1"/>
+                                <font color="#336699">&nbsp;域名注册时默认使用的DNS</font></td>
+                                </tr>
+                                <tr>
+                                <th width="20%" class="text-right">辅DNS：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="defaultDNS2"/>
+                                <font color="#336699">&nbsp;域名注册时默认使用的DNS</font></td>
+                  				</tr>
+                                <tr>
+                                <th width="20%" class="text-right">是否对接WinMyDNS：</th>
+                                    <td class="text-left">
+                                        <select class="form-control" id="ifOpenWinMyDns" onclick="WinMyDnsShow()" style="width: 196px;size: 196px;">
+                                            <option value="1">开启</option>
+                                            <option value="2">关闭</option>
+                                        </select>
+                                        <font color="#336699">&nbsp;开启后,使用默认DNS的域名,都将跳转到WinMyDns解析域名</font>
+                                    </td>
+                  				</tr>
+                                <tr id="WinMyDnsUrlID">
+                                <th width="20%" class="text-right">WinMyDNS地址：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="WinMyDnsaddr"/>
+                                <font color="#336699">&nbsp;登录WinMyDNS的地址,例如:http://127.0.0.1/CloudHostLogin.asp</font></td>
+                  				</tr>
+                        	</tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                        <caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">whois查询</caption>
+                            <tbody>
+                                <tr>
+                                <th width="20%" class="text-right">地址：</th>
+                                <td class="text-left"><input type="text"  class="form-control" value="" id="whoisAddress"/></td>
+                 	 			</tr>
+                             </tbody>
+                        </table>
+                        <input type="button" value="保存接口设置" class="btn btn-primary" onclick="uptDicParamApi();" >
+                        </form>
+                    </div>
+                    </div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/interface.js"></script>
+</html>

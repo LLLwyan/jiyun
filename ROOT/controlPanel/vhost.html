@@ -1,0 +1,153 @@
+<!DOCTYPE html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="../publicD/membercss.js"></script>
+    <script src="../publicD/memberjs.js"></script>
+    <!--<script src="../public/qqonline.js"></script>-->
+    <script src="../publicD/maincontent.js"></script>
+    <script src="../publicD/Ziframe.js"></script>
+    <script src="controlPanel.public.js"></script>
+    <script language="JavaScript">
+        function setIframeHeight(iframe) {
+            if (iframe) {
+                iframe.style.height = (document.documentElement.clientHeight - 110) + 'px';
+            }
+        }
+        $(function () {
+            setTimeout(function () {
+                $('#MainContentDIV').css('margin-left', '0px');
+            }, 500);
+            var url = "../usercenter/business/vhost/detail.html?from=controlPanel&iId=" + ControlPanelPublic.getBizId();
+            $('#mainIframe').attr('src', url);
+        });
+    </script>
+</head>
+<style>
+    html{overflow:hidden;}
+    body{min-width: auto;!important}
+    .myfoot{
+        width: 100%;
+        position: absolute;
+        height: 250px;
+        background-color: #fff;
+    }
+    .myfoot p{
+        padding-top:5px;
+    }
+
+    @media (min-width: 1500px) {
+        .myfoot p{
+            padding-top:30px;
+        }
+        iframe{
+            margin-bottom:15px;
+        }
+        #thrColEls .Style2009 #MainContentDIV{height:100%}
+        #thrColEls .Style2009{height:100%}
+        .Z_iframe{height:660px}
+    }
+    /* 大屏幕（大桌面显示器，大于等于1200px） */
+    @media (min-width: 1200px) {
+        .myfoot{
+            height: 50px;
+            width: 100%;
+            position: absolute;
+            background-color: #fff;
+        }
+        .myfoot p{
+            padding-top:5px;
+        }
+        iframe{
+            margin-bottom:12px;
+        }
+
+    }
+    /* 中等屏幕（桌面显示器，大于等于992px） */
+    @media (min-width: 992px) {
+        .myfoot{
+            width: 100%;
+            position: absolute;
+            height: 50px;
+            background-color: #fff;
+        }
+    }
+    /* 小屏幕（平板，大于等于768px） */
+    @media (min-width: 768px) {
+    }
+</style>
+<body id="thrColEls" style="overflow:hidden;">
+<div class="Style2009">
+    <!-- 最顶部导航条 -->
+    <div id="header"></div>
+    <!-- 最顶部导航条 -->
+
+    <!-- 中间内容开始 -->
+    <div id="MainContentDIV" style="padding:0;background-color: #d5d9e0">
+        <iframe class="Z_iframe" name="iframe" id="mainIframe" width="100%" src="#" frameborder="0" scrolling="auto"
+                onload="setIframeHeight(this)"></iframe>
+        <div id="_ParentModal"></div>
+    </div>
+    <!-- 中间内容结束 -->
+</div>
+<script language="javascript">
+    var ParentModel = {
+        _id : '',
+        o : function() {
+            return $('#'+this._id);
+        },
+        add:function(id, html) {
+            this._id = id;
+            if (this.o().length > 0) {
+                this.o().remove();
+            }
+            $('#_ParentModal').append(html);
+            return this;
+        },
+        show: function() {
+            this.o().modal('show');
+            return this;
+        },
+        hide : function () {
+            this.o().modal('hide');
+            return this;
+        },
+        submit : function (func) {
+            this.o().find('.btn-primary').click(function () {
+                func();
+            });
+            return this;
+        },
+        find : function(findStr) {
+            return this.o().find(findStr);
+        },
+        onHide : function(func) {
+            this.o().on('hide.bs.modal', function () {
+                func();
+            });
+        },
+        onShow : function (func) {
+            this.o().on('show.bs.modal', function () {
+                func();
+            });
+        }
+    };
+
+    function _topError(message) {
+        alertNew(message);
+    }
+
+    function _topSuccess(message) {
+        alertSuccess(message);
+    }
+</script>
+</body>
+</html>

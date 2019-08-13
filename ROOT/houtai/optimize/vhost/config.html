@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../../public/maincss.js"></script>
+    <script>
+        document.write('<link rel="stylesheet" href="'+realPath+'/public/layui/css/layui.css">');
+        document.write(unescape('%3Cscript%20src%3D%22'+realPath+'/public/layui/layui.js%22%3E%3C/script%3E'));
+    </script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="layui-tab layui-tab-card" lay-filter="config">
+        <ul class="layui-tab-title">
+            <li class="layui-this" lay-id="configTab1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shuziyi1"></use></svg>  地域管理</li>
+            <li lay-id="configTab2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-2"></use></svg> 可用服务器</li>
+            <li lay-id="configTab3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shuzisan1"></use></svg>  产品配置</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show" id="tabContent1">
+            </div>
+            <div class="layui-tab-item" id="tabContent2">
+            </div>
+            <div class="layui-tab-item" id="tabContent3">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../public/main.js"></script>
+<script src="js/config.js"></script>
+</html>

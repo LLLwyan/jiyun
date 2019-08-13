@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+    <script src="../../../publicD/membercss.js"></script>
+    <style>
+        .cloud-main-l .l-l {
+            min-height:0;
+            padding:0;
+            width: 400px;
+        }
+        .cloud-main-l .l-l .slider-m-o .sys-m .sel{
+            width:220px;
+        }
+        .cloud-main-l .l-l .slider-m-o .sys-m .sel-m-o {
+            width: 220px;
+        }
+        .status_hide {display: none}
+    </style>
+
+    <!--element vue start-->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--element vue end-->
+
+</head>
+<body id="thrColEls" style="overflow:auto;">
+<div id="MainContentDIV">
+    <div id="SitePath" v-if="from != 'controlPanel'">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+            <li><a href="javascript:void(0);">虚拟主机</a></li>
+        </ul>
+    </div>
+    <!--右侧内容区 开始-->
+    <div class="ManagerRightuser">
+        <div style="margin:10px -20px 0px -20px">
+            <div class="server-title">
+                <b>实例：</b><span id="instanceIdShow"></span>
+            </div>
+        </div>
+        <div class="server-control">
+            <input type="button" class="manager-btn mr-10" id="btnBackList" value="返回实例列表" v-if="from != 'controlPanel'">
+            <div class="btn-group autosuo">
+                <a id="opt" href="javascript:void(0)" class="manager-btn editsnap disable">更多操作&nbsp;<span class="btn-caret"></span></a>
+                <ul id="optItem" class="edit-ul" flag="0"  id="optbtn">
+                </ul>
+                <input type="hidden" id="hostType"/>
+                <input type="hidden" id="instanceId"/>
+            </div>
+            <span style="margin-left: 18px" v-if="from != 'controlPanel'">独立控制面板地址：<a :href="controlPanelUrl" v-html="controlPanelUrl" target="_blank"></a></span>
+            <input type="button" class="manager-btn mr-10" @click="logoutControlPannel" value="退出登录"  v-if="from == 'controlPanel'" >
+        </div>
+        <div style="margin-top:20px;border-left: 3px solid #6d7781">
+            <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                <b>产品详情</b>
+            </div>
+        </div>
+        <div class="right_side_bottom">
+            <table width="100%" class="gridtable" id="view">
+            </table>
+        </div>
+        <div id="webInfoArea" style="display: none">
+            <div style="margin-top:20px;border-left: 3px solid #6d7781">
+                <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                    <b>Web站点信息</b>
+                </div>
+            </div>
+            <table width="100%" class="gridtable" id="info">
+            </table>
+        </div>
+
+        <div id="ftpInfoArea" style="display: none">
+            <div style="margin-top:20px;border-left: 3px solid #6d7781">
+                <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                    <b>Ftp信息</b>
+                </div>
+            </div>
+            <table width="100%" class="gridtable" id="ftpInfo">
+            </table>
+        </div>
+
+        <div id="mssqlInfoArea" style="display: none">
+            <div style="margin-top:20px;border-left: 3px solid #6d7781">
+                <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                    <b>SQL Server信息</b>
+                </div>
+            </div>
+            <table width="100%" class="gridtable" id="mssqlInfo">
+            </table>
+        </div>
+
+        <div id="mysqlInfoArea" style="display: none">
+            <div style="margin-top:20px;border-left: 3px solid #6d7781">
+                <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                    <b>MySQL信息</b>
+                </div>
+            </div>
+            <table width="100%" class="gridtable" id="mysqlInfo">
+            </table>
+        </div>
+    </div>
+
+    <el-dialog title="管理密码重置" :visible.sync="dialogFormVisible">
+        <el-form ref="formManagePwd" :model="formMP" :rules="rules">
+            <el-form-item prop="newPwd" label="新密码：" label-width="120px">
+                <el-input v-model="formMP.newPwd" show-password style="width: 220px"></el-input>
+            </el-form-item>
+            <el-form-item prop="surePwd" label="确认密码：" label-width="120px">
+                <el-input v-model="formMP.surePwd" show-password style="width: 220px"></el-input>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="saveManagePass">确 定</el-button>
+        </div>
+    </el-dialog>
+
+</div>
+
+
+
+
+<!-- 弹出层 -->
+<!-- 网站默认首页修改 -->
+<div id="_webSiteDefPage">
+    <div class="modal fade" id="webSiteDefPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        修改默认首页
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody>
+                            <tr>
+                                <th>序号</th>
+                                <th>默认文档</th>
+                                <th>操作</th>
+                            </tr>
+                        </tbody>
+                        <tbody id="defOldArea">
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td>添加</td>
+                                <td><input type="text" id="addPage" class="form-control" style="width: 270px;"></td>
+                                <td><button type="button" class="btn-primary manager-btn">添加</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px">
+                        说明：<br />
+                        1、默认首页是指网站目录下多个网页中，浏览者首先访问到的网页.<br />
+                        2、请避免同一目录下出现两个以上已添加的默认首页。
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!-- 域名绑定 -->
+<div id="_webSiteDomainBind">
+    <div class="modal fade" id="webSiteDomainBind" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        修改域名绑定
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody>
+                        <tr>
+                            <th>序号</th>
+                            <th>域名</th>
+                            <th>是否备案</th>
+                            <th>绑定状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </tbody>
+                        <tbody id="domainOldArea">
+                        </tbody>
+                        <tbody id="domainAddArea" style="display: none">
+                        <tr>
+                            <td>添加</td>
+                            <td><textarea id="addDomain" class="form-control" style="width: 230px; height: 90px;" placeholder="请每行填写一个域名"></textarea></td>
+                            <td></td>
+                            <td></td>
+                            <td><button type="button" class="btn-primary manager-btn">添加</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、绑定域名是指可以访问此虚拟主机的域名，您可以添加最多<span id="hostNumShow"></span>个域名同时访问此虚拟主机。<br />
+                        2、绑定域名时，不能带http://，正确的输入格式为: abc.com或www.abc.com<br />
+                        3、您需要把所绑定的域名解析到服务器的IP: <span id="domainServerIp"></span>。<br />
+                        4、未备案的域名绑定后并不会生效,只有等您备案之后才会生效 。<br />
+                        5、<svg class="icon" aria-hidden="true"><use xlink:href="#icon-ok"></use></svg>已绑定
+                        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-cancel"></use></svg>未绑定
+                        <a href="javascript:void(0)" id="selfCheckIpc" style="color: #FF0000" _domainId="'+item.id+'">[>>重新审核]</a><br />
+                        6、信息工信部的备案地址是http://www.miibeian.gov.cn，未备案的网站请先到工信部备案。<br />
+                        7、请点击这里查看ICP自助备案说明<br />
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!-- 网站权限重置 -->
+<div id="_webSiteRight">
+    <div class="modal fade" id="webSiteRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        网站权限重置
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn-primary manager-btn">确定开始重置网站权限</button>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、如果网站出现401或403的等权限问题,请运用该功能重置网站的权限。<br />
+                        2、如果网站网页内容较多,该操作可能会花费较长时间,请耐心等待。
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!-- 目录权限管理 -->
+<div id="_webSiteDirRight">
+    <div class="modal fade" id="webSiteDirRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        目录读写权限
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                            <tr>
+                                <th>目录名或文件名</th>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td style="width: 85px">站点根目录\</td>
+                                            <td><input id="dir" class="form-control" style="width: 230px;" placeholder="目录名称" /></td>
+                                        </tr>
+                                    </table></td>
+                            </tr>
+                            <tr>
+                                <th>读写权限</th>
+                                <td>
+                                    <select id="NtfsFlag" class="form-control" style="width: 100px;">
+                                        <option value="R">读</option>
+                                        <option value="C">读与写入</option>
+                                        <option value="F">完全控制</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button type="button" class="btn-primary manager-btn">确定执行</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、一般目录只要有读与执行权限即可。<br />
+                        2、access数据库文件，需要设置成有写权限才能正常运行。
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--PHP版本切换-->
+<div id="_webSitePhp">
+    <div class="modal fade" id="webSitePhp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        php版本切换
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>php版本</th>
+                            <td>
+                                <select id="webphp" class="form-control" style="width: 100px;">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确定执行</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、php的版本选择请与您的实际程序一致！
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--NET版本切换-->
+<div id="_webSiteNet">
+    <div class="modal fade" id="webSiteNet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        .NET版本切换
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>.NET版本</th>
+                            <td>
+                                <select id="webnet" class="form-control" style="width: 200px;">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确定执行</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、.NET的版本选择请与您的实际程序一致！
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--FTP密码-->
+<div id="_ftpPassEdit">
+    <div class="modal fade" id="ftpPassEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        FTP密码修改
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>Ftp账号</th>
+                            <td>
+                                <span id="ftpAccount"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>旧密码</th>
+                            <td>
+                                <input type="password" id="ftpOldPwd" class="form-control" style="width: 230px;" placeholder="旧密码" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>新密码</th>
+                            <td>
+                                <input type="password" id="ftpNewPwd" class="form-control" style="width: 230px;" placeholder="新密码" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>新密码确认</th>
+                            <td>
+                                <input type="password" id="ftpNewPwdCheck" class="form-control" style="width: 230px;" placeholder="新密码确认" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确定修改</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、修改FTP密码后，如果无法登陆，请按原来密码登陆，新密码稍后生效。<br />
+                        2、如果看不到FTP密码框里没有显示明文密码,请先修改FTP密码,再进行FTP上传。
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--Ftp压缩-->
+<div id="_ftpTarEdit">
+    <div class="modal fade" id="ftpTarEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        文件压缩
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>需要压缩的目录名或文件名</th>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>FTP根目录\</td>
+                                        <td><input type="text" id="ftpDir" class="form-control" style="width: 230px;" placeholder="压缩目录" /></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>压缩后的文件名</th>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>FTP根目录\</td>
+                                        <td><input type="text" id="ftpDirTar" class="form-control" style="width: 230px;" placeholder="文件名" /></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确定压缩</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、为了缩短您网站内容的上传时间，您可以将要上传的本地文件用“WinRAR”进行压缩后再上传到网站上，然后通过本功能在线解压缩即可。这样可以大大节省您的上传时间。<br />
+                        2、本地压缩文件必须先通过FTP上传到您站点的指定目录下，才可以通过此功能进行在线解压缩。<br />
+                        3、带有密码保护的压缩文件无法解压缩。<br />
+                        4、解压路径在您的站点上必须存在，如果没有，请先创建该目录。
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--Ftp解压-->
+<div id="_ftpUnTarEdit">
+    <div class="modal fade" id="ftpUnTarEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        文件解压
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>压缩后的文件名</th>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>FTP根目录\</td>
+                                        <td><input type="text" id="ftpUnDirTar" class="form-control" style="width: 230px;" placeholder="文件名" /></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>解压目录</th>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>FTP根目录\</td>
+                                        <td><input type="text" id="ftpUnDir" class="form-control" style="width: 230px;" placeholder="压缩目录" /></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确定解压</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、为了缩短您网站内容的上传时间，您可以将要上传的本地文件用“WinRAR”进行压缩后再上传到网站上，然后通过本功能在线解压缩即可。这样可以大大节省您的上传时间。<br />
+                        2、本地压缩文件必须先通过FTP上传到您站点的指定目录下，才可以通过此功能进行在线解压缩。<br />
+                        3、带有密码保护的压缩文件无法解压缩。<br />
+                        4、解压路径在您的站点上必须存在，如果没有，请先创建该目录。
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--MSSQL密码修改-->
+<div id="_mssqlEditPass">
+    <div class="modal fade" id="mssqlEditPass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        修改SQL Server数据库密码
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>旧密码</th>
+                            <td>
+                                <input type="password" id="mssqlOldPwd" class="form-control" style="width: 230px;" placeholder="旧密码" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>新密码</th>
+                            <td>
+                                <input type="password" id="mssqlNewPwd" class="form-control" style="width: 230px;" placeholder="新密码" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>新密码确认</th>
+                            <td>
+                                <input type="password" id="mssqlNewPwdCheck" class="form-control" style="width: 230px;" placeholder="新密码确认" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确定修改</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--MSSQL备份-->
+<div id="_mssqlBackup">
+    <div class="modal fade" id="mssqlBackup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        SQL Server数据库备份
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>数据库服务器</th>
+                            <td>
+                                <span id="mssqlServerDialog"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>数据库名</th>
+                            <td>
+                                <span id="mssqlNameDialog"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备份文件名</th>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>FTP根目录\</td>
+                                        <td>
+                                            <input id="mssqlBackTo" class="form-control" style="width: 230px;" placeholder="备份文件名称" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确定备份数据库</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、请填写要备份的文件。备份成功之后，会把备份文件放在FTP目录。 请及时下载及删除。
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--MSSQL还原-->
+<div id="_mssqlRestore">
+    <div class="modal fade" id="mssqlRestore" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        SQL Server数据库还原
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>数据库服务器</th>
+                            <td>
+                                <span id="mssqlServerDialogRestore"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>数据库名</th>
+                            <td>
+                                <span id="mssqlNameDialogRestore"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备份文件名</th>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>FTP根目录\</td>
+                                        <td>
+                                            <input id="mssqlBackFile" class="form-control" style="width: 230px;" placeholder="备份文件名称" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确认还原</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、请填写要备份的文件，还原成功后，请及时删除。<br />
+                        2、<span style="color: #FF0000">警告：该操作将还原整个数据，原有数据的数据将丢失，且不能恢复，请勿必先备份好原有的数据库。</span>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--MySQL密码修改-->
+<div id="_mysqlEditPass">
+    <div class="modal fade" id="mysqlEditPass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        修改MySQL数据库密码
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>旧密码</th>
+                            <td>
+                                <input type="password" id="mysqlOldPwd" class="form-control" style="width: 230px;" placeholder="旧密码" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>新密码</th>
+                            <td>
+                                <input type="password" id="mysqlNewPwd" class="form-control" style="width: 230px;" placeholder="新密码" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>新密码确认</th>
+                            <td>
+                                <input type="password" id="mysqlNewPwdCheck" class="form-control" style="width: 230px;" placeholder="新密码确认" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确定修改</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--MySQL备份-->
+<div id="_mysqlBackup">
+    <div class="modal fade" id="mysqlBackup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        MySQL数据库备份
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>数据库服务器</th>
+                            <td>
+                                <span id="mysqlServerDialog"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>数据库名</th>
+                            <td>
+                                <span id="mysqlNameDialog"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备份文件名</th>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>FTP根目录\</td>
+                                        <td>
+                                            <input id="mysqlBackTo" class="form-control" style="width: 230px;" placeholder="备份文件名称" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确定备份数据库</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、请填写要备份的文件。备份成功之后，会把备份文件放在FTP目录。 请及时下载及删除。
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--MySQL还原-->
+<div id="_mysqlRestore">
+    <div class="modal fade" id="mysqlRestore" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        MySQL数据库还原
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <tr>
+                            <th>数据库服务器</th>
+                            <td>
+                                <span id="mysqlServerDialogRestore"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>数据库名</th>
+                            <td>
+                                <span id="mysqlNameDialogRestore"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备份文件名</th>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>FTP根目录\</td>
+                                        <td>
+                                            <input id="mysqlBackFile" class="form-control" style="width: 230px;" placeholder="备份文件名称" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确认还原</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、请填写要备份的文件，还原成功后，请及时删除。<br />
+                        2、<span style="color: #FF0000">警告：该操作将还原整个数据，原有数据的数据将丢失，且不能恢复，请勿必先备份好原有的数据库。</span>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--获取密码-->
+<div id="_findPassWord">
+    <div class="modal fade" id="findPassWord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        获取密码
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody id="findBefore">
+                        <tr>
+                            <th>验证码</th>
+                            <td>
+                                <input id="checkRandCode" class="form-control" style="width: 130px;" placeholder="验证码" autocomplete="off" />
+                                <img class="bf-img-code" src="../..//images/loading.gif" onClick="refreshVcode();"  id="imgcode" alt="加载中..." title="点击可更换" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">获取</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tbody  id="findAfter" style="display: none">
+                        <tr>
+                            <th>密码为：</th>
+                            <td class="pwdTxt"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 10px; line-height: 30px;">
+                        说明：<br />
+                        1、验证成功后，密码将通过邮件方式发送到您账号所属的邮箱中，请注意妥善保管！
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<!--Web升级-->
+<div id="_webUpgrade">
+    <div class="modal fade" id="webUpgrade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Web升级
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="gridtable">
+                        <tbody >
+                        <td>
+                            <div class="slider-m-o filter-web webScriptType" style="display: none">
+                                <p class="p-o">链接数：</p>
+                                <div class="slider-m-o-m">
+                                    <div class="scroll-bar" id="scroll-bar-webLinks">
+                                        <div class="entire-bar" id="entire-bar-webLinks" style="top:0;height:20px;"></div>
+                                        <div class="action-bar" id="action-bar-webLinks"></div>
+                                        <div class="action-block" id="action-block-webLinks"></div>
+                                    </div>
+                                </div>
+                                <div class="slider-m-o-b">
+                                    <input type="text" id="webLinksArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>个</span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="slider-m-o filter-web" style="display: none">
+                                <p class="p-o">带宽：</p>
+                                <div class="slider-m-o-m">
+                                    <div class="scroll-bar" id="scroll-bar-webWidth">
+                                        <div class="entire-bar" id="entire-bar-webWidth" style="top:0;height:20px;"></div>
+                                        <div class="action-bar" id="action-bar-webWidth"></div>
+                                        <div class="action-block" id="action-block-webWidth"></div>
+                                    </div>
+                                </div>
+                                <div class="slider-m-o-b">
+                                    <input type="text" id="webWidthArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>KBps</span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="slider-m-o filter-web" style="display: none">
+                                <p class="p-o">流量：</p>
+                                <div class="slider-m-o-m">
+                                    <div class="scroll-bar" id="scroll-bar-webFlow">
+                                        <div class="entire-bar" id="entire-bar-webFlow" style="top:0;height:20px;"></div>
+                                        <div class="action-bar" id="action-bar-webFlow"></div>
+                                        <div class="action-block" id="action-block-webFlow"></div>
+                                    </div>
+                                </div>
+                                <div class="slider-m-o-b">
+                                    <input type="text" id="webFlowArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>GB</span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<div id="_mysqlLoginDiv"></div>
+
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/vhostpublic.js"></script>
+<script src="js/detail.js"></script>
+</body>
+</html>

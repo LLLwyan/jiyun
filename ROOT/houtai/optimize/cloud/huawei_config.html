@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云配置引导首页</title>
+    <script src="../../public/maincss.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        .time {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .bottom {
+            line-height: 12px;
+        }
+
+        .button {
+            padding: 0;
+            float: right;
+        }
+
+        .image {
+            width: 100%;
+            display: block;
+        }
+
+        .clearfix:before,
+        .clearfix:after {
+            display: table;
+            content: "";
+        }
+
+        .clearfix:after {
+            clear: both
+        }
+
+        .myBackGround {
+            background-color: #eeeeee;
+        }
+    </style>
+</head>
+
+<body class="gray-bg" _funCode="saveAliyunConfig">
+<div id="main-block" v-cloak>
+    <div style="width: 100%;">
+        <div class="yunconfig-header">
+                <div style="float: left"><svg class="icon" aria-hidden="true" style="height: 40px; width: 40px"><use xlink:href="#icon-kuaisuxiangdao"></use></svg></div>
+            <div style="float: left; line-height: 50px; margin-left: 15px"><a href="index.html" >云配置向导</a> >> 华为云配置</div>
+        </div>
+    </div>
+    <div class="main-box">
+        <el-form  label-width="120px" :model="form" :rules="rules" ref="ruleForm">
+            <el-form-item label="显示名称：" prop="productName">
+                <el-input v-model="form.productName" style="width: 200px" placeholder="请输入名称"></el-input>
+            </el-form-item>
+            <el-form-item label="状态：" prop="statusFlag">
+                <el-switch
+                        v-model="form.statusFlag"
+                        active-text="允许用户申请开通"
+                        inactive-text="禁止用户申请开通">
+                </el-switch>
+            </el-form-item>
+            <el-form-item label="新购溢价率：" prop="premium">
+                <el-input-number  v-model="form.premium" :step="1">
+                </el-input-number> <span>%</span>
+                <span style="font-size: 12px; color: #333333"> 相对于您的成本价格；如果为正数，表示相对于您的成本溢价，为负则表示折价。比如，您的成本价格若为￥100，溢价5%，客户实际支付价格为：￥105；若为-5%，客户则实际支付￥95。</span>
+            </el-form-item>
+            <el-form-item label="续费溢价率：" prop="premiumRenew">
+                <el-input-number  v-model="form.premiumRenew" :step="1">
+                </el-input-number> <span>%</span>
+                <span style="font-size: 12px; color: #FF0000"> 说明：由于华为未提供续费、升级价格获取接口，系统将按新购价格进行计算，建议续费、升级不要开启立即开通。</span>
+            </el-form-item>
+            <el-form-item label="续费立即开通：" prop="renewRightNow">
+                <el-switch
+                        v-model="form.renewRightNow"
+                        active-text="立即开通"
+                        inactive-text="先扣费，人工到华为后台处理">
+                </el-switch>
+            </el-form-item>
+            <el-form-item label="升级溢价率：" prop="premiumUpgrade">
+                <el-input-number  v-model="form.premiumUpgrade" :step="1">
+                </el-input-number> <span>%</span>
+                <span style="font-size: 12px; color: #FF0000"> 说明：由于华为未提供续费、升级价格获取接口，系统将按新购价格进行计算，建议续费、升级不要开启立即开通。</span>
+            </el-form-item>
+            <el-form-item label="续费立即开通：" prop="upgradeRightNow">
+                <el-switch
+                        v-model="form.upgradeRightNow"
+                        active-text="立即开通"
+                        inactive-text="先扣费，人工到华为后台处理">
+                </el-switch>
+            </el-form-item>
+            <el-form-item>
+                <a href="javascript:void(0)" class="el-icon-mobile-phone" @click="seeCost"> 成本查看</a>
+            </el-form-item>
+            <el-form-item label="重装限制：" prop="resetLimit">
+                <el-input-number  v-model="form.resetLimit" :step="1" :min="1">
+                </el-input-number>
+                <span style="font-size: 12px; color: #333333"> (单位：小时，注：本产品下每台主机每隔几个小时重装一次，为空不限制) </span>
+            </el-form-item>
+            <el-form-item label="项目ID配置：" prop="prjList">
+                <el-table
+                        :data="form.prjList"
+                        style="width: 100%;">
+                    <el-table-column
+                            label="所属区域">
+                        <template scope="scope">
+                            <el-input v-model="scope.row.regionName" placeholder="如：华北-北京一"></el-input>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            label="项目">
+                        <template scope="scope">
+                            <el-input v-model="scope.row.regionId" placeholder="如：cn-north-1"></el-input>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            label="项目ID">
+                        <template scope="scope">
+                            <el-input v-model="scope.row.prjId" placeholder="如：1267c0ff64b24cbebdd7a791a3facae5"></el-input>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            label="操作">
+                        <template scope="scope">
+                            <el-button type="danger" @click="delLine(scope.$index)" plain>删除</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-button type="success" @click="addLine" plain style="margin-top: 5px">添加</el-button>
+                <span>为购买界面可用地域提供数据来源</span>
+                <a href="https://support.huaweicloud.com/api-ecs/zh-cn_topic_0022670701.html">获取说明</a>
+            </el-form-item>
+            <el-form-item>
+                <a href="javascript:void(0)" class="el-icon-mobile-phone" @click="showApiEdit" style="color: #FF0000"> 接口设置</a>
+            </el-form-item>
+            <el-button type="primary" plain @click="saveConfig">保存修改</el-button>
+        </el-form>
+    </div>
+
+    <el-dialog title="华为云接口设置" :visible.sync="dialogFormVisible">
+        <el-form :model="apiForm">
+            <el-form-item label="用户名：" label-width="110px">
+                <el-input v-model="apiForm.huaweiAccount">
+                    <template slot="append">华为云注册账号</template>
+                </el-input>
+            </el-form-item>
+            <el-form-item label="用户密码：" label-width="110px">
+                <el-input v-model="apiForm.huaweiPassword" show-password>
+                    <template slot="append">账号登录密码</template>
+                </el-input>
+            </el-form-item>
+            <el-form-item label="账号ID：" label-width="110px">
+                <el-input v-model="apiForm.huaweiAccountId">
+                    <template slot="append">华为云为账号分配的ID</template>
+                </el-input>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="saveApiSet">确 定</el-button>
+        </div>
+    </el-dialog>
+
+</div>
+</body>
+<script src="../../public/main.js"></script>
+<script language="JavaScript">
+    document.write('<link rel="stylesheet" href="'+realPath+'/public/fonts/iconfont.css">');
+</script>
+<script src="js/huawei_config.js"></script>
+</html>

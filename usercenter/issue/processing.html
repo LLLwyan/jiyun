@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+<script src="../../publicD/maincss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+<link rel="stylesheet" type="text/css" href="../../public/smoothness/jquery.ui.css">
+<style>
+.ui-widget-header{ background:url(../../public/img/bghd.png) 50% 50% repeat-x;}
+</style>
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+    <ul>
+    	<li><a href="javascript:void(0);">会员中心</a></li>
+        <li><a href="javascript:void(0);">工单管理</a></li>
+        <li><a href="javascript:void(0);">工单处理</a></li>
+    </ul>
+	</div>
+			<div class="ManagerRightuser">
+                    <div id="realname-auth" class="nav-content active">
+                          <div class="mt-20" style="overflow:visible;position:relative">
+                            <form class="form-inline col-md-12" role="form">
+                                <div class="form-group" style="margin-left:0px;">
+                                    <label for="name" class="control-label">选择时间：</label>
+                                    <input type="text"  class="form-control datetimepicker" placeholder="选择开始日期" id="startDate" style="width:130px;" >
+                                    <label>-</label>
+                                    <input type="text"  class="form-control datetimepicker" placeholder="选择结束日期" id="endDate" style=" width:130px;" >
+                                </div>
+                                <div class="form-group" style="margin-left:15px;">工单编号：</label>
+                                    <input type="text" placeholder="请输入工单编号"  class="form-control" id="workOrderId" style="width: 150px;">
+                                </div>
+                                <div class="form-group" style="margin-left:15px;">
+                                    <label class="control-label">工单类型：</label>
+                                    <select class="form-control" id="issueType">                     
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-left:15px;">
+                                    <label class="control-label">工单状态：</label>
+                                    <select class="form-control" id="workOrderState"></select>   
+                                </div> 
+                            <div class="searchbtn">
+                            <input type="button" onClick="queryIssueList();" class="manager-btn  mr-10" value="搜 索">
+                            <input class="manager-btn mr-10" value="重 置" type="reset">
+                            </div>
+                            </form>	
+					</div>
+                   <table class="manager-table table-hover" style="table-layout:fixed;">
+                            <thead>
+                                <tr>
+                                    <th width="12%">工单编号</th>
+                                    <th width="20%">工单标题</th>
+                                    <th width="10%">工单类型</th>                                   
+                                    <th width="20%">提交时间</th>       
+                                    <th width="10%">状态</th>  
+                                    <th width="30%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="realNameMailAuthTbody">
+                            </tbody>
+              		</table>
+              		      <div id="page" class="pager_container clearfix" >
+				            <input id="totalcount" type="hidden" value="0" />
+				            <input id="pagenumber" type="hidden" value="1" />
+				            <div id="pager"></div>
+			  			</div>
+                </div>
+ </div>
+</div>
+<script src="../../publicD/memberjs.js"></script>
+<script src="./js/processing.js"></script>
+</body>
+</html>

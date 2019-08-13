@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>升级带宽</title>
+	<script src="../../../publicD/membercss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<script src="../../../publicD/memberjs.js"></script>
+
+    <!--element vue start-->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--element vue end-->
+
+	<script src="js/serverinfo.js"></script>
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+    <ul>
+         <li><a href="javascript:void(0);">会员中心</a></li>
+         <li><a href="javascript:void(0);">业务管理</a></li>
+         <li><a href="javascript:void(0);">我的服务器</a></li>
+    </ul>
+	</div>
+		<div class="ManagerRightuser">
+        <div class="pay_title">升级带宽<input type="button" class="manager-btn ml-20" value="返回实例列表" onclick="gotoServerList()"></div>
+     	<!--中间代码开始-->
+      	<table class="manager-table form-table">
+        	<tr>
+            	<td colspan="6" align="left">当前配置：</td>
+        	</tr>
+        	<tbody id="view">
+        	</tbody>
+        </table>
+        <input type="hidden" id="hostType"/>
+        <input type="hidden" id="productCode"/>
+        <div class="pay_title">升级带宽</div>
+        <div id="detaliBoxd" style="display:block;">
+		<div class="kuang" style="width:100%">
+        <form class="form-horizontal mt-40" role="form">
+            <div class="form-group">
+                <label class="col-sm-2">计费模式：</label>
+                <div class="col-sm-8">
+                    <label class="col-sm-8" style="width:255px;">包年包月</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">当前带宽：</label>
+                <div class="col-sm-8">
+                    <label class="col-sm-8" style="width:78px;" id="bandwidth">1Mbps</label>
+                </div>
+            </div>
+            <div class="form-group">
+                 <label class="col-sm-2 mt-10">目标带宽：</label>
+                 <div class="col-sm-10 pos-r">
+	                 <div style="width:320px;margin-left:18px;">
+                         <div class="scroll-bar" id="scroll-bar">
+                             <div class="entire-bar" id="entire-bar" style="width:96%;"></div>
+                             <div class="action-bar" id="action-bar"></div>
+                             <div class="action-block" id="action-block"></div>
+                         </div>
+                         <div class="showAmount pos-a" style="width:100px;left:365px;top:10px;">
+                             <input type="text" id="showArea" style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;<span>Mbps</span>
+                         </div>
+					 </div>
+                 </div>
+             </div>
+            <div class="form-group">
+            	<label class="col-sm-2">支付费用：</label>
+           	 	<div class="col-sm-8">
+            		<label class="col-sm-8 orange" style="width:200px;" id="bandwidthprice">0元</label>
+            	</div>
+            </div>
+        </form>
+    	</div>
+        </div>
+        <div class="searchbtn" style="text-align:center;">
+	        <input type="button" class="manager-btn  mr-10" value="确定" onclick="confirmUpgrade()">
+		</div>
+    </div>
+</div>
+<script src="js/resizenetwork.js"></script>
+</body>
+</html>

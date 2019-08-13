@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../publicD/membercss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+	<script src="../../publicD/memberjs.js"></script>
+	<script src="manager.js"></script>
+	<style>
+	.mt-left{float: left;width: 68%;margin-right:20px;}
+	.manager-top .mt-news{padding: 2%;width: 29%;background: #fff;height: 100%;overflow: hidden;}
+	.ManagerRightuser {width: auto;float: none;margin: 0px 20px -10px;position: relative;background: #ECEFF4;padding: 0px 20px 20px;border-top: 1px solid #ECEFF4;min-height: 550px;overflow: inherit;z-index: 1;}
+	</style>
+</head>
+<body>
+<div id="MainContentDIV">
+		<div class="ManagerRightuser">
+			<div class="manager-msg getweixinbox" id="hideuser">
+				<i></i>
+				<a class="closewx"></a>
+				<ul class="mm-list cl">
+					<li class="mm-txt" style="height: 50px;text-align: center;" >
+                        <a href="../personal/personal.html" style="width: 100%;margin: 12px;font-size: 15px" class="warn-txt">提示：系统检测到您还未进行资料完善.请<font color="#0066CC">点击此处</font>完善资料信息！</a>
+					</li>
+				</ul>
+
+			</div>
+			<!--第一层账户信息 开始-->
+			<div class="manager-top cl">
+				<!--账号信息 开始-->
+				<div class="mt-left">
+					<div class="mt-info">
+						<div class="mt-info-title">
+							<a href="javascript:void(0);" style="color:#ff8041" id="userName"></a>，欢迎您！
+							<label>您的级别是：<span id="levelName">注册会员</span>
+							  &nbsp;&nbsp;
+							<span id="zhmsgother"></span>
+							</label>
+							<label>您的系统ID是：<span class="font18" id="hluserId"></span>
+							<div class="id-help-tip">
+								<i></i>
+								<p></p>
+							</div>
+							</label>
+						</div>
+						<div class="mt-info-txt">
+							<span style="display: none; margin-left: 10px" id="crmDiv">我的专属客户服：<span id="crmName"></span></span>
+							<span style="display: none; margin-left: 50px" id="csstDiv">我的专属技术支持：<span id="csstName"></span></span>
+						</div>
+						<div class="pt-20 ml-10">
+							最近登录：<span class="j_logtime" id="regTime">未知</span>
+						</div>
+					</div>
+					<div class="mt-money">
+						<div class="mt-10">
+                                                                          账户总余额：<span class="mt-money-price" id="balance">￥0.00</span>
+							<a class="mt-money-btn" href="../finance/recharge.html">充值预付款</a>
+							<label>积分：<span id="integral">0</span></label>
+						</div>
+					</div>
+				</div>
+				<!--账号信息 结束-->
+				<!--新闻中心 开始-->
+				<div class="mt-news">
+					<div class="mt-news-title">
+						<a class="item active" href="../../news/news.html" target="_blank">新闻中心</a>
+					</div>
+					<!--新闻中心-->
+					<ul class="mt-news-list" id="news">
+					</ul>
+				</div>
+				<!--新闻中心 结束-->
+			</div>
+			<!--第一层账户信息 结束-->
+
+			<!--第三层产品与服务 开始-->
+			<div class="manager-product">
+				<div class="mp-title">
+					<span>我的产品与服务</span>
+				</div>
+				<table class="mp-info">
+				<thead>
+				<tr>
+					<th>
+						我的业务
+					</th>
+					<th>
+						拥有数量
+					</th>
+					<th>
+						7天内将要到期数量
+					</th>
+					<th>
+						已经到期
+					</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="left  text-center">
+						<a class="mp-info-rt" href="#">域名</a>
+					</td>
+					<td>
+						<a class="" href="#">
+						<b class="domain_all" id="userCountDomain">0</b>
+						</a>
+					</td>
+					<td>
+						<a class="" href="#">
+						<b class="domain_exp30" id="userCountDomainExpiring">0</b>
+						</a>
+					</td>
+					<td>
+						<a class="" href="#">
+						<b class="domain_exp" id="userCountDomainExpire">0</b>
+						</a>
+					</td>
+				</tr>
+                <tr>
+					<td class="left text-center">
+						<a class="mp-info-rt" href="#">服务器</a>
+					</td>
+					<td>
+						<a class="" href="#">
+						<b class="domain_all" id="userCountService">0</b>
+						</a>
+					</td>
+					<td>
+						<a class="" href="#">
+						<b class="domain_exp30" id="userCountServiceExpiring">0</b>
+						</a>
+					</td>
+					<td>
+						<a class="" href="#">
+						<b class="domain_exp" id="userCountServiceExpire">0</b>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="left text-center">
+						<a class="mp-info-rt" href="#">虚拟主机</a>
+					</td>
+					<td>
+						<a class="" href="#">
+							<b class="domain_all" id="userCountVhost">0</b>
+						</a>
+					</td>
+					<td>
+						<a class="" href="#">
+							<b class="domain_exp30" id="userCountVhostExpiring">0</b>
+						</a>
+					</td>
+					<td>
+						<a class="" href="#">
+							<b class="domain_exp" id="userCountVhostExpire">0</b>
+						</a>
+					</td>
+				</tr>
+                <tr>
+                    <td class="left text-center">
+                        <a class="mp-info-rt" href="#">其他服务</a>
+                    </td>
+                    <td>
+                        <a class="" href="#">
+                            <b class="domain_all" id="userCountDiy">0</b>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="" href="#">
+                            <b class="domain_exp30" id="userCountDiyExpiring">0</b>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="" href="#">
+                            <b class="domain_exp" id="userCountDiyExpire">0</b>
+                        </a>
+                    </td>
+                </tr>
+				</tbody>
+				</table>
+			</div>
+			<!--第三层产品与服务 结束-->
+            <div class="manager-link" id="J_managerLink">
+                 <ul class="ml-list cl">
+                     <li>
+                         <a class="item" href="../issue/submit.html">
+                             <i class="item-icon job"></i>
+                             <span>提交工单</span>
+                         </a>
+                     </li>
+                     <li>
+                         <a class="item" href="../issue/processing.html"  data-minwidth="180">
+                             <i class="item-icon replay"></i>
+                             <span>查看回复</span>
+                         </a>
+                     </li>
+                     <li>
+                          <a class="item" href="../finance/consume.html">
+                              <i class="item-icon money"></i>
+                              <span>财务明细</span>
+                          </a>
+                      </li>
+                     <li style="margin-right:0;">
+                         <a class="item" href="http://www.winiis.com/winicp.html" target="_blank">
+                             <i class="item-icon record"></i>
+                             <span>网站备案</span>
+                         </a>
+                     </li>
+                 </ul>
+             </div>
+	</div>
+</div>
+</body>
+</html>

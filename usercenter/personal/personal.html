@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../publicD/membercss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+
+    <!--element vue start-->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--element vue end-->
+    <style type="text/css">
+        .i_vue_rr_popper{width: 300px}
+    </style>
+</head>
+<body>
+<div id="MainContentDIV" v-cloak>
+	<div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">用户管理</a></li>
+            <li><a href="javascript:void(0);">个人中心</a></li>
+        </ul>
+	</div>
+	  <div class="ManagerRightuser">
+      	<div class="product-detail-desc mt-15">
+      	<p class="pt-5"><p><strong class="redColor">友情提醒:</strong>带*号为必填项</p>
+      </div>
+      <!--中间代码开始-->
+      <form action="#">
+        <table class="manager-table form-table">
+          <tbody><tr>
+            <th width="150"  align="right">帐号：</th>
+            <td align="left"><strong style="color:green;font-size:14px;margin-right:10px;" id="uid"></strong></td>
+            <th width="150"  align="right">用户类型：</th>
+            <td align="left">
+            <input type="radio" id="radio1" name="u_userType" checked="checked" value="0">个人&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="radio2"  name="u_userType" value="1">企业
+            </td>
+          </tr>
+          <tr>
+            <th width="150" align="right"> 真实姓名：</th>
+            <td align="left"><input id="u_fullName" class="manager-input m-input width200" value="" size="20"><strong class="redColor f-l10 ">*</strong></td>
+            <th width="150" align="right">邮箱：</th>
+            <td align="left">
+                <input id="u_email" type="text" class="manager-input m-input width200" disabled="disabled" value="" size="20">
+                <a href="javascript:void(0)" @click="editMail">修改</a>
+            </td>
+          </tr>
+          <tr>
+            <th width="150" align="right">证件类型：</th>
+            <td align="left">
+	            <select class="manager-select m-select width200" id="u_certType" disabled>
+	                <option value="1" selected="selected">身份证</option>
+	                <option value="2">营业执照</option>
+	    		</select><strong class="redColor f-l10 ">*</strong>
+            </td>
+            <th width="150" align="right">证件号码：</th>
+            <td align="left">
+                <span id="showCertCode"><span></span> <a href="javascript:void(0)">查看</a></span>
+            <input id="u_certCode" class="manager-input m-input width200" value="" disabled size="40" style="display: none;"><strong class="redColor f-l10 ">*</strong></td>
+          </tr>
+          <tr>
+            <th width="150" align="right">手机号码：</th>
+            <td align="left">
+                <input id="u_mobile" disabled class="manager-input m-input width200" value="" size="20"><strong class="redColor f-l10 ">*</strong>
+                <a href="javascript:void(0)" @click="editMobile">修改</a>
+            </td>
+            <th width="150" align="right">固话：</th>
+            <td align="left"><input id="u_tel" class="manager-input m-input width200" value="" size="20"> 如:01081234567</td>
+          </tr>
+          <tr>
+            <th width="150" align="right"> QQ：</th>
+            <td align="left"><input id="u_QQ" class="manager-input m-input width200" value="" size="20"><strong class="redColor f-l10 ">*</strong></td>
+            <th width="150" align="right"> 传真：</th>
+            <td align="left"><input id="u_fax" class="manager-input m-input width200" value="" size="20"> 如:01081234567</td>
+          </tr>
+          <tr>
+            <th width="150" align="right"> 所属行业：</th>
+            <td align="left"><select id="u_industry" class="manager-select m-select" style="width: 267px">
+            <option value="1" selected>信息传输、计算机服务和软件业</option>
+            <option value="2">农、林、牧、渔业</option>
+            <option value="3">采矿业</option>
+            <option value="4">制造业</option>
+            <option value="5">电力、煤气及水的生产和供应业</option>
+            <option value="6">建筑业</option>
+            <option value="7">交通运输、仓储及邮政业</option>
+            <option value="8">批发和零售业</option>
+            <option value="9">住宿和餐饮业</option>
+            <option value="10">金融业</option>
+            <option value="11">房地产业</option>
+            <option value="12">租赁和商务服务业</option>
+            <option value="13">科学研究和技术服务业</option>
+            <option value="14">水利、环境和公共设施管理业</option>
+            <option value="15">居民服务、修理和其他服务业</option>
+            <option value="16">教育</option>
+            <option value="17">卫生和社会工作</option>
+            <option value="18">文化、体育和娱乐业</option>
+            <option value="19">公共管理、社会保障和社会组织</option>
+            <option value="20">国际组织</option>
+            </select>
+            <strong class="redColor f-l10 ">*</strong>
+            </td>
+            <th width="150" align="right">  主要业务：</th>
+            <td align="left"><input id="u_mainBusiness" class="manager-input m-input width300" value="" size="20"></td>
+          </tr>
+          <tr>
+          	<th width="150" align="right"> 公司名称：</th>
+            <td align="left"><input id="u_companyName" class="manager-input m-input width200" value="" size="20"></td>
+            <th width="150" align="right"> 省份：</th>
+            <td align="left">
+	            <div data-toggle="distpicker">
+	            	<select id="u_provinceCode" class="manager-select m-select"></select>
+	            	<select id="u_cityCode" class="manager-select m-select"></select>
+	            	<strong class="redColor f-l10 ">*</strong>
+	            </div>
+            </td>
+          </tr>
+          <tr>
+            <th width="150" align="right"> 通讯地址：</th>
+            <td colspan="3" align="left"><input id="u_address" class="manager-input m-input width400" value="" size="20"><strong class="redColor f-l10 ">*</strong>
+            </td>
+          </tr>
+          <tr class="no-border">
+            <td colspan="4" align="center">
+				<div class="tipinfo"></div>
+				<div class="searchbtn">
+                	<input type="button" onclick="u_update();" class="manager-btn  mr-10" value="更新">
+                	<input class="manager-btn  mr-10" value="重 填" type="reset">
+                </div>
+			</td>
+          </tr>
+        </tbody></table>
+        </form>
+    </div>
+
+
+    <!-- 修改手机号 -->
+    <el-dialog title="修改手机号" :visible.sync="mobile.showModifyMobile">
+        <el-form :model="mobile" label-position="right" label-width="100px">
+            <el-steps :active="mobile.mobileActive" finish-status="success">
+                <el-step title="安全验证"></el-step>
+                <el-step title="验证新手机号"></el-step>
+                <el-step title="修改成功"></el-step>
+            </el-steps>
+            <el-card class="box-card" style="width: 100%; margin-top: 10px" v-if="mobile.mobileActive==0">
+                <el-form-item label="登录密码：">
+                    <el-radio-group v-model="mobile.safe.way">
+                        <el-radio-button label="手机验证"></el-radio-button>
+                        <el-radio-button label="邮箱验证"></el-radio-button>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="验证码：">
+                    <el-input v-model="mobile.safe.code" placeholder="请输入验证码" style="width: 130px"></el-input>
+                    <el-button type="primary" :min="6" :max="6" :loading="mobile.safe.loading" plain @click="sendMobileEditCheckCode"><span v-html="mobile.safe.loadText"></span></el-button>
+                </el-form-item>
+                <el-row>
+                    <el-button-group>
+                        <el-button type="primary" @click="checkMobileSafe">验证，并进入下一步</el-button>
+                    </el-button-group>
+                </el-row>
+            </el-card>
+
+            <el-card class="box-card" style="width: 100%; margin-top: 10px" v-if="mobile.mobileActive==1">
+                <el-form-item label="新手机号：">
+                    <el-input v-model="mobile.replace.mobile" placeholder="请输入手机号码" style="width: 255px"></el-input>
+                </el-form-item>
+                <el-form-item label="验证码：">
+                    <el-input v-model="mobile.replace.code" placeholder="请输入验证码" style="width: 140px"></el-input>
+                    <el-button type="primary" :min="6" :max="6" :loading="mobile.replace.loading" plain @click="sendMobileEditCheckCodeReplace"><span v-html="mobile.replace.loadText"></span></el-button>
+                </el-form-item>
+                <el-row>
+                    <el-button-group>
+                        <el-button type="primary" @click="checkMobileSafeSave">验证，并修改</el-button>
+                    </el-button-group>
+                </el-row>
+            </el-card>
+
+            <el-card class="box-card" style="width: 100%; margin-top: 10px" v-if="mobile.mobileActive==2">
+                <span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-ok"></use></svg>修改手机号成功</span>
+            </el-card>
+        </el-form>
+    </el-dialog>
+
+
+    <!--修改邮箱-->
+    <el-dialog title="修改邮箱账号" :visible.sync="mail.showModifyMail">
+        <el-form :model="mail" label-position="right" label-width="100px">
+            <el-steps :active="mail.mailActive" finish-status="success">
+                <el-step title="安全验证"></el-step>
+                <el-step title="验证新邮箱"></el-step>
+                <el-step title="修改成功"></el-step>
+            </el-steps>
+            <el-card class="box-card" style="width: 100%; margin-top: 10px" v-if="mail.mailActive==0">
+                <el-form-item label="登录密码：">
+                    <el-radio-group v-model="mail.safe.way">
+                        <el-radio-button label="邮箱验证"></el-radio-button>
+                        <el-radio-button label="手机验证"></el-radio-button>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="验证码：">
+                    <el-input v-model="mail.safe.code" placeholder="请输入验证码" style="width: 130px"></el-input>
+                    <el-button type="primary" :min="6" :max="6" :loading="mail.safe.loading" plain @click="sendMailEditCheckCode"><span v-html="mail.safe.loadText"></span></el-button>
+                </el-form-item>
+                <el-row>
+                    <el-button-group>
+                        <el-button type="primary" @click="checkMailSafe">验证，并进入下一步</el-button>
+                    </el-button-group>
+                </el-row>
+            </el-card>
+
+            <el-card class="box-card" style="width: 100%; margin-top: 10px" v-if="mail.mailActive==1">
+                <el-form-item label="邮箱账号：">
+                    <el-input v-model="mail.replace.mail" placeholder="请输入新邮箱" style="width: 255px"></el-input>
+                </el-form-item>
+                <el-form-item label="验证码：">
+                    <el-input v-model="mail.replace.code" placeholder="请输入验证码" style="width: 140px"></el-input>
+                    <el-button type="primary" :min="6" :max="6" :loading="mail.replace.loading" plain @click="sendMailEditCheckCodeReplace"><span v-html="mail.replace.loadText"></span></el-button>
+                </el-form-item>
+                <el-row>
+                    <el-button-group>
+                        <el-button type="primary" @click="checkMailSafeSave">验证，并修改</el-button>
+                    </el-button-group>
+                </el-row>
+            </el-card>
+
+            <el-card class="box-card" style="width: 100%; margin-top: 10px" v-if="mail.mailActive==2">
+                <span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-ok"></use></svg>修改邮箱成功</span>
+            </el-card>
+        </el-form>
+    </el-dialog>
+
+</div>
+<script src="../../publicD/memberjs.js"></script>
+<script src="js/personal.js"></script>
+<script src="js/personal.vue.js"></script>
+</body>
+</html>

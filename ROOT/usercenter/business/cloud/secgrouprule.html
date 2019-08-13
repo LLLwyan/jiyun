@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>  
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css"> 
+	<script src="../../../publicD/membercss.js"></script>
+</head>
+<body id="thrColEls" style="overflow:auto;">
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+	    <li><a href="javascript:void(0);">会员中心</a></li>
+	    <li><a href="javascript:void(0);">业务管理</a></li>
+	    <li><a href="javascript:void(0);">我的服务器</a></li>
+	</ul>
+</div>
+<!--右侧内容区 开始-->
+<div class="ManagerRightuser">
+	<div style="margin:10px -20px 0px -20px">
+		<div class="server-title"> 
+			<b>安全组：</b><span id="sgName"></span>    
+			<input type="button" class="manager-btn ml-10" onclick="window.location.href='secgroup.html'" value="返回安全组列表">
+		</div> 
+	</div>
+	<div style="margin:10px -20px 0px -20px">
+   		<ul class="manager-tab bind-tab"> 
+        	<li class="liactive"><a id="secgrouprule" href="javascript:;">安全组规则</a></li>
+        	<li><a id="secgroupinstance" href="javascript:;">安全组内实例</a></li>
+       	</ul>
+    </div>
+    <div class="server-control">  
+    	<input type="button" class="manager-btn mr-10" onclick="batchDelUsgRule()" value="删除">
+   		<input type="button" class="manager-btn mr-10" onclick="addSecGroupRule()" value="添加安全组规则"> 
+    </div>
+    <table class="manager-table table-hover" style="table-layout:fixed;">
+    	<thead>
+	     	<tr>
+	      		<th width="5%"><input type="checkbox" onclick="checkAllUsgRule(this)" id="checkedAll" name="checkBoxAll"></th>
+	         	<th width="8%">方向</th>  
+	            <th width="8%">协议类型</th>                    
+	            <th width="8%">端口范围</th>        
+	            <th width="10%">授权类型</th>  
+	            <th width="10%">授权对象</th>  
+	            <th width="15%">描述</th>  
+				<th width="16%">创建时间</th>  
+	            <th width="20%">操作</th>               
+	        </tr>
+       	</thead>
+       	<tbody id="secgroupruleList"></tbody>        
+ 	</table>
+ 	<div id="page" class="pager_container clearfix" >
+        <input id="totalcount" type="hidden" value="0" />
+        <input id="pagenumber" type="hidden" value="1" />
+    	<div id="pager"></div>
+    </div>
+    <div class="add-uer-box" id="addBox" style="display:none">
+    	<div style="margin:10px 10px 0px 0px;">
+	    	<form method="post" action="#" id="rulefrom">
+	    		<table>  
+		            <tr> 
+		            	<td style="padding:5px 10px;">规则方向：</td> 
+		            	<td style="padding:10px 0px;width:200px">        
+		            		<select class="form-control" style="width:140px;" id="direction">
+	                        	<option value="egress">出方向</option>  
+	                            <option value="ingress">入方向</option> 
+	                        </select>   
+		            	</td>
+		            	<td style="padding:5px 10px;">协议类型：</td>
+		            	<td>
+		            		<select class="form-control" style="width:140px;" id="sgType" onchange="selProtocoType(this)"></select>
+		            	</td>  
+		            </tr>
+		            <tr> 
+		            	<td style="padding:5px 10px;">开始端口：</td>  
+		            	<td style="padding:10px 0px;">      
+		            		<input type="text" id="startPort" class="manager-input m-input" maxlength="5" placeholder="例：80(范围：1-65535)">
+		            	</td> 
+		            	<td style="padding:5px 10px;">结束端口：</td>  
+		            	<td>    
+		            		<input type="text" id="endPort" class="manager-input m-input" maxlength="5" placeholder="例：80(范围：1-65535)">
+		            	</td> 
+		            </tr>
+		            <tr> 
+		            	<td style="padding:5px 10px;">授权类型：</td> 
+		            	<td style="padding:10px 0px;">
+		            		<select class="form-control" style="width:140px;" id="grantType">
+		            			<option value="0">地址段访问</option>  
+		            		</select> 
+		            	</td>  
+		            	<td style="padding:5px 10px;">授权对象：</td>   
+		            	<td> 
+		            		<input type="text" id="grantObject" class="manager-input m-input"  placeholder="例：0.0.0.0/0">
+		            		<!--<br/><span style="font-size:10px;">注:0.0.0.0/0表示所有IP，设置时请务必谨慎</span>-->
+		            	</td>     
+		            </tr> 
+		            <tr> 
+		            	<td style="padding:5px 10px;">描述：</td>        
+		            	<td style="padding:10px 0px;" colspan="3">  
+		            		<textarea id="ruleDesc" style="height:80px;width:420px;resize:none" class="form-control" maxlength="150" placeholder="最大150个字符，可为空"></textarea>
+		            	</td> 
+		            </tr>
+	            </table>
+	    	</form>
+    	</div>
+    </div>
+</div>
+</div>                                              
+<!--右侧内容区 结束-->
+</div> 
+</div>
+<script src="../../../publicD/memberjs.js"></script> 
+<script src="js/secgrouprule.js"></script> 
+</body>
+</html>

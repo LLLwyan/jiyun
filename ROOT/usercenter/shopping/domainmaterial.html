@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>填写域名所有人资料</title>
+<script type="text/javascript" src="/publicD/maincss.js"></script>
+<script type="text/javascript" src="/publicD/jmaincss.js"></script>
+<script type="text/javascript" src="/publicD/main.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+<style>
+	.m-select {
+    width: 30%;
+    background-color: #fff;
+}
+</style>
+</head>
+<body id="thrColEls" style="overflow-y: auto;">
+<div class="Style2009">
+<!-- 最顶部导航条 -->
+<div id="header"></div>
+<!-- 最顶部导航条 -->
+	<div class="domainmat">
+	<div class="domainmat_center">
+		<p class="wz">填写域名所有人资料</p>
+		<div class="domainmat_main">
+			<div class="material_table">
+			<form action="user_cart_addDomainParam" method="post" id="subForm" name="F1">
+			<input type="hidden" id="cartNos" name="cartNos" value="C1477533613593">
+			<table cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
+				<tbody>
+					<tr>
+						<td class="tright" width="20%">选择模板：</td>
+						<td>
+							<select class="manager-select m-select" onChange="selTemplate(this)" id="templateId">
+								
+							</select>
+						</td>
+					</tr>
+					<tr><td class="tright">所有者类型：</td>
+						<td>
+							<input type="radio" id="u_radio" checked="checked" name="userType" value="1"><label>个人</label>&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" id="c_radio" name="userType" value="2" checked="checked"><label>企业</label>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">中文信息</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>域名所有者：</td>
+						<td>
+							<input id="userNameCn" class="manager-input m-input" type="text" value="" placeholder="请输入域名所有者">
+							
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>域名管理人：</td>
+						<td>
+                        	<!--<input id="linkManCn" class="manager-input m-input" placeholder="请输入域名管理人"  type="text" value=""> -->
+                             姓：<input id="linkManLnCn" style="width:100px" placeholder="姓" value="" size="40">
+                             名：<input id="linkManFnCn" style="width:100px" placeholder="名" value="" size="40">
+                             <strong class="redColor f-l10 ">*</strong>
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>地区：</td>
+						<td>
+							<select id="countryCn" class="manager-select m-select">
+									<option value="中国">中国</option>
+									<option value="台湾">台湾</option>
+									<option value="香港特别行政区">香港特别行政区</option>
+									<option value="澳门特别行政区">澳门特别行政区</option>
+									<option value="其它">其它</option>
+							</select>
+						</td>
+					</tr>
+					<tr><td class="tright"><span>*</span>省份城市：</td>
+						<td>
+							<div data-toggle="distpicker" >
+                            <select class="manager-select m-select" id="cho_Province">
+                            </select>
+                            <select class="manager-select m-select " id="cho_City">
+                            </select>
+                            </div>
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>通讯地址：</td>
+						<td><input id="addrCn" class="com_ipt fl" placeholder="请输入通讯地址" type="text" value="">
+							
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>邮政编码：</td>
+						<td><input id="postcode" class="com_ipt fl" placeholder="请输入邮政编码" type="text" value="">
+							
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>电子邮箱：</td>
+						<td>
+							<input id="email" type="text" placeholder="请输入电子邮箱" class="com_ipt fl">
+							
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>固话/手机：</td>
+						<td>
+                            <input id="telArea" style="width:50px" value="" size="20" placeholder="区号">-
+                            <input id="telephone" style="width:100px;color: #333;" value="" size="20" placeholder="固话或手机号">-
+                            <input id="telNumber" style="width:50px" value="" size="20" placeholder="分机号">
+                            <strong class="redColor f-l10 ">*手机可不填区号和分机号</strong>
+							<div class="msg msg1"></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>传真：</td>
+						<td>
+							<input id="faxArea"style="width:50px" value="" size="20" placeholder="区号">-
+                            <input id="fax" style="width:100px" value="" size="20" placeholder="传真或手机号">-
+                            <input id="faxNumber" style="width:50px" value="" size="20" placeholder="分机号">
+                            <strong class="redColor f-l10 ">*手机可不填区号和分机号</strong>	
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">英文信息</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>域名所有者：</td>
+						<td><input id="userNameEn" class="com_ipt fl" placeholder="请输入域名所有者" type="text" value="">
+							
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>域名管理人：</td>
+						<td>
+                        	 姓：<input id="linkManLnEn" style="width:100px" placeholder="姓" value="" size="40">
+                             名：<input id="linkManFnEn" style="width:100px" placeholder="名" value="" size="40">
+                             <strong class="redColor f-l10 ">*</strong>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>地区：</td>
+						<td>
+							 <select id="countryEn" class="manager-select m-select">
+                			</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>城市：</td>
+						<td>
+							<select id="cho_ProvinceEN" class="manager-select m-select">
+                            </select>
+                            <select id="cho_CityEN" class="manager-select m-select">
+                            </select>
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>通讯地址：</td>
+						<td><input id="addrEn" class="com_ipt fl"  placeholder="请输入通讯地址"  type="text">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">DNS信息</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>DNS服务器1：</td>
+						<td><input id="DNS1" class="com_ipt fl" type="text" value="">
+						</td>
+					</tr>
+					<tr>
+						<td class="tright"><span>*</span>DNS服务器2：</td>
+						<td><input id="DNS2" class="com_ipt fl" type="text" value="">
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+                        <input id="btnSub" type="button" onclick="subForm()" value="确认提交" 
+                        class="bottom_btn btnhg">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 页脚部分 开始-->
+<div style="margin-left:0px;" id="footer"></div>
+<!-- 页脚部分 结束 -->
+<script src="../../publicD/main.js"></script>
+<script src="js/domainmaterial.js"></script>
+</body>
+</html>

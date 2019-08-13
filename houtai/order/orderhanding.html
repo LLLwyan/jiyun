@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+	                    <table cellspacing="0" cellpadding="0" class="table table-striped table-bordered table-hover">          
+	                    	<tr>
+								<th colspan="7" style="text-align: center;">订单处理</th>
+							</tr>
+							<tr>
+								<td width="5%" class="fw">序号</td>
+								<td width="15%" class="fw">订单编号</td>
+								<td width="15%" class="fw">订单类型</td>
+								<td width="10%" class="fw">产品类型</td>
+								<td width="10%" class="fw">产品价格</td>
+								<td width="60%" class="fw">处理结果</td>
+							</tr>
+							<tbody id="handleList">
+							</tbody>
+							<tr>
+								<td colspan="7" style="text-align: center;">
+									<input type="button" value="返回订单页面" class="btn btn-primary" onclick="window.location.href='orderlist.html'" >
+								</td>
+							</tr>
+	                    </table> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/orderhanding.js"></script>
+</html>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files>
+	<file upname="config" desc="系统配置" className="com.winiis.cloudhost.sys.utils.UploadUtils" function="uploadNoBiz" hasOwner="false" authUtype="{0}" filters=".zip;.rar;.jpg;.jpeg;.gif;.png;.bmp" maxsize="2048" maxnum="1" savepath="/upload/public/worklist"/>
+	<file upname="financecost" desc="工单附件" className="com.winiis.cloudhost.sys.utils.UploadUtils" function="uploadNoBiz" hasOwner="false" authUtype="{0}" filters=".jpg;.jpeg;.gif;.png;.bmp;.pdf" maxsize="4096" maxnum="1" savepath="/upload/public/financecost"/>
+</files>

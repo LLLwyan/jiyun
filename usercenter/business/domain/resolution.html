@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../../publicD/maincss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+		<li><a href="javascript:void(0);">会员中心</a></li>
+        <li><a href="javascript:void(0);">业务管理</a></li>
+        <li><a href="javascript:void(0);">我的域名</a></li>
+     </ul>
+</div>
+		<div class="ManagerRightuser">
+		<div style="margin:20px -20px 0px -20px"> 
+			<div class="server-title">
+				<input type="button" class="manager-btn mr-10" value="修改DNS" onclick="uptDNS()">
+				<!-- <input type="button" class="manager-btn mr-10" value="自助解析" onclick="domainControl()"> -->
+				<input type="button" class="manager-btn mr-10" value="修改联系人" onclick="uptContacts()">
+			</div>
+		</div> 
+        <div style="margin:20px 0px 0px 0px"> 
+        	<span id="position">当前位置：修改DNS</span> 
+        </div>
+        
+        <div id="XinNetLogin" style="display:none;margin:15px 0px 0px 0px">
+            <form name="form1" method="post" action="http://dcp.xinnet.com/domainLogin.do?method=domainEnter" accept-charset="UTF-8" ID="Form1">
+                <img id="validateCodeImg" src="http://dcp.xinnet.com/Modules/agent/domain/validate_picture.jsp" onclick="XibNetChangeCheckCode();" style="cursor:hand;margin-top:4px;" title="看不清,换一张" alt="验证码"/>
+                <input id="authcode" class="text_l text" name="checkCode" type="text" />
+                <input id="XWdomainName" name="domainName" type="hidden" value="">
+                <input id="XWpassword" name="password" type="hidden" value="">
+                <input type="submit" name="Submit" value="login...........">
+            </form>
+    	</div>
+        
+        <div id="ZGSJLogin" style="display:none;margin:15px 0px 0px 0px">
+            <form name="form1" method="post" action="http://dns.4cun.com/index.asp"  accept-charset="GB2312" ID="Form1">
+                <input id="ZGSJdomain"name="domain" type="hidden" value="">
+                <input id="ZGSJpassword" name="password" type="hidden" value="">
+                验证码：<input name="u_code"><img align="absbottom" src="http://dns.4cun.com/vrfimage.asp" alt="看不清，换一张图片" onclick="this.src='http://dns.4cun.com/vrfimage.asp?'+(new Date().getTime());">
+                <input type="submit" name="Submit" value="login...........">
+            </form>
+    	</div>
+        
+        <div id="domaindns">
+      		<table class="manager-table form-table">
+	            <tbody>
+		            <tr>
+		              <th width="150" align="right" > DNS1</th>
+		              <td align="left"><input id="DNS1"  class="manager-input m-input width200"  size="20" ></td>
+		              <th width="150" align="right">DNS2</th>
+		              <td align="left"><input id="DNS2"  class="manager-input m-input width200"  size="20" ></td>
+		            </tr>                  
+	            </tbody>
+        	</table>
+           	<br>
+        	<div id="upt" align="center">
+         		<input type="button" onClick="uptdns()"  class="manager-btn  mr-10" value="修改" >
+         		<input type="button" onClick="resReturn()" id="adddomain" class="manager-btn  mr-10" value="返回" >
+           	</div>
+        </div> 
+        <div id="domaininfo" style="display:none;margin:15px 0px 0px 0px">   
+	     	<ul class="manager-tab bind-tab">
+	        	<li tag="allorders" class="liactive"><a onClick="querycontacts('regcid');"  href="javascript:;">注册人信息</a></li>
+	            <li tag="completedorders" id="completedorders"><a onClick="querycontacts('admincid');" href="javascript:;">联系人信息</a></li>
+	            <li tag="nopayorders" id="nopayorders"><a onClick="querycontacts('techcid');" href="javascript:;">技术人订单</a></li>
+	            <li tag="processorders" id="processorders"><a onClick="querycontacts('billcid');" href="javascript:;">财务人信息</a></li>
+	        </ul>
+	      	<form action="#" id="itfrom" name="form1">
+	      	<input type="hidden" id="CID" >
+	        <table class="manager-table form-table">
+	          <tbody>
+	          <tr>
+	            <th width="150" align="right" > 域名：</th>
+	            <td align="left"><input id="domainName"  class="manager-input m-input width200"  size="20" disabled="disabled"></td>
+	            <th width="150" align="right">类型：</th>
+	            <td align="left"><input type="radio" id="radio1" name="userType" checked="checked" value="1">个人&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="radio2"  name="userType" value="2">企业</td>
+	          </tr>
+	          </tbody>
+	          </table>
+	           <table class="manager-table form-table">
+	           <tbody>
+	          <tr>
+	            <th colspan="4" class="text-center">中文信息：</th>
+	          </tr>
+	          <tr>
+	            <th width="150" align="right">域名所有者：</th>
+	            <td align="left">
+	             <input id="userNameCn" class="manager-input m-input width200" placeholder="请输入域名所有者" value="" size="40"><strong class="redColor f-l10 ">*</strong></td>
+	              </td>
+	            <th width="150" align="right">域名管理人：</th>
+	            <td align="left">
+                        姓：<input id="linkManLnCn" class="manager-input m-input width100" placeholder="姓" value="" size="40">
+                        名：<input id="linkManFnCn" class="manager-input m-input width100" placeholder="名" value="" size="40">
+                        <strong class="redColor f-l10 ">*</strong>
+	              </td>
+	          </tr>
+	          <tr>
+	             <th width="150" align="right"> 地区：</th>
+	            <td align="left"><select id="countryCn" class="manager-select m-select">
+	            <option value="中国">中国</option>
+	            <option value="台湾">台湾</option>
+	            <option value="香港特别行政区">香港特别行政区</option>
+	            <option value="澳门特别行政区">澳门特别行政区</option>
+	            <option value="其他">其他</option>
+	            </select></td>
+	            <th width="150" align="left"> 省份城市：</th>
+	            <td >
+	                 <div data-toggle="distpicker" class=" pull-left">
+		                 <select class="manager-select m-select" id="cho_Province">
+		                 </select>
+		                 <select class="manager-select m-select" id="cho_City">
+		                 </select>
+		             </div>
+	            </td>
+	          </tr>
+	          <tr>
+	             <th width="150" align="right">邮政编码：</th>
+	            <td align="left"><input id="postcode" class="manager-input m-input width200" value="" size="20" placeholder="请输入邮政编码"><strong class="redColor f-l10 ">*</strong></td>
+	            <th width="150" align="right">电子邮箱：</th>
+	            <td align="left"><input id="email" class="manager-input m-input width200" value="" size="20" placeholder="请输入电子邮箱"><strong class="redColor f-l10 ">*</strong></td>
+	          </tr>
+	          <tr>
+	              <th width="150" align="right">固话/手机：</th>
+	            <td align="left" colspan="3">
+                	<input id="telArea" class="manager-input m-input width50" value="" size="20" placeholder="区号">-
+                    <input id="telephone" class="manager-input m-input width100" value="" size="20" placeholder="固话或手机号">-
+                    <input id="telNumber" class="manager-input m-input width50" value="" size="20" placeholder="分机号">
+                    <strong class="redColor f-l10 ">*手机可不填区号和分机号</strong>
+                </td>
+               </tr>
+               <tr>
+	            <th width="150" align="right">传真：</th>
+	            <td align="left" colspan="3">
+                	<input id="faxArea" class="manager-input m-input width50" value="" size="20" placeholder="区号">-
+                    <input id="fax" class="manager-input m-input width100" value="" size="20" placeholder="传真或手机号">-
+                    <input id="faxNumber" class="manager-input m-input width50" value="" size="20" placeholder="分机号">
+                    <strong class="redColor f-l10 ">*手机可不填区号和分机号</strong>
+                </td>
+	          </tr>
+	          <tr>
+	              <th width="150" align="right">通讯地址：</th>
+	            <td align="left" colspan="3"><input id="addrCn" class="manager-input m-input width400" value="" size="200" placeholder="请输入通讯地址"><strong class="redColor f-l10 ">*必须包含中文</strong></td> 
+	          </tr>
+	        </tbody>
+	        </table>
+	        <table class="manager-table form-table">
+	           <tbody>
+	          <tr>
+	            <th colspan="4" class="text-center">英文信息：</th>
+	          </tr>
+	          <tr>
+	            <th width="150" align="right">域名所有者：</th>
+	            <td align="left">
+	             <input id="userNameEn" class="manager-input m-input width200" placeholder="请输入域名所有者" value="" size="40"><strong class="redColor f-l10 ">*</strong></td>
+	              </td>
+	            <th width="150" align="right">域名管理人：</th>
+	            <td align="left">
+	            	   姓：<input id="linkManLnEn" class="manager-input m-input width100" placeholder="姓" value="" size="40">
+                       名：<input id="linkManFnEn" class="manager-input m-input width100" placeholder="名" value="" size="40">
+	              </td>
+	          </tr>
+	          <tr>
+	             <th width="150" align="right"> 地区：</th>
+	            <td align="left">
+	                <select id="countryEn" class="manager-select m-select">
+	                </select>
+	            </td>
+	             <th width="150" align="right"> 省份城市：</th>
+	            <td align="left">
+	            <select id="cho_ProvinceEN" class="manager-select m-select">
+	            </select>
+	            <select id="cho_CityEN" class="manager-select m-select">
+	            </select>
+	            </td>
+	          </tr>
+	          <tr>
+	             <th width="150" align="right">通讯地址：</th>
+	            <td align="left" colspan="3"><input id="addrEn" class="manager-input m-input width400" value="" size="200" placeholder="请输入通讯地址"><strong class="redColor f-l10 ">*</strong></td>  
+	          </tr>
+	        </tbody>
+	        </table>
+	        <br>
+	       	<div id="upt" align="center">
+	       		 <input type="button" onClick="uptTemplate()" id="subUptContacts" class="manager-btn  mr-10" value="修改" >
+	             <input type="button" onClick="resReturn()" id="return" class="manager-btn  mr-10" value="返回" >
+	       	</div>
+	        </form>
+        </div>
+     </div> 
+</div>
+</body>
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/resolution.js"></script>
+</html>

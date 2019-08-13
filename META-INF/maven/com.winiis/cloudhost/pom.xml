@@ -1,0 +1,261 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.winiis</groupId>
+  <artifactId>cloudhost</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>cloudhost</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <servlet.api.version>3.1.0</servlet.api.version>
+      <pallas.version>1.0.2.for-cloud-SNAPSHOT</pallas.version>
+  </properties>
+
+
+  <dependencies>   
+    <dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>${servlet.api.version}</version>
+	    <scope>provided</scope>
+	</dependency>
+
+      <!-- hs package -->
+    <dependency>
+      <groupId>com.hs</groupId>
+      <artifactId>pallas</artifactId>
+      <version>${pallas.version}</version>
+    </dependency>
+      <dependency>
+          <groupId>com.hs</groupId>
+          <artifactId>plugin-cachefilter</artifactId>
+          <version>1.1.0-SNAPSHOT</version>
+      </dependency>
+
+      <!-- winiis compontent -->
+      <dependency>
+          <groupId>com.winiis.component</groupId>
+          <artifactId>common-utils</artifactId>
+          <version>1.0.7-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+          <groupId>com.winiis.component</groupId>
+          <artifactId>pay-wechat</artifactId>
+          <version>1.0.0-SNAPSHOT</version>
+      </dependency>
+      <!-- winiis cloud componnet-->
+      <!-- winiis vps client -->
+      <dependency>
+          <groupId>com.winiis.cloud.vps</groupId>
+          <artifactId>agent-client</artifactId>
+          <version>1.0.0-SNAPSHOT</version>
+      </dependency>
+      <!-- winiis aliyun ecs -->
+      <dependency>
+          <groupId>com.winiis.cloudhost</groupId>
+          <artifactId>aliyun-ecs</artifactId>
+          <version>1.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+          <groupId>com.winiis.cloudhost</groupId>
+          <artifactId>aliyun-domain</artifactId>
+          <version>1.0.0-SNAPSHOT</version>
+      </dependency>
+
+      <!-- winiis huawei ecs -->
+      <dependency>
+          <groupId>com.winiis.cloudhost</groupId>
+          <artifactId>hwyun-ecs</artifactId>
+          <version>1.0.12-SNAPSHOT</version>
+      </dependency>
+
+      <!-- alibaba fastjson-->
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>fastjson</artifactId>
+          <version>1.2.7</version>
+      </dependency>
+
+      <!-- lombok -->
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.16.18</version>
+          <scope>provided</scope>
+      </dependency>
+
+      <!-- OpenStack -->
+      <dependency>
+          <groupId>org.pacesys</groupId>
+          <artifactId>openstack4j</artifactId>
+          <version>3.0.2</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/jexcelapi/jxl -->
+      <dependency>
+          <groupId>jexcelapi</groupId>
+          <artifactId>jxl</artifactId>
+          <version>2.6</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <version>1.7.14</version>
+      </dependency>
+
+      <!-- excel -->
+      <dependency>
+          <groupId>org.apache.poi</groupId>
+          <artifactId>poi</artifactId>
+          <version>3.10-FINAL</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.poi</groupId>
+          <artifactId>poi-ooxml</artifactId>
+          <version>3.10-FINAL</version>
+      </dependency>
+
+      <!-- for linux -->
+      <!--<dependency>
+          <groupId>org.glassfish.jersey.bundles</groupId>
+          <artifactId>jaxrs-ri</artifactId>
+          <version>2.4.1</version>
+      </dependency>
+      <dependency>
+          <groupId>org.glassfish.hk2</groupId>
+          <artifactId>hk2-api</artifactId>
+          <version>2.4.0-b31</version>
+      </dependency>-->
+
+      <!-- https://mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit -->
+      <dependency>
+          <groupId>net.sourceforge.htmlunit</groupId>
+          <artifactId>htmlunit</artifactId>
+          <version>2.35.0</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.jsoup</groupId>
+          <artifactId>jsoup</artifactId>
+          <version>1.8.3</version>
+      </dependency>
+
+      <dependency>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+          <version>1.4.01</version>
+      </dependency>
+
+  </dependencies>
+  
+  <profiles>  
+       <profile>  
+           <id>my</id>  
+           <properties>
+               <db.connect.url>jdbc\:mysql\://192.168.1.39\:3306/hlyun_1.5.3?characterEncoding\=utf-8</db.connect.url>
+               <db.account>root</db.account>
+               <db.password>huilinkeji</db.password>
+               <!--<db.connect.url>jdbc\:mysql\://119.3.221.65\:3306/hlyun?characterEncoding\=utf-8</db.connect.url>
+               <db.account>hlyun</db.account>
+               <db.password>jytx6688</db.password>-->
+               <db.port>3306</db.port> 
+               <db.initPoolSize>10</db.initPoolSize>
+               <db.minPoolSize>10</db.minPoolSize>
+               <db.maxPoolSize>50</db.maxPoolSize>
+               <file.staticPath>D:\winiis\build\cloudhost</file.staticPath>
+               <debug>false</debug>
+           </properties>
+           <!-- -->
+           <activation>
+               <activeByDefault>true</activeByDefault>  
+           </activation>
+       </profile> 
+       <profile>  
+           <id>dev</id>  
+           <properties>
+               <db.connect.url>jdbc\:mysql\://192.168.1.39\:3306/hlyun_1.5.3?characterEncoding\=utf-8</db.connect.url>
+               <db.account>root</db.account>
+               <db.password>ASD@43saw328s</db.password>
+               <db.port>3306</db.port>
+               <db.initPoolSize>10</db.initPoolSize>
+               <db.minPoolSize>10</db.minPoolSize>
+               <db.maxPoolSize>50</db.maxPoolSize>
+               <file.staticPath>/var/cloudupload</file.staticPath>
+               <debug>true</debug>
+           </properties>  
+          <!--
+           <activation>  
+               <activeByDefault>true</activeByDefault>  
+           </activation>  -->
+
+       </profile>   
+       <profile>  
+           <id>prod</id>  
+           <properties>  
+               <db.connect.url>jdbc\:mysql\://127.0.0.1\:3306/hlyun_1.5.3?characterEncoding\=utf-8</db.connect.url>
+               <db.account>root</db.account>
+               <db.password>ASD@43saw328s</db.password>
+               <db.port>3306</db.port> 
+               <db.initPoolSize>10</db.initPoolSize>
+               <db.minPoolSize>10</db.minPoolSize>
+               <db.maxPoolSize>50</db.maxPoolSize>
+               <file.staticPath>/App/cloud</file.staticPath>
+               <debug>false</debug>
+           </properties>  
+       </profile>  
+   </profiles>  
+  
+  <build>     
+      <resources>
+          <!--配置文件路径-->
+          <resource>
+              <directory>src/main/resources</directory>               
+              <filtering>true</filtering>
+              <excludes>
+					<exclude>**/*.dat</exclude>
+			  </excludes>
+          </resource>
+          <resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*.dat</include>
+				</includes>
+			  </resource>	
+	      </resources>
+
+	  <plugins>
+	    <plugin>  
+	         <groupId>org.apache.maven.plugins</groupId>  
+	         <artifactId>maven-compiler-plugin</artifactId>  
+	         <version>3.1</version>  
+	         <configuration>  
+	            <source>1.8</source>  
+	            <target>1.8</target>
+	         </configuration>  
+	     </plugin>
+	 </plugins>  
+     <finalName>cloudhost</finalName>
+  </build>
+ 
+  <!-- 
+  <distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <name>Releases</name>
+      <url>http://192.168.1.39:8081/repository/maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus</id>
+      <name>Snapshot</name>
+      <url>http://192.168.1.39:8081/repository/maven-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+ -->
+</project>

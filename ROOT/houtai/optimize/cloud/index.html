@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云配置引导首页</title>
+    <script src="../../public/maincss.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        .time {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .bottom {
+            line-height: 12px;
+        }
+
+        .button {
+            padding: 0;
+            float: right;
+        }
+
+        .image {
+            width: 128px;
+            display: block;
+        }
+
+        .clearfix:before,
+        .clearfix:after {
+            display: table;
+            content: "";
+        }
+
+        .clearfix:after {
+            clear: both
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div id="main-block" v-cloak>
+    <div style="width: 100%;">
+        <div class="yunconfig-header">
+                <div style="float: left"><svg class="icon" aria-hidden="true" style="height: 40px; width: 40px"><use xlink:href="#icon-kuaisuxiangdao"></use></svg></div>
+            <div style="float: left; line-height: 50px; margin-left: 15px">云配置向导</div>
+        </div>
+    </div>
+    <div class="main-box">
+        <el-row>
+            <el-col :span="8" v-for="(item, index) in manufacturers" :offset="index > 0 ? 3 : 0" style="width:10px;" :_funCode="item.funCode">
+                <el-card :body-style="{ padding: '0px' }" style="width:130px;">
+                    <img :src="item.logo" class="image">
+                    <div style="padding: 14px;">
+                        <div class="bottom clearfix">
+                            <el-button type="text" class="button" @click="goClick(item)">开始配置</el-button>
+                        </div>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
+    </div>
+</div>
+</body>
+<script src="../../public/main.js"></script>
+<script language="JavaScript">
+    document.write('<link rel="stylesheet" href="'+realPath+'/public/fonts/iconfont.css">');
+</script>
+<script src="../../public/right.js"></script>
+<script src="js/index.js"></script>
+</html>

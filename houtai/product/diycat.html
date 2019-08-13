@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>自定义分类</title>
+    <script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="mt-20" style="overflow:visible;position:relative;text-align: center;float:left;">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <input type="button" class="btn btn-primary" onClick="addCat();"  value="添加" style="display: none" _funCode="newDiyProCat">
+                            </div>
+                        </form>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover " id="editable" style="display: none" _funCode="queryDiyProCatList">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>分类编码</th>
+                            <th>分类名称</th>
+                            <th>排序编号</th>
+                            <th>状态</th>
+                            <th>展示页</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="diycatlist">
+                            <tr><td colspan="6" style="height:50px;text-align:center;line-height:50px;">找不到相关信息</td></tr>
+                        </tbody>
+                    </table>
+                    <div id="page" class="pager_container clearfix" >
+                        <input id="totalcount" type="hidden" value="0" />
+                        <input id="pagenumber" type="hidden" value="1" />
+                        <div id="pager"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="add-uer-box" id="addBox" style="display:none">
+    <form method="post" action="#" id="zonefrom">
+        <table class="table-form">
+            <tr>
+                <td class="t">
+                    <label for="name" class="control-label"> <sub>&lowast;</sub>分类编码：</label>
+                </td>
+                <td>
+                    <input type="text" placeholder="例:fz01" maxlength="20" class="form-control" id="categoryCode">
+                </td>
+            </tr>
+            <tr>
+                <td class="t">
+                    <label for="name" class="control-label"> <sub>&lowast;</sub>分类名称：</label>
+                </td>
+                <td>
+                    <input type="text" placeholder="例:服务器托管" maxlength="20" class="form-control" id="categoryName">
+                </td>
+            </tr>
+            <tr>
+                <td class="t">
+                    <label for="name" class="control-label"> <sub>&lowast;</sub>排序编号: </label>
+                </td>
+                <td>
+                    <input type="text" placeholder="例:1" class="form-control" id="sortNum">
+                </td>
+            </tr>
+            <tr>
+                <td class="t">
+                    <label for="name" class="control-label"> <sub>&lowast;</sub>自定义页面: </label>
+                </td>
+                <td>
+                    <input type="text" placeholder="绝对路径；为空表示使用系统默认展示页面。" class="form-control" id="diyPage" style="width: 360px">
+                </td>
+            </tr>
+            <tr>
+                <td class="t">
+                    <label for="name" class="control-label"> <sub>&lowast;</sub>自定义窗口高度: </label>
+                </td>
+                <td>
+                    <input type="text" placeholder="例:600" class="form-control" id="diyHeight" style="width: 100px; display: inline"> px
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+<script src="../public/main.js"></script>
+<script src="../public/right.js"></script>
+<script src="js/diycat.js"></script>
+</html>

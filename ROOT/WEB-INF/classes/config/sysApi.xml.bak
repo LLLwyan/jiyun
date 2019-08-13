@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+	<!-- system function -->
+	<data desc="获取验证码" apiName="getcode" className="ms.core.service.SysRuntimeService" loginAccess="N" functionName="getCode"/>
+	<data desc="验证验证码" apiName="chkcode" className="ms.core.service.SysRuntimeService" loginAccess="N" functionName="validCode"/>
+	<data desc="查询异常日志" apiName="qryruntime" className="ms.core.service.SysRuntimeService" functionName="querySysRuntime" functionCode=""/>
+	<data desc="异常日志详情" apiName="dtlruntime" className="ms.core.service.SysRuntimeService" functionName="getSysRuntime" functionCode=""/>
+	<data desc="删除异常日志" apiName="delruntime" className="ms.core.service.SysRuntimeService" functionName="delSysRuntime" functionCode=""/>
+	<data desc="框架版本信息" apiName="sysinfo" className="ms.core.service.SysRuntimeService" functionName="sysInfo"/>
+	<data desc="网站版权信息" apiName="webinfo" className="ms.core.service.SysRuntimeService" loginAccess="N" functionName="webInfo"/>
+	<data desc="服务器时间" apiName="systime" className="ms.core.service.SysRuntimeService" loginAccess="N" functionName="sysTime"/>
+
+	<data desc="查询访问日志" apiName="qryvisit" className="ms.core.service.SysVisitService" functionName="querySysVisit" functionCode="qryvisit"/>
+	<data desc="访问日志详情" apiName="dtlvisit" className="ms.core.service.SysVisitService" functionName="getSysVisit" functionCode=""/>
+	<data desc="删除访问日志" apiName="delvisits" className="ms.core.service.SysVisitService" functionName="delSysVisit" functionCode="delvisits"/>
+
+	<data desc="系统标签查询" apiName="qrylabel" className="ms.core.service.SysLabelService" functionName="querySysLabel" functionCode=""/>
+	<data desc="系统标签详情" apiName="dtllabel" className="ms.core.service.SysLabelService" functionName="getSysLabel" functionCode=""/>
+	<data desc="修改系统标签" apiName="edtlabel" className="ms.core.service.SysLabelService" functionName="modSysLabel" functionCode=""/>
+
+	<!-- notify template and notify record -->
+	<data desc="添加通知模板" apiName="newtemplate" className="ms.core.service.SysNotifyTemplateService" functionName="newNotifyTemplate" functionCode=""/>
+	<data desc="修改通知模板" apiName="edttemplate" className="ms.core.service.SysNotifyTemplateService" functionName="modNotifyTemplate" functionCode=""/>
+	<data desc="通知模板状态" apiName="statetemplate" className="ms.core.service.SysNotifyTemplateService" functionName="setNotifyTemplateState" functionCode=""/>
+	<data desc="删除通知模板" apiName="deltemplate" className="ms.core.service.SysNotifyTemplateService" functionName="delNotifyTemplate" functionCode=""/>
+	<data desc="通知模板详情" apiName="dtltemplate" className="ms.core.service.SysNotifyTemplateService" functionName="getNotifyTemplate" functionCode=""/>
+	<data desc="查询通知模板" apiName="qrytemplate" className="ms.core.service.SysNotifyTemplateService" functionName="queryNotifyTemplate" functionCode=""/>
+
+	<data desc="通知发送详情" apiName="dtlnotify" className="ms.core.service.SysNotifyRecordService" functionName="getSysNotifyRecord" functionCode=""/>
+	<data desc="通知发送记录" apiName="qrynotify" className="ms.core.service.SysNotifyRecordService" functionName="querySysNotifyRecord" functionCode=""/>
+	<data desc="删除通知记录" apiName="delnotify" className="ms.core.service.SysNotifyRecordService" functionName="delSysNotifyRecord" functionCode=""/>
+
+	<!-- administrator module -->
+	<!--<data desc="用户登录" apiName="login" className="ms.core.service.SysUserService" loginAccess="N" functionName="userLogin"/>-->
+	<!--<data desc="登验证录" apiName="logined" className="ms.core.service.SysUserService" functionName="loginStatus"/>-->
+	<data desc="密码验证" apiName="chkpass" className="ms.core.service.SysUserService" functionName="checkPassword"/>	
+	<!--<data desc="获取权限" apiName="getmenu" className="ms.core.service.SysUserService" functionName="getUserMenu"/>-->
+	<!--<data desc="用户注销" apiName="logout" className="ms.core.service.SysUserService" functionName="userLogout" />-->
+
+	<data desc="新建用户" apiName="newuser" className="ms.core.service.SysUserService" functionName="newUser" functionCode=""/>
+	<data desc="删除用户" apiName="deluser" className="ms.core.service.SysUserService" functionName="delUser" functionCode="deluser"/>
+	<data desc="修改用户" apiName="edtuser" className="ms.core.service.SysUserService" functionName="modUser" functionCode=""/>
+	<data desc="修改自己" apiName="edtself" className="ms.core.service.SysUserService" functionName="modSelf"/>
+	<data desc="修改密码" apiName="setpass" className="ms.core.service.SysUserService" functionName="setPassword"/>
+	<data desc="重置密码" apiName="resetpass" className="ms.core.service.SysUserService" functionName="resetPassword" functionCode="resetpass"/>
+	<data desc="修改状态" apiName="setstate" className="ms.core.service.SysUserService" functionName="setUserState" functionCode="setstate"/>
+	<data desc="分配用户角色" apiName="setrole" className="ms.core.service.SysUserService" functionName="setUserRole" functionCode="setrole"/>
+	<data desc="用户详情" apiName="dtluser" className="ms.core.service.SysUserService" functionName="getUser"/>
+	<data desc="我的详情" apiName="dtlself" className="ms.core.service.SysUserService" functionName="getSelf"/>
+	<data desc="查询用户" apiName="qryuser" className="ms.core.service.SysUserService" functionName="queryUser" functionCode="qryuser"/>
+
+	<data desc="功能列表" apiName="qryfunc" className="ms.core.service.SysFuncService" functionName="querySysFunc" functionCode=""/>
+	<data desc="新建角色" apiName="newrole" className="ms.core.service.SysRoleService" functionName="newRole" functionCode="newrole"/>
+	<data desc="删除角色" apiName="delrole" className="ms.core.service.SysRoleService" functionName="delRole" functionCode="delrole"/>
+	<data desc="修改角色" apiName="edtrole" className="ms.core.service.SysRoleService" functionName="modRole" functionCode="modrole"/>
+	<data desc="角色授权" apiName="authrole" className="ms.core.service.SysRoleService" functionName="setRoleFunc" functionCode="authrole"/>
+	<data desc="角色查询" apiName="qryrole" className="ms.core.service.SysRoleService" functionName="queryRole" functionCode="qryrole"/>
+	<data desc="角色详情" apiName="dtlrole" className="ms.core.service.SysRoleService" functionName="getRole" functionCode=""/>
+
+	<data desc="登录日志详情" apiName="dtllogin" className="ms.core.service.SysLoginService" functionName="getSysLogin" functionCode=""/>
+	<data desc="登录日志查询" apiName="qrylogin" className="ms.core.service.SysLoginService" functionName="querySysLogin" functionCode=""/>
+
+	<!-- dictionary module -->
+	<data desc="常量查询" apiName="qryconst" className="ms.core.service.DicConstService" loginAccess="N" functionName="queryConst" functionCode=""/>
+	<data desc="常量详情" apiName="dtlconst" className="ms.core.service.DicConstService" loginAccess="N" functionName="getConst" functionCode=""/>
+
+	<data desc="获取表类型" apiName="typetable" className="ms.core.service.DicTableService" functionName="queryTableType" functionCode=""/>
+	<data desc="表字典查询" apiName="qrytable" className="ms.core.service.DicTableService" functionName="queryTable" functionCode=""/>
+	<data desc="表字典详情" apiName="dtltable" className="ms.core.service.DicTableService" functionName="getTable" functionCode=""/>
+
+	<data desc="查询字段字典" apiName="qryfield" className="ms.core.service.DicFieldService" functionName="queryField" functionCode=""/>
+	<data desc="字段字典详情" apiName="dtlfield" className="ms.core.service.DicFieldService" functionName="getField" functionCode=""/>
+	<data desc="编辑字段字典" apiName="edtfield" className="ms.core.service.DicFieldService" functionName="modField" functionCode=""/>
+
+	<data desc="系统参数类型" apiName="typeparam" className="ms.core.service.SysParamService" functionName="queryParamType" functionCode=""/>	
+	<data desc="查询系统参数" apiName="qryparam" className="ms.core.service.SysParamService" functionName="queryParam" functionCode="qryparam"/>
+	<data desc="系统参数详情" apiName="dtlparam" className="ms.core.service.SysParamService" functionName="getParam" functionCode=""/>
+	<data desc="设置系统参数" apiName="edtparam" className="ms.core.service.SysParamService" functionName="modParam" functionCode="edtparam"/>
+
+	<data desc="查询地区信息" apiName="qryarea" className="ms.core.service.DicAreaService" loginAccess="N" functionName="queryArea" functionCode=""/>
+	<data desc="查询地区全名" apiName="areafullname" className="ms.core.service.DicAreaService" loginAccess="N" functionName="areaFullName" functionCode=""/>
+
+
+
+
+
+
+
+	<!-- c-host api config -->
+	<!-- administrator module -->
+	<!--<data desc="获取验证码" apiName="getcode" className="hs.libra.core.service.CSaftyService" function="getCode"/>-->
+	<data desc="管理员注销" apiName="logout" className="hs.libra.core.service.CSaftyService" function="userLogout" />
+	<data desc="管理员登录" apiName="login" className="hs.libra.core.service.CSaftyService" function="userLogin"/>
+	<data desc="是否已登录" apiName="logined" className="hs.libra.core.service.CSaftyService" function="logined"/>
+	<data desc="管理员菜单" apiName="getmenu" className="hs.libra.core.service.CSaftyService" function="getUserMenu"/>
+	<data desc="新建管理员" apiName="adduser" className="hs.libra.core.service.CSaftyService" function="addUser" funId="adduser"/>
+	<data desc="删除管理员" apiName="deluser" className="hs.libra.core.service.CSaftyService" function="delUser" funId="deluser"/>
+	<data desc="修改管理员" apiName="moduser" className="hs.libra.core.service.CSaftyService" function="modUser" funId="moduser"/>
+	<data desc="修改密码" apiName="setpass" className="hs.libra.core.service.CSaftyService" function="setUserPassword" funId="setpass"/>
+	<data desc="修改会员状态" apiName="setstatus" className="hs.libra.core.service.CSaftyService" function="setUserStatus" funId="setstatus"/>
+	<data desc="分配帐号角色" apiName="setuserrole" className="hs.libra.core.service.CSaftyService" function="setUserRole" funId="setuserrole"/>
+	<data desc="查询帐号" apiName="queryuser" className="hs.libra.core.service.CSaftyService" function="queryUser" funId="queryuser"/>
+	<data desc="系统功能查询" apiName="queryfuns" className="hs.libra.core.service.CSaftyService" function="queryFuns" funId=""/>
+	<data desc="新建角色" apiName="newrole" className="hs.libra.core.service.CSaftyService" function="newRole" funId="newrole"/>
+	<data desc="删除角色" apiName="delrole" className="hs.libra.core.service.CSaftyService" function="delRole" funId="delrole"/>
+	<data desc="修改角色" apiName="modrole" className="hs.libra.core.service.CSaftyService" function="modRole" funId="modrole"/>
+	<data desc="角色查询" apiName="queryrole" className="hs.libra.core.service.CSaftyService" function="queryRole" funId="queryrole"/>
+	<data desc="分配角色权限" apiName="setrolefn" className="hs.libra.core.service.CSaftyService" function="setRoleFun" funId="setrolefn"/>
+	<data desc="查询异常日志" apiName="queryerr" className="hs.libra.core.service.CSaftyService" function="queryRuntimeLog" funId="queryerr"/>
+	<data desc="查询操作日志" apiName="querylog" className="hs.cloud.service.user.UserLogService" function="queryUserLog" funId="querylog"/>
+	<data desc="查询操作日志详情" apiName="queryLogDetails" className="hs.cloud.service.user.UserLogService" function="queryLogDetails" funId="queryLogDetails"/>
+	<data desc="查询系统日志详情" apiName="queryRLDetail" className="hs.libra.core.service.CSaftyService" function="queryRLDetail" funId=""/>
+	<data desc="删除操作日志" apiName="deluserLog" className="hs.cloud.service.user.UserLogService" function="userLogDel" funId="deluserLog"/>
+	<!-- dictionary module -->
+	<data desc="表字典查询" apiName="gettable" className="com.winiis.cloudhost.sys.service.CDicService" function="getTableDic" funId=""/>
+	<data desc="查询字段字典" apiName="getfield" className="com.winiis.cloudhost.sys.service.CDicService" function="getFieldDic" funId=""/>
+	<data desc="锁定表头" apiName="lockfield" className="com.winiis.cloudhost.sys.service.CDicService" function="lockFieldDic" funId=""/>
+	<data desc="查询系统参数" apiName="getparam" className="com.winiis.cloudhost.sys.service.CDicService" functionName="getParam" loginAccess="N" />
+	<data desc="设置系统参数" apiName="setparam" className="com.winiis.cloudhost.sys.service.CDicService" function="setParam" funId=""/>
+
+	<!-- 系统字典表 -->
+	<data desc="数据字典表" apiName="getListDicParamIndex" className="hs.cloud.service.dic.DicParamService" function="getListDicParamIndex" funId=""/>
+	<data desc="添加数据字典表" apiName="addDicParamIndex" className="hs.cloud.service.dic.DicParamService" function="addDicParamIndex" funId="addDicParamIndex"/>
+	<data desc="修改数据字典表" apiName="uptDicParamIndex" className="hs.cloud.service.dic.DicParamService" function="uptDicParamIndex" funId="uptDicParamIndex"/>
+	<data desc="删除数据字典表 " apiName="deletDicParamIndex" className="hs.cloud.service.dic.DicParamService" function="deletDicParamIndex" funId="deletDicParamIndex"/>
+	<data desc="数据字典子列表查询 " apiName="getListDicParamItem" className="hs.cloud.service.dic.DicParamService" function="getListDicParamItem" funId=""/>
+	<data desc="数据字典子列表添加 " apiName="addDicParamItem" className="hs.cloud.service.dic.DicParamService" function="addDicParamItem" funId="addDicParamItem"/>
+	<data desc="数据字典子列表删除 " apiName="delDicParamItemById" className="hs.cloud.service.dic.DicParamService" function="delDicParamItemById" funId="delDicParamItemById"/>
+	<data desc="数据字典子列表修改 " apiName="uptDicParamItem" className="hs.cloud.service.dic.DicParamService" function="uptDicParamItem" funId="uptDicParamItem"/>
+	<data desc="根据ENAME查询数据字典子列表 " apiName="getListParamItemByEName" className="hs.cloud.service.dic.DicParamService" function="getListParamItemByEName" funId=""/>
+	<data desc="根据数据值查询数据字典" apiName="getSysParamItemByValue" className="hs.cloud.service.dic.DicParamService" function="getSysParamItemByValue" funId=""/>
+	<data desc="系统配置列表查询 " apiName="getDicParam" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="getDicParam" loginAccess="N" />
+	<data desc="系统配置列表保存" apiName="uptDicParam" className="hs.cloud.service.dic.DicParamService" function="uptDicParam" funId="uptDicParam"/>
+	<data desc="接口设置查询" apiName="getDicParamApi" className="hs.cloud.service.dic.DicParamService" function="getDicParamApi" funId=""/>
+	<data desc="接口设置保存" apiName="uptDicParamApi" className="hs.cloud.service.dic.DicParamService" function="uptDicParamApi" funId="uptDicParamApi"/>
+	<data desc="根据name跟type查询对象" apiName="getParamByNameAndType" className="hs.cloud.service.dic.DicParamService" function="getParamByNameAndType" funId=""/>
+</functions>

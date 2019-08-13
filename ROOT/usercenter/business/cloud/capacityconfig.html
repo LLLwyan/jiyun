@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../../publicD/membercss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<script src="../../../publicD/memberjs.js"></script>
+	<script src="js/capacityconfig.js"></script>
+    <script src="js/server.public.js"></script>
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+    <ul>
+         <li><a href="javascript:void(0);">会员中心</a></li>
+         <li><a href="javascript:void(0);">业务管理</a></li>
+         <li><a href="javascript:void(0);">我的服务器</a></li>
+    </ul>
+	</div>
+	  	<div class="ManagerRightuser">
+      	<div class="pay_title">磁盘扩容<input type="button" class="manager-btn ml-20" value="返回实例列表" onclick="gotoServerList()"></div>
+      	<!--中间代码开始-->
+		<table class="manager-table table-hover">
+        <thead>
+             <tr>
+                 <th>磁盘名称</th>
+                 <th>磁盘类型</th>
+                 <th>可挂载/卸载</th>
+                 <th>实例名称</th>
+                 <th>付费类型</th>
+                 <th>当前容量</th>
+                 <th>扩容后容量</th>
+                 <th>费用</th>
+             </tr>
+         </thead>
+         <tbody id="datalist">
+         </tbody>
+         </table>
+         <div class="row clearfix">
+             <div class="col-md-12 column">
+                 <input type="button" id="upgrade" class="form-control disable pull-right manager-btn" value="升级" style="width:100px;margin-top:30px;" />
+             </div>
+         </div>
+    </div>
+</div>
+</body>
+</html>

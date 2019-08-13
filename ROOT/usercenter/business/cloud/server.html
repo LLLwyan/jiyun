@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../../publicD/maincss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<link rel="stylesheet" href="yunconfig.css">
+	<!-- import Vue before Element -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- import JavaScript -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+</head>
+<body id="thrColEls overflow-y:auto;">
+<div id="MainContentDIV">
+<div id="SitePath">
+    <ul>
+		<li><a href="javascript:void(0);">会员中心</a></li>
+		<li><a href="javascript:void(0);">业务管理</a></li>
+		<li><a href="javascript:void(0);">我的服务器</a></li>
+    </ul>
+	</div>
+	<div class="ManagerRightuser">
+		<div style="margin:0px -20px 0px -20px">
+           	<ul class="manager-tab bind-tab" id="productCatList">
+	            <!--<li class="liactive"><a id="server" data-data href="server.html">云主机</a></li>-->
+	            <!--<li><a id="disk" href="disk.html">云硬盘</a></li>-->
+	            <!--<li><a id="snapshot" href="snapshot.html">快照</a></li>-->
+	            <!--<li><a id="secgroup" href="secgroup.html">安全组</a></li>-->
+            </ul>
+          	</div>
+            <div id="realname-auth" class="nav-content active">
+       		<input type="hidden" id="hostType"/>
+       		<input type="hidden" id="instanceId"/>
+       		<input type="hidden" id="productCode"/>
+           	<div class="mt-10" style="overflow:visible;position:relative">
+            <form class="form-inline" role="form">
+                 <div class="form-group">
+                     <label class="control-label">业务编号：</label>
+                     <input type="text" placeholder="请输入实例ID"  class="form-control" id="txtServiceId">
+                 </div>
+                 <div class="form-group">
+                     <label class="control-label">公网IP：</label>
+                     <input type="text" placeholder="公网IP"  class="form-control" style="width:135px;" id="txtIp">
+                 </div>
+                 <div class="form-group">
+                 	  <label class="control-label">到期查询：</label>
+                      <select class="form-control" id="endDateType">
+	                      <option value="0" selected="selected">不限</option>
+	                      <option value="1">已经到期</option>
+	                      <option value="7">7天内到期</option>
+	                      <option value="15">15天内到期</option>
+	                      <option value="30">30天内到期</option>
+	                      <option value="45">45天内到期</option>
+	                      <option value="60">60天内到期</option>
+                      </select>
+                 </div>
+                 <div class="form-group">
+		             <div class="searchbtn">
+		             	<input type="button" onClick="queryUserServiceList();" class="manager-btn mr-10" value="搜 索">
+		             </div>
+                 </div>
+               </form>
+			</div>
+            <div class="btn-group autosuo">
+            	<input type="button" class="manager-btn mr-10" value="重置密码" onclick="resetPassword()">
+            	<span style="color:green;font-size:14px;">提示：更多操作[开机、关机、重启、续费、升级配置、升级带宽、重装系统]</span>
+            </div>
+            <table class="manager-table table-hover">
+	            <thead>
+		            <tr>
+		             	<th><input type="checkbox" onclick="checkAllServer(this)" id="checkedAll" name="checkBoxAll"></th>
+		             	<th>实例名称</th>
+		                <th>产品名称</th>
+		                <th>可用区</th>
+		                <th>公网IP</th>
+		                <th>状态</th>
+		                <th>到期时间</th>
+		                <th>操作</th>
+		            </tr>
+	            </thead>
+	            <tbody id="userServiceList">
+	            </tbody>
+       		</table>
+       		<div id="page" class="pager_container clearfix" >
+              	<input id="totalcount" type="hidden" value="0" />
+              	<input id="pagenumber" type="hidden" value="1" />
+              	<div id="pager"></div>
+   			</div>
+		</div>
+	</div>
+<!-- 重置密码-->
+<div id="detaliBoxa" style="display:none">
+    <div class="kuang">
+        <div class="product-detail-desc m-20">
+        	<p><strong class="redColor">提示：</strong>只有当主机处于运行中才能修改密码，重置成功后请稍等1-2分钟再尝试登录。</p>
+        </div>
+        <form id="uptPwdForm" class="form-horizontal" role="form">
+            <div class="form-group">
+            	<label class="col-sm-2 control-label"><strong class="redColor f-l10 ">*</strong>登录密码:</label>
+            	<div class="col-sm-8">
+            		<input type="password" id="password" class="manager-input m-input width300"  placeholder="请输入登录密码">
+            		<br />
+            		8-30个字符，必须同时包含四项（大写字母,小写字母，数字和特殊字符）
+           		</div>
+            </div>
+            <div class="form-group">
+            	<label class="col-sm-2 control-label"><strong class="redColor f-l10 ">*</strong>确认密码:</label>
+            	<div class="col-sm-8">
+            		<input type="password" id="confirmPassword" class="manager-input m-input width300"  placeholder="请输入确认密码">
+            	</div>
+            </div>
+       		<br />
+            <div class="form-group">
+            	<label class="col-sm-2 control-label"><strong class="redColor f-l10 ">*</strong>验证码:</label>
+            	<div class="col-sm-8">
+            		<input type="text" class="manager-input m-input width200" id="checkcode" placeholder="请输入验证码">
+            		<img class="img-code" src="../../../images/loading.gif" onclick="refreshVcode();" alt="点击可更换" id="imgcode" title="点击可更换" width="100" height="38">
+            	</div>
+            </div>
+        </form>
+    </div>
+</div>
+
+	<el-dialog title="云主机过户" :visible.sync="dialogFormVisible">
+		<el-form :model="form" :rules="rules" ref="pushForm">
+			<div v-if="isNew">
+				<el-form-item label="对方账号：" prop="toUserName">
+					<el-input v-model="form.toUserName" label="请输入对方的用户账号" style="width: 300px"></el-input>
+				</el-form-item>
+			</div>
+			<div v-if="!isNew">
+				<el-form-item label="对方账号：">
+					<span v-html="data.toUserName"></span>
+				</el-form-item>
+				<el-form-item label="发起时间：">
+					<span v-html="formatTime(data.createTime)"></span>
+				</el-form-item>
+				<el-form-item label="交易安全码：">
+					<span v-html="data.safeCode" v-if="showSafeCodeFlag"></span>
+					<a href="javascript:void(0)" @click="showSafeCode" v-if="!showSafeCodeFlag">查看</a>
+				</el-form-item>
+			</div>
+		</el-form>
+		<div slot="footer" class="dialog-footer">
+			<el-button type="primary" @click="makeDeal" v-if="isNew">确 定</el-button>
+			<el-button type="primary" @click="cancelDeal" v-if="!isNew">取消交易</el-button>
+		</div>
+	</el-dialog>
+
+</div>
+
+<!--登录-->
+<div id="_loginWin">
+	<div class="modal fade" id="loginWin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title">
+						登录服务器
+					</h4>
+				</div>
+				<div class="modal-body">
+					<table class="gridtable">
+						<tbody >
+						<tr>
+							<th>标准登录方式</th>
+						</tr>
+						<tr class="_win_windows" style="display: none;">
+							<td style="text-align: left">
+								● 使用 Windows 系统的电脑<br />
+								<div style="margin-left: 30px;">
+									1、点击 开始菜单>>Run，输入 “mstsc”命令，打开远程桌面对话框<br />
+									2、输入框内输入 <span class="_server_ip"></span>，点击“连接”<br />
+									3、输入用户名： Administrator、[该实例的密码]，点击“确定”
+								</div>
+								● 使用 Linux 系统的电脑<br />
+								<div style="margin-left: 30px;">
+									1、请安装对应版本的远程桌面连接程序，推荐使用rdesktop<br />
+									2、用户名： Administrator， 实例： <span class="_server_ip"></span>
+								</div>
+								● 使用 Mac OS X 系统的电脑<br />
+								<div style="margin-left: 30px;">
+									1、请下载安装微软针对Mac OSX版 <a href="https://rink.hockeyapp.net/apps/5e0c144289a51fca2d3bfa39ce7f2b06/">远程桌面链接程序</a> （查看 <a href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=2&tn=baiduhome_pg&wd=microsoft%20remote%20desktop&rsv_spt=1&oq=microsoft%2520remote%2520desktop%2520for%2520mac&rsv_pq=d0cc74c0000c0af2&rsv_t=dfaaSjPqjfOMpbTu0qlijKL%2BtLMv1cj76iK9d6LafQcT1UXSajSc9Rz2n2dxcx%2F%2FKiXO&rqlang=cn&rsv_enter=1&rsv_sug3=2&rsv_sug1=2&rsv_sug7=100&rsv_sug2=0&inputT=590&rsv_sug4=2078&rsv_sug=1" target="_blank">更多安装方式</a>）<br />
+									2、输入用户名： Administrator、[该CVM实例的密码]，点击“确定”
+								</div>
+							</td>
+						</tr>
+						<tr class="_win_linux" style="display: none;">
+							<td style="text-align: left">
+								● 使用 Windows 系统的电脑<br />
+								<div style="margin-left: 30px;">
+									1、下载安装 Windows SSH 和 Telnet 客户端工具 <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/" target="_blank">Putty</a>。<br />
+									2、用户名： root，Host： <span class="_server_ip"></span><br />
+									3、按照 Putty 使用帮助进行登录。 <a href="https://jingyan.baidu.com/article/454316ab5dd974f7a7c03a18.html" target="_blank">Putty 使用帮助</a>
+								</div>
+								● 使用 Linux/Mac OS X 系统的电脑（使用密码登录）<br />
+								<div style="margin-left: 30px;">
+									1、打开 SSH 客户端（Mac可使用系统自带的终端）<br />
+									2、输入 ssh -q -l root -p 22 <span class="_server_ip"></span><br />
+									3、输入实例密码进行登录。
+								</div>
+							</td>
+						</tr>
+						<tr class="_win_vnc" style="display: none;">
+							<th>浏览器VNC方式登录</th>
+						</tr>
+						<tr class="_win_vnc" style="display: none;">
+							<td>
+								<button type="button" class="btn-primary manager-btn">登录</button>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
+</div>
+<!--右侧内容区 结束-->
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/server.js"></script>
+</body>
+</html>

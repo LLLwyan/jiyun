@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>后台管理系统</title>
+	<script src="public/maincss.js"></script>
+    <style>
+	.refresh{
+		width:50px;
+		}
+	</style>
+    <script>
+		$(function(){
+			$('#layui-layer1','#layui-layer2','#layui-layer3','#layui-layer4','#layui-layer5','#layui-layer6','#layui-layer7','#layui-layer8','#layui-layer9','#layui-layer10','#layui-layer11','#layui-layer12','#layui-layer13','#layui-layer14','#layui-layer15','#layui-layer16','#layui-layer17','#layui-layer18','#layui-layer19','#layui-layer20','#layui-layer21','#layui-layer22','#layui-layer23','#layui-layer24','#layui-layer25','#layui-layer26').removeClass('layui-layer-loading');
+		});
+
+        var ParentModel = {
+            _id : '',
+            o : function() {
+                return $('#'+this._id);
+            },
+            add:function(id, html) {
+                this._id = id;
+                if (this.o().length > 0) {
+                    this.o().remove();
+                }
+                $('#_ParentModal').append(html);
+                return this;
+            },
+            show: function() {
+                this.o().modal('show');
+                return this;
+            },
+            hide : function () {
+                this.o().modal('hide');
+                return this;
+            },
+            submit : function (func) {
+                this.o().find('.btn-primary').click(function () {
+                    func();
+                });
+                return this;
+            },
+            find : function(findStr) {
+                return this.o().find(findStr);
+            },
+            onHide : function(func) {
+                this.o().on('hide.bs.modal', function () {
+                    func();
+                });
+            },
+            onShow : function (func) {
+                this.o().on('show.bs.modal', function () {
+                    func();
+                });
+            }
+        };
+    </script>
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation" style="background-color:#2f4050;">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                     <li>
+                        <a class="J_menuItem" href="workorder/wokeorderlist.html"><i class="fa fa-columns"></i> <span class="nav-label">工单受理</span></a>
+                    </li>
+                    <li>
+                    </li>
+                     <li>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="hidden-xs">
+                            <span style="color:#7D7878;font-size:12px;line-height: 50px;">超级管理员，您好，欢迎登录！<a href="javascript:;" onclick="uptadminpas()">修改密码</a>  </span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft" >后退&nbsp;<i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content">
+                        <a href="javascript:;" class="active J_menuTab" data-id="homepage.html">首页</a>
+                    </div>
+                </nav>
+               <button class="roll-nav roll-right J_tabRight" style="right: 60px"><i class="fa fa-forward"></i>&nbsp;前进
+                </button>
+                <a href="#" class="roll-nav roll-right J_tabExit" onClick="logout()"><i class="fa fa fa-sign-out"></i> 退出</a>
+            </div>
+             <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="homepage.html" frameborder="0"  data-id="homepage.html" seamless style="display: inline;"></iframe>
+            </div>
+            <div class="footer">
+                <div class="pull-right"><a href="#" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <!--右侧部分结束-->
+
+        <div id="_ParentModal"></div>
+    </div>
+
+	 <div class="add-uer-box" id="addBox" style="display:none">
+    <form method="post" action="#" id="itfrom">
+    <input type="hidden" id="roleid">
+                        	<table class="table-form">
+                                <tr>
+                                    <td class="t">
+                                       <label for="name" class="control-label"> 原密码：</label>
+                                    </td>
+                                    <td>
+                                        <input type="password" placeholder="请输入原密码" class="form-control" id="oldPassword">
+                                    </td>
+                                </tr>
+                                    <tr>
+                                    <td class="t">
+                                       <label for="name" class="control-label"> 新密码：</label>
+                                    </td>
+                                    <td>
+                                        <input type="password" placeholder="请输入新密码" class="form-control" id="newPassword">
+                                    </td>
+                                </tr>
+                                    <tr>
+                                    <td class="t">
+                                       <label for="name" class="control-label"> 重复密码：</label>
+                                    </td>
+                                    <td>
+                                        <input type="password" placeholder="请重复输入新密码" class="form-control" id="repeatPassword">
+                                    </td>
+                                </tr>
+                            </table>
+                            </form>
+    </div>
+
+</body>
+<script src="public/index.js"></script>
+<script src="public/main.js"></script>
+</html>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../../publicD/maincss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<script src="../../../publicD/memberjs.js"></script>
+
+
+
+	<!--element vue start-->
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<!-- import Vue before Element -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- import JavaScript -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<!--element vue end-->
+
+
+</head>
+<body style="height:100%">
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+	    <li><a href="javascript:void(0);">会员中心</a></li>
+	    <li><a href="javascript:void(0);">业务管理</a></li>
+	    <li><a href="javascript:void(0);">我的服务器</a></li>
+	</ul>
+</div>
+<!--右侧内容区 开始-->
+<div class="ManagerRightuser">
+	<div style="margin:0px -20px 0px -20px">
+		<ul class="manager-tab bind-tab">
+			 <li class="liactive">快照管理</li>
+			 <!--<li><a id="secgroup" href="secgroup.html">安全组</a></li>-->
+		</ul>
+	</div>
+	<el-table :data="tableData">
+		<el-table-column property="name" label="快照名称" width="150"></el-table-column>
+		<el-table-column property="status" label="状态"></el-table-column>
+		<el-table-column property="description" label="描述信息"></el-table-column>
+		<el-table-column property="created_at" label="创建时间"></el-table-column>
+		<el-table-column property="created_at" label="操作" width="260">
+			<template scope="scope">
+				<el-button type="warning" @click="deleteSnapshot(scope.row)" plain>删除</el-button>
+				<el-button type="primary" @click="rollbackSnapshot(scope.row)" plain>回滚数据</el-button>
+			</template>
+		</el-table-column>
+	</el-table>
+</div>
+</div>
+<script src="js/snapshothuawei.js"></script>
+<!--右侧内容区 结束-->
+</body>
+</html>

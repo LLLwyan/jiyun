@@ -1,0 +1,261 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<title >会员注册</title>
+    <script type="text/javascript" src="/publicD/maincss.js"></script>
+    <script type="text/javascript" src="/publicD/jmaincss.js"></script>
+    <script type="text/javascript" src="/publicD/main.js"></script>
+	<script type="text/javascript" src="js/register.js"></script>
+</head>
+<body >
+<!--头部开始-->
+<div id="header"></div>
+<!--头部结束-->
+<!--内容开始-->
+<style>
+    input{
+        line-height:40px;
+        height:40px;
+    }
+</style>
+<div id="content">
+  <div class="shoppingcart_center">
+    <div class="register_shoppingcart_center">
+      <div class="shoppingcart_center2">
+        <div class="payment_center0">
+          <ul class="register_shoppingcart_center1">
+            <li class="register_shoppingcart_center1_left">创建帐户</li>
+            <li class="register_shoppingcart_center1_right">已有账户，
+              <a href="../login.html">马上登录</a></li>
+          </ul>
+          <span id="regmsg" class="register_error"></span>
+          <div class="register_shoppingcart_center2">
+            <div class="register_shoppingcart_center2_1">
+            	<form method="post" id="login" name="F1" action="user_account_register">
+					<ul class="register_shoppingcart_center2_1text">
+						<li class="register_shoppingcart_center2_4text">
+							<input type="radio" name="userType" value="0" checked="checked" /> 个人
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="userType" value="1" /> 企业
+						</li>
+						<li class="register_msg"></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="register_shoppingcart_center2_1text">
+	                <li class="register_shoppingcart_center2_4text">
+	                  <div class="inp-m">
+	                    <span class="mm-icon"></span>
+	                    <input align="middle" id="txtUserName" name="" value="" type="text" autocomplete="off" class="register_shoppingcart_center2_2text inp-t" placeholder="请输入您的会员名">
+	                    <div class="clear"></div>
+	                  </div>
+	                  <div class="clear"></div>
+	                </li>
+	                <li class="register_msg"></li>
+	                <div class="clear"></div>
+	              </ul>
+	              <ul class="register_prompt">
+	              	<li class="register_msg msg2">输入5-16位会员名，只能包含字母或数字，不能纯数字，例：hl123</li>
+	              </ul>
+	              <ul class="register_shoppingcart_center2_1text">
+	                <li class="register_shoppingcart_center2_4text">
+	                  <div class="inp-m">
+	                    <span class="mm-icon"></span>
+	                    <input id="txtPassWord" name="" type="password" class="register_shoppingcart_center2_2text" placeholder="请设置帐号密码">
+	                    <div class="clear"></div>
+	                  </div>
+	                  <div class="clear"></div>
+	                </li>
+	                <li class="register_msg"></li>
+	                <div class="clear"></div>
+	              </ul>
+	              <ul class="register_prompt">
+	              	<li class="register_msg msg2">输6-16位密码，由字母+数字+符号组成，例：abc!@123</li>
+	              </ul>
+	              <ul class="register_shoppingcart_center2_1text">
+	                <li class="register_shoppingcart_center2_4text">
+	                  <div class="inp-m">
+	                    <span class="mm-icon"></span>
+	                    <input id="txtPassConfirm" type="password" class="register_shoppingcart_center2_2text" placeholder="请确认帐号密码">
+	                    <div class="clear"></div>
+	                  </div>
+	                </li>
+	                <li class="register_msg"></li>
+	                <div class="clear"></div>
+	              </ul>
+	              <ul class="register_prompt">
+	              	<li class="register_msg msg2">两次密码需保持一致</li>
+	              </ul>
+	              <ul class="register_shoppingcart_center2_1text">
+	                <li class="register_shoppingcart_center2_4text">
+	                  <div class="inp-m">
+	                    <span></span>
+	                    <input id="txtEmail" type="text" class="register_shoppingcart_center2_2text inp-t" placeholder="请输入您的邮箱">
+	                    <div class="clear"></div>
+	                  </div>
+	                  <div class="clear"></div>
+	                  <li class="register_msg"></li>
+	                  <div class="clear"></div>
+	              </ul>
+	              <ul class="register_prompt">
+	              	<li class="register_msg msg2">填写真实邮箱，以便及时接收我们的通知，用于会员账户验证或找回密码</li>
+	              </ul>
+	              <ul class="register_shoppingcart_center2_1text">
+	                <li class="register_shoppingcart_center2_4text">
+	                  <div class="inp-m">
+	                    <span class="sj-icon"></span>
+	                    <input id="txtMobile" value="" type="text" class="register_shoppingcart_center2_2text" placeholder="请输入手机号码">
+	                    <div class="clear"></div>
+	                  </div>
+	                </li>
+	                <li class="register_msg"></li>
+	                <div class="clear"></div>
+	              </ul>
+	              <ul class="register_prompt">
+	              	<li class="register_msg msg2">及时接收我们的通知短信</li>
+	              </ul>
+	              <ul class="register_shoppingcart_center2_1text">
+	                <li class="register_shoppingcart_center2_7text">
+	                  <input type="text" id="registercode" name="verifyCode" class="register_shoppingcart_center2_2text" placeholder="请输入验证码">
+	                  <img id="imgcode" style="float:left;margin-right:10px;" class="bf-img-code" src="../images/loading.gif" onClick="refreshVcode();" title="点击刷新">
+	                  <span id="codemsg" class="register_msg"></span>
+	                </li>
+	              </ul>
+	              <ul class="register_shoppingcart_center2_1text pb-20">
+	                <li class="reg_li">
+	                  <input id="agreeBox" type="checkbox" checked="checked" class="agree_box">我已阅读并同意
+	                  <a href="../notice/serviceagree.html?flag=uregprotocol" id="comserver"></a></li>
+	                <label style="display: none;" id="regmblLink_lb"></label>
+	              </ul>
+	              <ul>
+	                <li><input type="button" onClick="regMember(this)"  class="register_shoppingcart_center1_buttom" value="确认注册" id="subfrom"/>
+	                	<input type="button" class="register_shoppingcart_center1_buttom" value="正在注册" id="button_hide" style="background: #EAEAEE;color: #000000;display: none;" >
+	                  <p class="load" id="miao"></p>
+	                  <div class="clear"></div>
+	                </li>
+	              </ul>
+	             </form>
+            </div>
+            <div class="register_shoppingcart_center2_2">
+              <p class="register_shoppingcart_center2_201">
+                <div class="register_shoppingcart_center2_202">
+                  <i></i>
+                  <dl>
+                    <dt>注册成功
+                      <br>关注微信号：极云天下
+                      <br>领取新人大礼包</dt>
+                    <dd></dd>
+                  </dl>在线开通、一键管理；
+                  <br>安全稳定、技术成熟；
+                  <br>5分钟内人工响应；
+                  <br>7*24小时专人技术支持！
+                  <br>致力成为中国口碑最佳的ISP互联网服务提供商
+									
+
+
+
+                  <br>
+                  <br>注册成功，即享多种优惠！</div></div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--内容结束-->
+<!--底部开始-->
+<footer>
+    	<div class="service-footer container">
+    		<div class="row">
+    			<div class="col-md-3 col-sm-3">
+    				<img src="/img/service-footer1.png" alt="服务"/>
+    				<div class="service-footer-info">
+    					<p class="service-footer-title">服务</p>
+    					<p class="service-footer-contant">7*24小时服务支持</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 col-sm-3">
+   				<img src="/img/service-footer2.png" alt="备案"/>
+   				<div class="service-footer-info">
+    					<p class="service-footer-title">备案</p>
+    					<p class="service-footer-contant">0元快速备案</p>
+    				</div>
+    			</div>
+   			<div class="col-md-3 col-sm-3">
+    				<img src="/img/service-footer3.png" alt="保障"/>
+   				<div class="service-footer-info">
+    					<p class="service-footer-title">保障</p>
+    					<p class="service-footer-contant">100倍故障赔偿</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 col-sm-3">
+   				<img src="/img/service-footer4.png" alt="退款"/>
+    				<div class="service-footer-info">
+    					<p class="service-footer-title">退款</p>
+    					<p class="service-footer-contant">5天无理由退款</p>
+    				</div> 				
+    			</div>
+    		</div>
+    	</div>
+    	<div class="container-fluid pt-50 footer-intr">
+    		<div class="container">
+    			<div class="row">
+    				<div class="footer-info-link">
+    					<p class="footer-title">热门产品</p>
+    					<a class="footer-link" href="/domain/index.html">域名注册</a>
+    					<a class="footer-link" href="/cloud/thrid-two.html">云服务器</a>
+    					<a class="footer-link" href="/idc/wjzy.html">服务器租用</a>
+    					<a class="footer-link" href="/idc/HK.html">香港服务器</a>
+    					<a class="footer-link" href="/idc/USA.html">美国服务器</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">帮助中心</p>
+    					<a class="footer-link" href="/support/domainHelp.html">域名备案</a>
+    					<a class="footer-link" href="/support/cloudHelp.html">云服务</a>
+    					<a class="footer-link" href="/support/IDCHelp.html">IDC服务</a>
+    					<a class="footer-link" href="/support/kfHelp.html">应用开发</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">产品与支持</p>
+    					<a class="footer-link" href="/about/about.html?content=beian">备案流程</a>
+    					<a class="footer-link" href="/about/about.html?content=shengqing">测试机申请</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">关于极云</p>
+    					<a class="footer-link" href="/about/index.html">关于我们</a>
+    					<a class="footer-link" href="/about/connect.html">联系方式</a>
+    					<a class="footer-link" href="/about/about.html?content=corporateculture">企业文化</a>
+    					<a class="footer-link" href="/about/about.html?content=zhizi">公司资质</a>
+    				</div>
+    				<div class="col-md-2 col-sm-2">
+    					<div class="footer-wx">
+  					<img src="/img/footer-wx.png" alt="极云天下公众号">
+  					<p>关注微信公众号</p>
+    				    </div>
+    			    </div>
+    				<div class="col-md-4 col-sm-4">
+    					<div class="mc-list-items1"> 
+  	  	          <p></p> 
+  		  	          <p style="font-size:24px">028-65773958</p> 
+  		              <div> 
+  		  	         <a class="footer-sale1" data-title="电话：18584883263" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=167730759&site=qq&menu=yes" rel="nofollow">售前咨询</a>
+  		  	         <a class="footer-sale2" data-title="电话：18512828895" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=766686207&site=qq&menu=yes" rel="nofollow">售后服务</a>
+  		              </div> 
+  		  	          <p style="margin-top:10px">地址：中国（四川）自由贸易试验区成都高新区天府四街199号2栋11楼1110室</p> 
+  		  	          </div> 
+    				</div>
+    			<div class="footer-line"><img style="width: 100%;height: 1px;" src="/img/footer-line.png" alt=""></div>
+  
+    			<div class="beian-info pb-10">
+     				<p>版权所有 © 成都极云天下科技有限公司 保留一切权利  <a href="http://www.beian.miit.gov.cn" rel="nofollow">蜀ICP备17027862号-1</a></p>
+    				<p>《中华人民共和国增值电信业务经营许可证》经营许可证编号 川B1-20170453</p>
+     			</div>
+    		</div>
+    	</div>
+    </footer>
+<!--底部结束-->
+</body>
+

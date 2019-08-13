@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+    <style type="text/css">
+    	.input_chk{
+    		height: 16px; width: 16px; vertical-align: text-bottom;
+    	}
+    	.input_txt{
+    		width: 35px; height: 28px;
+    	}
+    	.chktxt{
+    		float: left;margin:10px 10px 0px 0px;
+    	}
+    	.itemhead{float:left;border-left:1px solid #ddd;border-right:1px solid #ddd;width:100%;padding-top:10px;}
+    	.nodata{width:100%;height:50px;border-left:1px solid #ddd;border-right:1px solid #ddd;padding:15px 0 0 10px;color:red;}
+    </style>
+</head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    	<div class="mt-20" style="overflow:visible;position:relative;text-align: center;float:left;">
+		                    <form class="form-inline" role="form">
+		                        <div class="form-group">
+		                            <label class="control-label">上级注册商：</label>
+		                            <select class="form-control" id="hosttypelist" onchange="queryRegionList()"></select>
+		                        </div>
+		                    </form>
+						</div>
+                    	<table class="table table-bordered" style="margin-bottom:0px;">
+                    		<thead>
+                                <tr>
+                                    <th colspan="4">实例价格</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="itemhead">
+		                    <form class="form-inline" role="form">
+		                        <div class="form-group">
+		                            <label class="control-label">地域：</label>
+		                            <select class="form-control" id="specRegion" onchange="queryModelList()"></select>
+		                            <label class="control-label">机型：</label>
+		                            <select class="form-control" id="modelList" onchange="specItemList()"></select>
+		                            <input type="button" class="btn btn-primary" onclick="saveSpecPrice()" value="保存价格">
+		                        </div>
+		                    </form>
+						</div>
+						<div id="specItemList" style="border-right: 1px solid #ddd;"></div>
+						<table class="table table-bordered" style="margin-bottom:0px;">
+                    		<thead>
+                                <tr>
+                                    <th colspan="4">磁盘价格</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="itemhead">
+		                    <form class="form-inline" role="form">
+		                        <div class="form-group">
+		                            <label class="control-label">地域：</label>
+		                            <select class="form-control" id="diskRegion" onchange="diskItemList()"></select>
+		                            <input type="button" class="btn btn-primary" onclick="saveDiskPrice()" value="保存价格">
+		                        </div>
+		                    </form>
+						</div>
+                        <div id="diskItemList"></div>
+                        <table class="table table-bordered" style="margin-bottom:0px;">
+                    		<thead>
+                                <tr>
+                                    <th colspan="4">带宽价格</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="itemhead">
+		                    <form class="form-inline" role="form">
+		                        <div class="form-group">
+		                            <label class="control-label">地域：</label>
+		                            <select class="form-control" id="networkRegion" onchange="networkItemList()"></select>
+		                            <input type="button" class="btn btn-primary" onclick="saveBandwidthPrice()" value="保存价格">
+		                        </div>
+		                    </form>
+						</div>
+                        <div id="networkItemList"></div>
+						<table class="table table-bordered" style="margin-bottom:0px;">
+							<thead>
+							<tr>
+								<th colspan="4">独立IP</th>
+							</tr>
+							</thead>
+						</table>
+						<div class="itemhead">
+							<form class="form-inline" role="form">
+								<div class="form-group">
+									<input type="button" class="btn btn-primary" onclick="saveIpPrice()" value="保存价格">
+								</div>
+							</form>
+						</div>
+						<div id="ipPriceList">
+							<table class="table table-bordered priceItem" style="margin-bottom:0px;">
+								<tr>
+									<td width="10%">类型</td>
+									<td width="10%">计价单位</td>
+									<td width="10%">价格</td>
+								</tr>
+								<tr>
+									<td>独立IP</td><td>元/1个/月</td><td><input type="text" name="theIpPrice" id="ip_all_1" spec="1" class="manager-input m-input width200"></td>
+								</tr>
+								<tr>
+									<td>共享IP</td><td>元/月</td><td><input type="text" name="theIpPrice" id="ip_all_2" spec="2" class="manager-input m-input width200"></td>
+								</tr>
+							</table>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/price.js"></script>
+</html>

@@ -1,0 +1,500 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>云服务器</title>
+	<script type="text/javascript" src="../publicD/maincss.js"></script>
+	<script type="text/javascript" src="../publicD/jmaincss.js"></script>
+	<link href="../css/cloudservice.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="../publicD/main.js"></script>
+	<script src="cloudservice.js"></script>
+	<style>
+		.main-menu>li>a{
+			color: #333;
+		}
+		.mini-cart>a{
+			color: #333;
+		}
+		.header-sticky.is-sticky{
+			background: #fff;
+		}
+		.mini-cart-log>a{
+			color: #333;
+		}
+	</style>
+</head>
+<body>
+<!--头部开始-->
+<header> 
+		    <div class="header-container"> 
+		     <div class="header-area header-absolute header-sticky pt-10" style="position: relative;"> 
+		      <div class="container"> 
+		       <div class="row"> 
+		        <div class="col-lg-2 col-md-2 col-sm-2"> 
+		         <div class="logo-area"> 
+		          <a href="/index.html"> <img src="/img/jy-logo-b.png" alt="极云天下" style="width: 80%;"/> </a> 
+		         </div> 
+		        </div> 
+		        <div class="col-lg-10 col-md-10 col-sm-10 text-lg-right"> 
+		         <div class="header-menu"> 
+		          <nav> 
+		           <ul class="main-menu"> 
+		            <li><a href="/index.html">首页</a> 
+		            </li> 
+		            <li><a href="/cloud/hwAct.html">最新活动</a></li> 
+		            <li><a href="/domain/index.html">域名注册</a></li> 
+		            <li><a href="#">华为云</a>
+		              <ul class="dropdown"> 
+		              <li><a href="/cloud/hw.html">华为云产品介绍</a></li> 
+		              <li><a href="/cloud/thrid-two.html">在线购买</a></li> 
+		              <li><a href="/cloud/gl.html">关联账号购买</a></li> 
+		              <li><a href="/about/about.html?content=zhizi">合作伙伴证书</a></li> 
+		             </ul> 
+		            </li> 
+		            <li><a href="#">IDC服务</a> 
+		             <ul class="dropdown"> 
+		              <li><a href="/idc/xxtg.html">服务器托管</a></li> 
+		              <li><a href="/idc/xxzy.html">服务器租用</a></li> 
+		              <li><a href="/idc/HK.html">海外服务器</a></li> 
+		              <li><a href="/idc/ddk.html">四川大带宽</a></li> 
+		             </ul> </li> 
+		            <li><a href="#">行业解决方案</a> 
+		              <ul class="dropdown"> 
+		              <li><a href="/solution/dskj.html">电商跨境贸易解决方案</a></li> 
+		              <li><a href="/solution/idc.html">混合云IDC解决方案</a></li> 
+		              <li><a href="/solution/ds.html">电商解决方案</a></li> 
+		             </ul></li> 
+		             <li><a href="#">增值服务</a> 
+		              <ul class="dropdown"> 
+			              <li><a href="/value/web.html">网站建设</a></li> 
+			              <li><a href="/value/dwA.html">服务器代维</a></li> 
+			               
+		              </ul>
+		           </ul> 
+		          </nav> 
+		         </div> 
+		        
+		        <div class="header-option" id="yeslogged"> 
+		          <div class="mini-cart-search"> 
+		           	
+		            <div class="mini-cart-log"> 
+		            	<a href="/usercenter/index.html" id="hluserName" style="color: red;"></a>
+		            </div>
+		            <div class="mini-cart-log"> 
+		            	<a class="nav-shopcar" href="/usercenter/shopping/shoppinglist.html" class="cart">&nbsp;&nbsp;购物车&nbsp;<span id="cartCount">0</span></a>
+		           </div>
+		           <div class="mini-cart-log"> 
+		            	<a href="javascript:void(0)" onClick="Cancellation();" >退出</a>
+		            </div>
+		          </div> 
+		        </div> 
+		         <div class="header-option" id="nologged" > 
+		          <div class="mini-cart-search"> 
+		           <div class="mini-cart"> 
+		            <a href="/login.html"> 登 &nbsp;录</a> 
+		           </div> 
+		           
+		           <div class="currency"> 
+		            <div class="currency-box"> 
+		             <a href="/register/register.html">
+		             	<button class="login-btn">免费注册</button>
+		             </a> 
+		             
+		            </div> 
+		           </div> 
+		          </div> 
+		         </div> 
+		        </div> 
+		       </div> 
+		       <div class="row"> 
+		        <div class="col-12"> 
+		         <div class="mobile-menu d-lg-none"></div> 
+		        </div> 
+		       </div> 
+		      </div> 
+		     </div> 
+		    </div> 
+		   </header>
+<!--头部结束-->
+<div id="content">
+	<div class="host-content">
+		<div class="wide1190">
+		    <!-- 选项卡 -->
+		    <ul class="wjf-ui-tab-style2 cl">
+		        <li><a class="active" href="javascript:void(0);" data-target="J_txHostDom">弹性云主机</a></li>
+		    </ul>
+		 <div class="cloud-main">
+		 	<input type="hidden" id="hostType" value="hyperv"/>
+		 	<input type="hidden" id="productCode" value=""/>
+		 	<input type="hidden" id="maxBandwidth"/>
+		 	<input type="hidden" id="windowsMinSize"/>
+		 	<input type="hidden" id="otherMinSize"/>
+		    <div id="main-m">
+		        <div class="cloud-main-l nav-main" id="a1">
+		            <div class="w-1200">
+		                <div class="sliderbox">
+		                    <div class="l-l fl">
+		                        <div class="slider-m">
+		                        	<div class="slider-m-o region">
+		                            	<p class="p-o">地域：</p>
+			                            <dl id="regionlist" class="config-time cl"></dl>
+                                        <div id="jiazaikuang">
+                                        	<img src="../images/zhuangzhuanzhuan.gif">
+                                        	<p style="margin-top: 10px;font-size: 15px;">正在加载中，请稍等...</p>
+                                        </div>
+		                            </div>
+                                    <div class="slider-m-o area">
+		                            	<p class="p-o">可用区：</p>
+                                        <dl id="arealist" class="config-time cl"></dl>
+		                            </div>
+                                    <div class="slice"></div>
+                                     <div class="slider-m-o series" style="display: none;">
+		                            	<p class="p-o">系列：</p>
+                                        <dl id="serieslist" class="config-time cl"></dl>
+		                            </div>
+                                     <div class="slider-m-o models">
+		                            	<p class="p-o">机型：</p>
+                                        <dl id="modelslist" class="config-time cl"></dl>
+		                            </div>
+		                            <div class="slider-m-o cpu">
+		                                <p class="p-o">CPU：</p>
+			                            <dl id="cpulist" class="config-time cl"></dl>
+		                            </div>
+		                            <div class="slider-m-o memory">
+		                                <p class="p-o">内存：</p>
+		                                <dl id="memorylist" class="config-time cl"></dl>
+		                            </div>
+                                     <div class="slice"></div>
+                                     <div class="slider-m-o">
+		                                <p class="p-o">操作系统：</p>
+		                                <div class="sel" id="sel">
+		                                    <div class="sel-inp on">
+	                                        	<span></span>
+	                                            <p id="defaultType"></p>
+	                                            <i></i>
+	                                            <div class="clear"></div>
+	                                        </div>
+		                                    <div id="osTypeList" class="sel-m" style="display: none;">
+		                                    </div>
+		                                </div>
+		                                <div class="sys-m" id="osVersion">
+		                                    <div class="sel" style="display: block;">
+		                                        <div class="sel-inp on">
+		                                            <p id="defaultVersion"></p>
+		                                            <i></i>
+		                                            <div class="clear"></div>
+		                                        </div>
+		                                        <div id="osNameList" class="sel-m">
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <div class="clear"></div>
+		                            </div>
+                                    <div class="slider-m-o">
+		                            	<p class="p-o">系统盘：</p>
+                                        <div class="sysdisk" id="sysdisk">
+		                                    <div class="sysdisk-inp on">
+	                                        	<span></span>
+	                                            <p id="sysDiskType">高效云盘</p>
+	                                            <i></i>
+	                                            <div class="clear"></div>
+	                                        </div>
+		                                    <div id="sysdiskList" class="sysdisk-m" style="display: none;">
+                                        </div>
+                                        </div>
+		                              	<div class="slider-m-o-m" style="margin-left:30px;width:350px;">
+                                       	<div class="scroll-bar" id="scroll-bar1">
+                                			<div class="entire-bar" id="entire-bar1" style="top:0;height:20px;width:99%;"></div>
+                                			<div class="action-bar" id="action-bar1"></div>
+                                			<div class="action-block" id="action-block1"></div>
+                            			</div>
+		                                </div>
+		                                <div class="slider-m-o-b">
+                                        <input type="text" id="syssize" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>GB</span>
+		                                </div>
+		                                <div class="clear"></div>
+		                            </div>
+                                    <div class="slider-m-o">
+		                            	<p class="p-o">数据盘：</p>
+                                        <div class="datadisk" id="datadisk">
+		                                    <div class="datadisk-inp on">
+	                                        	<span></span>
+	                                            <p id="dataDiskType">高效云盘</p>
+	                                            <i></i>
+	                                            <div class="clear"></div>
+	                                        </div>
+		                                	<div id="datadiskList" class="datadisk-m" style="display: none;"></div>
+                                    	</div>
+		                              	<div class="slider-m-o-m" style="margin-left:30px;width:350px;">
+                                       	<div class="scroll-bar" id="scroll-bar2">
+                                			<div class="entire-bar" id="entire-bar2" style="top:0;height:20px;width:99%;"></div>
+                                			<div class="action-bar" id="action-bar2"></div>
+                                			<div class="action-block" id="action-block2"></div>
+                            			</div>
+		                                </div>
+		                                <div class="slider-m-o-b">
+                                        <input type="text" id="datasize" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>GB</span>
+		                                </div>
+		                                <div class="clear"></div>
+		                            </div>
+									<div class="slider-m-o iptype" id="ipChoose" style="display: none">
+										<p class="p-o">IP类型：</p>
+										<dl id="ipTypeList" class="config-time cl">
+											<dt data-value="PRI" class="active">独立IP</dt>
+											<dt data-value="PUB" class="">共享IP</dt>
+										</dl>
+									</div>
+									<div class="slider-m-o nettype" style="display: none">
+										<p class="p-o">网络类型：</p>
+										<dl id="networklist" class="config-time cl"></dl>
+									</div>
+		                            <div class="slider-m-o" id="bandwidthSelector">
+		                            	<p class="p-o">带宽：</p>
+		                              	<div class="slider-m-o-m">
+                                       	<div class="scroll-bar" id="scroll-bar3">
+                                			<div class="entire-bar" id="entire-bar3" style="top:0;height:20px;"></div>
+                                			<div class="action-bar" id="action-bar3"></div>
+                                			<div class="action-block" id="action-block3"></div>
+                            			</div>
+		                                </div>
+		                                <div class="slider-m-o-b">
+                                        <input type="text" id="showArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>Mbps</span>
+		                                </div>
+		                                <div class="clear"></div>
+		                            </div>
+		                        </div>
+                                <div class="slice"></div>
+                                <!--密码开始-->
+                                <div class="d1" style="height:162px">
+                                    <p class="sz">安全设置：</p>
+                                    <ul id="security" class=" cl">
+                                        <li id="szmm" class="szmm bs">设置密码</li>
+                                        <li id="cjsz" style="margin-right:58%" class="cjsz">创建后设置</li>
+                                    </ul>
+                                        <div class="szpass" id="szpass" style="margin-left:14%; color:#999">
+                                            <p style="margin:10px 0 20px;">请牢记您所设置的密码，如遗忘可登录控制台重置密码<p>
+                                            <form>
+                                                <div>
+                                                    <label for="pass">登录密码：</label>
+                                                    <input type="password" id="loginPwd" placeholder="请输入登录密码" name="pass" style="margin-left:1%;width:24%"/><p style="float: right;padding-right: 6%;">8 - 30 个字符，且同时包含四项（大写字母，小写字母，数字和特殊符号）</p>
+                                                </div>
+                                                <div style="margin-top:16px;">
+                                                    <label for="pass2">确认密码：</label>
+                                                    <input type="password" id="confirmPwd" placeholder="请确认密码" name="pass2" style="margin-left:1%;width:24%"/>
+                                                </div>
+                                            </form>
+                                            <p id="errorMsg" style="margin:10px 0 20px;color:red;"><p>
+                                        </div>
+                                        <div class="cgsz" id="cgsz" style="margin:5% 0 0 14%;color:#999">购买成功后，可登录控制台重置密码</div>
+                                </div>
+                                <!--密码结束-->
+                                <div class="slice"></div>
+
+		                    <div class="count-info">
+			                    <div class="config-box cl" id="J_buyCountContainerDom" style="padding-top:0;">
+			                        <span class="buycount">购买数量：</span>
+			                        <span class="count">
+			                        <a href="javascript:void(0);" class="link-btn numSubtract">-</a>
+			                        <input type="text" value="1" class="number_input" id="num-inp">
+			                        <a href="javascript:void(0);" class="link-btn numAdd">+</a>
+			                    </span>
+		                    </div>
+		                    <div class="config-box cl" style="overflow: visible;">
+                                <span class="buycount">购买时长：</span>
+		                        <dl id="timelist" class="config-time cl"></dl>
+		                    </div>
+		                    <div class="clear"></div>
+		                </div>
+                        <div class="slice"></div>
+		                </div>
+		                    </div>
+		                    <div class="l-r fr" style="height: 1200px;">
+		                        <div id="set-m" class="" style="top: 0px;">
+		                            <i class="discount-icon"></i>
+		                            <h4>当前配置</h4>
+		                            <ul>
+		                            	<li>
+		                                    <p class="p-o">地域：</p>
+		                                    <p id="curRegion" data-value="" class="p-t"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p class="p-o">可用区：</p>
+		                                    <p id="curArea" data-value="" class="p-t"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p class="p-o">机型：</p>
+		                                    <p id="curModel" data-value="" class="p-t"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+ 		                                <li>
+		                                    <p class="p-o">CPU：</p>
+		                                    <p id="curCPU" data-value="" class="p-t"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p class="p-o">内存：</p>
+		                                    <p id="curMemory" data-value="" class="p-t"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+                                  		<li>
+		                                    <p class="p-o">系统：</p>
+		                                    <p id="curOs" data-value="" class="p-t" style="width:370px"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p class="p-o">系统盘：</p>
+		                                    <p id="curSysDisk" data-value="" class="p-t"></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p class="p-o">数据盘：</p>
+		                                    <p id="curDataDisk" data-value="" class="p-t">0G</p>
+		                                    <div class="clear"></div>
+		                                </li>
+										<li>
+											<p class="p-o">网络类型：</p>
+											<p id="curNettype" data-value="" class="p-t">基础网络</p>
+											<div class="clear"></div>
+										</li>
+		                                <li class="pos-r">
+		                                    <p class="p-o">带宽：</p>
+		                                    <p id="curBandwidth" class="p-t">1 Mbps</p>
+		                                    <span class="pos-a" style="top:10%;"></span>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p class="p-o">购买数量：</p>
+		                                    <p id="curNum" class="p-t">1台</p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p class="p-o">购买时长：</p>
+		                                    <p id="curApplyTime" time="" type="" class="p-t">1个月<span></span></p>
+		                                    <div class="clear"></div>
+		                                </li>
+		                                <li>
+		                                    <p style="color:#ff6800; font-size:16px; font-weight:bold; padding-top:10px;">按年支付更划算！        </p>
+		                                </li>
+		                                <li class="pri" style="padding-top:40px;">
+		                                    <p class="p-o" style="width:60px;">费用总计：</p>
+		                                    <p class="p-s">￥<span id="price"></span></p>
+		                                    <div class="clear"></div>
+		                                </li>
+                                        <li id="discountMsg">
+                                        	<s style="color:#CCC;font-size:14px;">价格￥<span id="totalPrice"></span></s>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#01bd01;font-size:14px;">省￥<span id="discountPrice"></span></span>
+                                        </li>
+                                        <li>
+                                        	<span style="color:red;font-size:14px;" id="discountInfo"></span>
+                                        </li>
+		                            </ul>
+									<a href="javascript:void(0);" id="btnBuy" class="but disable">添加到购物车</a>
+		                            <a href="javascript:void(0);" id="btnBuyNow" class="but disable">立即购买当前配置</a>
+		                            <div id="remark" style="color:red"></div>
+		                        </div>
+		                    </div>
+		                    <div class="clear"></div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		</div>
+	</div>
+</div>
+<!--底部开始-->
+<footer>
+    	<div class="service-footer container">
+    		<div class="row">
+    			<div class="col-md-3 col-sm-3">
+    				<img src="/img/service-footer1.png" alt="服务"/>
+    				<div class="service-footer-info">
+    					<p class="service-footer-title">服务</p>
+    					<p class="service-footer-contant">7*24小时服务支持</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 col-sm-3">
+   				<img src="/img/service-footer2.png" alt="备案"/>
+   				<div class="service-footer-info">
+    					<p class="service-footer-title">备案</p>
+    					<p class="service-footer-contant">0元快速备案</p>
+    				</div>
+    			</div>
+   			<div class="col-md-3 col-sm-3">
+    				<img src="/img/service-footer3.png" alt="保障"/>
+   				<div class="service-footer-info">
+    					<p class="service-footer-title">保障</p>
+    					<p class="service-footer-contant">100倍故障赔偿</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 col-sm-3">
+   				<img src="/img/service-footer4.png" alt="退款"/>
+    				<div class="service-footer-info">
+    					<p class="service-footer-title">退款</p>
+    					<p class="service-footer-contant">5天无理由退款</p>
+    				</div> 				
+    			</div>
+    		</div>
+    	</div>
+    	<div class="container-fluid pt-50 footer-intr">
+    		<div class="container">
+    			<div class="row">
+    				<div class="footer-info-link">
+    					<p class="footer-title">热门产品</p>
+    					<a class="footer-link" href="/domain/index.html">域名注册</a>
+    					<a class="footer-link" href="/cloud/thrid-two.html">云服务器</a>
+    					<a class="footer-link" href="/idc/wjzy.html">服务器租用</a>
+    					<a class="footer-link" href="/idc/HK.html">香港服务器</a>
+    					<a class="footer-link" href="/idc/USA.html">美国服务器</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">帮助中心</p>
+    					<a class="footer-link" href="/support/domainHelp.html">域名备案</a>
+    					<a class="footer-link" href="/support/cloudHelp.html">云服务</a>
+    					<a class="footer-link" href="/support/IDCHelp.html">IDC服务</a>
+    					<a class="footer-link" href="/support/kfHelp.html">应用开发</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">产品与支持</p>
+    					<a class="footer-link" href="/about/about.html?content=beian">备案流程</a>
+    					<a class="footer-link" href="/about/about.html?content=shengqing">测试机申请</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">关于极云</p>
+    					<a class="footer-link" href="/about/index.html">关于我们</a>
+    					<a class="footer-link" href="/about/connect.html">联系方式</a>
+    					<a class="footer-link" href="/about/about.html?content=corporateculture">企业文化</a>
+    					<a class="footer-link" href="/about/about.html?content=zhizi">公司资质</a>
+    				</div>
+    				<div class="col-md-2 col-sm-2">
+    					<div class="footer-wx">
+  					<img src="/img/footer-wx.png" alt="极云天下公众号">
+  					<p>关注微信公众号</p>
+    				    </div>
+    			    </div>
+    				<div class="col-md-4 col-sm-4">
+    					<div class="mc-list-items1"> 
+  	  	          <p></p> 
+  		  	          <p style="font-size:24px">028-65773958</p> 
+  		              <div> 
+  		  	         <a class="footer-sale1" data-title="电话：18584883263" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=167730759&site=qq&menu=yes" rel="nofollow">售前咨询</a>
+  		  	         <a class="footer-sale2" data-title="电话：18512828895" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=766686207&site=qq&menu=yes" rel="nofollow">售后服务</a>
+  		              </div> 
+  		  	          <p style="margin-top:10px">地址：中国（四川）自由贸易试验区成都高新区天府四街199号2栋11楼1110室</p> 
+  		  	          </div> 
+    				</div>
+    			<div class="footer-line"><img style="width: 100%;height: 1px;" src="/img/footer-line.png" alt=""></div>
+  
+    			<div class="beian-info pb-10">
+     				<p>版权所有 © 成都极云天下科技有限公司 保留一切权利  <a href="http://www.beian.miit.gov.cn" rel="nofollow">蜀ICP备17027862号-1</a></p>
+    				<p>《中华人民共和国增值电信业务经营许可证》经营许可证编号 川B1-20170453</p>
+     			</div>
+    		</div>
+    	</div>
+    </footer>
+<!--底部结束-->
+</body>
+</html>

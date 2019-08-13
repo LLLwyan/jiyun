@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">     
+                        <div class="add-uer-box" id="addBox">    
+                        <table class="manager-table form-table" style="width:100%" >
+                        <tbody>
+                        <tr align="center">
+					            <td colspan="4">
+					            	<font size="3"><b>产品详情 </b></font>
+					            </td>
+					          </tr>
+                        	<tr> 
+                        		<th width="150" height="60">产品编号：</th>
+                       			<td align="left">
+                       		 	<span id="u_orderid"></span>
+                       		   </td>
+                               <th width="150"  height="60">会员名：</th>
+                       			<td  align="left">
+                       		 	<span id="u_username"></span>
+                       		   </td>
+                        	</tr>
+                            <tr> 
+                        		<th width="150"  height="60">域名：</th>
+                       			<td  align="left">
+                       		 	<span id="u_domain"></span>
+                       		   </td>
+                               <th width="150"  height="60">管理密码：</th>
+                       			<td align="left">
+                       		 	<span id="u_passwd"></span>
+                       		   </td>
+                        	</tr>
+                             <tr> 
+                        		<th width="150"  height="60">产品名称：</th>
+                       			<td  align="left">
+                       		 	<span id="u_product"></span>
+                       		   </td>
+                               <th width="150"  height="60">状态：</th>
+                       			<td  align="left">
+                       		 	<span id="u_status"></span>
+                       		   </td>
+                        	</tr>
+                            <tr> 
+                        		<th width="150"  height="60">开通时间：</th>
+                       			<td align="left">
+                       		 	<span id="u_startime"></span>
+                       		   </td>
+                               <th width="150"  height="60">到期时间：</th>
+                       			<td align="left">
+                       		 	<span id="u_endtrme"></span>
+                       		   </td>
+                        	</tr>
+                            <tr> 
+                        		<th width="150"  height="60">DNS1：</th>
+                       			<td align="left">
+                       		 	<span id="u_DNS1"></span>
+                       		   </td>
+                               <th width="150"  height="60">DNS2：</th>
+                       			<td align="left">
+                       		 	<span id="u_DNS2"></span>
+                       		   </td>
+                        	</tr>
+							<tr>
+								<th width="150"  height="60">备注：</th>
+								<td align="left" colspan="3">
+									<span id="u_remark"></span>
+								</td>
+							</tr>
+                        	<tr>
+					            <td colspan="4" align="center">
+			 						 <input type="button" class="btn btn-primary" value="返 回" style="margin-left:30px;" onclick="javascript:history.back(-1);">
+					            </td>
+					          </tr>
+                        </tbody>
+                    </table> 
+                    <br>
+                 </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/domainDetails.js"></script>
+</html>

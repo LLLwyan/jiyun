@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+
+<script src="../../publicD/maincss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+<link rel="stylesheet" type="text/css" href="../../public/smoothness/jquery.ui.css">
+
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+	    <li><a href="javascript:void(0);">会员中心</a></li>
+	    <li><a href="javascript:void(0);">发票管理</a></li>
+		<li><a href="javascript:void(0);">我的发票</a></li>
+	</ul>
+</div>
+		<div class="ManagerRightuser">
+                    <div id="realname-auth" class="nav-content active">
+                          <div class="mt-20" style="overflow:visible;position:relative">
+                            <form class="form-inline col-md-12" role="form">
+                                <div class="form-group col-md-5" style="margin-left: 0;">
+                                    <label for="name" class="control-label">日期：</label>
+                                    <input class="form-control laydate-icon" placeholder="请输入开始日期" id='start' style="width:145px;" ><!--onclick="laydate()"-->
+                                    <label>-</label>
+                                    <input type="text" class="form-control laydate-icon" placeholder="请输入结束日期" id='end' style=" width:145px;"  ><!--onclick="laydate()"-->
+                                </div>
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label for="name" class="control-label">发票类型：</label>
+                                    <select class="form-control" id="invoicetype">
+									</select>
+                                </div>
+                                <div class="form-group" style="margin-left: 15px;">
+                                 <label for="name" class="control-label">发票内容：</label>
+                                    <select class="form-control" id="invoicecontent">
+									</select>
+                                </div>
+                                <br /><br />
+                                  <div class="searchbtn">
+                                <input type="button" onClick="getAllInvoice();" class="manager-btn  mr-10" value="搜 索">
+                                <input class="manager-btn mr-10" value="重 置" type="reset">
+                                </div>
+                            </form>	
+					</div>
+                   <table class="manager-table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>类型</th>
+                                    <th>发票内容</th>                                
+                                    <th>金额</th>   
+                                    <th>收件人</th>   
+                                    <th>状态</th>   
+                                    <th>创建时间</th>
+                                    <th>操作</th>               
+                                </tr>
+                            </thead>
+                            <tbody id="realNameMailAuthTbody"/>
+                            
+              		</table>
+  					   <div id="page" class="pager_container clearfix" >
+				            <input id="totalcount" type="hidden" value="0" />
+				            <input id="pagenumber" type="hidden" value="1" />
+				            <div id="pager"></div>
+			  			</div>
+                
+       </div>
+		<!--右侧内容区 结束-->
+       
+        									 
+	</div>
+</div>
+<script src="../../publicD/memberjs.js"></script>
+<script src="js/queryinvoice.js"></script>
+</body>
+</html>

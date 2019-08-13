@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+
+<title>用户管理中心</title>
+<script src="../../publicD/membercss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+</head>
+<body>
+<div id="MainContentDIV">
+		<div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+             <li><a href="javascript:void(0);">用户管理</a></li>
+            <li><a href="javascript:void(0);">密码修改</a></li>
+        </ul>
+	</div>
+		<!--右侧内容区 开始-->
+		<div class="ManagerRightuser">
+        <div class="product-detail-desc mt-15">
+        <div class="title mb-5"> <span>说明：</span> </div>
+          
+          <div> <p class="pt-5">建议使用强壮的密码，6-16位密码，由字母+数字+符号组成，例：abc!@123</p></div>
+          
+ 
+      </div>
+           <form action="#" method="post" >
+      <table class="manager-table form-table">
+        <tbody><tr> 
+          <th width="24%">用户名：</th>
+          <td width="76%" align="left">
+          <strong style="color:green;font-size:14px;margin-right:10px;" id="u_name"></strong>
+          </td>
+        </tr>
+        <tr>
+          <th>旧密码:</th>
+          <td align="left"><input id="oldKey" type="password" class="manager-input m-input width288" size="20"><strong class="redColor f-l10 ">*请填入当前登录密码</strong></td>
+        </tr>
+
+        <tr>
+          <th>新密码:</th>
+          <td align="left"><input id="newKey" type="password" class="manager-input m-input width288" size="20" style="float:left;"><strong class="redColor f-l10 ">*请输入新密码</strong>
+</td>
+          </tr>
+        <tr>
+          <th>确认新密码:</th>
+          <td align="left"><input id="new_password" type="password" class="manager-input m-input width288" size="20"><strong class="redColor f-l10 ">*请重新输入新密码</strong></td>
+          </tr>
+          <tr class="no-border">
+          	<td></td>
+            <td align="left">
+<div class="searchbtn" style="text-align:left;">
+                            <input type="button" onclick="updatePwd();" class="manager-btn  mr-10" value="更新">
+                            <input class="manager-btn  mr-10" value="重 填" type="reset">
+                            </div>        
+             </td>
+          </tr>
+      </tbody></table>
+     </form>
+</div>
+</div>
+<!--右侧内容区 结束--> 
+<script src="../../publicD/memberjs.js"></script>
+<script src="js/userpasswd.js"></script>
+</body>
+</html>

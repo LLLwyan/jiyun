@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+	<!-- administrator module -->
+	<data desc="获取验证码" apiName="getcode" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="getCode" loginAccess="N"/>
+	<data desc="管理员注销" apiName="logout" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="userLogout" loginAccess="N" />
+	<data desc="管理员登录" apiName="login" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="userLogin" loginAccess="N"/>
+	<data desc="是否已登录" apiName="logined" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="logined" loginAccess="N"/>
+	<data desc="管理员菜单" apiName="getmenu" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="getUserMenu" loginAccess="N"/>
+	<data desc="新建管理员" apiName="adduser" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="addUser" loginAccess="N" funId="adduser"/>
+	<data desc="删除管理员" apiName="deluser" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="delUser" loginAccess="N" funId="deluser"/>
+	<data desc="修改管理员" apiName="moduser" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="modUser" loginAccess="N" funId="moduser"/>
+	<data desc="修改密码" apiName="setpass" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="setUserPassword" loginAccess="N" funId="setpass"/>
+	<data desc="修改会员状态" apiName="setstatus" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="setUserStatus" loginAccess="N" funId="setstatus"/>
+	<data desc="分配帐号角色" apiName="setuserrole" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="setUserRole" loginAccess="N" funId="setuserrole"/>
+	<data desc="查询帐号" apiName="queryuser" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="queryUser" loginAccess="N" funId="queryuser"/>
+	<data desc="系统功能查询" apiName="queryfuns" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="queryFuns" loginAccess="N"/>
+	<data desc="新建角色" apiName="newrole" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="newRole" loginAccess="N" funId="newrole"/>
+	<data desc="删除角色" apiName="delrole" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="delRole" loginAccess="N" funId="delrole"/>
+	<data desc="修改角色" apiName="modrole" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="modRole" loginAccess="N" funId="modrole"/>
+	<data desc="角色查询" apiName="queryrole" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="queryRole" loginAccess="N" funId="queryrole"/>
+	<data desc="分配角色权限" apiName="setrolefn" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="setRoleFun" loginAccess="N" funId="setrolefn"/>
+	<data desc="查询异常日志" apiName="queryerr" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="queryRuntimeLog" loginAccess="N" funId="queryerr"/>
+	<data desc="查询操作日志" apiName="querylog" className="com.winiis.cloudhost.user.service.UserLogService" functionName="queryUserLog" loginAccess="N" funId="querylog"/>
+	<data desc="查询操作日志详情" apiName="queryLogDetails" className="com.winiis.cloudhost.user.service.UserLogService" functionName="queryLogDetails" loginAccess="N" funId="queryLogDetails"/>
+	<data desc="查询系统日志详情" apiName="queryRLDetail" className="com.winiis.cloudhost.sys.service.CSaftyService" functionName="queryRLDetail" loginAccess="N"/>
+	<data desc="删除操作日志" apiName="deluserLog" className="com.winiis.cloudhost.user.service.UserLogService" functionName="userLogDel" loginAccess="N" funId="deluserLog"/>
+	<!-- dictionary module -->
+	<data desc="表字典查询" apiName="gettable" className="com.winiis.cloudhost.sys.service.CDicService" functionName="getTableDic" loginAccess="N"/>
+	<data desc="查询字段字典" apiName="getfield" className="com.winiis.cloudhost.sys.service.CDicService" functionName="getFieldDic" loginAccess="N"/>
+	<data desc="锁定表头" apiName="lockfield" className="com.winiis.cloudhost.sys.service.CDicService" functionName="lockFieldDic" loginAccess="N"/>
+	<data desc="查询系统参数" apiName="getparam" className="com.winiis.cloudhost.sys.service.CDicService" functionName="getParam" loginAccess="N"/>
+	<data desc="设置系统参数" apiName="setparam" className="com.winiis.cloudhost.sys.service.CDicService" functionName="setParam" loginAccess="N"/>
+
+	<!-- 系统字典表 -->
+	<data desc="数据字典表" apiName="getListDicParamIndex" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="getListDicParamIndex" loginAccess="N"/>
+	<data desc="添加数据字典表" apiName="addDicParamIndex" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="addDicParamIndex" loginAccess="N" funId="addDicParamIndex"/>
+	<data desc="修改数据字典表" apiName="uptDicParamIndex" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="uptDicParamIndex" loginAccess="N" funId="uptDicParamIndex"/>
+	<data desc="删除数据字典表 " apiName="deletDicParamIndex" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="deletDicParamIndex" loginAccess="N" funId="deletDicParamIndex"/>
+	<data desc="数据字典子列表查询 " apiName="getListDicParamItem" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="getListDicParamItem" loginAccess="N"/>
+	<data desc="数据字典子列表添加 " apiName="addDicParamItem" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="addDicParamItem" loginAccess="N" funId="addDicParamItem"/>
+	<data desc="数据字典子列表删除 " apiName="delDicParamItemById" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="delDicParamItemById" loginAccess="N" funId="delDicParamItemById"/>
+	<data desc="数据字典子列表修改 " apiName="uptDicParamItem" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="uptDicParamItem" loginAccess="N" funId="uptDicParamItem"/>
+	<data desc="根据ENAME查询数据字典子列表 " apiName="getListParamItemByEName" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="getListParamItemByEName" loginAccess="N"/>
+	<data desc="根据数据值查询数据字典" apiName="getSysParamItemByValue" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="getSysParamItemByValue" loginAccess="N"/>
+	<data desc="系统配置列表查询 " apiName="getDicParam" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="getDicParam" loginAccess="N"/>
+	<data desc="系统配置列表保存" apiName="uptDicParam" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="uptDicParam" loginAccess="N" funId="uptDicParam"/>
+	<data desc="接口设置查询" apiName="getDicParamApi" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="getDicParamApi" loginAccess="N"/>
+	<data desc="接口设置保存" apiName="uptDicParamApi" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="uptDicParamApi" loginAccess="N" funId="uptDicParamApi"/>
+	<data desc="根据name跟type查询对象" apiName="getParamByNameAndType" className="com.winiis.cloudhost.dic.service.DicParamService" functionName="getParamByNameAndType" loginAccess="N"/>
+</functions>

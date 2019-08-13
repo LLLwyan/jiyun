@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+<script src="../../../publicD/maincss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+        <ul>
+             <li><a href="javascript:void(0);">会员中心</a></li>
+             <li><a href="javascript:void(0);">业务管理</a></li>
+             <li><a href="javascript:void(0);">域名详情</a></li>
+        </ul>
+	</div>
+		<div class="ManagerRightuser">
+                <div class="add-uer-box" id="addBox" >
+                        <table class="manager-table form-table">
+                        <tbody>
+                             <tr align="center">
+					            <td colspan="4">
+					            	<font size="3"><b>产品详情 </b></font>
+					            </td>
+					          </tr>
+                        	<tr> 
+                        		<th width="150" height="60">产品编号：</th>
+                       			<td align="left">
+                       		 	<span id="u_orderid"></span>
+                       		   </td>
+                               <th width="150"  height="60">会员名：</th>
+                       			<td  align="left">
+                       		 	<span id="u_username"></span>
+                       		   </td>
+                        	</tr>
+                            <tr> 
+                        		<th width="150"  height="60">域名：</th>
+                       			<td  align="left">
+                       		 	<span id="u_domain"></span>
+                       		   </td>
+                               <th width="150"  height="60">管理密码：</th>
+                       			<td align="left">
+                       		 	<span id="u_passwd"></span>
+                       		   </td>
+                        	</tr>
+                             <tr> 
+                        		<th width="150"  height="60">产品名称：</th>
+                       			<td  align="left">
+                       		 	<span id="u_product"></span>
+                       		   </td>
+                               <th width="150"  height="60">状态：</th>
+                       			<td  align="left">
+                       		 	<span id="u_status"></span>
+                       		   </td>
+                        	</tr>
+                            <tr> 
+                        		<th width="150"  height="60">开通时间：</th>
+                       			<td align="left">
+                       		 	<span id="u_startime"></span>
+                       		   </td>
+                               <th width="150"  height="60">到期时间：</th>
+                       			<td align="left">
+                       		 	<span id="u_endtrme"></span>
+                       		   </td>
+                        	</tr>
+                            <tr> 
+                        		<th width="150"  height="60">DNS1：</th>
+                       			<td align="left">
+                       		 	<span id="u_DNS1"></span>
+                       		   </td>
+                               <th width="150"  height="60">DNS2：</th>
+                       			<td align="left">
+                       		 	<span id="u_DNS2"></span>
+                       		   </td>
+                        	</tr>
+                            <tr>
+                        		<th width="150"  height="60">备注：</th>
+                       			<td align="left" colspan="3">
+                       		 	<span id="u_remark"></span>
+                       		   </td>
+                        	</tr>
+                        	<!--<tr> 
+                        		<th width="150"  height="60">域名证书：</th>
+                       			<td align="left">
+                       		 	<span id=cert></span>
+                       		   </td>
+                        	</tr>
+                        	--><tr>
+					            <td colspan="4" align="center">
+			 						 <input type="button" class="manager-btn  mr-10 " value="返 回" style="margin-left:30px;" onclick="javascript:history.back(-1);">
+					            </td>
+					          </tr>
+                        </tbody>
+                    </table> 
+                    <br>
+                 </div>
+        </div>
+</div>
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/domaindetails.js"></script>
+</body>
+</html>

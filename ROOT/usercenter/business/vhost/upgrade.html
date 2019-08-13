@@ -1,0 +1,247 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+    <script src="../../../publicD/membercss.js"></script>
+    <link href="../../../css/cloudservice.css" rel="stylesheet" type="text/css">
+    <style>
+    </style>
+</head>
+<body id="thrColEls" style="overflow:auto;">
+<div id="MainContentDIV">
+    <div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+            <li><a href="javascript:void(0);">虚拟主机</a></li>
+            <li><a href="javascript:void(0);">升级配置</a></li>
+        </ul>
+    </div>
+    <!--右侧内容区 开始-->
+    <div class="ManagerRightuser">
+        <div style="margin:10px -20px 0px -20px">
+            <div class="server-title">
+                <b>实例：</b><span id="instanceIdShow"></span>
+            </div>
+        </div>
+        <div class="server-control">
+            <input type="button" class="manager-btn mr-10" id="btnBackList" value="返回实例详情">
+            <input type="hidden" id="hostType" value="vhost"/>
+            <input type="hidden" id="productCode" value=""/>
+        </div>
+        <div style="margin-top:20px;border-left: 3px solid #6d7781">
+            <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                <b>可选升级项目</b>
+            </div>
+        </div>
+        <div class="right_side_bottom">
+            <table width="100%" class="" id="view">
+                <tr>
+                    <td style="width: 850px">
+                        <div class="cloud-main">
+                            <div id="main-m">
+                                <div class="cloud-main-l nav-main" id="a1">
+                                    <div style="width: 100%">
+                                        <div class="sliderbox">
+                                            <div class="l-l fl">
+                                                <div class="slider-m">
+
+                                                    <div class="slice filter-web" style="display: none">WEB配置选择</div>
+                                                    <div class="slider-m-o filter-web webScriptType" style="display: none">
+                                                        <p class="p-o">链接数：</p>
+                                                        <div class="slider-m-o-m">
+                                                            <div class="scroll-bar" id="scroll-bar-webLinks">
+                                                                <div class="entire-bar" id="entire-bar-webLinks" style="top:0;height:20px;"></div>
+                                                                <div class="action-bar" id="action-bar-webLinks"></div>
+                                                                <div class="action-block" id="action-block-webLinks"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-m-o-b">
+                                                            <input type="text" id="webLinksArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>个</span>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <div class="slider-m-o filter-web" style="display: none">
+                                                        <p class="p-o">带宽：</p>
+                                                        <div class="slider-m-o-m">
+                                                            <div class="scroll-bar" id="scroll-bar-webWidth">
+                                                                <div class="entire-bar" id="entire-bar-webWidth" style="top:0;height:20px;"></div>
+                                                                <div class="action-bar" id="action-bar-webWidth"></div>
+                                                                <div class="action-block" id="action-block-webWidth"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-m-o-b">
+                                                            <input type="text" id="webWidthArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>KBps</span>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <div class="slider-m-o filter-web" style="display: none">
+                                                        <p class="p-o">流量：</p>
+                                                        <div class="slider-m-o-m">
+                                                            <div class="scroll-bar" id="scroll-bar-webFlow">
+                                                                <div class="entire-bar" id="entire-bar-webFlow" style="top:0;height:20px;"></div>
+                                                                <div class="action-bar" id="action-bar-webFlow"></div>
+                                                                <div class="action-block" id="action-block-webFlow"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-m-o-b">
+                                                            <input type="text" id="webFlowArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>GB</span>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <div class="slice filter-ftp" style="display: none">FTP配置选择</div>
+                                                    <div class="slider-m-o filter-web-ftp" style="display: none">
+                                                        <p class="p-o">空间大小：</p>
+                                                        <div class="slider-m-o-m">
+                                                            <div class="scroll-bar" id="scroll-bar-ftpDiskQuota">
+                                                                <div class="entire-bar" id="entire-bar-ftpDiskQuota" style="top:0;height:20px;"></div>
+                                                                <div class="action-bar" id="action-bar-ftpDiskQuota"></div>
+                                                                <div class="action-block" id="action-block-ftpDiskQuota"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-m-o-b">
+                                                            <input type="text" id="ftpDiskQuotaArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>MB</span>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <div class="slice filter-mssql" style="display: none">SQL Server 配置选择</div>
+                                                    <div class="slider-m-o filter-mssql" style="display: none">
+                                                        <p class="p-o">数据空间：</p>
+                                                        <div class="slider-m-o-m">
+                                                            <div class="scroll-bar" id="scroll-bar-MSSQLSize">
+                                                                <div class="entire-bar" id="entire-bar-MSSQLSize" style="top:0;height:20px;"></div>
+                                                                <div class="action-bar" id="action-bar-MSSQLSize"></div>
+                                                                <div class="action-block" id="action-block-MSSQLSize"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-m-o-b">
+                                                            <input type="text" id="MSSQLSizeArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>MB</span>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                    <div class="slider-m-o filter-mssql" style="display: none">
+                                                        <p class="p-o">日志空间：</p>
+                                                        <div class="slider-m-o-m">
+                                                            <div class="scroll-bar" id="scroll-bar-MSSQLLogSize">
+                                                                <div class="entire-bar" id="entire-bar-MSSQLLogSize" style="top:0;height:20px;"></div>
+                                                                <div class="action-bar" id="action-bar-MSSQLLogSize"></div>
+                                                                <div class="action-block" id="action-block-MSSQLLogSize"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-m-o-b">
+                                                            <input type="text" id="MSSQLLogSizeArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>MB</span>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+
+                                                    <div class="slice filter-mysql" style="display: none">MySQL 配置选择</div>
+                                                    <div class="slider-m-o filter-mysql" style="display: none">
+                                                        <p class="p-o">数据空间：</p>
+                                                        <div class="slider-m-o-m">
+                                                            <div class="scroll-bar" id="scroll-bar-mySQLSize">
+                                                                <div class="entire-bar" id="entire-bar-mySQLSize" style="top:0;height:20px;"></div>
+                                                                <div class="action-bar" id="action-bar-mySQLSize"></div>
+                                                                <div class="action-block" id="action-block-mySQLSize"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider-m-o-b">
+                                                            <input type="text" id="mySQLSizeArea" style="width:50px;" value="1">&nbsp;&nbsp;&nbsp;&nbsp;<span>MB</span>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td valign="top">
+                        <div class="cloud-main-l" style="position: relative; top: 0px; left: 0px;">
+                            <div class="l-r fr" style="position: relative; top: 0px; left: 0px;">
+                                <div id="set-m" class=""  style="position: relative; top: 0px; left: 0px;">
+                                    <i class="discount-icon"></i>
+                                    <h4>升级后的配置</h4>
+                                    <ul>
+                                        <li>
+                                            <p class="p-o">链接数：</p>
+                                            <p id="webLinksShow" data-value="" class="p-t"></p>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <p class="p-o">带宽：</p>
+                                            <p id="webWidthShow" data-value="" class="p-t"></p>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <p class="p-o">流量：</p>
+                                            <p id="webFlowShow" data-value="" class="p-t"></p>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <p class="p-o">空间大小：</p>
+                                            <p id="ftpDiskQuotaShow" data-value="" class="p-t"></p>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <p class="p-o" style="width: 145px">SQL Server数据空间：</p>
+                                            <p id="MSSQLSizeShow" data-value="" class="p-t" style="margin-left: 70px"></p>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <p class="p-o" style="width: 145px">SQL Server日志空间：</p>
+                                            <p id="MSSQLLogSizeShow" data-value="" class="p-t" style="margin-left: 70px"></p>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li>
+                                            <p class="p-o" style="width: 80px">MySQL空间：</p>
+                                            <p id="mySQLSizeShow" data-value="" class="p-t" style="margin-left: 25px">0G</p>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li class="pri" style="padding-top:40px;">
+                                            <p class="p-o" style="width:60px;">费用总计：</p>
+                                            <p class="p-s">￥<span id="price"></span></p>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li id="discountMsg">
+                                            <s style="color:#CCC;font-size:14px;">价格￥<span id="totalPrice"></span></s>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#01bd01;font-size:14px;">省￥<span id="discountPrice"></span></span>
+                                        </li>
+                                        <li>
+                                            <span style="color:red;font-size:14px;" id="discountInfo"></span>
+                                        </li>
+                                    </ul>
+                                    <a href="javascript:void(0);" id="btnBuyNow" class="but disable">确认升级</a>
+                                    <div id="remark" style="color:red"></div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/vhostpublic.js"></script>
+<script src="js/upgrade.js"></script>
+</body>
+</html>

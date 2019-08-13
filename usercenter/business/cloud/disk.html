@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../../publicD/membercss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<script src="../../../publicD/memberjs.js"></script>
+	<script src="js/disk.js"></script>
+</head>
+<body style="height:100%;">
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+		<li><a href="javascript:void(0);">会员中心</a></li>
+	    <li><a href="javascript:void(0);">业务管理</a></li>
+		<li><a href="javascript:void(0);">我的服务器</a></li>
+	</ul>
+</div>
+<div class="ManagerRightuser">
+	<div style="margin:0px -20px 0px -20px">
+       	<ul class="manager-tab bind-tab">
+	        <li><a id="server" href="server.html">云主机</a></li>
+	        <!--<li class="liactive"><a id="disk" href="disk.html">云硬盘</a></li>-->
+	        <li><a id="snapshot" href="snapshot.html">快照</a></li>
+	        <!--<li><a id="secgroup" href="secgroup.html">安全组</a></li>-->
+        </ul>
+      	</div>
+        <table class="manager-table table-hover">
+           <thead>
+               <tr>
+                   <th>磁盘名称</th>
+                   <th>磁盘类型</th>                   
+                   <th>磁盘状态</th>     
+                   <th>磁盘容量</th>  
+                   <th>挂载/卸载</th> 
+                   <th>磁盘属性</th>   
+                   <th>所属实例</th>
+                   <th>操作</th>               
+               </tr>
+           </thead>
+           <tbody id="diskList">
+           </tbody>        
+   		</table>   
+   		<div id="page" class="pager_container clearfix" >
+       		<input id="totalcount" type="hidden" value="0" />
+       		<input id="pagenumber" type="hidden" value="1" />   
+       		<div id="pager"></div>
+       	</div> 
+   		<div class="add-uer-box" id="addBox" style="display:none">
+   			<div style="height:30px;padding:20px 0 10px 0">注：当前实例最多可创建<span id="snapshotCount" class="red"></span>个快照，已创建<span id="aSnapshot" class="red"></span>个</div>
+   			<div style="height:30px;padding:30px 0 10px 30px">硬盘名称：<span id="diskName"></span></div>     
+   			<div style="height:30px;padding:30px 0 10px 30px">实例ID：<span id="instanceId"></span></div> 
+   			<div style="height:100px;padding:30px;">   
+   				快照名称：  
+   				<input id="snapshotName" class="manager-input m-input width200" value="" maxlength="20" placeholder="请输入快照名称最长20位"><strong class="redColor f-l10 ">*</strong> 
+   				<input type="hidden" id="diskId"/>
+   			</div> 
+   		</div>
+</div>
+</div>
+</body>
+</html>

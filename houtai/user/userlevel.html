@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>会员等级</th>
+                                    <th>等级名称</th>
+                                    <th>充值范围</th>
+                                    <th>会员折扣</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userlevel">
+                            </tbody>
+                            <tr>
+	                         	<td>添加</td>
+	                         	<td>
+	                         		<input type="text"  class="manager-input m-input width100" placeholder="会员等级" id="levelCode">
+	                         	</td>
+	                         	<td>
+	                         		<input type="text"  class="manager-input m-input width100" placeholder="等级名称" id="levelName">
+	                         	</td>
+	                         	<td>
+	                         		<input type="text"  class="manager-input m-input width100" style="width:100px;" placeholder="最小充值" id="minCharge"> 
+	                         	~
+	                         		<input type="text"  class="manager-input m-input width100" style="width:100px;" placeholder="最大充值" id="maxCharge">
+	                         	</td>
+	                         	<td>
+	                         		<input type="text"  class="manager-input m-input width100" placeholder="会员折扣(1-10)" id="rebate">
+	                         	</td>
+	                         	<td>
+	                         		<a onclick="addVipgrade();" href="javascript:void(0);" class="btn btn-primary ">添加</a> 
+	                         	</td>
+                         	</tr>
+                        </table>
+                    </div>
+                    
+                    <!-- <div class="pager_container clearfix" >
+				            <input id="totalcount" type="hidden" value="0" />
+				            <input id="pagenumber" type="hidden" value="1" />
+				            <div id="pager"></div>
+			  		</div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/userlevel.js"></script>
+
+</html>

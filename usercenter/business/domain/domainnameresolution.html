@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <script src="../../../publicD/membercss.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../public/smoothness/jquery.ui.css">
+    <style>
+        .ui-widget-header{ background:url(/public/img/bghd.png) 50% 50% repeat-x;}
+    </style>
+
+    <!--element vue start-->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--element vue end-->
+    <style type="text/css">
+        .i_vue_rr_popper{width: 300px}
+    </style>
+
+</head>
+<body>
+<div id="MainContentDIV">
+    <div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+            <li><a href="javascript:void(0);">我的域名</a></li>
+        </ul>
+    </div>
+    <div class="ManagerRightuser">
+        <el-card class="box-card" style="width: 100%; margin-top: 10px">
+            当前域名为：<span v-html="domainName"></span>
+        </el-card>
+
+        <el-card class="box-card" style="width: 100%; margin-top: 10px">
+            <el-table
+                    v-loading="loading"
+                    ref="multipleTable"
+                    :data="tableData"
+                    tooltip-effect="dark"
+                    style="width: 100%"
+                    @selection-change="handleSelectionChange">
+                <el-table-column
+                        type="selection"
+                        width="55">
+                </el-table-column>
+                <el-table-column
+                        label="主机记录">
+                    <template slot-scope="scope">
+                        <span v-html="scope.row.rr" v-if="!scope.row._modify"></span>
+                        <el-autocomplete
+                                class="inline-input"
+                                v-if="scope.row._modify"
+                                v-model="scope.row.rr"
+                                :fetch-suggestions="querySearchRR"
+                                @select="handleSelectRR($event, scope.$index)"
+                                popper-class="i_vue_rr_popper"
+                                style="width: 160px;"
+                                placeholder="请输入主机记录"
+                        ></el-autocomplete>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        label="记录类型">
+                    <template slot-scope="scope">
+                        <span v-html="scope.row.typeLabel" v-if="!scope.row._modify"></span>
+                        <el-select
+                                v-model="scope.row.type"
+                                v-if="scope.row._modify"
+                                placeholder="请选择"
+                                @change="selectedType($event, scope.$index)"
+                                style="width: 110px">
+                            <el-option
+                                    v-for="item in options.type"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        label="线路">
+                    <template slot-scope="scope">
+                        <span v-html="scope.row.lineLabel" v-if="!scope.row._modify"></span>
+                        <el-select
+                                v-model="scope.row.line"
+                                v-if="scope.row._modify">
+                            <el-option
+                                    v-for="item in options.line"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        label="记录值">
+                    <template slot-scope="scope">
+                        <span v-html="scope.row.value" v-if="!scope.row._modify"></span>
+                        <el-input v-model="scope.row.value" v-if="scope.row._modify" placeholder="请输入记录值" style="width: 160px"></el-input>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        label="MX优先级">
+                    <template slot-scope="scope">
+                        <div v-if="scope.row.type!='MX'">-</div>
+                        <div v-if="scope.row.type=='MX'">
+                            <span v-html="scope.row.priority" v-if="!scope.row._modify"></span>
+                            <el-input-number v-model="scope.row.priority" v-if="scope.row._modify" :min="mx.min" :max="mx.max"></el-input-number>
+                        </div>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        label="TTL">
+                    <template slot-scope="scope">
+                        <span v-html="scope.row.ttlLabel" v-if="!scope.row._modify"></span>
+                        <el-select
+                                v-model="scope.row.ttl"
+                                v-if="scope.row._modify">
+                            <el-option
+                                    v-for="item in options.ttl"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        label="状态">
+                    <template slot-scope="scope">
+                        <span v-html="scope.row.statusName" v-if="!scope.row._modify"></span>
+                        <span v-if="scope.row._modify">-</span>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                        label="操作">
+                    <template slot-scope="scope">
+                        <div v-if="scope.row.recordId!=''">
+                            <el-button size="medium" type="primary" icon="el-icon-edit" circle v-if="!scope.row._modify" :disabled="scope.row.locked" @click="showEditLine(scope.$index)" title="修改"></el-button>
+                            <el-button size="medium" type="success" icon="el-icon-check" circle v-if="scope.row._modify" :disabled="scope.row.locked" @click="saveEditLine(scope.row)" title="保存"></el-button>
+                            <el-button size="medium" type="info" icon="el-icon-minus" circle v-if="scope.row._modify" :disabled="scope.row.locked" @click="cancelEditLine(scope.$index)" title="取消"></el-button>
+                            <el-button size="medium" type="success" icon="el-icon-upload2" circle v-if="!scope.row._modify && scope.row.status=='Disable'" :disabled="scope.row.locked" @click="startLine(scope.row)" title="开启"></el-button>
+                            <el-button size="medium" type="info" icon="el-icon-download" circle v-if="!scope.row._modify && scope.row.status=='Enable'" :disabled="scope.row.locked" @click="stopLine(scope.row)" title="暂停"></el-button>
+                            <el-button size="medium" type="danger" icon="el-icon-delete" circle v-if="!scope.row._modify" :disabled="scope.row.locked" @click="deleteLine(scope.row)" title="删除"></el-button>
+                        </div>
+                        <div v-if="scope.row.recordId==''">
+                            <el-button size="medium" type="success" icon="el-icon-check" circle v-if="scope.row._modify" @click="saveAddLine(scope.row)"></el-button>
+                            <el-button size="medium" type="info" icon="el-icon-minus" circle v-if="scope.row._modify" @click="deleteAddLine(scope.$index)"></el-button>
+                        </div>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <div style="margin-top: 20px">
+                您总共选择了（<span v-html="multipleSelection.length"></span>）条数据
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <el-button type="warning" @click="deleteChoose">删除选中项</el-button>
+                <el-button type="success" @click="startChoose">开启选中行</el-button>
+                <el-button type="info" @click="stopChoose">暂停选中行</el-button>
+                <el-button type="primary" @click="addPageLine">添加一行</el-button>
+            </div>
+            <div class="block" style="margin: 0 0 0 10px;">
+                <el-pagination
+                        layout="prev, pager, next"
+                        @current-change="changePage"
+                        @prev-click="changePage"
+                        @next-click="changePage"
+                        :total="page.total">
+                </el-pagination>
+            </div>
+            <div style="text-align:center">
+            <el-button-group>
+              <el-button type="primary" icon="el-icon-arrow-left" @click="resReturn">返回</el-button>
+            </el-button-group>
+            </div>
+        </el-card>
+    </div>
+</div>
+<!--右侧内容区 结束-->
+<!-- 页脚部分 开始-->
+<!-- 页脚部分 结束 -->
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/domainnameresolution.js"></script>
+</body>
+</html>

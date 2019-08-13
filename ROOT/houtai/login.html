@@ -1,0 +1,161 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户登录</title>
+<script type="text/javascript" src="public/maincss.js"></script>
+<link rel="stylesheet" type="text/css" href="css/manage.css">
+<style>
+	a,a:hover,a:visited{color:#000;text-decoration:;}
+</style>
+</head>
+<body>
+	<div class="login">
+		<div id="header">
+			<div class="header-layout y-row">
+		       <a href=""><h2 class="logo-title">帐号登录</h2></a>
+		       <a><h2 class="logo-title">|</h2></a>
+		       <a href="#" target="_blank"><h2 class="logo-title">首页 </h2></a>
+		   </div>
+		</div>
+		<div class="login_center y-row">
+			<img class="login-banner" src="img/login_left.jpg"/>
+			<div class="login_box">
+				<h2 class="header_title">账号登录    <font color="red" size="2pt"></font></h2>
+				<div class="login_input">
+					<span>用户名：</span><br/>
+					<input type="text" name="loginAccount" placeholder="请输入用户名" id="signup_name" value="" chknonull="yes" chkmsg="用户名" chktype="username"/>
+				</div>
+				<div class="login_input">
+					<span>密&nbsp;码：</span><br/>
+					<input type="password" name="loginPassword" placeholder="请输入密码" id="signup_pass" value="" chknonull="yes" chkmsg="密码" chktype="passwod" chkminlen="6" chkmaxlen="16"/>
+				</div>
+				<div class="login_input_img">
+					<span>验证码：</span><br/>
+					<input type="text" name="verifyCode" placeholder="请输入验证码" id="signup_select" maxlength="4" class="span4" chknonull="yes" chkmsg="验证码" chktype="num" chkminlen="4" chkmaxlen="4" >
+	                <img class="bf-img-code" src="img/loading.gif" onClick="refreshVcode();" alt="点击可更换" id="imgcode" title="点击可更换" >
+                    <a href="javaScript:void(0)" onClick="refreshVcode()" style="font-size:12px;color:#255796;vertical-align:sub" title="点击刷新">看不清，换一张</a>
+                    <span id="msg" style="padding-top:5px;color:#ff6800"></span>
+	            </div>
+	            <div id="login-submit">
+			        <input id="fm-login-submit" value="登录" class="fm-button fm-submit" type="button" onClick="comlogin();" tabindex="4"/>
+			    </div>
+			</div>
+		</div>
+		<div class="copyright">
+		    <div class="container">
+		        <p id="logfoot"></p>
+		    </div>
+		</div>
+	</div>
+<script type="text/javascript" src="public/main.js"></script>
+<script>
+$(function(){
+	var code=request("code");
+	if(isNotNull(code))
+		if(code=="expiry")
+			$("#msg").html("会话已过期，请重新登录");
+
+	if ($.cookie('hlhtName')==null || $.cookie('hlhtName')=="undefined"){
+
+	}else{
+		window.location.href='index.html';
+	}
+
+	//刷新验证码
+	refreshVcode();
+	var logfoot = '';
+    var comname = $.session.get('comname');
+    var webicp2 = $.session.get('webicp2');
+    logfoot +='Copyright©2002-2016 ' + comname + ' 版权所有 《中华人民共和国增值电信业务经营许可证》'+webicp2;
+    $('#logfoot').html(logfoot);
+
+	$('.login_box').keydown(function(ev){
+		var e=ev||event;
+		keycode = e.which || e.keyCode;
+		 if (keycode==13) {
+ 			$("#fm-login-submit").trigger("click");
+ 		 }
+	});
+})
+function comlogin(){
+	var u_name= $("#signup_name").val();
+	var u_pass = $("#signup_pass").val();
+	var u_code = $("#signup_select").val();
+	if(Commonjs.isEmpty(u_name)){
+		Commonjs.alert("用户名不能为空");
+		return false;
+	}
+	if(Commonjs.isEmpty(u_pass)){
+		Commonjs.alert("密码不能为空");
+		return false;
+	}
+	if(Commonjs.isEmpty(u_code)){
+		Commonjs.alert("验证码不能为空");
+		return false;
+	}
+	var service = {};
+	service.account = u_name;
+	service.password = cloudEncrypt.encodePublic(u_pass);
+	service.checkcode = u_code;
+	var fn="login";
+	service = Commonjs.jsonToString(service)
+	var params = Commonjs.getParams(fn,service);//获取参数
+	$.ajax({
+		datatype: "json",
+		type: "POST",
+		url: sysurl,
+		data: params,
+		timeout: 8000,
+		cache: false,
+		beforeSend: function() {
+			divalertLoad('正在加载数据,请稍等');
+		},
+		success: function(obj) {
+			divcloseLoad();
+			var data = jQuery.parseJSON(obj);
+			if(data.result == "success"){
+				var cookietime = new Date();
+				var date = new Date();
+				cookietime.setTime(date.getTime() + (360 * 360 * 1000));//coockie保存1小时
+				$.cookie('hlhtName',data.data.account,{expires: cookietime,path:"/"});
+				$.cookie('loginType',2,{expires: cookietime,path:"/"});
+				window.location.href='gaea.html';
+			}
+			if (data.result == "failure") {
+				$("#signup_pass").val('');
+				$("#signup_select").val('');
+				refreshVcode();
+				if (data.result == "S202") {
+					if (url == weburl) {
+						$.cookie("hluserName", null, {
+							expires: -1,
+							path: "/"
+						});
+						top.location.href = realPath + '/houtai/login.html';
+					} else {
+						$.cookie("hlhtName", null, {
+							expires: -1,
+							path: "/"
+						});
+						Commonjs.alerturl(data.msg, realPath + '/houtai/login.html');
+
+					}
+
+					return false;
+				} else {
+					Commonjs.alert(data.msg);
+					return false;
+				}
+			}
+		},
+		error: function() {
+			closeload();
+			alertNew('服务器忙，请稍候再试！');
+		}
+	})
+}
+
+</script>
+</body>
+</html>

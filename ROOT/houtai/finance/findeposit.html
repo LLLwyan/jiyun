@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    <div class="product-detail-desc mt-15">
+			      		<p class="pt-5"><p><strong class="redColor">友情提醒:</strong>入账/扣款都是即时入账
+			            </p> 
+		      		</div>
+                    <table class="manager-table table table-hover ">
+          <form class="form-inline" role="form" id="financefrom">
+          <tbody>
+          <tr>
+            <th width="150" >记账摘要：</th>
+            <td colspan="3" align="left">
+            	<select class="width288 form-control" id="itemId">
+                    <option value="1">真实入账</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <th width="150" >会员名：</th>
+            <td colspan="3" align="left"><input id="userName" class="manager-input m-input width288" value="" size="40">	<strong class="redColor f-l10">*请输入要充值的会员名</strong></td>
+          
+          </tr>
+          <tr>
+            <th width="150" >金额：</th>
+            <td colspan="3" align="left"><input id="amount" class="manager-input m-input width288" value="" size="40"><strong class="redColor f-l10">*请输入要充值的金额</strong></td>
+          </tr>
+          <tr>
+            <th width="150" >订单编号：</th>
+            <td colspan="3" align="left"><input id="snId" class="manager-input m-input width288" value="" size="40"><strong class="redColor f-l10">*请输入订单编号/没有可不填</strong></td>
+          </tr>
+           <tr>
+            <th width="150">付款方式：</th>
+            <td colspan="3" align="left">
+           
+                    <select class="width288 form-control " id="bankCode">
+                                <option value="">请选择付款方式</option>
+                        </select>
+                    
+           </td>
+          </tr>
+          
+           <tr>
+            <th width="150">凭证号：</th>
+            <td colspan="3" align="left">
+                  <input id="billno" class="manager-input m-input width288" value="" size="40">
+                  <strong class="redColor f-l10">*请输入凭证号/没有可不填</strong>
+           </td>
+          </tr>
+          
+           <tr>
+            <th width="150">备注：</th>
+            <td colspan="3" align="left">
+                  <input id="remark" class="manager-input m-input width288" value="" size="40">
+                  <strong class="redColor f-l10">*填写备注/没有可不填</strong>
+           </td>
+          </tr>
+          
+          <tr class="no-border">
+          <td></td>
+            <td colspan="3" align="left">
+			<div class="tipinfo"></div>
+			  <input type="button" value="确定" class="btn btn-primary" onclick="addUserAccountDetail();">
+              &nbsp;&nbsp;
+              <input type="reset" value="重 填" class="btn btn-primary">
+			  </td>
+          </tr>
+        </tbody>
+        </form>
+        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/findeposit.js"></script>
+</html>

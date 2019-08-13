@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品迁入引导首页</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="../cloud/yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        .time {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .bottom {
+            line-height: 12px;
+        }
+
+        .button {
+            padding: 0;
+            float: right;
+        }
+
+        .image {
+            width: 128px;
+            display: block;
+        }
+
+        .clearfix:before,
+        .clearfix:after {
+            display: table;
+            content: "";
+        }
+
+        .clearfix:after {
+            clear: both
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div id="main-block" v-cloak>
+    <div style="width: 100%;">
+        <div class="yunconfig-header">
+                <div style="float: left"><svg class="icon" aria-hidden="true" style="height: 40px; width: 40px"><use xlink:href="#icon-kuaisuxiangdao"></use></svg></div>
+            <div style="float: left; line-height: 50px; margin-left: 15px">产品迁入向导</div>
+        </div>
+    </div>
+    <el-tabs type="border-card" style="margin-top: 10px">
+        <el-tab-pane label="域名迁入">
+            <div  _funCode="domainProIn">
+                <div style="width: 430px;">
+                    <el-upload
+                            ref="uploader"
+                            class="upload-demo"
+                            drag
+                            action="/web.do?fn=proInDomainUpload"
+                            :limit="1"
+                            :on-success="domainUploadSuccess">
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                        <div class="el-upload__tip" slot="tip">
+                            只能上传xls,xlsx文件，且不超过5M。
+                             <a href="/source/prointmp/domain_import.xlsx" target="_blank" style="color: #FF0000; font-weight: bolder">下载模板</a>
+                        </div>
+                    </el-upload>
+                </div>
+                <div v-if="!domain.scanFlag" v-html="domain.error"></div>
+                <div v-if="domain.scanFlag">
+                    <el-table
+                            :data="domain.scanTable"
+                            style="width: 100%"
+                            heigth="300"
+                            @selection-change="handleSelectionChangeDomain"
+                    >
+                        <el-table-column
+                                type="selection"
+                                :selectable="domainSelectAble"
+                                width="55">
+                        </el-table-column>
+                        <el-table-column
+                                prop="domain"
+                                label="域名"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="userAccount"
+                                label="会员账号"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="regType"
+                                label="注册商代码"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="regName"
+                                label="注册商名称"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="startTime"
+                                label="开始时间"
+                                sortable>
+                            <template scope="scope">
+                                <span v-html="formatTime(scope.row.startTime)"></span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="endTime"
+                                label="结束时间"
+                                sortable>
+                            <template scope="scope">
+                                <span v-html="formatTime(scope.row.endTime)"></span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="dns1"
+                                label="DNS1"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="dns2"
+                                label="DNS2"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="productCode"
+                                label="产品编号"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="productName"
+                                label="产品名称"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                label="是否可导入"
+                                sortable>
+                            <template scope="scope">
+                                <span v-if="scope.row.refer==1">是</span>
+                                <span v-if="scope.row.refer==0">否</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="remark"
+                                label="说明">
+                        </el-table-column>
+                    </el-table>
+
+                    <div style="margin-top: 15px">
+                        <el-button type="primary" @click="importDomain">导入选中项</el-button>
+                        <el-button type="danger" @click="deleteDomain">删除选中项</el-button>
+                        <el-button type="success" @click="clearDomain">清除不能导入项</el-button>
+                    </div>
+                </div>
+            </div>
+        </el-tab-pane>
+        <el-tab-pane label="云主机迁入">
+            <div style="line-height: 30px">导入服务器上已存在的云主机（由慧林受控开通的）：</div>
+            <div  _funCode="cloudProIn">
+                <div style="width: 430px">
+                    <el-upload
+                            ref="uploaderCloud"
+                            class="upload-demo"
+                            drag
+                            action="/web.do?fn=proInCloudUpload"
+                            :limit="1"
+                            :on-success="cloudUploadSuccess">
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                        <div class="el-upload__tip" slot="tip">
+                            只能上传xls,xlsx文件，且不超过5M。
+                            <a href="/source/prointmp/cloud_import.xlsx" target="_blank" style="color: #FF0000; font-weight: bolder">下载模板</a>
+                        </div>
+                    </el-upload>
+                </div>
+                <div v-if="!cloud.scanFlag" v-html="cloud.error"></div>
+                <div v-if="cloud.scanFlag">
+                    <el-table
+                            :data="cloud.scanTable"
+                            style="width: 100%"
+                            heigth="300"
+                            @selection-change="handleSelectionChangeCloud"
+                    >
+                        <el-table-column
+                                type="selection"
+                                :selectable="domainSelectAble"
+                                fixed
+                                width="55">
+                        </el-table-column>
+                        <el-table-column
+                                prop="instance"
+                                label="实例名称"
+                                min-width="180"
+                                fixed
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="userAccount"
+                                label="会员账号"
+                                fixed
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="startTime"
+                                label="开始时间"
+                                min-width="100"
+                                sortable>
+                            <template scope="scope">
+                                <span v-html="formatTime(scope.row.startTime)"></span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="endTime"
+                                label="结束时间"
+                                min-width="100"
+                                sortable>
+                            <template scope="scope">
+                                <span v-html="formatTime(scope.row.endTime)"></span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="regionCode"
+                                label="地域代码"
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="regionName"
+                                label="地域名称"
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="zoneCode"
+                                label="可用区代码"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="zoneName"
+                                label="可用区名称"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="serverCode"
+                                label="服务器编码"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="serverName"
+                                label="服务器名称"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="serverIp"
+                                label="服务器IP"
+                                min-width="160"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="sysPass"
+                                label="管理密码"
+                                min-width="100">
+                        </el-table-column>
+                        <el-table-column
+                                prop="aloneIP"
+                                label="是否独立IP"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="systemDiskSize"
+                                label="系统盘大小（单位：G）"
+                                min-width="200"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="systemDiskType"
+                                label="系统盘类型"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="dataDiskSize"
+                                label="系统盘大小（单位：G）"
+                                min-width="200"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="dataDiskType"
+                                label="数据盘类型"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="osPath"
+                                label="镜像源路径"
+                                min-width="260"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="osType"
+                                label="操作系统类型"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="osVersion"
+                                label="操作系统版本号"
+                                min-width="150"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="modelId"
+                                label="实例机型代码"
+                                min-width="150"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="modelName"
+                                label="实例机型名称"
+                                min-width="150"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                label="是否可导入"
+                                min-width="130"
+                                fixed="right"
+                                sortable>
+                            <template scope="scope">
+                                <span v-if="scope.row.refer==1">是</span>
+                                <span v-if="scope.row.refer==0">否</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="remark"
+                                label="说明"
+                                fixed="right"
+                                min-width="130">
+                        </el-table-column>
+                    </el-table>
+
+                    <div style="margin-top: 15px">
+                        <el-button type="primary" @click="importCloud">导入选中项</el-button>
+                        <el-button type="danger" @click="deleteCloud">删除选中项</el-button>
+                        <el-button type="success" @click="clearCloud">清除不能导入项</el-button>
+                    </div>
+                </div>
+            </div>
+        </el-tab-pane>
+        <el-tab-pane label="虚拟主机迁入">
+            <div  _funCode="vhostProIn">
+                <div style="width: 430px">
+                    <el-upload
+                            ref="uploaderVHost"
+                            class="upload-demo"
+                            drag
+                            action="/web.do?fn=proInVHostUpload"
+                            :limit="1"
+                            :on-success="vHostUploadSuccess">
+                        <i class="el-icon-upload"></i>
+                        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                        <div class="el-upload__tip" slot="tip">
+                            只能上传xls,xlsx文件，且不超过5M。
+                            <a href="/source/prointmp/vhost_import.xlsx" target="_blank" style="color: #FF0000; font-weight: bolder">下载模板</a>
+                        </div>
+                    </el-upload>
+                </div>
+                <div v-if="!vHost.scanFlag" v-html="vHost.error"></div>
+                <div v-if="vHost.scanFlag">
+                    <el-table
+                            :data="vHost.scanTable"
+                            style="width: 100%"
+                            heigth="300"
+                            @selection-change="handleSelectionChangeVhost"
+                    >
+                        <el-table-column
+                                type="selection"
+                                :selectable="domainSelectAble"
+                                fixed
+                                width="55">
+                        </el-table-column>
+                        <el-table-column
+                                prop="webName"
+                                label="实例编号"
+                                fixed
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="userAccount"
+                                label="会员账号"
+                                fixed
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="productCode"
+                                label="产品编号"
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="productName"
+                                label="产品名称"
+                                min-width="100"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="startTime"
+                                label="开通时间"
+                                min-width="100"
+                                sortable>
+                            <template scope="scope">
+                                <span v-html="formatTime(scope.row.startTime)"></span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="endTime"
+                                label="到期时间"
+                                min-width="100"
+                                sortable>
+                            <template scope="scope">
+                                <span v-html="formatTime(scope.row.endTime)"></span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="webSiteName"
+                                label="WEB站点名称"
+                                min-width="180"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="webSiteServerCode"
+                                label="WEB所在服务器编号"
+                                min-width="180"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="webFlow"
+                                label="流量限额（G/月）"
+                                min-width="180"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="ftpName"
+                                label="FTP用户名"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="ftpPwd"
+                                label="FTP密码"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="ftpServerCode"
+                                label="FTP所在服务器编号"
+                                min-width="180"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="mysqlName"
+                                label="MySQL库名"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="mysqlPwd"
+                                label="MySQL密码"
+                                min-width="130"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="mysqlServerCode"
+                                label="MySQ所在服务器编号"
+                                min-width="260"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="mysqlSize"
+                                label="空间大小（M）"
+                                min-width="150"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="sqlServerName"
+                                label="SQL Server库名"
+                                min-width="200"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="sqlServerCode"
+                                label="SQL Server所在服务器编号"
+                                min-width="260"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="sqlPwd"
+                                label="SQL Server密码"
+                                min-width="220"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="sqlServerCode"
+                                label="SQL Server所在服务器编号"
+                                min-width="260"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                label="是否可导入"
+                                fixed="right"
+                                min-width="130"
+                                sortable>
+                            <template scope="scope">
+                                <span v-if="scope.row.refer==1">是</span>
+                                <span v-if="scope.row.refer==0">否</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="remark"
+                                label="说明"
+                                fixed="right"
+                                min-width="260">
+                        </el-table-column>
+                    </el-table>
+
+                    <div style="margin-top: 15px">
+                        <el-button type="primary" @click="importVHost">导入选中项</el-button>
+                        <el-button type="danger" @click="deleteVHost">删除选中项</el-button>
+                        <el-button type="success" @click="clearVHost">清除不能导入项</el-button>
+                    </div>
+                </div>
+            </div>
+        </el-tab-pane>
+    </el-tabs>
+</div>
+</body>
+<script src="../../public/main.js"></script>
+<script language="JavaScript">
+    document.write('<link rel="stylesheet" href="'+realPath+'/public/fonts/iconfont.css">');
+</script>
+<script src="../../public/right.js"></script>
+<script src="js/index.js"></script>
+</html>

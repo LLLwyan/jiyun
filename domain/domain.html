@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="hd">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>域名注册</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="域名注册,域名查询,域名申请,域名购买,注册域名,域名批量查询,Whois查询">
+	<script type="text/javascript" src="../public/maincss.js"></script>
+	<link href="../css/domain.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="../public/main.js"></script>	
+	<script src="js/domain.js"></script>
+	<style>
+		.main-menu>li>a{
+			color: #333;
+		}
+		.mini-cart>a{
+			color: #333;
+		}
+		.header-sticky.is-sticky{
+			background: #fff;
+		}
+		.mini-cart-log>a{
+			color: #333;
+		}
+	</style>
+</head>
+<body class="min990">
+<!--头部开始-->
+<header> 
+	    <div class="header-container"> 
+	     <div class="header-area header-absolute header-sticky pt-10" style="position: relative;"> 
+	      <div class="container"> 
+	       <div class="row"> 
+	        <div class="col-lg-2 col-md-2 col-sm-2"> 
+	         <div class="logo-area"> 
+	          <a href="/index.html"> <img src="/img/jy-logo-b.png" alt="极云天下" style="width: 80%;"/> </a> 
+	         </div> 
+	        </div> 
+	        <div class="col-lg-10 col-md-10 col-sm-10 text-lg-right"> 
+	         <div class="header-menu"> 
+	          <nav> 
+	           <ul class="main-menu"> 
+	            <li><a href="/index.html">首页</a> 
+	            </li> 
+	            <li><a href="/cloud/hwAct.html">最新活动</a></li> 
+	            <li><a href="/domain/index.html">域名注册</a></li> 
+	            <li><a href="#">华为云</a>
+	              <ul class="dropdown"> 
+	              <li><a href="/cloud/hw.html">华为云产品介绍</a></li> 
+	              <li><a href="/cloud/thrid-two.html">在线购买</a></li> 
+	              <li><a href="/cloud/gl.html">关联账号购买</a></li> 
+	              <li><a href="/about/about.html?content=zhizi">合作伙伴证书</a></li> 
+	             </ul> 
+	            </li> 
+	            <li><a href="#">IDC服务</a> 
+	             <ul class="dropdown"> 
+	              <li><a href="/idc/xxtg.html">服务器托管</a></li> 
+	              <li><a href="/idc/xxzy.html">服务器租用</a></li> 
+	              <li><a href="/idc/HK.html">海外服务器</a></li> 
+	              <li><a href="/idc/ddk.html">四川大带宽</a></li> 
+	             </ul> </li> 
+	            <li><a href="#">行业解决方案</a> 
+	              <ul class="dropdown"> 
+	              <li><a href="/solution/dskj.html">电商跨境贸易解决方案</a></li> 
+	              <li><a href="/solution/idc.html">混合云IDC解决方案</a></li> 
+	              <li><a href="/solution/ds.html">电商解决方案</a></li> 
+	             </ul></li> 
+	             <li><a href="#">增值服务</a> 
+	              <ul class="dropdown"> 
+		              <li><a href="/value/web.html">网站建设</a></li> 
+		              <li><a href="/value/dwA.html">服务器代维</a></li> 
+		               
+	              </ul>
+	           </ul> 
+	          </nav> 
+	         </div> 
+	        
+	        <div class="header-option" id="yeslogged"> 
+	          <div class="mini-cart-search"> 
+	           	
+	            <div class="mini-cart-log"> 
+	            	<a href="/usercenter/index.html" id="hluserName" style="color: red;"></a>
+	            </div>
+	            <div class="mini-cart-log"> 
+	            	<a class="nav-shopcar" href="/usercenter/shopping/shoppinglist.html" class="cart">&nbsp;&nbsp;购物车&nbsp;<span id="cartCount">0</span></a>
+	           </div>
+	           <div class="mini-cart-log"> 
+	            	<a href="javascript:void(0)" onClick="Cancellation();" >退出</a>
+	            </div>
+	          </div> 
+	        </div> 
+	         <div class="header-option" id="nologged" > 
+	          <div class="mini-cart-search"> 
+	           <div class="mini-cart"> 
+	            <a href="/login.html"> 登 &nbsp;录</a> 
+	           </div> 
+	           
+	           <div class="currency"> 
+	            <div class="currency-box"> 
+	             <a href="/register/register.html">
+	             	<button class="login-btn">免费注册</button>
+	             </a> 
+	             
+	            </div> 
+	           </div> 
+	          </div> 
+	         </div> 
+	        </div> 
+	       </div> 
+	       <div class="row"> 
+	        <div class="col-12"> 
+	         <div class="mobile-menu d-lg-none"></div> 
+	        </div> 
+	       </div> 
+	      </div> 
+	     </div> 
+	    </div> 
+	   </header>
+<!--头部结束-->
+<div id="content"> 
+   <!-- banner区域+查询区域 开始 -->
+   <div class="domain-content" style="height:420px;margin-top:-22px;">
+    <div class="wide1190">
+        <p class="searchTxt">一个域名一个<span class="searchNum">梦想</span>，一个域名一个<span class="searchNum">奇迹</span>，一个域名一份<span class="searchNum">事业</span></p> 
+	<div class="search_content">
+       <div class="search_bj">
+			<div class="search_box">
+					<div class="sbox_content border0">
+			            <div class="sbox_text_d">
+			                <input class="sbox_text" type="text" placeholder="请输入您要注册的域名，如：winiis" id="domainName" name="prefix">
+			            </div>
+			            <div class="sbox_btn">
+			            	<input type="hidden" id="dom" name="" value=""/>
+			                 <a href="javascript:" class="search_btn fn_search_btn1" onClick="domainsearch();">查域名</a> 
+			            </div>
+			        </div>
+		  </div>
+		</div>
+        </div>
+      <div class="domext-select-container">
+       <div class="radio i-checks"> 
+       <label class=""> 
+        <div class="iradio_square-green " style="position: relative;" id="checkall"> 
+         <input type="radio" value="option1" name="option" class="rcboxhide" onclick="checkall()" /> 
+         <ins class="iCheck-helper" ></ins>
+        </div> <i></i> 全选 </label> 
+       <label class=""> 
+        <div class="iradio_square-green " style="position: relative;" id="checkinverse"> 
+         <input type="radio" value="option1" name="option" class="rcboxhide" onclick="checkinverse()" /> 
+         <ins class="iCheck-helper"></ins>
+        </div> <i></i> 全不选 </label> 
+       <label class=""> 
+        <div class="iradio_square-green checked" style="position: relative;" id="checkchang"> 
+         <input type="radio" value="option1" name="option" class="rcboxhide" onclick="checkchang()" /> 
+         <ins class="iCheck-helper"></ins>
+        </div> <i></i> 常用 </label> 
+      </div> 
+      </div>
+        <div class="domext-wrapper clearfix" style="padding: 10px 78px 30px;" id="showsuffix"> 
+        	<div id="jiazaikuang">
+                <img src="../images/zhuangzhuanzhuan.gif">
+                <p style="margin-top: 10px;font-size: 15px;">正在加载中，请稍等...</p>
+            </div>
+      </div>
+     </div>
+  </div>
+ </div>
+
+<!--价格显示-->
+<div class="domain-main">	
+	<div class="domain-product">
+    <div class="heading">
+		<h3>域名产品价格对比</h3>
+        </div>
+		<div class="dp-table">
+			<table class="table-stripe table-hover" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+				<tr>
+					<th width="25%">产品类型</th>
+					<th width="25%">产品描述</th>
+					<th width="25%">注册价格</th>
+					<th width="25%">续费价格</th>
+				</tr>
+                </thead>
+                <tr id="showimg" style="display:none"><td colspan="4"><img src="../../public/img/uploading.gif"></td></tr>
+                <tbody id="doaminlist">
+                </tbody>
+			</table>
+		</div>
+	</div>
+    </div>
+   
+    <div class="domain-main">
+    <div class="domain-product">
+    <div class="domain-buysteps" style="border:o;">
+        <div class="heading">
+		<h3>注册流程</h3>
+        </div>
+            <div class="buysteps">
+            <div class="container">       
+	<div class="buysteps-con-l">
+  	<img src="../images/buysteps.gif">
+    </div>
+    
+   	<div class="buysteps-con-r">
+   	<p class="buysteps-prompt"><span>*</span>温馨提示：国内域名注册另需进行实名制认证</p>
+	<div class="buysteps-op">
+		<a href="#" target="_blank" class="btn btn-primary">现在注册</a>
+	</div> 
+    </div>
+    </div>
+    
+    </div>
+	
+	</div>
+    </div>
+  </div>
+       <!-- 下面是前/后按钮代码，如果不需要删除即可 --> 
+       <a class="prev" href="javascript:void(0)"></a> <a class="next" href="javascript:void(0)"></a> </div>
+<div class="clear"></div>
+<!--价格显示结束-->
+
+<div id="newActSlide" class="slide-container" style="background-color:#5976A0;">
+    <div class="domain-activity of">    
+		<h3 style="color:#fff;">域名最新活动</h3>	
+	</div>
+       <div class="slide-wrapper">
+        <div class="tempWrap" style="overflow:hidden; position:relative; width:1160px" id="product">
+         </div>
+      </div>
+       <div class="slide-pagination">
+        <ul>
+           <li class="">1</li>
+           <li class="">2</li>
+         </ul>
+      </div>
+       <!-- 下面是前/后按钮代码，如果不需要删除即可 --> 
+       <a class="prev" href="javascript:void(0)"></a> <a class="next" href="javascript:void(0)"></a> </div>
+
+<!-- 页脚部分 开始-->
+<footer>
+    	<div class="service-footer container">
+    		<div class="row">
+    			<div class="col-md-3 col-sm-3">
+    				<img src="/img/service-footer1.png" alt="服务"/>
+    				<div class="service-footer-info">
+    					<p class="service-footer-title">服务</p>
+    					<p class="service-footer-contant">7*24小时服务支持</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 col-sm-3">
+   				<img src="/img/service-footer2.png" alt="备案"/>
+   				<div class="service-footer-info">
+    					<p class="service-footer-title">备案</p>
+    					<p class="service-footer-contant">0元快速备案</p>
+    				</div>
+    			</div>
+   			<div class="col-md-3 col-sm-3">
+    				<img src="/img/service-footer3.png" alt="保障"/>
+   				<div class="service-footer-info">
+    					<p class="service-footer-title">保障</p>
+    					<p class="service-footer-contant">100倍故障赔偿</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 col-sm-3">
+   				<img src="/img/service-footer4.png" alt="退款"/>
+    				<div class="service-footer-info">
+    					<p class="service-footer-title">退款</p>
+    					<p class="service-footer-contant">5天无理由退款</p>
+    				</div> 				
+    			</div>
+    		</div>
+    	</div>
+    	<div class="container-fluid pt-50 footer-intr">
+    		<div class="container">
+    			<div class="row">
+    				<div class="footer-info-link">
+    					<p class="footer-title">热门产品</p>
+    					<a class="footer-link" href="/domain/index.html">域名注册</a>
+    					<a class="footer-link" href="/cloud/thrid-two.html">云服务器</a>
+    					<a class="footer-link" href="/idc/wjzy.html">服务器租用</a>
+    					<a class="footer-link" href="/idc/HK.html">香港服务器</a>
+    					<a class="footer-link" href="/idc/USA.html">美国服务器</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">帮助中心</p>
+    					<a class="footer-link" href="/support/domainHelp.html">域名备案</a>
+    					<a class="footer-link" href="/support/cloudHelp.html">云服务</a>
+    					<a class="footer-link" href="/support/IDCHelp.html">IDC服务</a>
+    					<a class="footer-link" href="/support/kfHelp.html">应用开发</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">产品与支持</p>
+    					<a class="footer-link" href="/about/about.html?content=beian">备案流程</a>
+    					<a class="footer-link" href="/about/about.html?content=shengqing">测试机申请</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">关于极云</p>
+    					<a class="footer-link" href="/about/index.html">关于我们</a>
+    					<a class="footer-link" href="/about/connect.html">联系方式</a>
+    					<a class="footer-link" href="/about/about.html?content=corporateculture">企业文化</a>
+    					<a class="footer-link" href="/about/about.html?content=zhizi">公司资质</a>
+    				</div>
+    				<div class="col-md-2 col-sm-2">
+    					<div class="footer-wx">
+  					<img src="/img/footer-wx.png" alt="极云天下公众号">
+  					<p>关注微信公众号</p>
+    				    </div>
+    			    </div>
+    				<div class="col-md-4 col-sm-4">
+    					<div class="mc-list-items1"> 
+  	  	          <p></p> 
+  		  	          <p style="font-size:24px">028-65773958</p> 
+  		              <div> 
+  		  	         <a class="footer-sale1" data-title="电话：18584883263" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=167730759&site=qq&menu=yes" rel="nofollow">售前咨询</a>
+  		  	         <a class="footer-sale2" data-title="电话：18512828895" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=766686207&site=qq&menu=yes" rel="nofollow">售后服务</a>
+  		              </div> 
+  		  	          <p style="margin-top:10px">地址：中国（四川）自由贸易试验区成都高新区天府四街199号2栋11楼1110室</p> 
+  		  	          </div> 
+    				</div>
+    			<div class="footer-line"><img style="width: 100%;height: 1px;" src="/img/footer-line.png" alt=""></div>
+  
+    			<div class="beian-info pb-10">
+     				<p>版权所有 © 成都极云天下科技有限公司 保留一切权利  <a href="http://www.beian.miit.gov.cn" rel="nofollow">蜀ICP备17027862号-1</a></p>
+    				<p>《中华人民共和国增值电信业务经营许可证》经营许可证编号 川B1-20170453</p>
+     			</div>
+    		</div>
+    	</div>
+    </footer>
+<!-- 页脚部分 结束 --> 
+<!-- 侧边栏，包含客服等信息 -->
+</body>
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /houtai/
+Sitemap: http://www.cdjiyun.com/sitemap.xml

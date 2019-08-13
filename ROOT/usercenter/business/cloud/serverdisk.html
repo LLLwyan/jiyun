@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../../publicD/maincss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<script src="../../../publicD/memberjs.js"></script>
+
+	<!--element vue start-->
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<!-- import Vue before Element -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- import JavaScript -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<!--element vue end-->
+
+</head>
+<body>
+<div id="MainContentDIV" v-cloak>
+<div id="SitePath">
+	<ul>
+		<li><a href="javascript:void(0);">会员中心</a></li>
+	    <li><a href="javascript:void(0);">业务管理</a></li>
+		<li><a href="javascript:void(0);">我的服务器</a></li>
+	</ul>
+</div>
+<div class="ManagerRightuser">
+	<div style="margin:10px -20px 0px -20px">
+		<div class="server-title">
+			<b>实例：</b><span id="instanceId"></span>
+		</div>
+	</div>
+   	<div style="margin:10px -20px 0px -20px">
+   		<ul class="manager-tab bind-tab">
+        	<li tag="allorders"><a id="instanceDetail" href="javascript:;">当前实例详情</a></li>
+       		<li tag="completedorders" class="liactive"><a id="instanceDisk" href="javascript:;">当前实例硬盘</a></li>
+       	    <li tag="nopayorders" style="display: none"><a id="instanceSnapshot" href="javascript:;">当前实例快照</a></li>
+        </ul>
+  	</div>
+    <table class="manager-table table-hover">
+       <thead>
+           <tr>
+       		<th>磁盘名称</th>
+               <th>磁盘类型</th>
+               <th>磁盘状态</th>
+               <th>磁盘容量</th>
+               <th>可挂载/卸载</th>
+               <th>磁盘属性</th>
+               <th>付费类型</th>
+               <th>操作</th>
+           </tr>
+       </thead>
+       <tbody id="diskList">
+       </tbody>
+	</table>
+	<div class="add-uer-box" id="addBox" style="display:none">
+		<div style="height:30px;padding:20px 0 10px 0">注：当前实例最多可创建<span id="snapshotCount" class="red"></span>个快照，已创建<span id="aSnapshot" class="red"></span>个</div>
+		<div style="height:30px;padding:30px 0 10px 30px">硬盘名称：<span id="diskName"></span></div>
+		<div style="height:30px;padding:30px 0 10px 30px">实例ID：<span id="instanceId2"></span></div>
+		<div style="height:100px;padding:30px;">
+			快照名称：
+			<input id="snapshotName" class="manager-input m-input width200" value="" maxlength="20" placeholder="请输入快照名称最长20位"><strong class="redColor f-l10 ">*</strong>
+			<input type="hidden" id="diskId"/>
+		</div>
+	</div>
+</div>
+
+	<el-dialog title="快照管理" :visible.sync="dialogTableVisible">
+		<el-table :data="tableData">
+			<el-table-column property="name" label="快照名称" width="150"></el-table-column>
+			<el-table-column property="status" label="状态"></el-table-column>
+			<el-table-column property="description" label="描述信息"></el-table-column>
+			<el-table-column property="created_at" label="创建时间"></el-table-column>
+			<el-table-column property="created_at" label="操作" width="260">
+				<template scope="scope">
+					<el-button type="warning" @click="deleteSnapshot(scope.row)" plain>删除</el-button>
+					<el-button type="primary" @click="rollbackSnapshot(scope.row)" plain>回滚数据</el-button>
+				</template>
+			</el-table-column>
+		</el-table>
+	</el-dialog>
+</div>
+
+<script src="js/serverdisk.js"></script>
+<script src="js/server.public.js"></script>
+</body>
+</html>

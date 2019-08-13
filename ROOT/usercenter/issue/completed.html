@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+<script src="../../publicD/maincss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+<link rel="stylesheet" href="../../css/zoomify.min.css">
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+        <ul>
+             <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">工单管理</a></li>
+              <li><a href="javascript:void(0);">工单详情</a></li>
+
+        </ul>
+	</div>
+		<div class="ManagerRightuser cc">
+		         	<div style="margin-top:20px;border-left: 3px solid #6d7781">
+						<div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+							<b class="my_now_title">工单详情</b>
+						</div>
+					</div>
+					<div id="closeRemind" style="margin-top:10px;color:red;display:none;">
+						注：工单将于<span id="closeTime"></span>后自动关闭，如还有疑问可继续回复！
+					</div>
+     		      <div class="bus_list">
+                 	<div class="issueTop">
+                 		<table style="width:100%" class="manager-table table table-hover ">
+                    		<tbody id="realNameMailAuthTbody"></tbody>
+                    	</table>
+					</div>
+					<div style="margin-top:20px;border-left: 3px solid #6d7781">
+						<div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+							<b class="my_now_title">沟通记录</b>
+						</div>
+					</div>
+  					<div class="issue-content" style="margin-top: 10px;">
+                    <div id = "queryContent" style="border: 1px solid #DDD;text-align: left;padding: 20px;">
+	                    <table class=" table table-striped table-hover dot">
+		                    <div style="margin-top: 20px;">
+		                    <tbody id = "queryContent">
+		                    </tbody>
+		                    </div>
+	                    </table>
+                    </div>
+                            <div id="page" class="pager_container clearfix" >
+				            <input id="totalcount" type="hidden" value="0" />
+				            <input id="pagenumber" type="hidden" value="1" />
+				            <div id="pager"></div>
+			  				</div>
+                	</div>
+				 </div>
+				<div id="replyhide">
+				<div style="margin-top:20px;border-left: 3px solid #6d7781">
+					<div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+						<b class="my_now_title">回复工单</b>
+					</div>
+				</div>
+				<form name="" action="system_user_issue_reply" method="post" enctype="multipart/form-data" onSubmit="return formCheck(this);">
+	  				<input type="hidden" value="${user_issue.id}" name="user_issue.parentIssueId"/>
+	  				<input type="hidden" value="${user_issue.id}" name="user_issue.id"/>
+	  					<div style="padding-top: 10px; position: relative">
+	  						<textarea class="text-box" rows="12" cols="100" placeholder="请用4-2000个字符描述" id="issueDesc" name="user_issue.issueDesc"
+	  							 chknonull="yes" chkmsg="问题描述" chkminlen="4" chkmaxlen="2000"></textarea>
+							<div class="form_hint issueDesc" style="margin-top: -190px;"></div>
+						</div>
+					      	<tr>
+                           <th>上传附件：
+                           </th>
+                               <td colspan="1" align="left">
+                        	 	 <div  id="updateSmallImg" class="doctor-info-img" >
+                                     <input type="hidden" id="weblogo" />
+                    					<input style="width: 66px; padding: 5px 0 0px 0px" type="file" title="点击上传文件" value="点击上传文件" id="SmallImg" onChange="upload('SmallImg','SmallImgV');" onpaste="return false" name="0" />
+                    					<div id="filediv" style="display: none;">
+                    						<span  id="fileup"></span>
+                    						<button type="button" onclick="delloadwork()">删除</button>
+                    						<span style="display: none;" id="filesrc"></span>
+                    					</div>
+                                     <br /><span style="font-size: 12px;">可上传<i style=" font-style:normal;color: red; " >1个附件</i>每个附件不得超过2M,附件支持的格式有'jpg','gif','png','jpeg','zip','rar','bmp'</span>
+
+                                 </div>
+                               </td>
+         					</tr>
+						<div style="padding-top: 15px;">
+							<input type="button" value=" 提  交 " class="manager-btn  mr-10"  onclick="replyIssue()">
+							<input type="button" value=" 返 回 " class="manager-btn  mr-10" onclick="history.back(-1);" />
+						</div>
+					</form>
+					</div>
+					</div>
+</div>
+<script src="../../publicD/memberjs.js"></script>
+<script src="../../../public/js/upload.js"></script>
+<script src="./js/completed.js"></script>
+</body>
+</html>

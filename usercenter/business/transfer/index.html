@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <script src="../../../publicD/maincss.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+</head>
+<body id="thrColEls overflow-y:auto;">
+<div id="MainContentDIV">
+    <div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+            <li><a href="javascript:void(0);">业务转让</a></li>
+        </ul>
+    </div>
+    <div style="padding: 20px">
+        <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
+            <el-tab-pane label="我转让的" name="first">
+                <div>
+                    <el-row>
+                        <el-radio-group v-model="fromMe.status" @change="fromMeDataLoad">
+                            <el-radio-button label="全部"></el-radio-button>
+                            <el-radio-button label="交易中"></el-radio-button>
+                            <el-radio-button label="已完成"></el-radio-button>
+                            <el-radio-button label="已取消"></el-radio-button>
+                            <el-radio-button label="已过期"></el-radio-button>
+                        </el-radio-group>
+                    </el-row>
+                </div>
+                <div style="margin-top: 10px; border: 1px solid #cdcdcd;">
+                    <el-table
+                            :data="fromMe.tableData"
+                            style="width: 100%"
+                            :default-sort = "{prop: 'createTime', order: 'descending'}"
+                    >
+                        <el-table-column
+                                label="发起日期"
+                                sortable
+                                width="180">
+                            <template scope="scope">
+                                <span v-html="formatTime(scope.row.createTime)"></span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="productTypeName"
+                                label="产品类型"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="bizName"
+                                label="业务名称（唯一标识）">
+                        </el-table-column>
+                        <el-table-column
+                                prop="toUserName"
+                                sortable
+                                label="接收人账号">
+                        </el-table-column>
+                        <el-table-column
+                                prop="statusName"
+                                sortable
+                                label="状态">
+                        </el-table-column>
+                        <el-table-column
+                                label="操作">
+                            <template scope="scope">
+                                <el-button type="primary" size="small" plain @click="showInfo(scope.row)">详情</el-button>
+                                <el-button type="primary" size="small" v-if="scope.row.status==0" @click="cancelDeal(scope.row, 1)" plain>取消交易</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+                <div class="block" style="margin: 0 0 0 10px;">
+                    <el-pagination
+                            layout="prev, pager, next"
+                            @current-change="fromMeChangePage"
+                            @prev-click="fromMeChangePage"
+                            @next-click="fromMeChangePage"
+                            :total="fromMe.page.total">
+                    </el-pagination>
+                </div>
+            </el-tab-pane>
+            <el-tab-pane label="转让给我的" name="second">
+                <div>
+                    <el-row>
+                        <el-radio-group v-model="toMe.status" @change="toMeDataLoad">
+                            <el-radio-button label="全部"></el-radio-button>
+                            <el-radio-button label="交易中"></el-radio-button>
+                            <el-radio-button label="已完成"></el-radio-button>
+                            <el-radio-button label="已取消"></el-radio-button>
+                            <el-radio-button label="已过期"></el-radio-button>
+                        </el-radio-group>
+                    </el-row>
+                </div>
+                <div style="margin-top: 10px; border: 1px solid #cdcdcd;">
+                    <el-table
+                            :data="toMe.tableData"
+                            style="width: 100%"
+                            :default-sort = "{prop: 'createTime', order: 'descending'}"
+                    >
+                        <el-table-column
+                                label="发起日期"
+                                sortable
+                                width="180">
+                            <template scope="scope">
+                                <span v-html="formatTime(scope.row.createTime)"></span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="productTypeName"
+                                label="产品类型"
+                                sortable>
+                        </el-table-column>
+                        <el-table-column
+                                prop="bizName"
+                                label="业务名称（唯一标识）">
+                        </el-table-column>
+                        <el-table-column
+                                prop="fromUserName"
+                                sortable
+                                label="转让人账号">
+                        </el-table-column>
+                        <el-table-column
+                                prop="statusName"
+                                sortable
+                                label="状态">
+                        </el-table-column>
+                        <el-table-column
+                                label="操作">
+                            <template scope="scope">
+                                <el-button type="primary" size="small" plain @click="showInfo(scope.row)">详情</el-button>
+                                <el-button type="primary" size="small" v-if="scope.row.status==0" @click="cancelDeal(scope.row, 2)" plain>取消交易</el-button>
+                                <el-button type="primary" size="small" v-if="scope.row.status==0" @click="acceptDeal(scope.row)" plain>接收</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+                <div class="block" style="margin: 0 0 0 10px;">
+                    <el-pagination
+                            layout="prev, pager, next"
+                            @current-change="toMeChangePage"
+                            @prev-click="toMeChangePage"
+                            @next-click="toMeChangePage"
+                            :total="toMe.page.total">
+                    </el-pagination>
+                </div>
+            </el-tab-pane>
+            <el-tab-pane name="third">
+                <span slot="label"><i class="el-icon-date"></i> 流程说明</span>
+
+                <div>
+                    <el-steps simple>
+                        <el-step title="转让人在业务实例表发起转让" icon="el-icon-circle-plus"></el-step>
+                        <el-step title="转让人将交易安全码告诉接收人" icon="el-icon-position"></el-step>
+                        <el-step title="接收人使用安全码接收转让业务" icon="el-icon-circle-check"></el-step>
+                    </el-steps>
+                </div>
+            </el-tab-pane>
+        </el-tabs>
+    </div>
+
+    <el-dialog title="接收业务过户" :visible.sync="dialogFormVisible">
+        <el-form :model="form" :rules="rules" ref="pushForm">
+            <el-form-item label="转让方账号：">
+                <span v-html="data.fromUserName"></span>
+            </el-form-item>
+            <el-form-item label="发起时间：">
+                <span v-html="formatTime(data.createTime)"></span>
+            </el-form-item>
+            <el-form-item label="交易安全码：" prop="safeCode">
+                <el-input v-model="form.safeCode" label="请输入对方的用户账号" style="width: 300px"></el-input>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="acceptDealSure">确 定</el-button>
+        </div>
+    </el-dialog>
+
+
+    <el-dialog title="业务转让详情" :visible.sync="dialogFormVisibleDetail">
+        <el-form>
+            <el-form-item label="转让方账号：">
+                <span v-html="info.fromUserName"></span>
+            </el-form-item>
+            <el-form-item label="接收方账号：">
+                <span v-html="info.toUserName"></span>
+            </el-form-item>
+            <el-form-item label="发起时间：">
+                <span v-html="formatTime(info.createTime)"></span>
+            </el-form-item>
+            <el-form-item label="业务类型：">
+                <span v-html="info.productTypeName"></span>
+            </el-form-item>
+            <el-form-item label="业务名称（唯一标识）：">
+                <span v-html="info.bizName"></span>
+            </el-form-item>
+
+            <el-divider content-position="left">明细</el-divider>
+            <div style="border: 1px solid #efefef">
+                <el-table
+                        :data="info.detail"
+                        style="width: 100%"
+                        :default-sort = "{prop: 'createTime', order: 'descending'}"
+                >
+                    <el-table-column
+                            label="时间"
+                            width="180">
+                        <template scope="scope">
+                            <span v-html="formatTime({time:scope.row.createTime})"></span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            label="操作人">
+                        <template scope="scope">
+                            <span v-if="scope.row.userId == info.fromUserId" v-html="info.fromUserName"></span>
+                            <span v-if="scope.row.userId == info.toUserId" v-html="info.toUserName"></span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="remark"
+                            label="说明">
+                    </el-table-column>
+                </el-table>
+            </div>
+        </el-form>
+    </el-dialog>
+
+</div>
+<!--右侧内容区 结束-->
+<script src="../../../publicD/memberjs.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

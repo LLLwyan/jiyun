@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+<script src="../../../public/maincss.js" charset="UTF-8"></script>
+<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+</head>
+<body>
+<div id="MainContentDIV">
+    <div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+            <li><a href="javascript:void(0);">实名材料</a></li>
+
+        </ul>
+    </div>
+    <div class="ManagerRightuser">
+        <div class="product-detail-desc mt-15">
+
+        </div>
+        <div id="realname-auth" class="nav-content active">
+            <!--中间代码开始-->
+            <form action="#" id="itfrom" name="form1">
+
+                <table class="manager-table form-table">
+                    <tbody>
+                    <tr>
+                        <th width="150" align="right" > 模板名称：</th>
+                        <td align="left">
+                            <input id="templateName"  class="manager-input m-input width200" placeholder="请输入模板名称" size="20" disabled="disabled"></td>
+                        <th width="150" align="right">所有者类型：</th>
+                        <td align="left">
+                            <input type="radio" id="radio1"  checked="checked" disabled="disabled">个人&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" id="radio2" disabled="disabled">企业</td>
+                    </tr>
+                    <tr>
+                        <th width="150" align="right">域名所有者</th>
+                        <td align="left" colspan="3">
+                            <input id="userNameCn" class="manager-input m-input width200" size="20" disabled="disabled">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="manager-table form-table" id="user">
+                    <tbody>
+                    <tr>
+                        <th colspan="4" class="text-center">模板实名证件信息：</th>
+                    </tr>
+                    <tr>
+                        <th width="150" align="right" >所有者证件类型：</th>
+                        <td align="left" >
+                            <select id="userCertType" width="200"></select>
+                            <strong class="redColor f-l10 ">*</strong>
+                        </td>
+                        <th width="150" align="right" >所有者证件号码：</th>
+                        <td align="left" >
+                            <input type="text" class="manager-input m-input width200" size="20" id="userCertNum" placeholder="请输入所有者证件号码"/>
+                            <strong class="redColor f-l10 ">*</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="150" align="right"> 所有者证件材料：</th>
+                        <td colspan="3" colspan="3" style="text-align:left;">
+
+                            <div class="doctor-info-fr fl"  style="text-align:left; ">
+                                <div  class="doctor-info-img" style="text-align:left; ">
+                                    <input type="hidden" id="userCertPath">
+                                    <input type="file" title="点击上传图片" value="点击上传图片" id="userCertImg" class="userCertImg" onchange="upload('userCertImg','userCertImgV');" onpaste="return false" name="0">
+                                    <img id="userCertImgV" src="../../../images/show.jpg" style="height:120px;width:120px;">
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+                <table class="manager-table form-table" id="linkMan">
+                    <tbody>
+                    <tr>
+                        <th width="150" align="right" >联系人证件类型：</th>
+                        <td align="left" >
+                            <select id="linkManCertType" width="200"></select>
+                            <strong class="redColor f-l10 ">*</strong>
+                        </td>
+                        <th width="150" align="right">联系人证件号码：</th>
+                        <td align="left" >
+                            <input  type="text" class="manager-input m-input width200" size="20" id="linkManCertNum" placeholder="请输入联系人证件号码"/>
+                            <strong class="redColor f-l10 ">*</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="150" align="right"> 联系人证件材料：</th>
+                        <td colspan="3" rowspan="3" style="text-align:left; ">
+
+                            <div class="doctor-info-fr fl"  style="text-align:left; ">
+                                <div  class="doctor-info-img" style="text-align:left; ">
+                                    <input type="hidden" id="linkManCertPath">
+                                    <input type="file" title="点击上传图片" value="点击上传图片" id="linkManCertImg" class="linkManCertImg" onchange="upload('linkManCertImg','linkManCertImgV');" onpaste="return false" name="0">
+                                    <img id="linkManCertImgV" src="../../../images/show.jpg" style="height:120px;width:120px;">
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <div id="upt" align="center">
+                    <input type="button" onClick="uptTemplate()" id="adddomain" class="manager-btn mt-10 mr-10" value="提交" >
+                    <input type="button" class="manager-btn mt-10 mr-10" onclick="history.go(-1)" value="返回">
+                </div>
+            </form>
+        </div>
+        <!--右侧内容区 结束-->
+        <!-- 页脚部分 开始-->
+        <!-- 页脚部分 结束 -->
+    </div>
+</div>
+<script src="../../../public/memberjs.js" ></script>
+<script src="../../../../public/js/upload.js"></script>
+<script src="js/uploadcert.js" ></script>
+</body>
+</html>

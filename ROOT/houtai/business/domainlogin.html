@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>控制面板登录</title>
+<script src="../public/maincss.js"></script>
+<style>
+.ui-widget-header{ background:url(/public/img/bghd.png) 50% 50% repeat-x;}
+</style>
+</head>
+<body>
+<div>
+    <div id="XinNetLogin" style="display:none;margin:15px 0px 0px 0px">
+            <form name="form1" method="post" action="http://dcp.xinnet.com/domainLogin.do?method=domainEnter" accept-charset="UTF-8" ID="Form1">
+                <img id="validateCodeImg" src="http://dcp.xinnet.com/Modules/agent/domain/validate_picture.jsp" onclick="XibNetChangeCheckCode();" style="cursor:hand;margin-top:4px;" title="看不清,换一张" alt="验证码"/>
+                <input id="authcode" class="text_l text" name="checkCode" type="text" />
+                <input id="XWdomainName" name="domainName" type="hidden" value="">
+                <input id="XWpassword" name="password" type="hidden" value="">
+                <input type="submit" name="Submit" value="login...........">
+            </form>
+    	</div>
+        
+        <div id="ZGSJLogin" style="display:none;margin:15px 0px 0px 0px">
+            <form name="form1" method="post" action="http://dns.4cun.com/index.asp"  accept-charset="GB2312" ID="Form1">
+                <input id="ZGSJdomain"name="domain" type="hidden" value="">
+                <input id="ZGSJpassword" name="password" type="hidden" value="">
+                验证码：<input name="u_code"><img align="absbottom" src="http://dns.4cun.com/vrfimage.asp" alt="看不清，换一张图片" onclick="this.src='http://dns.4cun.com/vrfimage.asp?'+(new Date().getTime());">
+                <input type="submit" name="Submit" value="login...........">
+            </form>
+    	</div>
+        <div id="GodaddyLogin" style="display:none;margin:15px 0px 0px 0px">
+            <table width="400" border="0">
+                <tr>
+                    <td width="20%" align="right">地址：</td>
+                    <td width="80%"><a href="https://sso.secureserver.net/login/" target="_blank">https://sso.secureserver.net/login/</a></td>
+                </tr>
+                <tr>
+                    <td align="right">登录名：</td>
+                    <td id="GDAccount">无</td>
+                </tr>
+                <tr>
+                    <td align="right">密码：</td>
+                    <td id="GDPassword">无</td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://sso.secureserver.net/login/" target="_blank">打开登录地址</a></td>
+                </tr>
+            </table>
+        </div>
+</div>
+<!--右侧内容区 结束-->
+<!-- 页脚部分 开始-->
+<!-- 页脚部分 结束 -->
+<script src="../public/main.js"></script>
+<script src="js/domainlogin.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    <div class="mt-20" style="overflow:visible;position:relative;" >
+					</div>
+			           	<table class="manager-table table table-hover " >
+                         <from action="post" align="center">
+			              <tbody>
+			              	  <tr align="center" >
+					            <td colspan="4">
+					            	<font size="3"><b>会员资料 </b></font>
+					            </td>
+					          </tr>
+					          <tr>
+					            <th width="150"  align="right">会员帐号：</th>
+					            <td align="left">
+					            	<strong style="color:green;font-size:14px;margin-right:10px;" id="uname"></strong>
+					            </td>
+					          	<th width="150" align="right"><span style="color: #FF0000">*</span> 真实姓名：</th>
+					            <td align="left">
+					            	<input id="u_fullName" class="manager-input m-input width200" value="" size="20">
+					            </td>
+					          </tr>
+					          <tr>
+					            <th width="150" align="right">会员等级：</th>
+					            <td align="left">
+					            	<select id="u_userlevel" class="manager-input m-input width150"></select>
+					            	<input type="button" class="btn btn-primary _check_right" value="更新" onclick="uptUserLevel()" _funCode="uptAccountState" style="display: none">
+					            </td>
+					          	<th width="150"  align="right">用户类型：</th>
+					            <td align="left">
+					            	<input type="radio" id="radio1" name="u_userType" checked="checked" value="0">个人&nbsp;&nbsp;&nbsp;&nbsp;
+					            	<input type="radio" id="radio2"  name="u_userType" value="1">企业
+					            </td>
+					          </tr>
+					          <tr>
+					            <th width="150" align="right"> 所属行业：</th>
+					            <td align="left">
+						            <select id="u_industry" class="manager-input m-input width200">
+							            <option value="1" selected>信息传输、计算机服务和软件业</option>
+							            <option value="2">农、林、牧、渔业</option>
+							            <option value="3">采矿业</option>
+							            <option value="4">制造业</option>
+							            <option value="5">电力、煤气及水的生产和供应业</option>
+							            <option value="6">建筑业</option>
+							            <option value="7">交通运输、仓储及邮政业</option>
+							            <option value="8">批发和零售业</option>
+							            <option value="9">住宿和餐饮业</option>
+							            <option value="10">金融业</option>
+							            <option value="11">房地产业</option>
+							            <option value="12">租赁和商务服务业</option>
+							            <option value="13">科学研究和技术服务业</option>
+							            <option value="14">水利、环境和公共设施管理业</option>
+							            <option value="15">居民服务、修理和其他服务业</option>
+							            <option value="16">教育</option>
+							            <option value="17">卫生和社会工作</option>
+							            <option value="18">文化、体育和娱乐业</option>
+							            <option value="19">公共管理、社会保障和社会组织</option>
+							            <option value="20">国际组织</option>
+						            </select>
+					            </td>
+					            <th width="150" align="right"><span style="color: #FF0000">*</span> 证件类型：</th>
+					            <td align="left">
+					            	<select id="u_certType" class="manager-input m-input width200"></select>
+					            </td>
+					          </tr>
+					          <tr>
+					            <th width="150" align="right">主要业务：</th>
+					            <td align="left">
+					            	<input id="u_mainBusiness" class="manager-input m-input width200" value="" size="20">
+					            </td>
+					            <th width="150" align="right">证件号码：</th>
+					            <td align="left">
+									<span id="certCodeStar"><span></span> <a href="javascript:void(0)"> 查看</a></span>
+									<span id="certCodeNormal" style="display: none">
+					            		<input id="u_certCode" disabled class="manager-input m-input width200" value="" size="40">
+									</span>
+					            </td>
+					          </tr>
+					          <tr>
+					            <th width="150" align="right">固话：</th>
+					            <td align="left">
+					            	<input id="u_tel" class="manager-input m-input width200" value="" size="20">
+					            </td>
+					            <th width="150" align="right"><span style="color: #FF0000">*</span> QQ：</th>
+					            <td align="left">
+					            	<input id="u_QQ" class="manager-input m-input width200" value="" size="20">
+					            </td>
+					          </tr>
+					          <tr>
+					            <th width="150" align="right"> 传真：</th>
+					            <td align="left">
+					            	<input id="u_fax" class="manager-input m-input width200" value="" size="20">
+					            </td>
+					            <th width="150" align="right">邮箱：</th>
+					            <td align="left">
+					            	<input id="u_email" type="text" class="manager-input m-input width200" value="" size="20">
+					            </td>
+					          </tr>
+					          <tr>
+					          	<th width="150" align="right">手机号码：</th>
+					            <td align="left">
+									<span id="mobileStar"><span></span> <a href="javascript:void(0)"> 修改</a></span>
+									<span id="mobileNormal" style="display: none">
+					            		<input id="u_mobile" class="manager-input m-input width200" value="" size="20">
+									</span>
+					            </td>
+					            <th width="150" align="right"> 街道地址：</th>
+					            <td align="left">
+					            	<input id="u_address" class="manager-input m-input width400" value="" size="20">
+					            </td>
+					          </tr>
+					          <tr>
+					          	<th width="150" align="right"> 公司名称：</th>
+            					<td align="left"><input id="u_companyName" class="manager-input m-input width200" value="" size="20"></td>
+					            <th width="150" align="right"> <span style="color: #FF0000">*</span> 省份：</th>
+					            <td align="left">
+					            	<input id="u_provinceCode" class="manager-input m-input width200" value="" size="20">
+					            	<input id="u_cityCode" class="manager-input m-input width200" value="" size="20">
+					            </td>
+					          </tr>
+                              <tr>
+					            <td colspan="4" align="center">
+					            	 <input type="button" class="btn btn-primary _check_right" value="保 存" onclick="uptuserinfo();" _funCode="uptAccountState" style="display: none">
+			 						 <input type="button" class="btn btn-primary" value="返 回" onclick="back();">
+					            </td>
+					          </tr>
+					          <tr class="no-border">
+					            <td colspan="4" align="center">
+									<div class="tipinfo"></div>
+								</td>
+					          </tr>
+			              </tbody>
+                          </from>
+					</table>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="../public/main.js"></script>
+<script src="js/userinfo.js"></script>
+</html>

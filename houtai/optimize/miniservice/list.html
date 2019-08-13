@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品迁入引导首页</title>
+    <script src="../../public/maincss.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="../cloud/yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight" id="main-block" v-cloak>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content" _funCode="queryBizTransfer">
+                    <div>
+                        <el-row _funCode="miniServiceQuery">
+                            <el-radio-group v-model="dataForm.status" @change="dataLoad">
+                                <el-radio-button v-for="(value, key) in statusValue" :label="key"></el-radio-button>
+                            </el-radio-group>
+                        </el-row>
+                        <el-row _funCode="miniServiceQuery">
+                            <el-radio-group v-model="dataForm.serviceEncryptionMethod" @change="dataLoad">
+                                <el-radio-button v-for="(value, key) in methodValue" :label="key"></el-radio-button>
+                            </el-radio-group>
+                        </el-row>
+                        <el-row>
+                            <el-radio-group v-model="dataForm.serviceType" @change="dataLoad" _funCode="miniServiceQuery">
+                                <el-radio-button v-for="(value, key) in serviceTypeValue" :label="key"></el-radio-button>
+                            </el-radio-group>
+                            <el-button type="primary" style="float: right" _funCode="miniServiceAdd" @click="newService">新增</el-button>
+                        </el-row>
+                    </div>
+                    <div style="margin-top: 10px; border: 1px solid #cdcdcd;"  _funCode="miniServiceQuery">
+                        <el-table
+                                :data="dataForm.tableData"
+                                style="width: 100%"
+                                :default-sort = "{prop: 'createTime', order: 'descending'}"
+                        >
+                            <el-table-column
+                                    label="服务类型"
+                                    sortable>
+                                <template scope="scope">
+                                    <span v-html="getServiceTypeName(scope.row.serviceType)"></span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                    label="服务编码"
+                                    prop="serviceCode"
+                                    sortable>
+                            </el-table-column>
+                            <el-table-column
+                                    prop="serviceName"
+                                    label="服务名称"
+                                    sortable>
+                            </el-table-column>
+                            <el-table-column
+                                    label="创建日期">
+                                <template scope="scope">
+                                    <span v-html="formatTime({time: scope.row.createTime})"></span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                    sortable
+                                    label="可用状态">
+                                <template scope="scope">
+                                    <span v-html="getStatusName(scope.row.status)"></span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                    width="260"
+                                    label="操作">
+                                <template scope="scope">
+                                    <el-button type="primary" size="small" plain @click="editService(scope.row)">修改</el-button>
+                                    <el-button type="danger" size="small" plain @click="deleteService(scope.row)">删除</el-button>
+                                    <el-button type="success" size="small" @click="goToMinServer(scope.row)" v-if="scope.row.serviceManageUrl != ''" _funCode="mimiServiceManage">管理</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                    <div class="block" style="margin: 0 0 0 10px;" _funCode="miniServiceQuery">
+                        <el-pagination
+                                layout="prev, pager, next"
+                                @current-change="changePage"
+                                @prev-click="changePage"
+                                @next-click="changePage"
+                                :total="dataForm.page.total">
+                        </el-pagination>
+                    </div>
+
+                    <el-dialog :title="dialogTitle" :visible.sync="dialogFormVisibleDetail">
+                        <el-form :model="form" :rules="rules" ref="ruleForm" label-width="120px">
+                            <el-form-item label="服务类型：" prop="serviceType">
+                                <el-radio-group v-model="form.serviceType">
+                                    <el-radio-button v-for="(value, key) in serviceTypeValue" v-if="key!='全部'" :label="key"></el-radio-button>
+                                </el-radio-group>
+                            </el-form-item>
+                            <el-form-item label="可用状态：" prop="status">
+                                <el-radio-group v-model="form.status">
+                                    <el-radio-button v-for="(value, key) in statusValue" v-if="key!='全部'" :label="key"></el-radio-button>
+                                </el-radio-group>
+                            </el-form-item>
+                            <el-form-item label="服务编码：" prop="serviceCode">
+                                <el-input v-model="form.serviceCode" placeholder="请输入服务编码" style="width: 200px"></el-input>
+                            </el-form-item>
+                            <el-form-item label="服务名称：" prop="serviceName">
+                                <el-input v-model="form.serviceName" placeholder="请输入服务名称" style="width: 200px"></el-input>
+                            </el-form-item>
+                            <el-form-item label="接口地址：" prop="serviceApiUrl">
+                                <el-input v-model="form.serviceApiUrl" placeholder="请输入服务完整地址，如 http://xxx" style="width: 300px"></el-input>
+                            </el-form-item>
+                            <el-form-item label="接口密钥：" prop="serviceApiSecretKey">
+                                <el-input v-model="form.serviceApiSecretKey" placeholder="请输入服务名称" style="width: 200px"></el-input>
+                            </el-form-item>
+                            <el-form-item label="加密算法：" prop="serviceEncryptionMethod">
+                                <el-radio-group v-model="form.serviceEncryptionMethod">
+                                    <el-radio-button v-for="(value, key) in methodValue" v-if="key!='全部'" :label="key"></el-radio-button>
+                                </el-radio-group>
+                            </el-form-item>
+                            <el-form-item label="管理地址：" prop="serviceManageUrl">
+                                <el-input v-model="form.serviceManageUrl" placeholder="请输入完整地址，如 http://xxx" style="width: 300px"></el-input>
+
+                                <el-button type="success" @click="goToMinServer(form)" v-if="form.serviceManageUrl != '' && form.id && form.id > 0" _funCode="mimiServiceManage">进入</el-button>
+                            </el-form-item>
+                            <el-form-item label="元 数 据：">
+                                <el-input
+                                        type="textarea"
+                                        :rows="6"
+                                        style="width: 380px"
+                                        placeholder="请输入内容"
+                                        v-model="form.metadata">
+                                </el-input>
+                                <el-tooltip class="item" effect="dark" placement="right">
+                                    <div slot="content">
+                                        填写自定义服务实现时所需要的信息，如外部接口账号，密钥等，建议使用json格式
+                                    </div>
+                                    <i class="el-icon-question"></i>
+                                </el-tooltip>
+                            </el-form-item>
+
+                            <el-form-item>
+                                <el-button type="primary" @click="save" style="float: right">保存</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </el-dialog>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../public/main.js"></script>
+<script language="JavaScript">
+    document.write('<link rel="stylesheet" href="'+realPath+'/public/fonts/iconfont.css">');
+</script>
+<script src="../../public/right.js"></script>
+<script src="list.js"></script>
+</html>

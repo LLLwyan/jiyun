@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content _check_right" style="display: none" _funCode="queryDiy">
+                    <div class="mt-20" style="overflow:visible;position:relative; text-align:center">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <label class="control-label">分类：</label>
+                                <select class="form-control" id="subClass">
+                                    <option value="">全部</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">关键字：</label>
+                                <input type="text" placeholder="请输入关键字查询"  class="form-control" id="keyword">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">到期查询：</label>
+                                <select class="form-control" id="endDateType">
+                                    <option value="0" selected="selected">不限</option>
+                                    <option value="1">已经到期</option>
+                                    <option value="7">7天内到期</option>
+                                    <option value="15">15天内到期</option>
+                                    <option value="30">30天内到期</option>
+                                    <option value="45">45天内到期</option>
+                                    <option value="60">60天内到期</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="searchbtn">
+                                    <input type="button" onClick="queryUserServiceList();" class="manager-btn mr-10" value="搜 索">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover " id="editable">
+                        <thead>
+                        <tr>
+                            <th><label><input type="checkbox" id="checkType" style="vertical-align: middle;padding: 2px;" name="checkBoxAll" onclick="checkAllVhost(this);"></label></th>
+                            <th>产品名称</th>
+                            <td>产品分类</td>
+                            <th>会员账号</th>
+                            <th>开通信息</th>
+                            <th>状态</th>
+                            <th>配置信息</th>
+                            <th>到期时间</th>
+                            <th class="_check_right">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="userServiceList">
+                        <tr>
+                        <tr><td colspan="9" style="height:50px;text-align:center;line-height:50px;">找不到相关信息</td></tr>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="cart_coupon_left"><p>
+                        <a href="javascript:void(0)" class="btn btn-primary _check_right btnDel" _funCode="deleteDiy">删除选中</a>
+                        <a href="javascript:void(0)" class="btn btn-primary _check_right btnStop" _funCode="pausedDiy">暂停使用</a>
+                        <a href="javascript:void(0)" class="btn btn-primary _check_right btnExpireAlert" _funCode="diyExpireUsRemind">到期提醒</a>
+                        <a href="javascript:void(0)" class="btn btn-primary _check_right btnExpireStop" _funCode="diyExpireUsDisable">到期停用</a>
+                        <a href="javascript:void(0)" class="btn btn-primary _check_right btnResume" _funCode="diyResume">恢复使用</a>
+                    </div>
+                    <div id="page" class="pager_container clearfix" >
+                        <input id="totalcount" type="hidden" value="0" />
+                        <input id="pagenumber" type="hidden" value="1" />
+                        <div id="pager"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="_expireAlert">
+    <div class="modal fade" id="expireAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        到期提醒
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered table-hover">
+                        <tbody >
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="expire_mail_checkbox" checked="checked" />邮件通知
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" id="expire_sms_checkbox" checked="checked" />知信通知
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn-primary manager-btn">确认通知</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<div id="_configAlert">
+    <div class="modal fade" id="configAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        开通配置
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered table-hover">
+                        <tbody >
+                        <tr>
+                            <th width="150">配置信息</th>
+                            <td>
+                                <textarea id="configInfo" style="width: 300px; height: 100px;"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="button" class="btn-primary manager-btn">确认</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<script src="../public/main.js"></script>
+<script src="../public/right.js"></script>
+<script src="js/vhostpublic.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

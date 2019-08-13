@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                <div class="managertitle">
+                       <div style="margin:10px -20px 0px -20px">
+                        <div class="server-title">
+                            <b>实例：</b><span id="instanceId">61c5e898-d991-44e6-8306-96e9407fa091</span>
+                            <!--
+                            <div class="btn-group fr mr-10 autosuo"><a href="javascript:void(0)" class="manager-btn" onclick="snapshotDialog('5322bb6e-7e67-4a30-8876-cc9c7b5d758c')">创建快照</a><a href="javascript:void(0)" class="manager-btn editsnap"><span class="btn-caret"></span></a>	<ul class="edit-ul" flag="0" style="display: none;">    <li><a href="#">编辑快照</a></li>    <li><a href="#">删除云硬盘快照</a></li>	</ul></div>
+                        	-->
+                        </div>
+                    </div>
+				</div>
+                <div class="managertitle">
+                          <ul id="ulTab" class="manager-tab full-manager-tab bind-tab">
+                          <li value="domain"><a id="instanceDetail" href="serverdetail.html?iId=">当前实例详情</a></li>
+                          <li value="cloud" class="liactive" ><a id="instanceDisk" href="serverdisk.html?iId=">当前实例硬盘</a></li>
+                           <li value="snapshot" style="display: none;"><a id="instanceSnapshot" href="serverdisk.html?iId=">当前实例快照</a></li>
+                          </ul>
+					</div>
+                    <div class="ibox-content">
+                    <div class="mt-20" style="overflow:visible;position:relative; text-align:center">
+
+					</div>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                                <tr>
+                                <!--
+                                    <th><input type="checkbox" id="checkedAll" ></th>
+                                    -->
+                                     <th>会员名</th>
+                                    <th>磁盘名称</th>
+                                    <th>磁盘类型</th>
+                                    <th>磁盘状态</th>
+                                    <th>磁盘容量</th>
+                                    <th>可挂载/卸载</th>
+                                    <th>磁盘属性</th>
+                                    <th>付费类型</th>
+                                    <!--
+                                    <th>操作</th>
+                                     -->
+                                </tr>
+                            </thead>
+                            <tbody id="diskList">
+                            </tbody>
+                        </table>
+                        <div class="add-uer-box" id="addBox" style="display:none">
+         			<div style="height:100px;padding:30px;">
+         				快照名称：
+         				<input id="snapshotName" class="manager-input m-input width200" value="" maxlength="20" placeholder="请输入快照名称">
+         				<input type="hidden" id="diskId"/>
+         			</div>
+         		</div>
+                        <div id="page" class="pager_container clearfix" >
+	                	<input id="totalcount" type="hidden" value="0" />
+	                	<input id="pagenumber" type="hidden" value="1" />
+	                	<div id="pager"></div>
+	    			</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/serverdisk.js"></script>
+</html>

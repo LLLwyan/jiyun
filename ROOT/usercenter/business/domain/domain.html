@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+<script src="../../../publicD/membercss.js"></script>
+    <script src="../../../publicD/memberjs.js"></script>
+<style>
+.ui-widget-header{ background:url(/public/img/bghd.png) 50% 50% repeat-x;}
+</style>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../../../public/smoothness/jquery.ui.css">
+
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+		<li><a href="javascript:void(0);">会员中心</a></li>
+	    <li><a href="javascript:void(0);">业务管理</a></li>
+	    <li><a href="javascript:void(0);">我的域名</a></li>
+	</ul>
+</div>
+		<div class="ManagerRightuser" id="ManagerRightuser">
+                    <div id="realname-auth" class="nav-content active">
+                   	<div class="mt-20" style="overflow:visible;position:relative">
+                           <form class="form-inline" role="form">
+                               <div class="form-group" style="margin-left: 0;">
+                                   <label class="control-label">域名关键字：</label>
+                                   <input type="text" placeholder="请输入域名"  class="form-control" id="domainName">
+                               </div>
+                               <div class="form-group" style="margin-left: 5px;">
+                                   <label class="control-label">开通时间：</label>
+                                  <input type="text" placeholder="开通时间"  class="form-control laydate-icon" id="startTime">
+                               </div>
+                               <div class="form-group" style="margin-left: 5px;">
+                 	  <label class="control-label">到期查询：</label>
+                      <select class="form-control" id="endDateType">
+                             <option value="0" selected="selected">不限</option>
+                             <option value="1">已经到期</option>
+                             <option value="7">7天内到期</option>
+                             <option value="15">15天内到期</option>
+                             <option value="30">30天内到期</option>
+                             <option value="45">45天内到期</option>
+                             <option value="60">60天内到期</option>
+                       </select>
+                 	</div>
+                    <div class="form-group" style="margin-left: 5px;">
+                        <label class="control-label">域名状态：</label>
+                        <select class="form-control" id="domstate">
+                          <option value="">全部</option>
+                        </select>
+                    </div>
+                    <div class="searchbtn">
+                    <input type="button" onClick="queryUserDomainList();" class="manager-btn  mr-10" value="搜 索">
+                    <input class="manager-btn mr-10" value="重 置" type="reset">
+                    </div>
+                    </form>
+				 	</div>
+                     <div>
+                         <span style="font-size: 12px;color: #FF0000;">* 域名实名:点登录控制面板操作</span>
+                     </div>
+                   	<table class="manager-table table-hover">
+	                    <thead>
+	                        <tr>
+	                        	<th></th>
+	                            <th>域名</th>
+	                            <th>域名类型</th>
+	                            <th>注册时间</th>
+	                            <th>过期时间</th>
+	                            <th>状态</th>
+	                            <th width="20%" >操作</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody id="domainlist">
+	                    </tbody>
+              		</table><br/>
+              		<div id="button_domain">
+              		<a href="javascript:" onClick=""><input type="button" id="adddomain" onClick="addUsercart();" class="manager-btn  mr-10" value="续费"></a>
+	                </div>
+                    <div class="pager_container clearfix" >
+			            <input id="totalcount" type="hidden" value="0" />
+			            <input id="pagenumber" type="hidden" value="1" />
+			            <div id="pager"></div>
+		  			</div>
+                </div>
+        	</div>
+
+
+    <el-dialog title="域名过户" :visible.sync="dialogFormVisible">
+        <el-form :model="form" :rules="rules" ref="pushForm">
+            <div v-if="isNew">
+                <el-form-item label="对方账号：" prop="toUserName">
+                    <el-input v-model="form.toUserName" label="请输入对方的用户账号" style="width: 300px"></el-input>
+                </el-form-item>
+            </div>
+            <div v-if="!isNew">
+                <el-form-item label="对方账号：">
+                    <span v-html="data.toUserName"></span>
+                </el-form-item>
+                <el-form-item label="发起时间：">
+                    <span v-html="formatTime(data.createTime)"></span>
+                </el-form-item>
+                <el-form-item label="交易安全码：">
+                    <span v-html="data.safeCode" v-if="showSafeCodeFlag"></span>
+                    <a href="javascript:void(0)" @click="showSafeCode" v-if="!showSafeCodeFlag">查看</a>
+                </el-form-item>
+            </div>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="makeDeal" v-if="isNew">确 定</el-button>
+            <el-button type="primary" @click="cancelDeal" v-if="!isNew">取消交易</el-button>
+        </div>
+    </el-dialog>
+
+	</div>
+<!--右侧内容区 结束-->
+<!-- 页脚部分 开始-->
+<!-- 页脚部分 结束 -->
+<script src="js/domain.js"></script>
+</body>
+</html>

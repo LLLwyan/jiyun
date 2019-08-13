@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+    <style type="text/css">
+    	.input_chk{
+    		height: 16px; width: 16px; vertical-align: text-bottom;
+    	}
+    	.input_txt{
+    		width: 40px; height: 28px;
+    	}
+    </style>
+</head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    	<input type="hidden" id="hidProductCode"/>
+                    	<input type="hidden" id="hidProductClass"/>
+                    	<table class="table table-bordered" style="margin-bottom:0px;">
+                    		<thead>
+                                <tr>
+                                    <th colspan="2">产品详细设置</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	<tr>
+                            		<td width="20%">产品类型</td>
+                            		<td id="productClassName"></td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">产品编号</td>
+                            		<td id="productCode"></td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">产品名称</td>
+                            		<td>
+                            			<input type="text"  class="manager-input m-input width200" placeholder="产品名称" id="productName" chknonull="yes" chkmsg="产品名称">
+                            		</td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">上级注册商</td>
+                            		<td>
+                            			<select id="hosttype" class="form-control width200" >
+		                                </select>
+                            		</td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">产品详细说明</td>
+                            		<td>
+                            			<textarea id="productDetail" cols="60" rows="5"></textarea>
+                            		</td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">产品状态</td> 
+                            		<td>
+                            			<select id="status" class="form-control width200">
+                            				<option value="Y">正常</option>
+                            				<option value="N">关闭</option>
+		                                </select>
+                            		</td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">备注</td>
+                            		<td>
+                            			<textarea id="remark" cols="60" rows="3"></textarea>
+                            		</td>
+                            	</tr>
+                            </tbody>
+                    	</table>
+                        <input type="button" class="btn btn-primary" onClick="saveProductData()"  value="保存设置">
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/clouddiskproduct.js"></script>
+</html>

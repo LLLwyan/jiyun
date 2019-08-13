@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../../public/maincss.js"></script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div style="overflow:visible;position:relative;text-align: center;">
+                        <form class="form-inline" role="form">
+                            <table class="table table-striped table-bordered table-hover " id="editable">
+                                <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">网站基本配置</caption>
+                                <tbody>
+                                <tr>
+                                    <th class="text-right">公司客服qq:</th>
+                                    <td colspan="3" class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="comqq"/>
+                                        <font color="#336699">&nbsp;多个QQ请用逗号隔开,客户号与QQ名之间用冒号隔开,多个MSN用逗号隔开</font></td>
+                                </tr>
+                                <tr>
+                                    <th width="20%" class="text-right">公司客服MSN：</th>
+                                    <td width="30%" class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="commsn" /></td>
+                                    <th width="20%" class="text-right">公司客服邮箱：</th>
+                                    <td width="30%" class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="comemail"/></td>
+                                </tr>
+                                <tr>
+                                    <th width="20%" class="text-right">公司电话：</th>
+                                    <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="comtel"/></td>
+                                    <th width="20%" class="text-right">公司传真：</th>
+                                    <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="comfax"/></td>
+                                </tr>
+                                <tr>
+                                    <th width="20%" class="text-right">公司地址：</th>
+                                    <td class="text-left"><input type="text"  class="form-control"  style="width: 320px;" value="" id="comaddress"/></td>
+                                    <th width="20%" class="text-right">公司邮编：</th>
+                                    <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="compostcode"/></td>
+                                </tr>
+                                <tr>
+                                    <th width="20%" class="text-right">网站名称：</th>
+                                    <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="webname"/></td>
+                                    <th width="20%" class="text-right">网站标题：</th>
+                                    <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="webtitle"/></td>
+                                </tr>
+                                <tr>
+                                    <th width="20%" class="text-right">信息产业部备案号：</th>
+                                    <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="webicp"/></td>
+                                    <th width="20%" class="text-right">电信增值经营许可证号：</th>
+                                    <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="webicp2"/></td>
+                                </tr>
+                                <tr>
+                                    <th width="20%" class="text-right">公司网站地址：</th>.
+                                    <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="weburl"/></td>
+                                    <th width="20%" class="text-right">公司名称：</th>
+                                    <td class="text-left"><input type="text"  class="form-control"  style="width: 320px;" value="" id="comname"/></td>
+                                </tr>
+                                <tr>
+                                    <th width="20%" class="text-right">公司介绍：</th>
+                                    <td class="text-left" colspan="3"><textarea class="form-control" maxlength="100" style="margin: 0px; height: 100px; width: 750px;" value="" id="introduce"></textarea>不超过100个字</td>
+                                </tr>
+                                <tr>
+                                    <th width="20%" class="text-right">公司LoGo图标：</th>
+                                    <td  colspan="1" rowspan="3" style="text-align:left; ">
+
+                                        <div class="doctor-info-fr fr" id="pic" style="text-align:left; ">
+                                            <div  id="updateSmallImg" class="doctor-info-img" style="text-align:left; " >
+                                                <input type="hidden" id="weblogo" />
+                                                <input type="file" title="点击上传图片" value="点击上传图片" id="SmallImg" class="SmallImg" onChange="upload('SmallImg','SmallImgV');" onpaste="return false" name="0" />
+                                                <img id="SmallImgV"  src="../img/show.jpg" style="width:160px;"  />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <th width="20%" class="text-right">微信图标：</th>
+                                    <td class="text-left">
+                                        <div class="doctor-info-fr fr" id="pic" style="text-align:left; ">
+                                            <div class="doctor-info-img" style="text-align:left; " >
+                                                <input type="hidden" id="wechatlogo" />
+                                                <input type="file" title="点击上传图片" value="点击上传图片" class="SmallImg" id="WeChatImg" onChange="upload('WeChatImg','SmallImglogo');" onpaste="return false" name="0" />
+                                                <img id="SmallImglogo"  src="../img/show.jpg" style="height:120px;width:120px;"  />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <input type="button" value="保存系统配置" class="btn btn-primary" onclick="uptDicParam();" >
+                        </form>
+                    </div>
+                    <div class="conbut">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../public/main.js"></script>
+<script src="../../../public/js/upload.js"></script>
+<script src="baseinfo.js"></script>
+</html>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+  <display-name></display-name>
+
+  <servlet>
+    <description>servlet of framework</description>
+    <display-name>pallas frame work api</display-name>
+    <servlet-name>CoreServlet</servlet-name>
+    <servlet-class>ms.core.servlet.CoreServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CoreServlet</servlet-name>
+    <url-pattern>/sys.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <description>servlet of business logic</description>
+    <display-name>project business api</display-name>
+    <servlet-name>LogicServlet</servlet-name>
+    <servlet-class>ms.core.servlet.LogicServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogicServlet</servlet-name>
+    <url-pattern>/web.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <description>servlet of upload file</description>
+    <display-name>servlet for upload file</display-name>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>com.winiis.cloudhost.core.servlet.UploadServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/upload.do</url-pattern>
+  </servlet-mapping>
+
+  <!-- 支付宝 -->
+  <servlet>
+    <description>servlet for alipay</description>
+    <display-name>servlet for alipay</display-name>
+    <servlet-name>AlipayReturnServlet</servlet-name>
+    <servlet-class>com.winiis.cloudhost.thridparty.pay.alipay.AlipayRerutnServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>servlet for alipay</description>
+    <display-name>servlet for alipay</display-name>
+    <servlet-name>AlipayReceiveServlet</servlet-name>
+    <servlet-class>com.winiis.cloudhost.thridparty.pay.alipay.AlipayReceiveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AlipayReturnServlet</servlet-name>
+    <url-pattern>/alipay_return</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AlipayReceiveServlet</servlet-name>
+    <url-pattern>/alipay_receive</url-pattern>
+  </servlet-mapping>
+
+  <!-- 盛付通 -->
+  <servlet>
+    <description>servlet for sftpay</description>
+    <display-name>servlet for sftpay</display-name>
+    <servlet-name>SftpayServlet</servlet-name>
+    <servlet-class>com.winiis.cloudhost.thridparty.pay.sft.ShenpayReceivePageServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>servlet for sftpay</description>
+    <display-name>servlet for sftpay</display-name>
+    <servlet-name>SftpayNotifyServlet</servlet-name>
+    <servlet-class>com.winiis.cloudhost.thridparty.pay.sft.ShenpayNotifyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SftpayNotifyServlet</servlet-name>
+    <url-pattern>/sftpay_notify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SftpayServlet</servlet-name>
+    <url-pattern>/sftpay_receive</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>ParamsFilter</filter-name>
+    <filter-class>com.winiis.cloudhost.core.filter.CoreFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <!-- define filter name -->
+    <filter-name>ParamsFilter</filter-name>
+    <!-- define to filter path -->
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!--微信支付-->
+  <filter>
+    <filter-name>PayWechatFilter</filter-name>
+    <filter-class>com.winiis.component.pay.wechat.filter.PayWecahtFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <!-- define filter name -->
+    <filter-name>PayWechatFilter</filter-name>
+    <!-- define to filter path -->
+    <url-pattern>/wechat</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>CacheFilter</filter-name>
+    <filter-class>
+      hs.plugin.cachefilter.CacheFilter
+    </filter-class>
+    <init-param>
+      <param-name>file-type1</param-name><!-- admin index -->
+      <param-value>.htm</param-value>
+    </init-param>
+    <init-param>
+      <param-name>timeout1</param-name>
+      <param-value>0</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <!-- define filter name -->
+    <filter-name>CacheFilter</filter-name>
+    <!-- define to filter path -->
+    <url-pattern>*.htm</url-pattern>
+  </filter-mapping>
+
+  <listener>
+  	<!-- auto task listener -->
+    <listener-class>ms.core.listener.SystemTaskListener</listener-class>
+  </listener>
+
+  <listener>
+    <!-- http session listener -->
+    <listener-class>ms.core.listener.HttpContextListener</listener-class>
+    <!-- use oa diy listener: for customer -->
+    <!--<listener-class>hs.oa.core.listener.CustomerSessionListener</listener-class>-->
+  </listener>
+
+  <session-config> 
+  	<!-- http session timeout configuration (timeout unit: minute)-->
+  	<session-timeout>120</session-timeout> 
+  </session-config>
+
+  <welcome-file-list>    
+    <welcome-file>/index.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

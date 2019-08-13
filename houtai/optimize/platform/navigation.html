@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品迁入引导首页</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="../cloud/yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body style="background-color: #efefef">
+<div id="main-block" v-cloak>
+    <div style="padding: 10px;">
+        <div style="border: 1px solid #c4c4c4; background-color: #ffffff; padding: 10px;" _funCode="queryBizTransfer">
+            <div style="width: 980px; overflow: hidden; background-color: #ffffff;" _funCode="performNavigation">
+                <div style="float: left">
+                    <div style="width: 300px; height: 480px; overflow-x: auto; overflow-y: auto">
+                        <el-tree
+                                :data="data"
+                                node-key="id"
+                                default-expand-all
+                                draggable
+                                @current-change="selectNode"
+                                :expand-on-click-node="false">
+                          <span class="custom-tree-node" slot-scope="{ node, data }">
+                            <span style="font-size: 14px; line-height: 28px;">{{ node.label }}</span>
+                            <span style="line-height: 28px; position: relative; margin-right: 10px;">
+                              <i class="el-icon-circle-plus"
+                                  v-if="allowAdd(data)"
+                                  size="mini"
+                                  @click="() => append(data)">
+                              </i>
+                              <i class="el-icon-remove"
+                                 v-if="node.id != 1"
+                                 size="mini"
+                                 @click="() => remove(node, data)">
+                              </i>
+                            </span>
+                          </span>
+                        </el-tree>
+                    </div>
+                </div>
+                <div style="width: 649px; min-height: 480px; float: left; border: 1px solid #e0e0df; padding: 10px">
+                    <div v-if="currentNode.id == 1">
+                        导航设置
+                    </div>
+                    <div v-else>
+                        <el-form ref="form" :model="currentNode" label-width="120px">
+                            <el-row>
+                                <el-form-item label="导航名称：">
+                                    <el-input v-model="currentNode.label" style="width: 200px"></el-input>
+                                </el-form-item>
+                            </el-row>
+                            <el-row>
+                                <el-form-item label="导航类型：">
+                                    <el-select v-model="currentNode.type" placeholder="请选择">
+                                        <el-option
+                                                v-for="item in typeOptions"
+                                                :key="item.value"
+                                                :label="item.label"
+                                                :value="item.value">
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-row>
+                            <el-row>
+                                <el-form-item label="链接地址：">
+                                    <el-input v-model="currentNode.link" style="width: 350px"></el-input>
+                                    <el-tooltip class="item" effect="dark" placement="right">
+                                        <div slot="content">
+                                            导航打开的地址，填写模板路径后的相对路径，如：填写domain/domain.html，生成地址为：/default/domain/domain.html。
+                                            <br />如果填写“/”,打开地址为首页；
+                                            <br />支持javascript: void(0);、javascript:; -- 点击不发生跳转；
+                                            <br />支持“#”字符；
+                                            <br />支持外站链接，需要填写全路径，即以http或https开头。如：http://www.winiis.com。
+                                        </div>
+                                        <i class="el-icon-question"></i>
+                                    </el-tooltip>
+                                </el-form-item>
+                            </el-row>
+                            <el-row v-if="currentNode.type != 1">
+                                <el-form-item label="图像尺寸：">
+                                    宽：<el-input-number v-model="currentNode.imgWidth" :min="1"></el-input-number>
+                                    &Chi; 高：<el-input-number v-model="currentNode.imgHeight" :min="1"></el-input-number>
+                                </el-form-item>
+                            </el-row>
+                            <el-row v-if="currentNode.type != 1">
+                                <el-form-item label="图像：">
+                                    <el-upload
+                                            ref="upload"
+                                            class="upload-demo"
+                                            drag
+                                            :action="uploadUrl"
+                                            :limit="1"
+                                            :on-success="uploadSuccess">
+                                        <i class="el-icon-upload"></i>
+                                        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                                        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                                    </el-upload>
+                                </el-form-item>
+                            </el-row>
+                            <el-row>
+                                <el-form-item label="预览：">
+                                    <div v-if="currentNode.type == 1">
+                                        <a href="javascript: void(0);" onclick="vmNavigation.jumpLink()" target="_blank" v-html="currentNode.label"></a>
+                                    </div>
+                                    <div v-if="currentNode.type == 2">
+                                        <div onclick="vmNavigation.jumpLink()"
+                                             :style="'cursor: pointer; padding: 10px; border: 1px solid #F0F0EE; width:' + currentNode.imgWidth + 'px' ">
+                                            <div style="display: block">
+                                                <img :src="currentNode.img" :width="currentNode.imgWidth" :height="currentNode.imgHeight" />
+                                            </div>
+                                            <div style="display: block; text-align: center" v-html="currentNode.label"></div>
+                                        </div>
+                                    </div>
+                                    <div v-if="currentNode.type == 3">
+                                        <div onclick="vmNavigation.jumpLink()" style="cursor: pointer; padding: 10px;">
+                                            <img :src="currentNode.img" :width="currentNode.imgWidth" :height="currentNode.imgHeight" align="middle" style="float: left" />
+                                            <span v-html="currentNode.label" :style="'line-height:' + currentNode.imgHeight + 'px; float:left'"></span>
+                                        </div>
+                                    </div>
+                                </el-form-item>
+                            </el-row>
+                        </el-form>
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 10px; margin-top: 10px; width: 980px; float: left">
+                    <el-button type="primary" @click="saveNavigation">保存修改</el-button>
+                    <el-button @click="cancelNavigation">取消修改</el-button>
+                    <el-button @click="build" type="warning">生成</el-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../public/main.js"></script>
+<script language="JavaScript">
+    document.write('<link rel="stylesheet" href="'+realPath+'/public/fonts/iconfont.css">');
+</script>
+<script src="../../public/right.js"></script>
+<script src="navigation.js"></script>
+</html>

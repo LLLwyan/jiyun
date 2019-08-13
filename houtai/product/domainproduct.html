@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+    <style type="text/css">
+    	.input_chk{
+    		height: 16px; width: 16px; vertical-align: text-bottom;
+    	}
+    	.input_txt{
+    		width: 40px; height: 28px;
+    	}
+    </style>
+</head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    	<input type="hidden" id="hidProductCode"/>
+                    	<input type="hidden" id="hidProductClass"/>
+                    	<table class="table table-bordered" style="margin-bottom:0px;">
+                    		<thead>
+                                <tr>
+                                    <th colspan="2">产品详细设置</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	<tr>
+                            		<td width="20%">产品类型</td>
+                            		<td id="productClassName"></td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">产品编号</td>
+                            		<td id="productCode"></td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">产品名称</td>
+                            		<td>
+                            			<input type="text"  class="manager-input m-input width200" placeholder="产品名称" id="productName" chknonull="yes" chkmsg="产品名称">
+                            		</td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">域名类型</td>
+                            		<td>
+                            			<select id="domaintype" class="form-control width200">
+		                                </select>
+                            		</td>
+                            	</tr>
+                            	<!--<tr>
+                            		<td width="20%">上级注册商</td>
+                            		<td>
+                            			<select id="regtype" class="form-control width200">
+		                                </select>
+                            		</td>
+                            	</tr>-->
+                            	<tr>
+                            		<td width="20%">域名后缀</td>
+                            		<td id="domainsuffix">
+                            			
+                            		</td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">域名查询接口</td>
+                            		<td>
+                            			<select id="queryInterface" class="form-control width200">
+		                                </select>
+                            		</td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">默认DNS</td>
+                            		<td>
+                            			<select id="dnsservice" class="form-control" style="width:230px;">
+                            				<option value="">系统默认的DNS服务器</option>
+                            				<option value="reg">上级域名注册商的DNS服务器</option>
+		                                </select>
+                            		</td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">产品详细说明</td>
+                            		<td>
+                            			<textarea id="productDetail" cols="60" rows="5"></textarea>
+                            		</td>
+                            	</tr>
+                            	<tr>
+                            		<td width="20%">产品状态</td>
+                            		<td>
+                            			<select id="status" class="form-control width200">
+                            				<option value="1">正常</option>
+                            				<option value="2">暂停</option>
+		                                </select>
+                            		</td>
+                            	</tr>
+                            </tbody>
+                    	</table>
+                    	<table class="table table-bordered">
+                    		<thead>
+                                <tr>
+                                    <th colspan="17">购买价格设置</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                            	<tr>
+                            		<td width="10%">购买时长</td>
+                            		<td>1年</td>
+                            		<td>2年</td>
+                            		<td>3年</td>
+                            		<td>4年</td>
+                            		<td>5年</td>
+                            		<td>6年</td>
+                            		<td>7年</td>
+                            		<td>8年</td>
+                            		<td>9年</td>
+                            		<td>10年</td>
+                            	</tr>
+                            </tbody>
+                        </table>
+                        <input type="button" class="btn btn-primary" onClick="saveProductData()"  value="保存设置">
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/domainproduct.js"></script>
+</html>

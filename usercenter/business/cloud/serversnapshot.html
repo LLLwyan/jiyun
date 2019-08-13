@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../../publicD/maincss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<script src="../../../publicD/memberjs.js"></script>
+
+	<!--element vue start-->
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<!-- import Vue before Element -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- import JavaScript -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<!--element vue end-->
+</head>
+<body id="thrColEls">
+<div id="MainContentDIV" v-cloak>
+<div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+			<li><a href="javascript:void(0);">我的服务器</a></li>
+        </ul>
+	</div>
+	<div class="ManagerRightuser">
+           	<div style="margin:10px -20px 0px -20px">
+			<div class="server-title">
+				<b>实例：</b><span id="instanceId"></span>
+			</div>
+		</div>
+           	<div style="margin:10px -20px 0px -20px">
+	           	<ul class="manager-tab bind-tab">
+	            	<li tag="allorders"><a id="instanceDetail" href="javascript:;">当前实例详情</a></li>
+	                <li tag="completedorders"><a id="instanceDisk" href="javascript:;">当前实例硬盘</a></li>
+	                <li tag="nopayorders" class="liactive"><a id="instanceSnapshot" href="javascript:;">当前实例快照</a></li>
+	            </ul>
+          	</div>
+
+		<div class="server-control" v-if="hostType=='hyperv'">
+			<input type="button" class="manager-btn mr-10" id="btnBackList" onclick="snapshotDialog()" value="添加快照">
+		</div>
+
+             	<table class="manager-table table-hover" v-if="hostType=='hyperv'">
+				   <thead>
+					   <tr>
+						<th><input type="checkbox" onclick="checkAllSnapshot(this)" id="checkedAll" ></th>
+							<th>快照名称</th>
+						   <!--<th>大小</th>
+						   <th>快照类型</th>
+						   <th>关联磁盘</th>
+						   <th>状态</th>-->
+						   <th>创建时间</th>
+						   <th>操作</th>
+					   </tr>
+				   </thead>
+				   <tbody id="snapshotList">
+				   </tbody>
+				</table>
+       		<div class="btn-group" v-if="hostType=='hyperv'">
+       			<input type="button" class="manager-btn mt-10" value="删除选中" onclick="batchDelSnapshot()">
+       		</div>
+       		<div id="page" class="pager_container clearfix"  v-if="hostType=='hyperv'">
+                 <input id="totalcount" type="hidden" value="0" />
+                 <input id="pagenumber" type="hidden" value="1" />
+                 <div id="pager"></div>
+     		</div>
+
+            <el-row v-if="hostType=='aliyun'">
+                <el-table
+                        :data="tableData"
+                        border
+                        ref="multipleTable"
+                        @selection-change="handleSelectionChange"
+                        style="width: 100%; margin-top: 10px;">
+                    <el-table-column
+                            type="selection"
+                            width="55">
+                    </el-table-column>
+                    <el-table-column
+                            prop="snapshotName"
+                            label="名称">
+                    </el-table-column>
+                    <el-table-column
+                            prop="progress"
+                            label="创建进度">
+                        <template scope="scope">
+                            <span v-html="scope.row.progress"></span>%
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            width="180"
+                            prop="retentionDays"
+                            label="快照保留天数">
+                    </el-table-column>
+                </el-table>
+                <div style="margin-top: 10px">
+                    <el-button type="primary" @click="deleteSnapshot">删除选中的快照</el-button>
+                </div>
+            </el-row>
+
+            <el-row v-if="hostType=='aliyun'" style="margin-top: 5px">
+                <div class="block">
+                    <el-pagination
+                            layout="prev, pager, next"
+                            :current-change="changePage"
+                            :prev-click="changePage"
+                            :next-click="changePage"
+                            :total="page.total">
+                    </el-pagination>
+                </div>
+            </el-row>
+
+
+		<div class="add-uer-box" id="addBox" style="display:none">
+			<div style="height:30px;padding:20px 0 10px 0">注：当前实例最多可创建<span id="snapshotCount" class="red"></span>个快照，已创建<span id="aSnapshot" class="red"></span>个</div>
+			<!--<div style="height:30px;padding:30px 0 10px 30px">硬盘名称：<span id="diskName"></span></div>-->
+			<div style="height:30px;padding:30px 0 10px 30px">实例ID：<span id="instanceId2"></span></div>
+			<div style="height:100px;padding:30px; display: none">
+				快照名称：
+				<input id="snapshotName" class="manager-input m-input width200" value="" maxlength="20" placeholder="请输入快照名称最长20位"><strong class="redColor f-l10 ">*</strong>
+				<input type="hidden" id="diskId"/>
+			</div>
+		</div>
+		<!--还原快照-->
+		<div class="add-uer-box" id="restoreBox" style="display:none;" align="center">
+			<table class="table-form" style="width:90%;margin-top:20px;">
+				<tr>
+					<td>注：还原快照磁盘数据将被清除，请先备份。</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<script src="js/serversnapshot.js"></script>
+</body>
+</html>

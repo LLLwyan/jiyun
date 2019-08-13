@@ -1,0 +1,120 @@
+<!DOCTYPE html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <link rel="stylesheet" type="text/css" href="../css/../font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="../../publicD/membercss.js"></script>
+    <script src="../../publicD/memberjs.js"></script>
+    <!--<script src="../public/qqonline.js"></script>-->
+    <script src="../public/../maincontent.js"></script>
+    <script src="../public/../Ziframe.js"></script>
+    <script language="JavaScript">
+        function setIframeHeight(iframe) {
+            if (iframe) {
+                //var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+                //if (iframeWin.document.body) {
+                //iframe.style.height = (iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight) + 'px';
+                console.log(document.documentElement.clientHeight);
+                iframe.style.height = (document.documentElement.clientHeight - 110) + 'px';
+                //}
+            }
+        }
+    </script>
+</head>
+<style>
+    html{overflow:hidden;}
+    body{min-width: auto;!important}
+    .myfoot{
+        width: 100%;
+        position: absolute;
+        height: 250px;
+        background-color: #fff;
+    }
+    .myfoot p{
+        padding-top:5px;
+    }
+
+    @media (min-width: 1500px) {
+        .myfoot p{
+            padding-top:30px;
+        }
+        iframe{
+            margin-bottom:15px;
+        }
+        #thrColEls .Style2009 #MainContentDIV{height:100%}
+        #thrColEls .Style2009{height:100%}
+        .Z_iframe{height:660px}
+    }
+    /* 大屏幕（大桌面显示器，大于等于1200px） */
+    @media (min-width: 1200px) {
+        .myfoot{
+            height: 50px;
+            width: 100%;
+            position: absolute;
+            background-color: #fff;
+        }
+        .myfoot p{
+            padding-top:5px;
+        }
+        iframe{
+            margin-bottom:12px;
+        }
+
+    }
+    /* 中等屏幕（桌面显示器，大于等于992px） */
+    @media (min-width: 992px) {
+        .myfoot{
+            width: 100%;
+            position: absolute;
+            height: 50px;
+            background-color: #fff;
+        }
+    }
+    /* 小屏幕（平板，大于等于768px） */
+    @media (min-width: 768px) {
+    }
+</style>
+<body>
+<iframe style="width: 100%; height: 100%; border: none" id="vncFrame"></iframe>
+<script src="../../publicD/memberjs.js"></script>
+<script language="javascript">
+    $(function () {
+        var instance = window.localStorage.getItem(configParam.cloudType.vncInstance);
+        if (!instance) {
+            return;
+        }
+        var vncInstance = JSON.parse(instance);
+        if (!vncInstance) {
+            alertNew('获取实例信息失败');
+            return;
+        }
+
+        //启动Vnc
+        var service = {};
+        service.instanceId=vncInstance.instanceId;
+        var fn="startVNCServer";
+        service = Commonjs.jsonToString(service)
+        var params = Commonjs.getParams(fn,service);//获取参数
+        Commonjs.ajaxTrue(weburl,params,function () {
+            var url = "http://" + vncInstance.publicIP + ":8158";
+            //var pass = cloudEncrypt.decodeSession(vncInstance.password);
+            //debug:
+            var url = "http://192.168.1.50:8158";
+            var pass = "123456";
+            var frameUrl = url + "/vnc.html";
+            $('#vncFrame').attr('src', frameUrl);
+            setTimeout(function () {
+                window.frames[0].postMessage({pass:pass}, url);
+            }, 1000);
+        },true,"正在启动...");
+    });
+</script>
+</body>
+</html>

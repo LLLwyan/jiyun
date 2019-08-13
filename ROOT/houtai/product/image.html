@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>镜像管理</title>
+<script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+	                    <div class="mt-20" style="overflow:visible;position:relative;text-align: center;float:left;">
+		                    <form class="form-inline" role="form">
+		                        <div class="form-group">
+		                            <label class="control-label">上级注册商：</label>
+		                           	<select class="form-control" id="hosttype" name="hosttype">
+		                            <option value="">请选择</option>
+		                            </select>
+		                            &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary"   onclick="queryOsImage();" value="查询">
+		                        	<input type="button" class="btn btn-primary" onClick="addOsImage();"  value="添加">
+		                        </div>
+		                    </form>
+						</div>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>上级注册商</th>
+                                    <th>地域</th>
+                                    <th>镜像类型</th>
+                                    <th>操作系统类型</th>
+                                    <th>操作系统名称</th>
+                                    <th>镜像Id/模板路径</th>
+                                    <th>支持VNC</th>
+                                    <th>排序</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="osimglist">
+                              	<tr>
+                                	<td colspan="9" style="height:50px;text-align:center;line-height:50px;">找不到相关信息</td>
+                            	</tr>
+                            </tbody>
+                        </table>
+                       	<div id="page" class="pager_container clearfix" >
+	                        <input id="totalcount" type="hidden" value="0" />
+	                        <input id="pagenumber" type="hidden" value="1" />
+	                        <div id="pager"></div>
+	                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="add-uer-box" id="addBox" style="display:none">
+    <form method="post" action="#" id="imagefrom">
+    <input type="hidden" id="ID">
+   	<table class="table-form">
+           <tr>
+               <td class="t">
+                  <label for="name" class="control-label"> <sub>&lowast;</sub>上级注册商：</label>
+               </td>
+               <td>
+                  <select id="hosttype2" class="form-control" onchange="queryRegionList()"></select>
+               </td>
+           </tr>
+           <tr>
+               <td class="t">
+                  <label for="name" class="control-label"><sub>&lowast;</sub>地域：</label>
+               </td>
+               <td>
+                  <select class="form-control" id="region"></select>
+               </td>
+           </tr>
+           <tr>
+               <td class="t">
+                  <label for="name" class="control-label"><sub>&lowast;</sub>镜像类型：</label>
+               </td>
+               <td>
+                  <select class="form-control" id="imageType">
+              	  	<option value="1">公共镜像</option>
+                    <option value="2">市场镜像</option>
+             	  </select>
+               </td>
+           </tr>
+           <tr>
+               <td class="t">
+                  <label for="name" class="control-label"><sub>&lowast;</sub>操作系统类型：</label>
+               </td>
+               <td>
+                   <input type="text" placeholder="例:windows" class="form-control" id="osType">
+               </td>
+           </tr>
+           <tr>
+               <td class="t">
+                  <label for="name" class="control-label"><sub>&lowast;</sub>操作系统名称：</label>
+               </td>
+               <td>
+                   <input type="text" placeholder="例:windows server 2003" class="form-control" id="osName">
+               </td>
+           </tr>
+           <tr>
+               <td class="t">
+                  <label for="name" class="control-label"><sub>&lowast;</sub>镜像Id/模板路径：</label>
+               </td>
+               <td>
+                   <input type="text" placeholder="例:E:\VPS\Template\win2003.vhdx" class="form-control" id="imageIdent">
+               </td>
+           </tr>
+            <tr>
+                <td class="t">
+                    <label for="name" class="control-label"><sub>&lowast;</sub>是否支持VNC：</label>
+                </td>
+                <td>
+                    <select class="form-control" id="supportVnc">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+           <tr>
+               <td class="t">
+                  <label for="name" class="control-label">排序：</label>
+               </td>
+               <td>
+                   <input type="text" placeholder="例:1" class="form-control" id="listId">
+               </td>
+           </tr>
+      </table>
+      </from>
+      </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/image.js"></script>
+</html>

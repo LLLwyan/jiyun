@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    <div class="mt-20" style="overflow:visible;position:relative;text-align: center;">
+                     <div class="ibox-content">
+                       <form class="form-inline" role="form">
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                        	<caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">系统默认设置</caption>
+                            <tbody id="userlist"/>
+                            	<tr>
+                            		<th width="20%" class="text-right">新会员级别：</th>
+                            		<td width="30%" align="left">
+                            			<select class="form-control width200" id="userLevel"></select>
+                            		</td>
+                            		<th width="20%" class="text-right">网站默认模板：</th>
+                            		<td width="30%" align="left">
+                            			<select class="form-control width200" id="template"></select>
+                            		</td>
+                            	</tr>
+                            	<tr>
+                            		<th width="20%" class="text-right">显示默认价格级别：</th>
+                            		<td align="left">
+                            			<select class="form-control width200" id="showPriceLevel"></select>
+                            			<font color="#336699">前台会员未登录显示产品价格级别</font>
+                            		</td>
+                            	</tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                              <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">网站基本配置</caption>
+                              <tbody>
+                                <tr>
+                                  <th class="text-right">公司客服qq:</th>
+                                  <td colspan="3" class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="comqq"/>
+                                    <font color="#336699">&nbsp;多个QQ请用逗号隔开,客户号与QQ名之间用冒号隔开,多个MSN用逗号隔开</font></td>
+                                </tr>
+                                <tr>
+                                  <th width="20%" class="text-right">公司客服MSN：</th>
+                                  <td width="30%" class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="commsn" /></td>
+                                  <th width="20%" class="text-right">公司客服邮箱：</th>
+                                  <td width="30%" class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="comemail"/></td>
+                                </tr>
+                                <tr>
+                                  <th width="20%" class="text-right">公司电话：</th>
+                                  <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="comtel"/></td>
+                                  <th width="20%" class="text-right">公司传真：</th>
+                                  <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="comfax"/></td>
+                                </tr>
+                                <tr>
+                                  <th width="20%" class="text-right">公司地址：</th>
+                                  <td class="text-left"><input type="text"  class="form-control"  style="width: 320px;" value="" id="comaddress"/></td>
+                                  <th width="20%" class="text-right">公司邮编：</th>
+                                  <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="compostcode"/></td>
+                                </tr>
+                                <tr>
+                                  <th width="20%" class="text-right">网站名称：</th>
+                                  <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="webname"/></td>
+                                  <th width="20%" class="text-right">网站标题：</th>
+                                  <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="webtitle"/></td>
+                                </tr>
+                                <tr>
+                                  <th width="20%" class="text-right">信息产业部备案号：</th>
+                                  <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="webicp"/></td>
+                                  <th width="20%" class="text-right">电信增值经营许可证号：</th>
+                                  <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="webicp2"/></td>
+                                </tr>
+                                <tr>
+                                  <th width="20%" class="text-right">公司网站地址：</th>.
+                                	 <td class="text-left"><input type="text"  class="form-control" style="width: 320px;" value="" id="weburl"/></td>
+                                  <th width="20%" class="text-right">公司名称：</th>
+                                  <td class="text-left"><input type="text"  class="form-control"  style="width: 320px;" value="" id="comname"/></td>
+                                </tr>
+                                <tr>
+                                  <th width="20%" class="text-right">公司介绍：</th>
+                                	 <td class="text-left" colspan="3"><textarea class="form-control" maxlength="100" style="margin: 0px; height: 100px; width: 750px;" value="" id="introduce"></textarea>不超过100个字</td>
+                                </tr>
+                                <tr>
+                                  <th width="20%" class="text-right">公司LoGo图标：</th>
+                                  <td  colspan="1" rowspan="3" style="text-align:left; ">
+
+                                 <div class="doctor-info-fr fr" id="pic" style="text-align:left; ">
+                        	 		 <div  id="updateSmallImg" class="doctor-info-img" style="text-align:left; " >
+                                     <input type="hidden" id="weblogo" />
+                    					<input type="file" title="点击上传图片" value="点击上传图片" id="SmallImg" class="SmallImg" onChange="upload('SmallImg','SmallImgV');" onpaste="return false" name="0" />
+										<img id="SmallImgV"  src="../img/show.jpg" style="height:120px;width:120px;"  />
+									</div>
+                       			 </div>
+                                  </td>
+                                    <th width="20%" class="text-right">微信图标：</th>
+                                  <td class="text-left">
+                                     <div class="doctor-info-fr fr" id="pic" style="text-align:left; ">
+	                        	 		<div class="doctor-info-img" style="text-align:left; " >
+	                                     	<input type="hidden" id="wechatlogo" />
+	                    					<input type="file" title="点击上传图片" value="点击上传图片" class="SmallImg" id="WeChatImg" onChange="upload('WeChatImg','SmallImglogo');" onpaste="return false" name="0" />
+											<img id="SmallImglogo"  src="../img/show.jpg" style="height:120px;width:120px;"  />
+										</div>
+	                       			 </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                    	<caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">订单配置</caption>
+                            <tbody>
+                                <tr>
+                                <th class="text-right" width="20%">删除到期未支付订单:</th>
+                                <td colspan="1" class="text-left"><input type="text"  class="form-control"  value="" id="orderPayData"/><font color="#336699">&nbsp;请输入到期时间，如：7天；为空表示不启用。</font></td>
+                                </tr>
+         						<tr>
+                                <th class="text-right" width="20%">删除购物车到期未生成订单:</th>
+                                <td colspan="4" class="text-left"><input type="text"  class="form-control"  value="" id="orderCarData"/><font color="#336699">&nbsp;请输入到期时间，如：7天；为空表示不启用。</font></td>
+                                </tr>
+                             </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                    	<caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">域名配置</caption>
+                            <tbody>
+                            	<tr>
+                                <th class="text-right" width="20%">域名将要到期通知:</th>
+                                <td colspan="3" class="text-left"><input type="text"  class="form-control"  value="" id="dominReNewEmail"/><font color="#336699">&nbsp;请输入将要到期时间，以天为单位逗号隔开，如:30,15,7,3,1；为空表示不启用。</font></td>
+                                </tr>
+         						<tr>
+                                <th class="text-right" width="20%">删除已到期域名:</th>
+                                <td colspan="3" class="text-left"><input type="text"  class="form-control"  value="" id="deleteDomainData"/><font color="#336699">&nbsp;请输入到期时间，如：7天；为空表示不启用。</font></td>
+                                </tr>
+                             </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                    	<caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">云主机配置</caption>
+                            <tbody>
+                            	<tr>
+                                <th class="text-right" width="20%">云主机将要到期通知:</th>
+                                <td colspan="3" class="text-left"><input type="text"  class="form-control"  value="" id="serviceReNewDay"/><font color="#336699">&nbsp;请输入将要到期时间，以天为单位逗号隔开，如:30,15,7,3,1；为空表示不启用。</font></td>
+                                </tr>
+         						<tr>
+                                <th class="text-right" width="20%">删除已到期云主机:</th>
+                                <td colspan="3" class="text-left"><input type="text"  class="form-control"  value="" id="deleteService"/><font color="#336699">&nbsp;请输入到期时间，如：7天；为空表示不启用。</font></td>
+                                </tr>
+                                <tr>
+                                <th class="text-right" width="20%">到期自动关闭云主机:</th>
+                                <td colspan="3" class="text-left">
+                                	<select class="form-control" id="autoCloseCloud">
+                                        <option value="1">停用</option>
+                                        <option value="2">启用</option>
+                                    </select>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-right" width="20%">删除是否备份:</th>
+                                    <td colspan="3" class="text-left">
+                                        <select class="form-control" id="delBackCloud">
+                                            <option value="N">否</option>
+                                            <option value="Y">是</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <!--<tr>
+                                    <th class="text-right" width="20%">自动备份:</th>
+                                    <td colspan="3" class="text-left">
+                                        <select class="form-control" id="autoBackCloud">
+                                            <option value="N">否</option>
+                                            <option value="Y">是</option>
+                                        </select>
+                                        <font color="#336699">&nbsp;只支持自建云自动备份；自动备份只会自动备份状态为正常的业务。</font>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-right" width="20%">备份目录:</th>
+                                    <td colspan="3" class="text-left"><input type="text"  class="form-control"  value="" id="autoBackCloudDir"/><font color="#336699">&nbsp;请输入备份目录；为空表示不启用。</font></td>
+                                </tr>-->
+                             </tbody>
+                        </table>
+
+                           <table class="table table-striped table-bordered table-hover " id="editable">
+                               <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">虚拟主机</caption>
+                               <tbody>
+                               <tr>
+                                   <th class="text-right" width="20%">虚拟主机将要到期通知:</th>
+                                   <td colspan="3" class="text-left"><input type="text"  class="form-control"  value="" id="vhostReNewDay"/><font color="#336699">&nbsp;请输入将要到期时间，以天为单位逗号隔开，如:30,15,7,3,1；为空表示不启用。</font></td>
+                               </tr>
+                               <tr>
+                                   <th class="text-right" width="20%">删除已到期虚拟主机:</th>
+                                   <td colspan="3" class="text-left"><input type="text"  class="form-control"  value="" id="deleteVhost"/><font color="#336699">&nbsp;请输入到期时间，如：7天；为空表示不启用。</font></td>
+                               </tr>
+                               <tr>
+                                   <th class="text-right" width="20%">到期自动关闭虚拟主机:</th>
+                                   <td colspan="3" class="text-left">
+                                       <select class="form-control" id="autoCloseVhost">
+                                           <option value="1">停用</option>
+                                           <option value="2">启用</option>
+                                       </select>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <th class="text-right" width="20%">实例密码查看方式:</th>
+                                   <td colspan="3" class="text-left">
+                                       <select class="form-control" id="checkPwdVhost">
+                                           <option value="1">邮件</option>
+                                           <option value="2">直接可在页面查看</option>
+                                       </select>
+
+                                       <span style="color: #336699"> 实例密码是指：FTP登录密码、SQL Server数据库密码、MySQL数据库密码</span>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <th class="text-right" width="20%">是否开启自动备份:</th>
+                                   <td colspan="3" class="text-left">
+                                       <select class="form-control" id="autoBackVHost">
+                                           <option value="1">停用</option>
+                                           <option value="2">启用</option>
+                                       </select>
+                                       自动备份范围：SQL Server、MySQL。
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <th class="text-right" width="20%">自动备份濒率:</th>
+                                   <td colspan="5" align="left"><input type="text"  class="form-control"  value="" id="autoBackVHostTime"/><font color="#336699">(小时)&nbsp;请输入数字，如：24，即为24小时；为空默认为24小时。</font></td>
+                               </tr>
+                               </tbody>
+                           </table>
+
+                           <table class="table table-striped table-bordered table-hover " id="editable">
+                               <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">多种登录方式</caption>
+                               <tbody>
+                               <tr>
+                                   <th class="text-right" width="20%">是否开启验证码登录:</th>
+                                   <td colspan="3" class="text-left">
+                                       <select class="form-control" id="supportCodeLogin">
+                                           <option value="1">停用</option>
+                                           <option value="2">启用</option>
+                                       </select>
+                                       <font color="#336699">&nbsp;开启此功能，用户可以使用验证码方式登录。</font>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <th class="text-right" width="20%">验证码发送:</th>
+                                   <td colspan="3" class="text-left">
+                                       <select class="form-control" id="codeLoginWay">
+                                           <option value="mail">邮箱</option>
+                                           <option value="sms">短信</option>
+                                       </select>
+                                       <font color="#336699">&nbsp;在开启验证码登录的情况下有效；请选择一种支持的发送方式，推荐使用短。</font>
+                                   </td>
+                               </tr>
+                               </tbody>
+                           </table>
+                        <!--<table class="table table-striped table-bordered table-hover " id="editable">
+                    	<caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">行为日志配置</caption>
+                            <tbody>
+                            	<tr>
+                                <th class="text-right" width="20%">行为日志记录是否开启:</th>
+                                <td colspan="5" align="left"><select class="form-control width600" id="logOpen" style="width: 179px;"><option value="0">关闭</option><option value="1">开启</option></select></td>
+                                </tr>
+                             </tbody>
+                        </table>-->
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                    		<caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">工单配置</caption>
+                            <tbody>
+                            	<tr>
+                                	<th class="text-right" width="20%">接收邮箱地址:</th>
+                                	<td colspan="5" align="left"><input type="text"  class="form-control"  value="" id="workOrderEmail"/></td>
+                                </tr>
+                                <tr>
+                                	<th class="text-right" width="20%">工单自动关闭:</th>
+                                	<td colspan="5" align="left"><input type="text"  class="form-control"  value="" id="workOrderCloseTime"/><font color="#336699">&nbsp;请输入过时时间，以小时为单位，如：24，即为24小时；为空表示不启用自动关闭。</font></td>
+                                </tr>
+                             </tbody>
+                        </table>
+
+                           <table class="table table-striped table-bordered table-hover " >
+                               <caption class="text-left" style="padding-left:10px;background-color:#f3f3f2;">其他业务配置</caption>
+                               <tbody>
+                               <tr>
+                                   <th class="text-right" width="20%">业务转移自动到期间隔时间:</th>
+                                   <td colspan="5" align="left"><input type="text"  class="form-control"  value="" id="bizTransferDays"/> 天，<span style="color: #336699">请输入间隔时间，以天为单位,为空表示不限制到期。</span> </td>
+                               </tr>
+                               </tbody>
+                           </table>
+                        <input type="button" value="保存系统配置" class="btn btn-primary" onclick="uptDicParam();" >
+                        </form>
+                    </div>
+                    </div>
+       		 	<div class="conbut">
+              </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="../../public/js/upload.js"></script>
+<script src="js/sysconfig.js"></script>
+</html>

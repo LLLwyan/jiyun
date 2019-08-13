@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <script src="../../../publicD/maincss.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+</head>
+<body id="thrColEls overflow-y:auto;">
+<div id="MainContentDIV">
+    <div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+            <li><a href="javascript:void(0);">虚拟主机</a></li>
+        </ul>
+    </div>
+    <div class="ManagerRightuser">
+        <div id="realname-auth" class="nav-content active">
+            <input type="hidden" id="hostType"/>
+            <input type="hidden" id="instanceId"/>
+            <input type="hidden" id="productCode"/>
+            <div class="mt-10" style="overflow:visible;position:relative">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label class="control-label">实例名称：</label>
+                        <input type="text" placeholder="请输入实例名称"  class="form-control" id="webName">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">业务类型：</label>
+                        <select class="form-control" id="serverType">
+                            <option value="">请选择</option>
+                            <option value="web">Web</option>
+                            <option value="ftp">Ftp</option>
+                            <option value="mysql">MySQL</option>
+                            <option value="mssql">SQL Server</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">到期查询：</label>
+                        <select class="form-control" id="endDateType">
+                            <option value="0" selected="selected">不限</option>
+                            <option value="1">已经到期</option>
+                            <option value="7">7天内到期</option>
+                            <option value="15">15天内到期</option>
+                            <option value="30">30天内到期</option>
+                            <option value="45">45天内到期</option>
+                            <option value="60">60天内到期</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="searchbtn">
+                            <input type="button" onClick="queryUserServiceList();" class="manager-btn mr-10" value="搜 索">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <table class="manager-table table-hover">
+                <thead>
+                <tr>
+                    <th>实例名称</th>
+                    <th>产品名称</th>
+                    <th>开通业务类型</th>
+                    <th>状态</th>
+                    <th>开通时间</th>
+                    <th>到期时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="userServiceList">
+                </tbody>
+            </table>
+            <div id="page" class="pager_container clearfix" >
+                <input id="totalcount" type="hidden" value="0" />
+                <input id="pagenumber" type="hidden" value="1" />
+                <div id="pager"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 重置密码-->
+    <div id="detaliBoxa" style="display:none">
+        <div class="kuang">
+            <div class="product-detail-desc m-20">
+                <p><strong class="redColor">提示：</strong>只有当主机处于运行中才能修改密码，重置成功后请稍等1-2分钟再尝试登录。</p>
+            </div>
+            <form id="uptPwdForm" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><strong class="redColor f-l10 ">*</strong>登录密码:</label>
+                    <div class="col-sm-8">
+                        <input type="password" id="password" class="manager-input m-input width300"  placeholder="请输入登录密码">
+                        <br />
+                        8-30个字符，必须同时包含四项（大写字母,小写字母，数字和特殊字符）
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><strong class="redColor f-l10 ">*</strong>确认密码:</label>
+                    <div class="col-sm-8">
+                        <input type="password" id="confirmPassword" class="manager-input m-input width300"  placeholder="请输入确认密码">
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><strong class="redColor f-l10 ">*</strong>验证码:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="manager-input m-input width200" id="checkcode" placeholder="请输入验证码">
+                        <img class="img-code" src="../../../images/loading.gif" onclick="refreshVcode();" alt="点击可更换" id="imgcode" title="点击可更换" width="100" height="38">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <el-dialog title="虚心主机过户" :visible.sync="dialogFormVisible">
+        <el-form :model="form" :rules="rules" ref="pushForm">
+            <div v-if="isNew">
+                <el-form-item label="对方账号：" prop="toUserName">
+                    <el-input v-model="form.toUserName" label="请输入对方的用户账号" style="width: 300px"></el-input>
+                </el-form-item>
+            </div>
+            <div v-if="!isNew">
+                <el-form-item label="对方账号：">
+                    <span v-html="data.toUserName"></span>
+                </el-form-item>
+                <el-form-item label="发起时间：">
+                    <span v-html="formatTime(data.createTime)"></span>
+                </el-form-item>
+                <el-form-item label="交易安全码：">
+                    <span v-html="data.safeCode" v-if="showSafeCodeFlag"></span>
+                    <a href="javascript:void(0)" @click="showSafeCode" v-if="!showSafeCodeFlag">查看</a>
+                </el-form-item>
+            </div>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="makeDeal" v-if="isNew">确 定</el-button>
+            <el-button type="primary" @click="cancelDeal" v-if="!isNew">取消交易</el-button>
+        </div>
+    </el-dialog>
+
+</div>
+<!--右侧内容区 结束-->
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/vhostpublic.js"></script>
+<script src="js/vhost.js"></script>
+</body>
+</html>

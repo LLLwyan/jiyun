@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>可用区管理</title>
+	<script src="../public/maincss.js"></script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="ibox float-e-margins">
+                  <div class="ibox-content">
+                   <div class="mt-20" style="overflow:visible;position:relative;text-align: center;">
+                    <form class="form-inline" role="form">  
+                    	<div class="form-group" style="float:left"> 
+                            <label class="control-label">当前可用区：<span id="zoneName"></span></label>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                        	<caption class="text-left"  style="padding-left:10px;background-color:#f3f3f2;">OpenStack接口设置</caption>
+                            <tbody>
+                                <tr>
+	                                <th width="20%" class="text-right">管理员授权地址：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="osAdminUrl"/></td> 
+									<th width="15%" class="text-right">管理员账号：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" style="width:120px;" value="" id="osAdminName"/></td>    
+	                                <th width="15%" class="text-right">管理员密码：</th>
+	                                <td class="text-left"><input type="password"  class="form-control" style="width:120px;" value="" id="osAdminPassword"/></td>                                                                   
+                 	 			</tr>
+                 	 			<tr>
+	                                <th width="20%" class="text-right">用户授权地址：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="osUserUrl"/></td> 
+									<th width="15%" class="text-right">用户账号：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" style="width:120px;" value="" id="osUserName"/></td>    
+	                                <th width="15%" class="text-right">用户密码：</th>
+	                                <td class="text-left"><input type="password"  class="form-control" style="width:120px;" value="" id="osUserPassword"/></td>                                                                   
+                 	 			</tr>
+                 	 			<tr>
+	                                <th width="20%" class="text-right">项目名称(管理员)：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="adminProjectName"/></td>   
+	                                <th width="20%" class="text-right" colspan="2">项目名称(用户)：</th>
+	                                <td class="text-left" colspan="2"><input type="text"  class="form-control" value="" id="userProjectName"/></td>                        
+                 	 			</tr>
+                 	 			<tr>
+	                                <th width="20%" class="text-right">项目ID(管理员)：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="adminProjectId"/></td> 
+	                                <th width="20%" class="text-right" colspan="2">项目ID(用户)：</th>
+	                                <td class="text-left" colspan="2"><input type="text"  class="form-control" value="" id="userProjectId"/></td>                          
+                 	 			</tr>
+                 	 			<tr>
+	                                <th width="20%" class="text-right">域名(管理员)：</th>
+	                                <td class="text-left"><input type="text"  class="form-control" value="" id="adminDomainName"/></td>      
+	                                <th width="20%" class="text-right" colspan="2">域名(用户)：</th>
+	                                <td class="text-left" colspan="2"><input type="text"  class="form-control" value="" id="userDomainName"/></td>                     
+                 	 			</tr>
+                 	 			<tr>
+	                                <th width="20%" class="text-right">域ID(管理员)：</th>
+	                                <td class="text-left"><input type="text" class="form-control" value="" id="adminDomainId"/></td>  
+	                                <th width="20%" class="text-right" colspan="2">域ID(用户)：</th>
+	                                <td class="text-left" colspan="2"><input type="text"  class="form-control" value="" id="userDomainId"/></td>                         
+                 	 			</tr>  
+                 	 			<tr> 
+                 	 				<th width="20%" class="text-right">网络名称：</th>   
+                 	 				<td class="text-left"><input type="text" class="form-control" value="" id="networkName"/></td>
+                 	 				<th width="20%" class="text-right" colspan="2">网络ID：</th>
+                 	 				<td class="text-left" colspan="2"><input type="text"  class="form-control" value="" id="networkID"/></td>
+                 	 			</tr>
+                        	</tbody>
+                        </table>
+                        <input type="button" value="保存接口设置" class="btn btn-primary" onclick="saveInterfaceSet()" />
+						<input type="button" value="返回上一页" class="btn btn-primary" onclick="backLast()" />
+                    </form>	
+					</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>
+<script src="../public/main.js"></script>
+<script src="js/zoneinterface.js"></script> 
+</body>
+</html>

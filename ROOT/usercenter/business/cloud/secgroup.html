@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<script src="../../../publicD/maincss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<style type="text/css">
+		.manager-table a{color:#039;}
+		.manager-table a:hover{text-decoration: underline;}
+	</style>
+</head>
+<body id="thrColEls overflow-y:auto;">
+<div id="MainContentDIV">
+<div id="SitePath">
+    <ul>
+		<li><a href="javascript:void(0);">会员中心</a></li>
+		<li><a href="javascript:void(0);">业务管理</a></li>
+		<li><a href="javascript:void(0);">我的服务器</a></li>
+    </ul>
+	</div>
+	<div class="ManagerRightuser">
+		<div style="margin:0px -20px 0px -20px">
+           	<ul class="manager-tab bind-tab">
+	            <li><a id="server" href="server.html">云主机</a></li>
+	            <li><a id="disk" href="disk.html">云硬盘</a></li>
+	            <li><a id="snapshot" href="snapshot.html">快照</a></li>
+	            <li class="liactive"><a id="secgroup" href="secgroup.html">安全组</a></li>
+            </ul>
+          	</div>
+            <div id="realname-auth" class="nav-content active">
+           	<div class="mt-10" style="overflow:visible;position:relative">
+            <form class="form-inline" role="form">   
+                 <div class="form-group">
+                     <label class="control-label">安全组名称：</label>
+                     <input type="text" id="txtName" class="form-control" placeholder="安全组名称">
+                 </div>
+                 <div class="form-group">  
+                     <label class="control-label">描述：</label>
+                     <input type="text" placeholder="描述 " class="form-control" id="txtDesc">
+                 </div>  
+                 <div class="form-group">
+		             <div class="searchbtn">
+		             	<input type="button" onClick="queryUserSecGroupList();" class="manager-btn mr-10" value="搜 索">
+		             </div>
+                 </div>
+               </form>	 
+			</div> 
+			<div class="btn-group autosuo">  
+            	<input type="button" class="manager-btn mr-10" onclick="batchDelUsg()" value="删除安全组"> 
+            	<input type="button" class="manager-btn mr-10" onClick="addSecGroup()" value="创建安全组">
+            </div>
+            <table class="manager-table table-hover" style="table-layout:fixed;">
+	            <thead>
+		            <tr>
+		             	<th width="5%"><input type="checkbox" onclick="checkAllSecGroup(this)" id="checkedAll" name="checkBoxAll"></th>
+		             	<th width="20%">安全组名称</th>    
+		                <th width="10%">地域</th>    
+		                <th width="10%">相关实例</th>                
+		                <th width="20%">创建时间</th>     
+		                <th width="20%">描述</th>   
+		                <th width="25%">操作</th>               
+		            </tr>
+	            </thead>
+	            <tbody id="secgroupList">
+	            </tbody>        
+       		</table>
+       		<div id="page" class="pager_container clearfix" >
+              	<input id="totalcount" type="hidden" value="0" />
+              	<input id="pagenumber" type="hidden" value="1" />
+              	<div id="pager"></div>
+   			</div>
+		</div>    
+	</div>
+	<!-- 添加  --> 
+	<div id="addBoxa" class="add-uer-box" style="display:none">
+		<div style="margin:20px 20px 0px 0px;"> 
+	        <form id="addForm" class="form-horizontal" method="post"> 
+	        	<div class="form-group">
+	            	<label class="col-sm-3 control-label">安全组地域：</label>
+	            	<div class="col-sm-8">        
+	            		<select class="form-control" id="regionList" style="width:150px;"></select>  
+	           		</div>     
+	            </div> 
+	        	<div class="form-group"> 
+	            	<label class="col-sm-3 control-label">安全组名称：</label>
+	            	<div class="col-sm-8">   
+	            		<input type="text" id="secNameAdd" class="manager-input m-input width300" maxlength="20"  placeholder="请输入安全组名称，不可为空">
+	            		<br />
+	            		长度2-20位字符，不能以特殊字符或数字开头，只可包含特殊字符中的 "-"或"_"     
+	           		</div>   
+	            </div>       
+	            <div class="form-group">    
+	            	<label class="col-sm-3 control-label">安全组描述：</label> 
+	            	<div class="col-sm-8">
+	            		<textarea id="secDescAdd" style="height: 80px;width: 300px" class="manager-input m-input" maxlength="150" placeholder="最大150个字符，可为空"></textarea>
+	            	</div>
+	            </div>    
+	        </form>
+        </div>
+	</div>
+	<!-- 修改--> 
+	<div id="editBoxa" class="add-uer-box" style="display:none">
+		<div style="margin:20px 20px 0px 0px;">
+	        <form id="editForm" class="form-horizontal" method="post"> 
+	        	<div class="form-group">
+	            	<label class="col-sm-3 control-label">安全组名称：</label>
+	            	<div class="col-sm-8">   
+	            		<input type="text" id="secNameEdit" class="manager-input m-input width300" maxlength="20"  placeholder="请输入安全组名称，不可为空">
+	            		<br />
+	            		长度2-20位字符，不能以特殊字符或数字开头，只可包含特殊字符中的 "-"或"_"      
+	           		</div>   
+	            </div>       
+	            <div class="form-group">    
+	            	<label class="col-sm-3 control-label">安全组描述：</label> 
+	            	<div class="col-sm-8">
+	            		<textarea id="secDescEdit" style="height: 80px;width: 300px" class="manager-input m-input" maxlength="150" placeholder="最大150个字符，可为空"></textarea>
+	            	</div>
+	            </div>    
+	        </form>
+        </div>
+	</div>
+</div>
+<!--右侧内容区 结束-->
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/secgroup.js"></script>
+</body>
+</html>

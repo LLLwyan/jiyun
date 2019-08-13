@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                <div class="managertitle">
+                          <ul id="ulTab" class="manager-tab full-manager-tab bind-tab">
+                          <li value="domain"><a href="server.html">云主机</a></li>
+                          <li value="cloud" class="liactive"><a href="disk.html">云硬盘</a></li>
+                           <li value="cloud" ><a href="snapshot.html">快照</a></li>
+                          </ul>
+					</div>
+                    <div class="ibox-content">
+                    <div class="mt-20" style="overflow:visible;position:relative; text-align:center">
+                           
+					</div>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                         <thead>
+                           <tr>
+                           <!--  
+	                     	<th><input type="checkbox" id="checkedAll" ></th>
+	                     	-->
+                            <th>会员名</th>
+	                     	<th>磁盘名称</th>
+	                        <th>磁盘类型</th>                   
+	                        <th>磁盘状态</th>     
+	                        <th>磁盘容量</th> 
+	                        <th>可挂载/卸载</th> 
+	                        <th>磁盘属性</th>   
+	                        <th>付费类型</th>
+	                        <!--  
+	                        <th>操作</th>    
+	                        -->           
+	                    </tr>
+	                </thead>
+	                <tbody id="diskList">
+	                </tbody>  
+                        </table>
+                        <div id="page" class="pager_container clearfix" >
+	                		<input id="totalcount" type="hidden" value="0" />
+	                		<input id="pagenumber" type="hidden" value="1" />
+	                		<div id="pager"></div>
+	    				</div>
+                        <div class="add-uer-box" id="addBox" style="display:none">
+                            <div style="height:100px;padding:30px;">
+                                快照名称：
+                                <input id="snapshotName" class="manager-input m-input width200" value="" maxlength="20" placeholder="请输入快照名称">
+                                <input type="hidden" id="diskId"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/disk.js"></script>
+</html>

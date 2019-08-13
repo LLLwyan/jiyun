@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+    <style type="text/css">
+        .input_chk{
+            height: 16px; width: 16px; vertical-align: text-bottom;
+        }
+        .input_txt{
+            width: 40px; height: 28px;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <input type="hidden" id="hidProductCode"/>
+                    <input type="hidden" id="hidProductClass"/>
+                    <table class="table table-bordered" style="margin-bottom:0px;">
+                        <thead>
+                        <tr>
+                            <th colspan="2">产品详细设置</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td width="20%">产品类型</td>
+                            <td id="productClassName"></td>
+                        </tr>
+                        <tr>
+                            <td width="20%">产品编号</td>
+                            <td id="productCode"></td>
+                        </tr>
+                        <tr>
+                            <td width="20%">产品名称</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width200" placeholder="产品名称" id="productName" chknonull="yes" chkmsg="产品名称">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">可选数据库类型</td>
+                            <td id="dbtype">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">可用服务器</td>
+                            <td id="serverList">
+                            </td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td width="20%">产品详细说明</td>
+                            <td>
+                                <textarea id="productDetail" cols="60" rows="5"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">产品状态</td>
+                            <td>
+                                <select id="status" class="form-control width200">
+                                    <option value="1">正常</option>
+                                    <option value="2">暂停</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered" style="margin-bottom:0px;">
+                        <thead>
+                        <tr>
+                            <th colspan="2">产品参数设置</th>
+                        </tr>
+                        </thead>
+                        <tbody id="mysqlConfig" style="display: none">
+                        <tr>
+                            <td width="20%">MySQL允许申请最大空间值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLSizeMax" chknonull="yes"/>&nbsp;(单位：Mbsp，注：单次可选最大空间)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">MySQL允许申请最小空间值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLSizeMin" chknonull="yes"/>&nbsp;(单位：Mbsp，注：单次可选最大空间)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">MySQL空间起售价</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLSizeStartPrice" chknonull="yes"/>&nbsp;(单位：元，注：相对于允许最小空间值的价格)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">MySQL空间单价</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLSizeUnitPrice" chknonull="yes"/>&nbsp;(单位：元/Mbsp，注：空间单元价格)
+                            </td>
+                        </tr>
+
+                        <!--<tr>
+                            <td width="20%">MySQL允许申请最大流量值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLFlowMax" chknonull="yes"/>&nbsp;(单位：GB，注：单次可选最大流量)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">MySQL允许申请最小流量值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLFlowMin" chknonull="yes"/>&nbsp;(单位：GB，注：单次可选最小流量)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">MySQL流量起售价</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLFlowStartPrice" chknonull="yes"/>&nbsp;(单位：元，注：相对于允许申请最小流量值的价格)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">MySQL流量单价</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLFlowUnitPrice" chknonull="yes"/>&nbsp;(单位：元/GB，注：流量单元价格)
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="20%">MySQL允许申请最大链接数值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLMaxLinks" chknonull="yes"/>&nbsp;(单位：个，注：单次可选最大链接数)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">MySQL允许申请最小链接数值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLMinLinks" chknonull="yes"/>&nbsp;(单位：个，注：单次可选最大链接数)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">MySQL允许申请最大带宽</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLMaxWidth" chknonull="yes"/>&nbsp;(单位：Mbsp，注：单次可选最大带宽)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">MySQL允许申请最小带宽</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MySQLMinWidth" chknonull="yes"/>&nbsp;(单位：Mbsp，注：单次可选最大带宽)
+                            </td>
+                        </tr>-->
+                        </tbody>
+
+
+                        <tbody id="mssqlConfig" style="display: none">
+                        <tr>
+                            <td width="20%">SQL Server最大空间值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLSizeMax" chknonull="yes"/>&nbsp;(单位：GB，注：单次可选最大空间)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server最小空间值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLSizeMin" chknonull="yes"/>&nbsp;(单位：Mbps，注：单次可选最大空间)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server起售价</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLSizeStartPrice" chknonull="yes"/>&nbsp;(单位：Mbps，注：相对于最小空间值价格)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server单价</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLSizeUnitPrice" chknonull="yes"/>&nbsp;(单位：Mbps，注：单元空间价格)
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="20%">SQL Server最大日志空间值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLLogSizeMax" chknonull="yes"/>&nbsp;(单位：Mbps，注：单次可选最大日志空间)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server最小日志空间值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLLogSizeMin" chknonull="yes"/>&nbsp;(单位：Mbps，注：单次可选最大日志空间)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server起售价</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLLogSizeStartPrice" chknonull="yes"/>&nbsp;(单位：Mbps，注：相对于最小日志空间值价格)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server单价</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLLogSizeUnitPrice" chknonull="yes"/>&nbsp;(单位：Mbps，注：日志空间单元价格)
+                            </td>
+                        </tr>
+
+                        <!--<tr>
+                            <td width="20%">SQL Server允许申请最大流量值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLMaxFlow" chknonull="yes"/>&nbsp;(单位：Mbps，注：单次可选最大流量)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server允许申请最小流量值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLMinFlow" chknonull="yes"/>&nbsp;(单位：GB，注：单次可选最大流量)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server允许申请最大链接数值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLMaxLinks" chknonull="yes"/>&nbsp;(单位：个，注：单次可选最大链接数)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server允许申请最小链接数值</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLMinLinks" chknonull="yes"/>&nbsp;(单位：个，注：单次可选最大链接数)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server允许申请最大带宽</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLMaxWidth" chknonull="yes"/>&nbsp;(单位：Mbsp，注：单次可选最大带宽)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%">SQL Server允许申请最小带宽</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="MSSQLMinWidth" chknonull="yes"/>&nbsp;(单位：Mbsp，注：单次可选最大带宽)
+                            </td>
+                        </tr>-->
+                        </tbody>
+
+                        <tbody>
+                        <tr>
+                            <td width="20%">购买数量</td>
+                            <td>
+                                <input type="text"  class="manager-input m-input width100"  id="buyMaxNum" chknonull="yes"/>&nbsp;(单位：台，注：本产品下每个会员单次购买的最大台数)
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th colspan="17">价格优惠</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td width="10%">购买时长</td>
+                            <td>1月</td>
+                            <td>2月</td>
+                            <td>3月</td>
+                            <td>4月</td>
+                            <td>5月</td>
+                            <td>6月</td>
+                            <td>7月</td>
+                            <td>8月</td>
+                            <td>9月</td>
+                            <td>10月</td>
+                            <td>11月</td>
+                            <td>1年</td>
+                            <td>2年</td>
+                            <td>3年</td>
+                        </tr>
+                        <tr>
+                            <td>购买优惠</td>
+                            <td colspan="14"><span style="color:red">注：赠送月、赠送天请输入整数</span></td>
+                        </tr>
+                        <tr>
+                            <td>允许选择</td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_1" time="m" value="1" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_2" time="m" value="2" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_3" time="m" value="3" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_4" time="m" value="4" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_5" time="m" value="5" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_6" time="m" value="6" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_7" time="m" value="7" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_8" time="m" value="8" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_9" time="m" value="9" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_10" time="m" value="10" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_m_11" time="m" value="11" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_y_1" time="y" value="1" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_y_2" time="y" value="2" class="input_chk"/></td>
+                            <td><input type="checkbox" name="buyTime" id="chk_buy_y_3" time="y" value="3" class="input_chk"/></td>
+                        </tr>
+                        <tr>
+                            <td>促销类型</td>
+                            <td style="padding:2px;"><select id="st_buy_m_1" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_2" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_3" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_4" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_5" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_6" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_7" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_8" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_9" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_10" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_m_11" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_y_1" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_y_2" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_buy_y_3" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>促销值</td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_1" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_2" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_3" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_4" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_5" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_6" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_7" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_8" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_9" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_10" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_m_11" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_y_1" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_y_2" /></td>
+                            <td><input type="text" class="input_txt" id="txt_buy_y_3" /></td>
+                        </tr>
+                        <tr>
+                            <td>续费优惠</td>
+                            <td colspan="14"><span style="color:red">注：赠送月、赠送天请输入整数</span></td>
+                        </tr>
+                        <tr>
+                            <td>允许选择</td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_1" time="m" value="1" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_2" time="m" value="2" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_3" time="m" value="3" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_4" time="m" value="4" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_5" time="m" value="5" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_6" time="m" value="6" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_7" time="m" value="7" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_8" time="m" value="8" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_9" time="m" value="9" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_10" time="m" value="10" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_m_11" time="m" value="11" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_y_1" time="y" value="1" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_y_2" time="y" value="2" class="input_chk"/></td>
+                            <td><input type="checkbox" name="renewTime" id="chk_renew_y_3" time="y" value="3" class="input_chk"/></td>
+                        </tr>
+                        <tr>
+                            <td>促销类型</td>
+                            <td style="padding:2px;"><select id="st_renew_m_1" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_2" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_3" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_4" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_5" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_6" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_7" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_8" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_9" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_10" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_m_11" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_y_1" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_y_2" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                            <td style="padding:2px;"><select id="st_renew_y_3" class="seltxt"><option value="0">无</option><option value="1">赠送月</option><option value="2">折扣</option><option value="3">赠送天</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>促销值</td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_1" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_2" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_3" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_4" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_5" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_6" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_7" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_8" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_9" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_10" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_m_11" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_y_1" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_y_2" /></td>
+                            <td><input type="text" class="input_txt" id="txt_renew_y_3" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <input type="button" class="btn btn-primary" onClick="saveProductData()"  value="保存设置">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/dbproduct.js"></script>
+</html>

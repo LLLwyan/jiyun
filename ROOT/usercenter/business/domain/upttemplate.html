@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+<script src="../../../publicD/maincss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../css/manager.css"/>
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+        <ul>
+             <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+             <li><a href="javascript:void(0);">模板详情</a></li>
+
+        </ul>
+	</div>
+		<div class="ManagerRightuser">
+            <div class="product-detail-desc mt-15">
+	      		<p class="pt-5"><p><strong class="redColor">友情提醒:</strong>带*号为必填项
+	            </p> 
+      		</div>
+			<div id="realname-auth" class="nav-content active">	
+      <!--中间代码开始-->
+      <form action="#" id="itfrom" name="form1">
+      
+        <table class="manager-table form-table">
+          <tbody>
+          <tr>
+            <th width="150" align="right" > 模板名称：</th>
+            <td align="left">
+                <input id="templateName"  class="manager-input m-input width200" placeholder="请输入模板名称" size="20" disabled="disabled"></td>
+            <th width="150" align="right">所有者类型：</th>
+            <td align="left">
+                <label><input type="radio" id="radio1" name="userType" checked="checked" value="1" onclick="checkI();" disabled="disabled">个人</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <label><input type="radio" id="radio2"  name="userType" value="2" onclick="checkO();" disabled="disabled">企业</label>
+             </td>
+          </tr>
+          </tbody>
+          </table>
+           <table class="manager-table form-table">
+           <tbody>
+          <tr>
+            <th colspan="4" class="text-center">中文信息</th>
+          </tr>
+          <tr  id="userNameTrCn">
+            <th width="150" align="right">域名所有者：</th>
+            <td align="left" colspan="3">
+             <input id="userNameCn" class="manager-input m-input width200" placeholder="请输入域名所有者" value="" size="40"><strong class="redColor f-l10 ">*</strong>
+              </td>
+          </tr>
+          <tr>
+            <th width="150" align="right" id="linkManTdCn">域名管理人：</th>
+            <td align="left" colspan="3">
+            	姓：<input id="linkManLnCn" class="manager-input m-input width100" placeholder="姓" value="" size="40">
+                名：<input id="linkManFnCn" class="manager-input m-input width100" placeholder="名" value="" size="40">
+                <strong class="redColor f-l10 ">*</strong>
+              </td>
+          </tr>
+          <tr>
+             <th width="150" align="right"> 地区：</th>
+            <td align="left"><select id="countryCn" class="manager-select m-select">
+            <option value="中国">中国</option>
+            <option value="台湾">台湾</option>
+            <option value="香港特别行政区">香港特别行政区</option>
+            <option value="澳门特别行政区">澳门特别行政区</option>
+            <option value="其他">其他</option>
+            </select></td>
+             <th width="150" align="left"> 省份城市：</th>
+            <td >
+            <div data-toggle="distpicker" class=" pull-left">
+	            <select class="manager-select m-select" id="cho_Province">
+	           
+	            </select>
+	            <select class="manager-select m-select" id="cho_City">
+	           
+	            </select>
+	        </div>
+            </td>
+          </tr>
+          <tr>
+             <th width="150" align="right">邮政编码：</th>
+            <td align="left"><input id="postcode" class="manager-input m-input width200" value="" size="20" placeholder="请输入邮政编码"><strong class="redColor f-l10 ">*</strong></td>
+            <th width="150" align="right">电子邮箱：</th>
+            <td align="left"><input id="email" class="manager-input m-input width200" value="" size="20" placeholder="请输入电子邮箱"><strong class="redColor f-l10 ">*</strong></td>
+          </tr>
+          <tr>
+              <th width="150" align="right">固话/手机：</th>
+            <td align="left" colspan="3"><input id="telArea" class="manager-input m-input width50" value="" size="20" placeholder="区号">-
+                <input id="telephone" class="manager-input m-input width100" value="" size="20" placeholder="请输入固话/手机">-
+                <input id="telNumber" class="manager-input m-input width50" value="" size="20" placeholder="分机号">
+                <strong class="redColor f-l10 ">*手机可不填区号</strong>
+            </td>
+          </tr>
+          <tr>
+            <th width="150" align="right">传真：</th>
+            <td align="left" colspan="3"><input id="faxArea" class="manager-input m-input width50" value="" size="20" placeholder="区号">-
+                <input id="fax" class="manager-input m-input width100" value="" size="20" placeholder="固话/手机">-
+                <input id="faxNumber" class="manager-input m-input width50" value="" size="20" placeholder="分机号">
+                <strong class="redColor f-l10 ">*手机可不填区号</strong>
+            </td>
+          </tr>
+          <tr>
+              <th width="150" align="right">通讯地址：</th>
+            <td align="left" colspan="3"><input id="addrCn" class="manager-input m-input width200" value="" size="20" placeholder="请输入通讯地址"><strong class="redColor f-l10 ">*必须包含中文</strong></td>  
+          </tr>
+
+        </tbody></table>
+        <table class="manager-table form-table">
+           <tbody>
+          <tr>
+            <th colspan="4" class="text-center">英文信息</th>
+          </tr>
+          <tr  id="userNameTrEn">
+            <th width="150" align="right">域名所有者：</th>
+            <td align="left" colspan="3">
+             <input id="userNameEn" class="manager-input m-input width200" placeholder="请输入域名所有者" value="" size="40"><strong class="redColor f-l10 ">*</strong>
+              </td>
+          </tr>
+          <tr>
+            <th width="150" align="right" id="linkManTdEn">域名管理人：</th>
+            <td align="left" colspan="3">
+             	姓：<input id="linkManLnEn" class="manager-input m-input width100" placeholder="姓" value="" size="40">-
+                名：<input id="linkManFnEn" class="manager-input m-input width100" placeholder="名" value="" size="40">
+                <strong class="redColor f-l10 ">*</strong>
+              </td>
+          </tr>
+          <tr>
+             <th width="150" align="right"> 地区：</th>
+            <td align="left">
+                <select id="countryEn" class="manager-select m-select">
+                </select>
+            </td>
+             <th width="150" align="right"> 省份城市：</th>
+            <td align="left">
+            <select id="cho_ProvinceEN" class="manager-select m-select">
+            </select>
+            <select id="cho_CityEN" class="manager-select m-select">
+            </select>
+            </td>
+          </tr>
+          <tr>
+             <th width="150" align="right">通讯地址：</th>
+            <td align="left" colspan="3"><input id="addrEn" class="manager-input m-input width200" value="" size="20" placeholder="请输入通讯地址"><strong class="redColor f-l10 ">*</strong></td>  
+          </tr>
+        </tbody>
+        </table>
+       	<div id="upt" align="center">
+       		 <input type="button" onClick="uptTemplate()" id="adddomain" class="manager-btn mt-10 mr-10" value="修改" >
+             <input type="button" class="manager-btn mt-10 mr-10" onclick="history.go(-1)" value="返回">
+       	</div>
+        </form>
+       </div>
+		<!--右侧内容区 结束-->
+        <!-- 页脚部分 开始-->
+		<!-- 页脚部分 结束 -->     									 
+	</div>
+</div>
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/upttemplate.js"></script>
+</body>
+</html>

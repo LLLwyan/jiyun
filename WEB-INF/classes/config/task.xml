@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tasks>
+	<!-- 框架级自动任务 -->
+	<!-- <data desc="自动任务描述" id="自动任务编号" className="自动任务全路径类名" interval="时间间隔(毫秒)" enable="false"/>-->
+	<!-- 框架级自动任务 -->
+	<data desc="自动回收过期会话" id="S01" className="com.winiis.cloudhost.sys.task.CSessionGCTask" interval="10000" enable="false" />
+	<data desc="云服务器自动任务" id="S02" className="com.winiis.cloudhost.user.task.UserServiceNotifyTask" interval="60000" enable="false" />
+	<data desc="订单购物车自动任务" id="S03" className="com.winiis.cloudhost.user.task.UserOrderRecycleTask" interval="60000" enable="true" />
+	<data desc="域名自动任务" id="S04" className="com.winiis.cloudhost.user.task.UserDomainTask" interval="60000" enable="true" />
+	<data desc="自动关闭工单任务" id="S05" className="com.winiis.cloudhost.user.task.UserIssueTask" interval="600000" enable="true" />
+	<data desc="云服务器自动任务" id="S06" className="com.winiis.cloudhost.user.task.UserHyperVTask" interval="60000" enable="true" />
+	<data desc="虚拟主机自动任务" id="S07" className="com.winiis.cloudhost.user.task.UserVHostTask" interval="60000" enable="true" />
+	<data desc="域名实名自动任务" id="S08" className="com.winiis.cloudhost.user.task.UserDomainRealTask" interval="10000" enable="false" />
+	<!--<data desc="模板实名自动任务" id="S09" className="com.winiis.cloudhost.user.task.UserDomainTemplateRealTask" interval="10000" enable="true" />-->
+	<data desc="阿里云域名自动任务" id="S10" className="com.winiis.cloudhost.thridparty.aliyun.domain.task.AlliyunDomainTask" interval="1800000" enable="false" />
+	<data desc="阿里云ECS服务器自动任务" id="S11" className="com.winiis.cloudhost.thridparty.aliyun.ecs.task.AliyunEcsTask" interval="60000" enable="true" />
+	<data desc="华为云ECS服务器自动任务" id="S11" className="com.winiis.cloudhost.thridparty.huawei.ecs.task.HuaweiEcsTask" interval="60000" enable="true" />
+	<data desc="自动处理到期交易" id="S12" className="com.winiis.cloudhost.user.task.UserTransferTask" interval="300000" enable="true" />
+	<!--<data desc="自动备份任务" id="S04" className="com.winiis.cloudhost.user.task.AutoBackupTask" interval="10000" enable="false"/>-->
+
+</Tasks>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+<script src="../../publicD/membercss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+<style type="text/css">
+.wz {margin-bottom:20px;color: #666666;font-size: 14px;padding: 20px 0 18px 0;border-bottom: 1px solid #ededed;line-height: 12px;
+}
+</style>
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+	    <li><a href="javascript:void(0);">会员中心</a></li>
+	    <li><a href="javascript:void(0);">财务管理</a></li>
+		<li><a href="javascript:void(0);">充值</a></li>
+	</ul>
+</div>
+<div class="ManagerRightuser">
+	<div class="m_pay">
+		<div class="zxzf">
+			<div class="padding"> 
+	        	<p class="wz">在线充值</p> 
+	        	<div id="message"></div> 
+	            <div class="searchbtn" style="text-align:left;margin-top:50px;"> 
+	            	<input type="button" onclick="window.location.href='financelist.html'" class="manager-btn  mr-10" value="查看记录">
+	            </div>
+	  		</div> 
+		</div>     
+	</div>
+</div>
+<script src="../../publicD/memberjs.js"></script>
+<script type="text/javascript">
+$(function(){
+	var msg=decodeURI(request("msg"));
+	if(isNotNull(msg))
+		$("#message").html(msg);
+});
+</script>
+</body>
+</html>

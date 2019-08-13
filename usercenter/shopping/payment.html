@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>购物车中心</title>
+	<script type="text/javascript" src="/publicD/maincss.js"></script>
+	<script type="text/javascript" src="/publicD/jmaincss.js"></script>
+	<script type="text/javascript" src="/publicD/main.js"></script>
+	<script src="js/payment.js"></script>
+</head>
+<body id="thrColEls" style="overflow-y: auto;">
+<div class="Style2009">
+<!-- 最顶部导航条 -->
+<div id="header"></div>
+<!-- 最顶部导航条 -->
+<div class="main" style="background:#f2f2f2;padding-top:20px;">
+    <div class="container">
+        <div class="mt30 clearfix">
+            <div class="registerSteps">
+                <div class="order_process">
+					<span class="order_pass_process process">查看购物车</span>
+					<span class="order_arrow_process order_arrow_complete_process" style="background:#9cddf5">
+						<span class="order_next_process"></span>
+						<span class="order_prev_process" style="border-left-color:#9cddf5"></span>
+					</span>
+					<span class="order_pass_process process">订单结算</span>
+					<span class="order_arrow_process order_arrow_complete_process" style="background:#00a2ca">
+						<span class="order_next_process"></span>
+						<span class="order_prev_process" style="border-left-color:#9cddf5"></span>
+					</span>
+					<span class="order_current_process process">支付结果</span>
+				</div>
+            </div>
+            <font color="red"></font>
+            <input type="hidden" id="cartNos"/>
+            <div style="width:1090px;padding-bottom:20px;margin:0 auto;">
+				<div class="hly_order_info">
+					<div class="hly_order_title">
+						<div class="hly_order_total">
+							<div class="hly_order_cny"></div>
+						</div>
+						<strong>支付成功</strong>
+						<span>(正在处理订单)</span> 
+					</div>
+					<table class="nomanager-table" >
+						<tr>
+							<th colspan="7" style="text-align: center;">订单处理</th>
+						</tr>
+						<tr>
+							<td width="5%" class="fw">序号</td>
+							<td width="15%" class="fw">订单编号</td>
+							<td width="10%" class="fw">订单类型</td>
+							<td width="10%" class="fw">产品类型</td>
+							<td width="10%" class="fw">产品价格</td>
+							<td width="50%" class="fw">处理结果</td>
+						</tr>
+						<tbody id="handleList">
+						</tbody>
+					</table>	
+				</div> 
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 页脚部分 开始-->
+<div id="footer"></div>
+<!-- 页脚部分 结束 -->
+</body>
+</html>

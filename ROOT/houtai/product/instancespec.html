@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>实例规格</title>
+<script src="../public/maincss.js"></script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    <div class="mt-20" style="overflow:visible;position:relative;text-align: center;float:left;">
+	                    <form class="form-inline" role="form">
+	                        <div class="form-group">
+	                            <label class="control-label">上级注册商：</label>
+	                            <select class="form-control" id="hosttype"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+	                            <label class="control-label">实例机型：</label>
+	                            <select class="form-control" id="modellist"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+	                            <input type="button" class="btn btn-primary" onclick="getDicSpecList();" value="查询">
+	                         <input type="button" class="btn btn-primary" onClick="addSpec();"  value="添加">
+	                        </div>
+	                    </form>	
+					</div>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>上级注册商</th>
+                                    <th>机型名称</th>
+                                    <th>规格代码</th>
+                                    <th>CPU</th>
+                                    <th>内存</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="speclist">
+                            </tbody>
+                        </table>
+                        <div id="page" class="pager_container clearfix" >
+	                        <input id="totalcount" type="hidden" value="0" />
+	                        <input id="pagenumber" type="hidden" value="1" />
+	                        <div id="pager"></div>
+             			</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="add-uer-box" id="addBox" style="display:none">
+	 	<table class="table-form">
+	         <tr>
+	             <td class="t">
+	             	<label for="name" class="control-label">上级注册商：</label>
+	             </td>
+	             <td>
+	             	<select id="hosttype2" class="form-control" style="width:200px;" onchange="queryDicModelList()">
+	           		</select>
+	             </td>
+	         </tr>
+	         <tr>
+	             <td class="t">
+	             	<label for="name" class="control-label">实例机型：</label>
+	             </td>
+	             <td>
+	             	<select id="modellist2" class="form-control">
+	           		</select>
+	             </td>
+	         </tr>
+	         </tr> 
+	         <tr>
+	             <td class="t">
+	                <label for="name" class="control-label">规格代码：</label>
+	             </td>
+	             <td>
+	                 <input type="text" placeholder="例:100000" class="form-control width200 f-l" id="specCode"><div style="margin-top:10px;"></div>
+	             </td>
+	         </tr> 
+	         <tr>
+	             <td class="t">
+	                <label for="name" class="control-label">CPU：</label>
+	             </td>
+	             <td>
+	                 <input type="text" placeholder="例:1" class="form-control width100 f-l" id="cpu"><div style="margin-top:10px;">核</div>
+	             </td>
+	         </tr>  
+	         <tr>
+	             <td class="t">
+	                <label for="name" class="control-label">内存：</label>
+	             </td>
+	             <td>
+	                 <input type="text" placeholder="例:1" class="form-control width100 f-l" id="memory"><div style="margin-top:10px;">GB</div>
+	             </td>
+	         </tr> 
+	     </table>
+ 	</div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/instancespec.js"></script>
+</html>

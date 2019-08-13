@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>购物车中心</title>
+	<script src="../../publicD/maincss.js"></script>
+	<script src="../../publicD/jmaincss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+	<script src="../../publicD/main.js"></script>
+	<script src="js/shoppinglist.js"></script>
+	<style>
+		.tel-content .tel-tiltle{ line-height:44px;}
+		.contact-list-2016{ top:-29px;}
+		.footer-middle-attion .pos-r{ margin-top:6px;}
+		.p1 a{ margin-left:10px;}
+		.cart_ps{border: 1px dashed red;padding: 15px;background: #feff99;margin-bottom: 30px;}
+		.ps_p{text-indent:2em; text-indent: 2em;letter-spacing: 2px;color: #666;font-weight: 600;}
+		.domainUpper{display: none}
+	</style>
+</head>
+<body id="thrColEls" style="overflow-y: auto;">
+<div class="Style2009">
+<!-- 最顶部导航条 -->
+<div id="header"></div>
+<!-- 最顶部导航条 -->
+
+<div style="background:#f2f2f2;padding-top:20px;padding-bottom:20px;">
+    <div class="container">
+        <div class="clearfix" style="background-color:#fff;padding-top:20px;">
+            <div class="registerSteps">
+                <div class="order_process">
+					<span class="order_current_process process">查看购物车</span>
+					<span class="order_arrow_process order_arrow_complete_process order_arrow_complete_process">
+						<span class="order_next_process"></span>
+						<span class="order_prev_process" style="border-left-color:#00a2ca"></span>
+					</span>
+					<span class="order_nopass_process process">订单结算</span>
+					<span class="order_arrow_process order_arrow_complete_process">
+						<span class="order_next_process"></span>
+						<span class="order_prev_process"></span>
+					</span>
+					<span class="order_nopass_process process">支付结果</span>
+				</div>
+            </div>
+            <div class="shopping_cart" style="width: 1090px; margin: 0px auto;dispaly:none;">
+            	<div class="cart_header">
+            		<font color="red"></font>
+            		<h2 class="h2">我的购物车</h2>
+            		<div class="cart_header_right">
+            			<p>
+							共&nbsp;<span class="topNum">0</span>&nbsp;件商品，
+							<span class="topMoney">￥0.0</span>
+						</p>
+						<input type="button" name="btnSub" value="同意协议并结算" class="hl_buy_orderpre topBuy" onclick="subForm()">
+            		</div>
+            	</div>
+                <table cellpadding="0" cellspacing="0" class="bustable">
+					<thead>
+					<tr style="border-top:2px solid #f60;">
+						<th width="8%"><label><input type="checkbox" style="vertical-align: middle;padding: 2px;" name="checkBoxAll" checked="checked" onclick="checkAll(this);">全选</label></th>
+	                    <th width="10%">产品类型</th>
+	                    <th width="10%">产品名称</th>
+	                    <th width="19%">产品内容</th>
+						<th width="19%" class="domainUpper">接口选择</th>
+						<th width="10%">类型</th>
+	                    <th>时长</th>
+	                    <th>价格</th>
+	                    <th>优惠</th>
+	                    <th width="60">操作</th>
+					</tr>
+                    </thead>
+					<tbody id="orderlist">
+					</tbody>
+				</table>
+				<div class="cart_coupon">
+					<div class="cart_coupon_left">
+						<p>
+                            <input type="checkbox" name="checkBoxAll" checked="checked"  onclick="checkAll(this);">全选
+                        </p>
+                        <a href="javascript:void(0)" onclick="delSelect()">删除选中产品</a>
+					</div>
+					<div class="cart_coupon_right">
+						<p>
+							共&nbsp;<span class="bottomNum">0</span>&nbsp;件商品，金额总计：
+							<span class="bottomMoney">￥0.0</span>
+						</p>
+					</div>
+				</div>
+
+				<div class="cart_bottom ">
+					<div class="cart_bottom_left">
+						<input type="button" value="继续购物" onclick="window.location.href='../../index.html'" class="hl_buy_orderpre cartbg">
+					</div>
+					<div class="cart_bottom_right">
+						<p class="p1"><a id="cloudagree" style="display:none" href="../../notice/serviceagree.html?flag=cserprotocol">云服务器购买协议</a>
+						<a id="domainagree" style="display:none" href="../../notice/serviceagree.html?flag=domainagree">域名购买协议</a></p>
+						<div class="clear"></div>
+						<p class="p2"><input type="checkbox" name="checkAgree">我已阅读，并同意以上协议</p>
+						<input type="button" name="btnSub" value="同意协议并结算" class="hl_buy_orderpre" onclick="subForm()">
+					</div>
+				</div>
+            </div>
+
+        	<div class="empty_cart" style="dispaly:none;">
+                <p class="p1">我的购物车</p>
+                <div class="empty_cart_m">
+                    <p>您的购物车是空的，欢迎您继续购物！<br>
+                        <a href="../../index.html">返回首页</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 页脚部分 开始-->
+<div style="margin-left:0px;margin-top:20px;" id="footer"></div>
+<!-- 页脚部分 结束 -->
+</body>
+</html>

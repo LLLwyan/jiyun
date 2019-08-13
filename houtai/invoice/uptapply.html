@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+    <style>
+	label{ 
+		line-height:38px;
+	}
+</style>
+</head>
+<body>
+<div id="MainContentDIV" class="ibox-content">
+	  <div class="ManagerRightuser">
+      <form action="#" method="post" class="form1">
+      <table id="tb" class="manager-table table table-hover">
+        <!--<tr> 
+          <th width="24%">发票类型：</th>
+          <td align="left" id="getListParamItemByEName">
+           </td>
+        </tr>
+        <tr>
+          <th>发票抬头:</th>
+          <td align="left"><input type="text" class="manager-input m-input width200" size="20" style="float:left;" id="headerInvoice"></td>
+        </tr>
+        <tbody id="invoicehide" style="display:none;">
+        <tr>
+          <th>纳税人识别号:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="identityId"></td>
+        </tr>
+        <tr>
+          <th>开户行:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="bankName"></td>
+        </tr>
+        <tr>
+          <th>开户账号:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="openAccount"></td>
+        </tr>
+        <tr>
+          <th>注册地址:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="registerAddress"></td>
+        </tr>
+        <tr>
+          <th>注册银行联系电话:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="contactNumber"></td>
+        </tr>
+    	<tr>
+	    <th>一般纳税证明：</th>
+	    	<td colspan="1" align="left">
+	 			<div  id="updateSmallImg" class="doctor-info-img" > 
+	            <input type="hidden" id="weblogo" />
+				<input type="file" title="点击上传图片" value="点击上传图片" id="SmallImg" onChange="upload('SmallImg','SmallImgV');" onpaste="return false" name="0" />
+				<img id="SmallImgV"  src="../img/show.jpg" style="height:120px;width:120px;"  />
+			 	</div>
+	         </td>
+        </tr>
+        </tbody>
+        <tr>
+          <th>发票金额:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="price">
+		</td>
+        </tr>
+        <tr> 
+          <th width="24%">发票内容：</th>
+          <td align="left" id="queryinvoicecontent">
+           </td>
+        </tr>
+        <tr>
+          <th>收件方地址:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="recipientAddress">
+		</td>
+          </tr>
+        <tr>
+          <th>收件公司名:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="companyName">
+		</td>
+          </tr>
+        <tr>
+          <th>邮政编码:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="postcode">
+		</td>
+          </tr>
+        <tr>
+          <th>收件人:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="addressee">
+		</td>
+          </tr>
+        <tr>
+          <th>联系电话:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="telephone">
+		</td>
+          </tr>
+        <tr>
+          <th>备注:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="remark">
+		</td>
+          </tr>
+        <tr class="no-border"> 
+          	<th>发票获取途径:</th>
+            <td align="left" id="deliveryinvoice"></td>
+        </tr>
+        <tr> 
+          <th>快递单号:</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="courierNumber"><label class="redColor f-l10">如是寄件请输入快递单号</label></td> 
+        </tr>
+        <tr> 
+          <th>审核结果:</th>   
+          <td align="left"><textarea id="auditingResult" style="height: 100px;width:500px" class="manager-input m-input width288" maxlength="100" placeholder="请输入审核结果，并且字数不能超过100个字"></textarea>
+          <label class="redColor f-l10">审核不通过必须输入原因</label></td>  
+        </tr>
+        <tr class="no-border">  
+          	<td></td> 
+            <td align="center">
+                <div class="searchbtn" style="text-align:left;" >
+                	<input type="button" id="auditPass" class="manager-btn mr-10" value="审核通过" onclick="invoiceAudit('Y')">
+                	<input type="button" id="auditNoPass" class="manager-btn mr-10" value="审核不通过" onclick="invoiceAudit('NA')">
+                	<input type="button" class="manager-btn mr-10" onclick="history.go(-1)" value="返回">
+                </div>         
+             </td>
+         </tr>-->
+      </table>
+      <table id="sztb" class="manager-table table table-hover" style="margin-bottom:10px;">
+      </table>
+     </form>                
+	</div>
+</div>
+<!--右侧内容区 结束-->
+<!-- 页脚部分 开始-->
+<!-- 页脚部分 结束 -->
+<script src="../public/main.js"></script>
+<script src="../../public/js/upload.js"></script>
+<script src="js/uptapply.js"></script>
+</body>
+</html>

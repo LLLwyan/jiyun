@@ -1,0 +1,94 @@
+<!doctype html>
+<html style="overflow:hidden">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>homepage</title>
+    <script src="public/maincss.js"></script>
+    <script type="text/javascript" src="/public/js/echarts.min.js"></script>
+    <link href="css/homepage.css" type="text/css" rel="stylesheet">
+    <style>
+        html,body {width:100%;height:100%; overflow:auto;}
+    </style>
+</head>
+
+<body>
+<div id="user" style="display:none;">
+    <div class="user_info">
+        <div class="touxiang"><img src="img/person.gif" width="45px" height="45px"></div>
+        <p><span id="acountName"></span></p>
+    </div>
+</div>
+<div class="gaiyao" id="gaiyao2" style="margin-top: 20px">
+    <p>概要</p>
+    <table bgcolor="#f9f9fb">
+        <thead>
+        <td>今日收入</td>
+        <td>今日注册</td>
+        <td>未处理工单</td>
+        <td>未处理订单</td>
+        </thead>
+        <tbody style="background:#FFFFFF;">
+        <tr >
+            <td id="rechargeCount">0元</td>
+            <td id="newuser">0个</td>
+            <td id="noIssue">0</td>
+            <td id="noorder">0</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div id="yewu" style="margin-top: 20px">
+    <p>业务统计</p>
+    <table bgcolor="#f9f9fb">
+        <thead>
+        <td>业务</td>
+        <td>今日开通</td>
+        <td>七天内开通</td>
+        <td>七天后到期</td>
+        <td>产品总数</td>
+        </thead>
+        <tbody style="background:#FFFFFF">
+        <tr>
+            <td>域名</td>
+            <td id="today_new_domain">0</td>
+            <td id="seven_new_domain">0</td>
+            <td id="seven_expired_domain">0</td>
+            <td id="domain_count">0</td>
+        </tr>
+        <tr>
+            <td>云主机</td>
+            <td id="today_new_server">0</td>
+            <td id="seven_new_server">0</td>
+            <td id="seven_expired_server">0</td>
+            <td id="server_count">0</td>
+        </tr>
+        <tr>
+            <td>虚拟主机</td>
+            <td id="today_new_vhost">0</td>
+            <td id="seven_new_vhost">0</td>
+            <td id="seven_expired_vhost">0</td>
+            <td id="server_vhost">0</td>
+        </tr>
+        <tr>
+            <td>其他服务</td>
+            <td id="today_new_diy">0</td>
+            <td id="seven_new_diy">0</td>
+            <td id="seven_expired_diy">0</td>
+            <td id="server_diy">0</td>
+        </tr>
+        <tr>
+            <td>总数</td>
+            <td id="today_new_product_count">0</td>
+            <td id="seven_new_product_count">0</td>
+            <td id="seven_expired_product_count">0</td>
+            <td id="product_count">0</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<script src="public/main.js"></script>
+<script src="public/homepage.js"></script>
+
+</html>

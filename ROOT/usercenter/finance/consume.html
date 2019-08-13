@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+<script src="../../publicD/membercss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+<link rel="stylesheet" type="text/css" href="../../public/smoothness/jquery.ui.css">
+<style>
+.ui-widget-header{ background:url(../../public/img/bghd.png) 50% 50% repeat-x;}
+</style>
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+	     <li><a href="javascript:void(0);">会员中心</a></li>
+	     <li><a href="javascript:void(0);">财务管理</a></li>
+	     <li><a href="javascript:void(0);">消费记录</a></li> 
+	</ul>
+</div>
+<div class="ManagerRightuser">
+        <div class="mt-20" style="overflow:visible;position:relative;">
+        	 <form class="form-inline" role="form"> 
+             	<div class="form-group col-md-4">
+                 	<label for="name" class="control-label">记账金额：</label> 
+                	<input type="text" placeholder="请输入记账金额"  class="form-control" id="amount">
+              	</div>   
+                <div class="form-group col-md-6">
+              	<label for="name" class="control-label">日期：</label>
+              	<input class="form-control laydate-icon" placeholder="请输入开始日期" id='start' style="width:145px;" ><!--onclick="laydate()"-->
+             	<label>-</label>
+             	<input type="text" class="form-control laydate-icon" placeholder="请输入结束日期" id='end' style=" width:145px;"  ><!--onclick="laydate()"-->
+             	</div><br><br>
+                <div class="searchbtn">
+                 	<input type="button" onclick="queryAccountFinance();" class="manager-btn  mr-10" value="搜 索">
+                    <input class="manager-btn  mr-10" value="重 置" type="reset">
+                </div>
+                <div id="divtotal" style="font-size:13px;display:none;">
+                	累计总额：<span id="totalAmount" style="font-size:15px;" class="red"></span> 
+                </div>
+            </form>	
+			</div>
+            <table class="manager-table table-hover" style="table-layout:fixed;">
+              <thead>
+                  <tr>
+                      <th width="10%">序号</th>
+                      <th width="10%">类型</th>                                   
+                      <th width="10%">记账金额</th>
+                      <th width="10%">余额</th>  
+                      <th width="35%">备注</th>
+                      <th width="15%">时间</th>  
+                      <th width="10%">操作</th>             
+                  </tr>
+              </thead>
+              <tbody id="finacelist"></tbody>
+       		</table>
+   		    <div id="page" class="pager_container clearfix" >
+		        <input id="totalcount" type="hidden" value="0" />
+		        <input id="pagenumber" type="hidden" value="1" />
+		        <div id="pager"></div>
+			</div>
+         </div>
+</div>                
+<script src="../../publicD/memberjs.js"></script>
+<script src="js/consume.js"></script>
+</body>
+</html>

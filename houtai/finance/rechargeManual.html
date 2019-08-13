@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                 <div class="ibox-content">
+				    <div class="add-uer-box" id="detaliBox" >
+				           	<table class="table-form">
+				                <thead colspan="2"><strong style="font-size:16px;margin-right:10px;">订单信息</strong></thead>
+				                <tbody><tr>
+				            <th width="150"  align="right">订单编号：</th>
+				            <td align="left">
+				            	<strong style="color:green;font-size:14px;margin-right:10px;" value="" id="orderId"></strong>
+				            </td>
+				          </tr>
+				          <tr>
+				            <th width="150" align="right"> 申请会员：</th>
+				            <td align="left">
+				            	<strong style="color:green;font-size:14px;margin-right:10px;" id="userNameD" value="" ></strong>
+				            </td>
+				          </tr>
+				          <tr>
+				            <th width="150" align="right">操作金额：</th>
+				            <td align="left">
+				            	<strong style="color:green;font-size:14px;margin-right:10px;" value=""  id="amount"></strong>
+				              </td>
+				          </tr>
+				          <tr>
+				             <th width="150" align="right">支付方式：</th>
+				            <td align="left">
+				            	<strong style="color:green;font-size:14px;margin-right:10px;" value=""  id="eNameDesc" ></strong>
+				            </td>
+				          </tr>
+				          <tr>
+				             <th width="150" align="right"> 发生时间：</th>
+				            <td align="left">
+				            	<strong style="color:green;font-size:14px;margin-right:10px;" value="" id="regTime"></strong>
+				            </td>
+				          </tr>
+				          <tr>
+				            <th width="150" align="right"> 当前状态：</th>
+				            <td align="left">
+				            	<strong style="color:green;font-size:14px;margin-right:10px;" value="" id="StatusDesc"></strong>
+				            </td>
+				          </tr>
+				          
+				          <tr class="no-border">
+				            <td align="center" colspan="2">
+								<div class="searchbtn">
+					                <input type="button" onclick="rechargeManual('Y');" class="btn btn-primary" value="手工转已处理，并给用户入款">
+					                <input type="button" onclick="rechargeManual('N');" class="btn btn-primary" value="手工转已处理，但不给用户入款">
+					            </div>
+							 </td>
+				          </tr>
+				        </tbody>
+				      </table>
+				 </div>
+				 </div>
+				 </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/rechargeManual.js"></script>
+</html>

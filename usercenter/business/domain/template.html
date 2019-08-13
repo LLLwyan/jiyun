@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+
+<script src="../../../publicD/maincss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+              <li><a href="javascript:void(0);">域名模板</a></li>
+
+        </ul>
+	</div>
+		<div class="ManagerRightuser">
+                    <div id="realname-auth" class="nav-content active">
+                          <div class="mt-20" style="overflow:visible;position:relative">
+                            <form class="form-inline" role="form">
+                                <div class="form-group">
+                                    <label for="templateName1" class="control-label">模版名称：</label>
+                                    <input type="text" placeholder="请输入模版名称"  class="form-control" id="templateName1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="userNameCn2" class="control-label">所有者：</label>
+                                    <input type="text" placeholder="请输入所有者"  class="form-control" id="userNameCn2">
+                                </div>
+                                  <div class="searchbtn">
+
+                                <input type="button" onClick="getTemplateListPage();" class="manager-btn  mr-10" value="搜 索">
+                                <input class="manager-btn mr-10" value="重 置" type="reset">
+                                <div align="left">
+               					<a href="./addtemplate.html"><input type="button"  id="adddomain" class="manager-btn  mr-10" value="添加" ></a>
+               					</div>
+                                </div>
+                            </form>	
+					</div>
+                   <table class="manager-table table-hover">
+                   <thead>
+                       <tr>
+                           <th>序号</th>
+                           <th>模版名称</th>
+                           <th>类型</th>                                   
+                           <th>所有者</th>     
+                           <th>注册邮箱</th>
+                           <th>操作</th>               
+                       </tr>
+                    </thead>
+                    <tbody id="realNameMailAuthTbody"/>
+              		</table>
+ 					<div id="page" class="pager_container clearfix" >
+			            <input id="totalcount" type="hidden" value="0" />
+			            <input id="pagenumber" type="hidden" value="1" />
+			            <div id="pager"></div>
+		  			</div> 
+       </div>
+		<!--右侧内容区 结束-->								 
+	</div>
+</div>
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/template.js"></script>
+</body>
+</html>

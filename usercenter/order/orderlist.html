@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+<script src="../../publicD/maincss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+<link rel="stylesheet" type="text/css" href="../../public/smoothness/jquery.ui.css">
+<style>
+.ui-widget-header{ background:url(../../public/img/bghd.png) 50% 50% repeat-x;}
+</style>
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+        <ul>
+             <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">订单管理</a></li>
+            <li><a href="javascript:void(0);">订单列表</a></li>
+        </ul>
+	</div>
+		<div class="ManagerRightuser">
+        <div class="managertitle">
+            <ul class="manager-tab bind-tab">
+	            <li tag="allorders" class="liactive"><a onclick="queryOrder('','');" href="javascript:;">所有订单</a></li>
+	            <li tag="completedorders"><a onclick="queryOrder('Y','Y');" href="javascript:;">已完成订单</a></li>
+	            <li tag="nopayorders"><a onclick="queryOrder('N','N');" href="javascript:;">未付款订单</a></li>
+	            <li tag="processorders"><a onclick="queryOrder('Y','C');" href="javascript:;">处理中订单</a></li>
+	            <li tag="paynoprocessorders"><a onclick="queryOrder('Y','N');" href="javascript:;">已付款未处理订单</a></li>
+            </ul>
+        </div>
+        <div id="realname-auth" class="nav-content active">
+              <div class="mt-20" style="overflow:visible;position:relative">
+                  <input type="hidden" id="handleStatus">
+                  <input type="hidden" id="payStatus">
+              <form class="form-inline col-md-12"  role="form">
+                  <div class="form-group col-md-5" style="margin-left: 0;">
+                      <label class="control-label" style="float:left;margin-top:10px;">起始时间：</label>
+                      <input class="form-control laydate-icon" placeholder="请输入开始日期" id="starttime" style=" width:145px;float:left;"><!--onclick="laydate()"-->
+                      <label for="name" class="control-label">-</label>
+                      <input type="text" class="form-control laydate-icon" placeholder="请输入结束日期" id="endtime" style=" width:145px;" ><!--onclick="laydate()"-->
+                  </div>
+	              <div class="form-group col-md-4" style="margin-left:20px;">
+	                  <label class="control-label">订单编号：</label>
+	                  <input type="text" placeholder="订单编号"  class="form-control" id="orderId">
+	              </div>
+	              <div class="form-group" style="margin-left: 20px;">
+	                  <label for="name" class="control-label">产品类型：</label>
+	                  <select class="form-control" id="product"></select>
+	              </div>
+                  <br /><br />
+	              <div class="searchbtn">
+	              		<input type="button" onClick="queryOrders();" class="manager-btn  mr-10" value="搜 索">
+	                    <input class="manager-btn mr-10" value="重 置" type="reset">
+	              </div>
+              </form>	
+		</div>
+       	<table class="manager-table table-hover">
+        <thead>
+             <tr>
+                 <th><label><input type="checkbox" id="checkType" style="vertical-align: middle;padding: 2px;" name="checkBoxAll" onclick="checkAllOrder(this);"></label></th>
+                 <th>订单编号</th>
+                 <th>产品类型</th>                                   
+                 <th>产品名称</th> 
+                 <th>订单类型</th>  
+                 <th>订单金额</th>  
+                 <th>付款状态</th>  
+                 <th>处理状态</th> 
+                 <th>时间</th>  
+                 <th>操作</th>               
+             </tr>
+         </thead>
+         <tbody id=orderlist>
+             <tr>
+             <td colspan="11">找不到相关信息</td>
+         </tr>
+         </tbody>
+  		</table>
+  		<div class="cart_coupon_left">
+			<input type="checkbox" name="checkBoxAll" onclick="checkAllOrder(this);">全选</p><a href="javascript:void(0)" onclick="updataOrder()">处理选中订单</a>		
+		</div>
+  		<div id="page" class="pager_container clearfix" >
+        	<input id="totalcount" type="hidden" value="0" />
+        	<input id="pagenumber" type="hidden" value="1" />
+        	<div id="pager"></div>
+		</div>
+        </div>  
+        </div>
+</div>
+
+<script src="../../publicD/memberjs.js"></script>
+<script src="js/order.js"></script>
+</body>
+</html>

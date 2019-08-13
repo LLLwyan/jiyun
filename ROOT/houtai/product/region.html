@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>地域管理</title>
+<script src="../public/maincss.js"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                    <div class="mt-20" style="overflow:visible;position:relative;text-align: center;float:left;">
+                            <form class="form-inline" role="form">
+                                <div class="form-group">
+                                    <label class="control-label">上级注册商：</label>
+                                    <select class="form-control" id="hosttype" name="hosttype">
+                                    <option value="">请选择</option>
+                                    </select>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" onclick="querRegion();" value="查询">
+                                 <input type="button" class="btn btn-primary" onClick="addRegion();"  value="添加">
+                                </div>
+                            </form>	
+					</div>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>上级注册商</th>
+                                    <th>地域代码</th>
+                                    <th>地域名称</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="locationlist">
+                              <tr>
+                                <td colspan="5" style="height:50px;text-align:center;line-height:50px;">找不到相关信息</td>                            </tr>
+                                </tbody>
+                        </table>
+                         <div id="page" class="pager_container clearfix" >
+				                                <input id="totalcount" type="hidden" value="0" />
+				                                <input id="pagenumber" type="hidden" value="1" />
+				                                <div id="pager"></div>
+			                      			</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="add-uer-box" id="addBox" style="display:none">
+	<form method="post" action="#" id="regionfrom">
+                        	<table class="table-form">
+                                <tr>
+                                    <td class="t">
+                                        <label for="name" class="control-label"> <sub>&lowast;</sub>上级注册商：</label>
+                                    </td>
+                                    <td>
+                                    	<select name="hosttype2" id="hosttype2" onchange="hostChange();" class="form-control">
+		                                </select>
+                                    </td>
+                                </tr>
+                                <tr id="localregionc">
+                                    <td class="t">
+                                       <label for="name" class="control-label"> <sub>&lowast;</sub>地域代码: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" placeholder="例:fz" class="form-control" id="regionId">
+                                    </td>
+                                </tr>
+                                <tr id="localregionn">
+                                    <td class="t">
+                                       <label for="name" class="control-label"><sub>&lowast;</sub>地域名: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" placeholder="例:福州" class="form-control" id="regionName">
+                                    </td>
+                               </tr>
+                               <tr id="aliregionc">
+                               		<td class="t">
+                                       <label for="name" class="control-label"><sub>&lowast;</sub>说明: </label>
+                                    </td>
+                                    <td>
+                                         点击确定,将为您同步所有阿里云地域。
+                                    </td>
+                               </tr>
+                            </table>
+                             
+                            </form>
+ 	</div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/region.js"></script>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>用户管理中心</title>
+<script src="../../publicD/membercss.js"></script>
+<link rel="stylesheet" type="text/css" href="../../public/smoothness/jquery.ui.css">
+</head>
+<body>
+<div id="MainContentDIV">
+<div id="SitePath">
+        <ul>
+             <li><a href="javascript:void(0);">会员中心</a></li>
+             <li><a href="javascript:void(0);">发票管理</a></li>
+             <li><a href="javascript:void(0);">我的发票</a></li>
+        </ul>
+	</div>
+		<div class="ManagerRightuser">
+        <form action="#" method="post" class="form1">
+      <table class="manager-table form-table">
+        <tr>
+          <th width="24%">发票类型：</th>
+          <td align="left" id="getListParamItemByEName">
+           </td>
+        </tr>
+        <tr>
+          <th><strong class="redColor">*</strong>发票抬头：</th>
+          <td align="left"><input type="text" class="manager-select m-select width288" size="20" style="float:left;" id="headerInvoice"></td>
+          </tr>
+          <tbody id="invoicehide">
+          <tr>
+          <th><strong class="redColor">*</strong>纳税人识别号：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="identityId"></td>
+          </tr>
+        <tr>
+          <th><strong class="redColor specialInvoice">*</strong>开户行：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="bankName"></td>
+          </tr>
+        <tr>
+          <th><strong class="redColor specialInvoice">*</strong>开户账号：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="openAccount"></td>
+          </tr>
+        <tr>
+          <th><strong class="redColor specialInvoice">*</strong>注册地址：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="registerAddress"></td>
+          </tr>
+        <tr>
+          <th><strong class="redColor specialInvoice">*</strong>注册联系电话：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="contactNumber"></td>
+          </tr>
+    	 <tr>
+             <th>一般纳税证明：</th>
+                       <td colspan="1" align="left">
+	           	 		 <div  id="updateSmallImg" class="doctor-info-img" >
+	                        <input type="hidden" id="weblogo" />
+	      					<input type="file" title="点击上传图片" value="点击上传图片" id="SmallImg" onChange="upload('SmallImg','SmallImgV');" onpaste="return false" name="0" />
+							<img id="SmallImgV"  src="../../images/show.jpg" style="height:120px;width:120px;"  />
+	            		 </div>
+                        </td>
+        </tr>
+        </tbody>
+        <tr>
+          <th><strong class="redColor">*</strong>发票金额：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="price">
+		</td>
+        </tr>
+
+        <tr>
+          <th width="24%"><strong class="redColor">*</strong>发票内容：</th>
+          <td align="left" id="queryinvoicecontent">
+           </td>
+        </tr>
+        <tr>
+          <th><strong class="redColor">*</strong>收件方地址：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="recipientAddress">
+		</td>
+          </tr>
+        <tr>
+          <th><strong class="redColor">*</strong>收件公司名：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="companyName">
+		</td>
+          </tr>
+        <tr>
+          <th><strong class="redColor">*</strong>邮政编码：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="postcode">
+		</td>
+          </tr>
+        <tr>
+          <th><strong class="redColor">*</strong>收件人：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="addressee">
+		</td>
+          </tr>
+        <tr>
+          <th><strong class="redColor">*</strong>联系电话：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="telephone">
+		</td>
+          </tr>
+        <tr>
+          <th>备注：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="remark">
+		</td>
+          </tr>
+        <tr class="no-border">
+          	<th>发票获取途径：</th>
+            <td align="left" id="deliveryinvoice">
+           </td>
+          </tr>
+        <tr id="tr_courierNumber" style="display:none">
+          <th>快递单号：</th>
+          <td align="left"><input type="text" class="manager-input m-input width288" size="20" style="float:left;" id="courierNumber"></td>
+        </tr>
+        <tr id="tr_auditingResult" style="display:none">
+          <th>审核结果：</th>
+          <td align="left"><textarea id="auditingResult" style="height: 100px;width:500px" class="manager-input m-input width288" maxlength="100"></textarea></td>
+        </tr>
+        <tr class="no-border">
+          	<td></td>
+            <td align="center">
+                <div class="searchbtn" style="text-align:left;" >
+                	<input type="button" class="manager-btn  mr-10" onclick="uptapply()" value="更新" id="historybutton">
+                	<input type="button" class="manager-btn  mr-10" onclick="history.go(-1)" value="返回">
+                </div>
+             </td>
+          </tr>
+      </table>
+     </form>
+	</div>
+</div>
+<!--右侧内容区 结束-->
+<!-- 页脚部分 开始-->
+<!-- 页脚部分 结束 -->
+<script src="../../publicD/memberjs.js"></script>
+<script src="../../../public/js/upload.js"></script>
+<script src="js/uptapply.js"></script>
+</body>
+</html>

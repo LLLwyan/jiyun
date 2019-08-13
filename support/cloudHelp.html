@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>云服务问题资讯-极云</title>
+	<meta name="description" content="极云为客户提供云计算、云存储、云网络、云安全、云数据库、云管理与部署应用等IT基础设施云服务,让客户遇到问题自己轻松可以解决,详情咨询028-65773958。">
+	<meta name="keywords" content="云计算,云存储,云网络,云安全,云数据库,云管理与部署">
+	<script type="text/javascript" src="../publicD/maincss.js"></script>
+	<script type="text/javascript" src="../publicD/jmaincss.js"></script>
+	<script type="text/javascript" src="../publicD/main.js"></script>
+	<!-- <script type="text/javascript" src="../public/memberjs.js"></script> -->
+	<script src="../publicD/leftsupport.js"></script> 
+	<script src="js/cloudHelp.js"></script>
+	<style>
+		.clearfix{
+			    display: block ! important;
+		}
+		.wide1190{
+			background-color: initial;
+		}
+		.conten{
+			background-color: #f2f5fa;
+		}
+		.currency-box>a {
+    margin-top: 0px !important;
+}
+	</style>
+</head>
+<body onkeydown="keySearch()">
+    <!--头部开始-->
+    <div id="header"></div>
+	<div id="content">
+    	<div class="conten">
+        	<div class="wide1190 cl">
+	            <!--左侧导航 开始-->
+	            <div id="leftsupport">
+	            	<div class='navbar-left'>
+	 	           		<a href="domainHelp.html"><div class='nl-title nofalse'>域名备案</div></a>
+	 	           		<a href="cloudHelp.html"><div class='nl-title' style="margin-top: 10px;">云服务</div></a>
+	 	           		<a href="IDCHelp.html"><div class='nl-title nofalse' style="margin-top: 10px;">IDC服务</div></a>
+	 	           		<a href="kfHelp.html"><div class='nl-title nofalse' style="margin-top: 10px;">应用开发</div></a>
+	            		                   
+	           		</div>
+	            </div>
+	        	<!--右侧内容区 开始-->
+	         	<div class="content-right">
+	                <!--搜索框 开始-->
+	                <div class="cr-search cl">   
+                        <input type="text" value="" placeholder="请输入您想了解的问题、关键字或产品名称"  name="keyword" id="keyword" maxlength="40" style="width:83%;"/>
+                        <input type="button" class="btn btn-primary" onclick="getHelpInfo('');" value="查询" style="width:17%;color:#fff;line-height:35px;font-size:22px;background-color: #4c61ff;border-radius: 0px;">
+	                </div>
+	                <div class="cr-question"> 
+	                    <div>
+	                        <ul class="questionli" id="cloudHelptitle"></ul>
+	                    </div>
+	                    <div id="page" class="pager_container clearfix">
+				            <input id="totalcount" type="hidden" value="0" />
+				            <input id="pagenumber" type="hidden" value="1" /> 
+				            <div id="pager" style="padding-left:10%;"></div>  
+				        </div> 
+	                </div> 
+	            </div>
+        	</div>
+    	</div>
+	</div>
+<!-- 底部 -->
+	 
+
+<!--底部开始-->
+<footer>
+    	<div class="service-footer container">
+    		<div class="row">
+    			<div class="col-md-3 col-sm-3">
+    				<img src="/img/service-footer1.png" alt="服务"/>
+    				<div class="service-footer-info">
+    					<p class="service-footer-title">服务</p>
+    					<p class="service-footer-contant">7*24小时服务支持</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 col-sm-3">
+   				<img src="/img/service-footer2.png" alt="备案"/>
+   				<div class="service-footer-info">
+    					<p class="service-footer-title">备案</p>
+    					<p class="service-footer-contant">0元快速备案</p>
+    				</div>
+    			</div>
+   			<div class="col-md-3 col-sm-3">
+    				<img src="/img/service-footer3.png" alt="保障"/>
+   				<div class="service-footer-info">
+    					<p class="service-footer-title">保障</p>
+    					<p class="service-footer-contant">100倍故障赔偿</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 col-sm-3">
+   				<img src="/img/service-footer4.png" alt="退款"/>
+    				<div class="service-footer-info">
+    					<p class="service-footer-title">退款</p>
+    					<p class="service-footer-contant">5天无理由退款</p>
+    				</div> 				
+    			</div>
+    		</div>
+    	</div>
+    	<div class="container-fluid pt-50 footer-intr">
+    		<div class="container">
+    			<div class="row">
+    				<div class="footer-info-link">
+    					<p class="footer-title">热门产品</p>
+    					<a class="footer-link" href="/domain/index.html">域名注册</a>
+    					<a class="footer-link" href="/cloud/thrid-two.html">云服务器</a>
+    					<a class="footer-link" href="/idc/wjzy.html">服务器租用</a>
+    					<a class="footer-link" href="/idc/HK.html">香港服务器</a>
+    					<a class="footer-link" href="/idc/USA.html">美国服务器</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">帮助中心</p>
+    					<a class="footer-link" href="/support/domainHelp.html">域名备案</a>
+    					<a class="footer-link" href="/support/cloudHelp.html">云服务</a>
+    					<a class="footer-link" href="/support/IDCHelp.html">IDC服务</a>
+    					<a class="footer-link" href="/support/kfHelp.html">应用开发</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">产品与支持</p>
+    					<a class="footer-link" href="/about/about.html?content=beian">备案流程</a>
+    					<a class="footer-link" href="/about/about.html?content=shengqing">测试机申请</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">关于极云</p>
+    					<a class="footer-link" href="/about/index.html">关于我们</a>
+    					<a class="footer-link" href="/about/connect.html">联系方式</a>
+    					<a class="footer-link" href="/about/about.html?content=corporateculture">企业文化</a>
+    					<a class="footer-link" href="/about/about.html?content=zhizi">公司资质</a>
+    				</div>
+    				<div class="col-md-2 col-sm-2">
+    					<div class="footer-wx">
+  					<img src="/img/footer-wx.png" alt="极云天下公众号">
+  					<p>关注微信公众号</p>
+    				    </div>
+    			    </div>
+    				<div class="col-md-4 col-sm-4">
+    					<div class="mc-list-items1"> 
+  	  	          <p></p> 
+  		  	          <p style="font-size:24px">028-65773958</p> 
+  		              <div> 
+  		  	         <a class="footer-sale1" data-title="电话：18584883263" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=167730759&site=qq&menu=yes" rel="nofollow">售前咨询</a>
+  		  	         <a class="footer-sale2" data-title="电话：18512828895" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=766686207&site=qq&menu=yes" rel="nofollow">售后服务</a>
+  		              </div> 
+  		  	          <p style="margin-top:10px">地址：中国（四川）自由贸易试验区成都高新区天府四街199号2栋11楼1110室</p> 
+  		  	          </div> 
+    				</div>
+    			<div class="footer-line"><img style="width: 100%;height: 1px;" src="/img/footer-line.png" alt=""></div>
+  
+    			<div class="beian-info pb-10">
+     				<p>版权所有 © 成都极云天下科技有限公司 保留一切权利  <a href="http://www.beian.miit.gov.cn" rel="nofollow">蜀ICP备17027862号-1</a></p>
+    				<p>《中华人民共和国增值电信业务经营许可证》经营许可证编号 川B1-20170453</p>
+     			</div>
+    		</div>
+    	</div>
+    </footer>
+<!--底部结束-->
+</body>
+</html>

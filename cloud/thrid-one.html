@@ -1,0 +1,503 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>云服务器</title>
+    <script type="text/javascript" src="../publicD/maincss.js"></script>
+    <script type="text/javascript" src="../publicD/jmaincss.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="cloud.buy.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style type="text/css">
+        .el-input-number__decrease{height: 38px}
+        .el-input-number__decrease .el-icon-minus {line-height: 38px}
+        .el-input-number__increase{height: 38px}
+        .el-input-number__increase .el-icon-plus {line-height: 38px}
+        ._this_td {font-size: 14px; line-height: 28px; width: 300px; padding-top: 8px; padding-bottom: 8px}
+    </style>
+</head>
+<body style="background-color:#f7f7f7;">
+<div id="main-block" v-cloak>
+<!--头部开始-->
+<div id="header"></div>
+<!--头部结束-->
+<div class="container" style="background-color:#fff;margin-top:30px;">
+    <div class="bg_buy_body1">
+        <div class="hl_page_title">
+            <div class="hl_row hl_span1">
+            </div>
+        </div>
+        <div class="hl_row hl_mt1">
+            <div class="hl_span2">
+                <div class="hl_tab">
+                    <ul>
+                        <li style="border-right: solid 1px #ddd;">
+                            <a href="#" class="hl_item hl_item_sub">自定义购买</a>
+                        </li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="background-color:#fff;">
+    <div class="bg_buy_body2">
+        <div class="hl_row hl_mt1">
+            <div class="hl_view">
+                <div>
+                    <el-form v-model="form" label-width="100px"  class="demo-form-inline" :inline="true">
+                        <input type="hidden" id="hly_set_proCode" value="321">
+                        <input type="hidden" id="hly_set_proType" value="cloud">
+                        <input type="hidden" id="regType" value="lce">
+                        <input type="hidden" id="hly_set_applyType" value="m">
+                        <div class="hl_buy_main">
+
+                            <!--地区-->
+                            <dl class="hl_buy_main_dl">
+                                <el-card class="box-card" style="width: 100%">
+                                    <dt class="cloud-buy-block-left">
+                                        <svg class="icon" aria-hidden="true" style="height: 20px; width: 20px"><use xlink:href="#icon-icon_address-"></use></svg>
+                                    </dt>
+                                    <dd class="cloud-buy-block-right">
+                                        <el-row>
+                                            <span>区域</span>
+                                        </el-row>
+                                        <el-row>
+                                            <el-form-item label="地域：">
+                                                <el-select v-model="form.regionId" placeholder="请选择" @change="getZones">
+                                                    <el-option
+                                                            v-for="item in regionList"
+                                                            :key="item.regionId"
+                                                            :label="item.localName"
+                                                            :value="item.regionId">
+                                                    </el-option>
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-row>
+                                        <el-row>
+                                            <el-form-item label="可用区：">
+                                                <el-radio-group v-model="form.zoneName" @change="zoneChange">
+                                                    <el-radio-button v-for="item in zoneList" :label="item.localName"></el-radio-button>
+                                                </el-radio-group>
+                                            </el-form-item>
+                                        </el-row>
+                                    </dd>
+                                </el-card>
+                            </dl>
+
+                            <!--实例规格-->
+                            <dl class="hl_buy_main_dl">
+                                <el-card class="box-card" style="width: 100%">
+                                    <dt class="cloud-buy-block-left">
+                                        <svg class="icon" aria-hidden="true" style="height: 20px; width: 20px"><use xlink:href="#icon-stack"></use></svg>
+                                    </dt>
+                                    <dd class="cloud-buy-block-right">
+                                        <el-row>
+                                            <span>实例选择</span>
+                                        </el-row>
+                                        <el-row>
+                                            <el-form-item label="CPU：">
+                                                <el-autocomplete
+                                                        class="inline-input"
+                                                        v-model="form.cpu"
+                                                        :fetch-suggestions="querySearchCpu"
+                                                        placeholder="请输入CPU核数"
+                                                        @select="handleSelectCpu"
+                                                        style="width: 130px"
+                                                        @blur="queryTableData"
+                                                ></el-autocomplete>
+                                            </el-form-item>
+                                            <el-form-item label="内存：">
+                                                <el-autocomplete
+                                                        class="inline-input"
+                                                        v-model="form.memory"
+                                                        :fetch-suggestions="querySearchMemory"
+                                                        placeholder="请输入内存大小"
+                                                        @select="handleSelectMemory"
+                                                        @blur="queryTableData"
+                                                        style="width: 130px"
+                                                ></el-autocomplete>
+                                            </el-form-item>
+                                            <el-form-item label="IPV6：">
+                                                <el-select v-model="form.ipv6"
+                                                           placeholder="请选择"
+                                                           style="width: 110px"
+                                                           @change="queryTableData"
+                                                           :clearable="true">
+                                                    <el-option
+                                                            v-for="item in ipv6List"
+                                                            :key="item.label"
+                                                            :label="item.label"
+                                                            :value="item.value">
+                                                    </el-option>
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-row>
+
+                                        <el-row>
+                                            <el-form-item label="架构：">
+                                                <el-radio-group v-model="form.architecture" @change="queryFamily">
+                                                    <el-radio-button v-for="item in architectureList" :label="item.text"></el-radio-button>
+                                                </el-radio-group>
+                                            </el-form-item>
+                                        </el-row>
+                                        <el-row>
+                                            <el-form-item label="分类：">
+                                                <el-radio-group v-model="form.family" @change="queryTableData">
+                                                    <el-radio-button v-for="item in instanceTypeFamilyList" :label="item.text"></el-radio-button>
+                                                </el-radio-group>
+                                            </el-form-item>
+                                        </el-row>
+
+                                        <el-row>
+                                            <template>
+                                                <el-table
+                                                        :data="instanceTableData"
+                                                        style="width: 100%; border-bottom: 2px solid #F2F2F2;"
+                                                        @row-click="instanceTableRowClick"
+                                                        height="400">
+                                                    <el-table-column
+                                                            fixed
+                                                            width="50"
+                                                            label="">
+                                                        <template scope="scope">
+                                                            <el-radio v-model="form.typeIndex" :label="scope.$index">&nbsp;</el-radio>
+                                                        </template>
+                                                    </el-table-column>
+                                                    <el-table-column
+                                                            fixed
+                                                            prop="familyName"
+                                                            sortable
+                                                            label="规格族">
+                                                    </el-table-column>
+                                                    <el-table-column
+                                                            fixed
+                                                            prop="instanceTypeId"
+                                                            sortable
+                                                            label="实例规格">
+                                                    </el-table-column>
+                                                    <el-table-column
+                                                            prop="cpuCoreCount"
+                                                            sortable
+                                                            label="vCPU">
+                                                        <template scope="scope">
+                                                            <span v-html="scope.row.cpuCoreCount + ' vCPU'"></span>
+                                                        </template>
+                                                    </el-table-column>
+                                                    <el-table-column
+                                                            prop="memorySize"
+                                                            sortable
+                                                            label="内存">
+                                                        <template scope="scope">
+                                                            <span v-html="scope.row.memorySize + ' GiB'"></span>
+                                                        </template>
+                                                    </el-table-column>
+                                                    <el-table-column
+                                                            prop="physicalProcessor"
+                                                            sortable
+                                                            label="处理器型号">
+                                                    </el-table-column>
+                                                    <el-table-column
+                                                            prop="clockSpeed"
+                                                            sortable
+                                                            label="处理器主频">
+                                                    </el-table-column>
+                                                    <el-table-column
+                                                            prop="intranetBandwidth"
+                                                            sortable
+                                                            label="内网带宽">
+                                                        <template scope="scope">
+                                                            <span v-html="scope.row.intranetBandwidth"></span> Gbps
+                                                        </template>
+                                                    </el-table-column>
+                                                    <el-table-column
+                                                            prop="privatePPS"
+                                                            sortable
+                                                            label="内网收发包">
+                                                        <template scope="scope">
+                                                            <span v-html="scope.row.privatePPS"></span> 万 PPS
+                                                        </template>
+                                                    </el-table-column>
+                                                    <el-table-column
+                                                            prop="eniIpv6AddressQuantity"
+                                                            sortable
+                                                            label="支持 IPv6">
+                                                        <template scope="scope">
+                                                            <span v-if="scope.row.eniIpv6AddressQuantity==1">支持</span>
+                                                            <span v-else>-</span>
+                                                        </template>
+                                                    </el-table-column>
+                                                </el-table>
+                                            </template>
+                                        </el-row>
+                                        <el-row style="margin-top: 20px">
+                                            <el-form-item label="当前选择实例：" label-width="200px">
+                                                <div>
+                                                    <div style="width: 180px; float: left;">
+                                                        <span v-html="form.currentTypeRow ? form.currentTypeRow.instanceTypeId : ''"></span>
+                                                    </div>
+                                                    <div style="float: left">
+                                                        （<span v-html="form.currentTypeRow ? form.currentTypeRow.cpuCoreCount : ''"></span> vCPU <span v-html="form.currentTypeRow ? form.currentTypeRow.memorySize : ''"></span> GiB，<span v-html="form.currentTypeRow ? form.currentTypeRow.familyName : ''"></span>）
+                                                    </div>
+                                                </div>
+                                            </el-form-item>
+                                        </el-row>
+                                        <el-row>
+                                            <el-form-item label="购买实例数量：" label-width="200px">
+                                                <el-input-number style="height: 40px" @change="getPrice" v-model="form.buyTypeNumber" :min="1" :max="50" label="一次最多能开通50台"></el-input-number> 台
+                                            </el-form-item>
+                                        </el-row>
+                                    </dd>
+                                </el-card>
+                            </dl>
+
+                            <!--存储-->
+                            <dl class="hl_buy_main_dl">
+                                <el-card class="box-card" style="width: 100%">
+                                    <dt class="cloud-buy-block-left">
+                                        <svg class="icon" aria-hidden="true" style="height: 20px; width: 20px"><use xlink:href="#icon-huaban"></use></svg>
+                                    </dt>
+                                    <dd class="cloud-buy-block-right">
+                                        <el-row>存储</el-row>
+                                        <el-row>
+                                            <el-form-item label="系统盘：">
+                                                <el-select v-model="form.sysDiskCategory"
+                                                           placeholder="请选择"
+                                                           @change="getPrice"
+                                                           style="width: 110px">
+                                                    <el-option
+                                                            v-for="item in allowDiskType"
+                                                            :key="item.value"
+                                                            :label="item.description"
+                                                            :value="item.value">
+                                                    </el-option>
+                                                </el-select>
+                                                <el-input-number @change="getPrice" v-model="form.sysDiskSize" :min="40" :max="500" label=""></el-input-number> G
+                                            </el-form-item>
+                                        </el-row>
+                                        <el-row>
+                                            <el-form-item label="数据盘：">
+                                                <el-row v-for="(item, index) in form.dataDisk" :key="index">
+                                                    <svg class="icon" aria-hidden="true" @click="deleteDiskLine(index)" style="height: 20px; width: 20px; margin-top: 15px; cursor: pointer"><use xlink:href="#icon-ziyuan"></use></svg>
+                                                    <el-select v-model="item.diskCategory"
+                                                               placeholder="请选择"
+                                                               @change="getPrice"
+                                                               style="width: 110px">
+                                                        <el-option
+                                                                v-for="itemSub in allowDiskType"
+                                                                :key="itemSub.value"
+                                                                :label="itemSub.description"
+                                                                :value="itemSub.value">
+                                                        </el-option>
+                                                    </el-select>
+                                                    <el-input-number @change="getPrice" v-model="item.diskSize" :min="40" :max="500" label=""></el-input-number> G
+                                                </el-row>
+                                                <el-row>
+                                                    <svg v-if="form.dataDisk.length < 16" class="icon" aria-hidden="true" @click="addDiskLine" style="height: 20px; width: 20px; margin-top: 15px; cursor: pointer"><use xlink:href="#icon-ziyuan1"></use></svg>
+                                                    最多可添加16个数据盘。当前已添加（<span style="color: #FF0000" v-html="form.dataDisk.length"></span>）个，还能添加（<span style="color: #FF0000" v-html="16 - form.dataDisk.length"></span>）个
+                                                </el-row>
+                                            </el-form-item>
+                                        </el-row>
+                                    </dd>
+                                </el-card>
+                            </dl>
+
+                            <!--带宽-->
+                            <dl class="hl_buy_main_dl">
+                                <el-card class="box-card" style="width: 100%">
+                                    <dt class="cloud-buy-block-left">
+                                        <svg class="icon" aria-hidden="true" style="height: 20px; width: 20px"><use xlink:href="#icon-tubiaozhizuomobanyihuifu-"></use></svg>
+                                    </dt>
+                                    <dd class="cloud-buy-block-right">
+                                        <el-row>
+                                            <span>公网带宽</span>
+                                        </el-row>
+                                        <el-row>
+                                            <el-form-item label="选择带宽：">
+                                                <div class="block" style="width: 600px">
+                                                    <el-slider
+                                                            v-model="form.bandWith"
+                                                            :min="1"
+                                                            :max="100"
+                                                            :format-tooltip="formatBandWidthTooltip"
+                                                            @change="getPrice"
+                                                            >
+                                                    </el-slider>
+                                                    <el-input-number @change="getPrice" v-model="form.bandWith" :min="1" :max="100" label="描述文字"></el-input-number> Mbps
+                                                </div>
+                                            </el-form-item>
+                                        </el-row>
+                                    </dd>
+                                </el-card>
+                            </dl>
+
+                            <!--镜像-->
+                            <dl class="hl_buy_main_dl">
+                                <el-card class="box-card" style="width: 100%">
+                                    <dt class="cloud-buy-block-left">
+                                        <svg class="icon" aria-hidden="true" style="height: 20px; width: 20px"><use xlink:href="#icon-jingxiang"></use></svg>
+                                    </dt>
+                                    <dd class="cloud-buy-block-right">
+                                        <el-row>
+                                            <span>镜像</span>
+                                        </el-row>
+                                        <el-row>
+                                            <el-form-item label="镜像分类：">
+                                                <el-select v-model="form.imageOsType"
+                                                           placeholder="请选择系统分类"
+                                                           @change="selectImage">
+                                                    <el-option
+                                                            v-for="cat in osType"
+                                                            :key="cat"
+                                                            :label="cat"
+                                                            :value="cat">
+                                                    </el-option>
+                                                </el-select>
+                                            </el-form-item>
+                                            <el-form-item label="镜像：">
+                                                <el-select v-model="form.imageId"
+                                                           placeholder="请选择镜像"
+                                                           @change="setImageName"
+                                                           style="width: 500px">
+                                                    <el-option
+                                                            v-for="item in imageList"
+                                                            :key="item.imageId"
+                                                            :label="item.oSName"
+                                                            :value="item.imageId">
+                                                    </el-option>
+                                                </el-select>
+                                            </el-form-item>
+                                        </el-row>
+                                    </dd>
+                                </el-card>
+                            </dl>
+
+                            <!--登录凭证-->
+                            <dl class="hl_buy_main_dl">
+                                <el-card class="box-card" style="width: 100%">
+                                    <dt class="cloud-buy-block-left">
+                                        <svg class="icon" aria-hidden="true" style="height: 20px; width: 20px"><use xlink:href="#icon-weibiaoti--1"></use></svg>
+                                    </dt>
+                                    <dd class="cloud-buy-block-right">
+                                        <el-row>
+                                            <span>登录凭证</span>
+                                        </el-row>
+                                        <el-row>
+                                            <div style="margin-left: 105px;">
+                                                <el-switch
+                                                        v-model="form.isSafe"
+                                                        active-text="自定义密码"
+                                                        inactive-text="创建后设置">
+                                                </el-switch>
+                                            </div>
+                                        </el-row>
+                                        <el-row v-if="form.isSafe" style="margin-top: 10px">
+                                            <el-form-item label="登录密码：">
+                                                <el-input type="password" style="width: 180px" v-model="form.userPassword" placeholder="可创建后设置"></el-input>
+                                                8 - 30 个字符，必须同时包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.? 中的特殊符号）
+                                            </el-form-item>
+                                        </el-row>
+                                        <el-row v-if="form.isSafe">
+                                            <el-form-item label="确认密码：">
+                                                <el-input type="password" style="width: 180px" v-model="form.userPasswordSure" placeholder=""></el-input>
+                                            </el-form-item>
+                                        </el-row>
+                                    </dd>
+                                </el-card>
+                            </dl>
+
+                            <!--购买时间-->
+                            <dl class="hl_buy_main_dl">
+                                <el-card class="box-card" style="width: 100%">
+                                    <dt class="cloud-buy-block-left">
+                                        <svg class="icon" aria-hidden="true" style="height: 20px; width: 20px"><use xlink:href="#icon-shijian"></use></svg>
+                                    </dt>
+                                    <dd class="cloud-buy-block-right">
+                                        <el-row>
+                                            <span>时间选择</span>
+                                        </el-row>
+                                        <el-row>
+                                            <el-form-item label="购买时长：">
+                                                <el-select v-model="form.buyTime" @change="setBuyTimeName" placeholder="请选择">
+                                                    <el-option
+                                                            v-for="item in timeLine"
+                                                            :key="item.value"
+                                                            :label="item.label"
+                                                            :value="item.value">
+                                                    </el-option>
+                                                </el-select> 如需备案请购买三个月及以上时长（含续费）
+                                            </el-form-item>
+                                        </el-row>
+                                    </dd>
+                                </el-card>
+                            </dl>
+
+                            <!--价格&配置预览-->
+                            <dl class="hl_buy_main_dl">
+                                <el-card class="box-card" id="priceScroll" style="width: 1170px">
+                                    <dt class="cloud-buy-block-left">
+                                        <svg class="icon" aria-hidden="true" style="height: 20px; width: 20px"><use xlink:href="#icon-qian"></use></svg>
+                                    </dt>
+                                    <dd class="cloud-buy-block-right">
+                                        <el-row>
+                                            <span>配置价格</span>
+                                        </el-row>
+                                        <el-row>
+                                            <span v-html="'￥' + form.moneyTotal" style="font-size: 18px; line-height: 48px; color: #ffab00; font-weight: bolder"></span>
+                                            /
+                                            <span v-html="form.buyTimeName"></span>
+                                            &nbsp;&nbsp;
+                                            <span v-if="price.discountPrice > 0" >
+                                                <i style="font-size: 18px">原价：￥<del v-html="price.originalPrice"></del></i>
+                                                &nbsp;&nbsp;
+                                                <span style="font-size: 18px; color: #FF0000">优惠：￥<span v-html="price.discountPrice"></span></span>
+                                            </span>
+                                            <el-button-group style="margin-left: 80px;">
+                                                <el-button type="primary" @click="doBuy(1)">立即购买</el-button>
+                                                <el-button type="warning" @click="doBuy(2)">添加到购物车</el-button>
+                                            </el-button-group>
+                                        </el-row>
+                                        <el-row style="margin-top: 20px; border-top: 1px solid #F2F2F2; ">
+                                            <el-form-item label="当前配置：">
+                                                <table style="width: 900px">
+                                                    <tr>
+                                                        <td class="_this_td">地域：<span v-html="form.regionName"></span>/<span v-html="form.zoneName"></span></td>
+                                                        <td class="_this_td">实例：<span v-html="form.currentTypeRow ? form.currentTypeRow.familyName : ''"></span>/<span v-html="form.currentTypeRow.instanceTypeId ? form.currentTypeRow.instanceTypeId : ''"></span></td>
+                                                        <td class="_this_td">带宽：<span v-html="form.bandWith"></span>Mbps </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="_this_td">系统盘：<span v-html="form.sysDiskSize"></span>GiB</td>
+                                                        <td class="_this_td">数据盘：<span v-html="form.dataDisk.length"></span>个</td>
+                                                        <td class="_this_td">购买数量：<span v-html="form.buyTypeNumber"></span>台</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="_this_td" colspan="3">镜像：<span v-html="form.imageName"></span>（安全加固）</td>
+                                                    </tr>
+                                                </table>
+                                            </el-form-item>
+                                        </el-row>
+                                    </dd>
+                                </el-card>
+                            </dl>
+
+
+                        </div>
+                    </el-form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br/>
+<hr/>
+<!--底部开始-->
+<div id="footer"></div>
+<!--底部结束-->
+<script type="text/javascript" src="../publicD/main.js"></script>
+<script src="thrid-one.js"></script>
+</body>
+</html>

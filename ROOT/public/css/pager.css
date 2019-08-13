@@ -1,0 +1,108 @@
+#pager ul.pages,#pager1 ul.pages,#pager2 ul.pages {
+	margin: 10px 0px 20px;
+	padding: 0px;
+	font-size: 14px;
+}
+
+#pager ul.pages li,#pager1 ul.pages li,#pager2 ul.pages li {
+	list-style: none;
+	margin: 10px 5px;
+	padding: 10px;
+	border: 1px solid #dbdbdb;
+	text-decoration: none;
+	float: left;
+	color: #0381bb;
+	text-align: center;
+	border-radius: 3px;
+	font-family: "Tahoma";
+	width: auto;
+	line-height: 8px;
+}
+
+#pager ul.pages li:hover,#pager1 ul.pages li:hover {
+	background: #3e90cf;
+	color: #000;
+	border: 1px solid #fff;
+}
+
+.pgEmpty {
+	display: none;
+}
+
+#pager ul.pages li.pgCurrent,#pager1 ul.pages  li.pgCurrent,#pager2 ul.pages  li.pgCurrent {
+	color: #f03800;
+	font-weight: 600;
+	font-size: 13px;
+}
+
+#pager ul.pages li.pgCurrent:hover,#pager1 ul.pages  li.pgCurrent:hover,#pager2 ul.pages  li.pgCurrent:hover {
+	color: #000;
+}
+
+#pager ul.pages li.pgHeader,#pager1 ul.pages  li.pgHeader,#pager2 ul.pages  li.pgHeader {
+	border: 0;
+	cursor: auto;
+	margin-left: 10px;
+	width: auto;
+}
+
+.page-number {
+	list-style: none;
+	margin: 20px 10px 0 0;
+	padding: 5px;
+	border: 1px solid #ccc;
+	text-decoration: none;
+	float: left;
+}
+
+.page-number:hover {
+	text-shadow: 1px 1px 1px #ccc;
+}
+
+.pgHeader {
+	width: 100%;
+	color: #555;
+	padding: 10px;
+	text-align: left;
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+}
+
+#pager ul.pages li.pgNext,#pager1 ul.pages  li.pgNext,#pager2 ul.pages  li.pgNext {
+	font-family: "Courier New",Courier,monospace;
+	font-weight: 900;
+}
+
+.pagerdis {
+	color: #555;
+}
+
+#gopagenum {
+	width: 45px;
+	height: 30px;
+	font-size: 12px;
+	padding: 0 3px 0 3px;
+	border: 1px solid #bbb;
+	border-radius: 2px;
+	color: #333;
+	font-family: "Tahoma";
+	margin: 0px 5px 0 5px;
+	text-align: center;
+}
+
+#selectcount {
+	margin: 0 5px 0 5px;
+}
+
+.pager_container {
+	width: 100%;
+	text-align: center;
+	margin: 20px auto;
+}
+
+.w50 {
+	width: 50px;
+}
+#pager{
+	padding-left: 20%;
+}

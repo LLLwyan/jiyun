@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<title>控制面板登录</title>
+<script src="../../../publicD/membercss.js"></script> 
+<link rel="stylesheet" type="text/css" href="../../../public/smoothness/jquery.ui.css">  
+<style>
+.ui-widget-header{ background:url(../../../public/img/bghd.png) 50% 50% repeat-x;}
+.container{
+	        width: 75%;
+            position:absolute;
+            left:50%; 
+            top:40%;
+            transform: translate(-50%,-40%);
+            text-align: center;
+}
+#XinNetLogin input[type="submit"]{
+	color: #5588d3;
+    display: inline-block;
+    font-family: "Microsoft YaHei";
+    font-size: 16px;
+    border: 1px solid #5588d3;
+    padding: 10px 30px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #eff2f8;
+    text-decoration: none;
+    margin-top: 30px;
+}
+#XinNetLogin input[type="submit"]:hover{
+	background-color: #5588d3;
+    color: #eff2f8;
+    border: 1px solid #eff2f8;
+}
+#XinNetLogin >img{
+	margin-bottom: 20px;
+}
+#XinNetLogin{
+	text-align: center;
+    background-color: #eff2f8;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 5px;
+    width: 60%;
+}
+</style>
+</head>
+<body>
+<div>
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+				<img  src="../../../img/timg.png"/>
+				</div>
+				<div class="col-md-6">
+					<div id="XinNetLogin" style="display:none;margin:15px 0px 0px 0px">
+						<img src="../../../img/logo.png" />
+			            <form name="form1" method="post" action="http://dcp.xinnet.com/domainLogin.do?method=domainEnter" accept-charset="UTF-8" ID="Form1">
+			                <img id="validateCodeImg" src="http://dcp.xinnet.com/Modules/agent/domain/validate_picture.jsp" onclick="XibNetChangeCheckCode();" style="cursor:hand;margin-top:4px;" title="看不清,换一张" alt="验证码"/>
+			                <input id="authcode" class="text_l text" name="checkCode" type="text" />
+			                <input id="XWdomainName" name="domainName" type="hidden" value="">
+			                <input id="XWpassword" name="password" type="hidden" value="">
+			                <br/><input type="submit" name="Submit" value="立即解析">
+			            </form>
+			    	</div>
+			    	 <div id="ZGSJLogin" style="display:none;margin:15px 0px 0px 0px">
+			            <form name="form1" method="post" action="http://dns.4cun.com/index.asp"  accept-charset="GB2312" ID="Form1">
+			                <input id="ZGSJdomain"name="domain" type="hidden" value="">
+			                <input id="ZGSJpassword" name="password" type="hidden" value="">
+			                验证码：<input name="u_code"><img align="absbottom" src="http://dns.4cun.com/vrfimage.asp" alt="看不清，换一张图片" onclick="this.src='http://dns.4cun.com/vrfimage.asp?'+(new Date().getTime());">
+			                <input type="submit" name="Submit" value="login...........">
+			            </form>
+			    	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+</div>
+<!--右侧内容区 结束-->
+<!-- 页脚部分 开始-->
+<!-- 页脚部分 结束 -->
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/domainlogin.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <link rel="stylesheet" type="text/css" href="../css/manager.css">
+    <script src="../public/maincss.js"></script>
+    <style>
+        .cloud-main-l .l-l {
+            min-height:0;
+            padding:0;
+            width: 400px;
+        }
+        .cloud-main-l .l-l .slider-m-o .sys-m .sel{
+            width:220px;
+        }
+        .cloud-main-l .l-l .slider-m-o .sys-m .sel-m-o {
+            width: 220px;
+        }
+    </style>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight" _funCode="queryVhostDetail" id="main-block">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="managertitle">
+                    <div style="margin:10px -20px 0px -20px">
+                        <div class="server-title">
+                            <b>实例：</b><span id="instanceId"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="server-control">
+                        <input type="button" class="manager-btn mr-10" id="btnBackList" value="返回实例列表" />
+                        <input type="button" class="manager-btn mr-10" id="controlPanelButton" _funCode="vHostControlPanel" value="控制面板" />
+                        <input type="button" class="manager-btn mr-10" id="repairButton" _funCode="vHostRepair" @click="checkRepair" value="检测修复" />
+                        <input type="button" class="manager-btn mr-10" id="editInfo" _funCode="vHostInfoEdit" @click="showConfig" value="调整配置" />
+                        <div class="btn-group autosuo" style="display: none">
+                            <a id="opt" href="javascript:void(0)" class="manager-btn editsnap disable">更多操作&nbsp;<span class="btn-caret"></span></a>
+                            <ul id="optItem" class="edit-ul" flag="0"  id="optbtn">
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top:20px;border-left: 3px solid #6d7781">
+                        <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                            <b>产品详情</b>
+                        </div>
+                    </div>
+                    <div class="right_side_bottom">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="view">
+                        </table>
+                    </div>
+                    <div id="webInfoArea" style="display: none">
+                        <div style="margin-top:20px;border-left: 3px solid #6d7781">
+                            <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                                <b>Web站点信息</b>
+                            </div>
+                        </div>
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="info">
+                        </table>
+                    </div>
+
+                    <div id="ftpInfoArea" style="display: none">
+                        <div style="margin-top:20px;border-left: 3px solid #6d7781">
+                            <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                                <b>Ftp信息</b>
+                            </div>
+                        </div>
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="ftpInfo">
+                        </table>
+                    </div>
+
+                    <div id="mssqlInfoArea" style="display: none">
+                        <div style="margin-top:20px;border-left: 3px solid #6d7781">
+                            <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                                <b>SQL Server信息</b>
+                            </div>
+                        </div>
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="mssqlInfo">
+                        </table>
+                    </div>
+
+                    <div id="mysqlInfoArea" style="display: none">
+                        <div style="margin-top:20px;border-left: 3px solid #6d7781">
+                            <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                                <b>MySQL信息</b>
+                            </div>
+                        </div>
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="mysqlInfo">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <el-dialog title="配置调整" :visible.sync="dialogFormVisible">
+        <el-form :model="form" ref="formConfig" label-width="180px">
+            <div v-if="info.vhostType.indexOf('web') > -1">
+                <el-divider content-position="left">WEB站点配置</el-divider>
+                <el-form-item label="链接数（个）：">
+                    <div class="block">
+                        <el-slider
+                                v-model="form.webLinks"
+                                :min="info.sysProductView.productParam.webLinksMin"
+                                :max="info.sysProductView.productParam.webLinksMax"
+                                style="min-width:300px; mx-width: 500px"
+                                show-input>
+                        </el-slider>
+                    </div>
+                </el-form-item>
+
+                <el-form-item label="带宽（KBps）：">
+                    <div class="block">
+                        <el-slider
+                                v-model="form.webWidth"
+                                :min="info.sysProductView.productParam.webWidthMin"
+                                :max="info.sysProductView.productParam.webWidthMax"
+                                style="min-width:300px; mx-width: 500px"
+                                show-input>
+                        </el-slider>
+                    </div>
+                </el-form-item>
+
+                <el-form-item label="流量（GB）：">
+                    <div class="block">
+                        <el-slider
+                                v-model="form.webFlow"
+                                :min="info.sysProductView.productParam.webFlowMin"
+                                :max="info.sysProductView.productParam.webFlowMax"
+                                style="min-width:300px; mx-width: 500px"
+                                show-input>
+                        </el-slider>
+                    </div>
+                </el-form-item>
+
+                <el-form-item label="空间（MB）：">
+                    <div class="block">
+                        <el-slider
+                                v-model="form.ftpDiskQuota"
+                                :min="info.sysProductView.productParam.ftpDiskQuotaMin"
+                                :max="info.sysProductView.productParam.ftpDiskQuotaMax"
+                                style="min-width:300px; mx-width: 500px"
+                                show-input>
+                        </el-slider>
+                    </div>
+                </el-form-item>
+            </div>
+
+            <div v-if="info.vhostType.indexOf('web') < 0 && info.vhostType.indexOf('ftp') > -1">
+                <el-divider content-position="left">FTP站点配置</el-divider>
+                <el-form-item label="空间（MB）：">
+                    <div class="block">
+                        <el-slider
+                                v-model="form.ftpDiskQuota"
+                                :min="info.sysProductView.productParam.ftpDiskQuotaMin"
+                                :max="info.sysProductView.productParam.ftpDiskQuotaMax"
+                                style="min-width:300px; mx-width: 500px"
+                                show-input>
+                        </el-slider>
+                    </div>
+                </el-form-item>
+            </div>
+
+            <div v-if="info.vhostType.indexOf('mssql') > -1">
+                <el-divider content-position="left">SQL Server配置</el-divider>
+                <el-form-item label="数据空间(MB)：">
+                    <div class="block">
+                        <el-slider
+                                v-model="form.MSSQLSize"
+                                :min="info.sysProductView.productParam.MSSQLSizeMin"
+                                :max="info.sysProductView.productParam.MSSQLSizeMax"
+                                style="min-width:300px; mx-width: 500px"
+                                show-input>
+                        </el-slider>
+                    </div>
+                </el-form-item>
+
+                <el-form-item label="日志空间(MB)：">
+                    <div class="block">
+                        <el-slider
+                                v-model="form.MSSQLLogSize"
+                                :min="info.sysProductView.productParam.MSSQLLogSizeMin"
+                                :max="info.sysProductView.productParam.MSSQLLogSizeUnit"
+                                style="min-width:300px; mx-width: 500px"
+                                show-input>
+                        </el-slider>
+                    </div>
+                </el-form-item>
+            </div>
+
+            <div v-if="info.vhostType.indexOf('mysql') > -1">
+                <el-divider content-position="left">MySQL配置</el-divider>
+                <el-form-item label="数据空间(MB)：">
+                    <div class="block">
+                        <el-slider
+                                v-model="form.mySQLSize"
+                                :min="info.sysProductView.productParam.mySQLSizeMin"
+                                :max="info.sysProductView.productParam.mySQLSizeMax"
+                                style="min-width:300px; mx-width: 500px"
+                                show-input>
+                        </el-slider>
+                    </div>
+                </el-form-item>
+            </div>
+
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="saveConfigEdit">确 定</el-button>
+        </div>
+    </el-dialog>
+</div>
+</div>
+
+<script src="../public/main.js"></script>
+<script src="../public/right.js"></script>
+<script src="js/vhostpublic.js"></script>
+<script src="js/detail.js"></script>
+</body>
+</html>

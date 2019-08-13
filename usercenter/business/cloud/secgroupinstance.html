@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title> 
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<script src="../../../publicD/membercss.js"></script>
+	<script src="../../../publicD/memberjs.js"></script>
+	<script src="js/secgroupinstance.js"></script>
+</head>
+<body id="thrColEls" style="overflow:auto;">
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+	    <li><a href="javascript:void(0);">会员中心</a></li>
+	    <li><a href="javascript:void(0);">业务管理</a></li>
+	    <li><a href="javascript:void(0);">我的服务器</a></li>
+	</ul>
+</div>
+<!--右侧内容区 开始-->
+<div class="ManagerRightuser">
+	<div style="margin:10px -20px 0px -20px">
+		<div class="server-title">
+			<b>安全组：</b><span id="sgName"></span>   
+			<input type="button" class="manager-btn ml-10" onclick="window.location.href='secgroup.html'" value="返回安全组列表">
+		</div>
+	</div>
+	<div style="margin:10px -20px 0px -20px">
+   		<ul class="manager-tab bind-tab">
+        	<li><a id="secgrouprule" href="secgrouprule.html" href="javascript:;">安全组规则</a></li>
+        	<li class="liactive"><a id="secgroupinstance" href="secgroupinstance.html" href="javascript:;">安全组内实例</a></li>
+       	</ul>
+    </div> 
+    <div class="server-control">    
+    	<input type="button" class="manager-btn mr-10" onclick="batchRemoveInstance()" value="移除实例"> 
+   		<input type="button" class="manager-btn mr-10" onclick="addInstance()" value="添加实例">  
+    </div> 
+    <table class="manager-table table-hover" style="table-layout:fixed;">
+    	<thead>
+	     	<tr> 
+	      		<th width="10%"><input type="checkbox" onclick="checkAllInstance(this)" id="checkedAll" name="checkBoxAll"></th>
+	         	<th width="30%">实例名称</th>  
+	            <th width="30%">可用区</th>                     
+	            <th width="30%">IP地址</th>                 
+	        </tr>
+       	</thead>
+       	<tbody id="secgroupHostList"></tbody>        
+ 	</table>
+ 	<div id="page" class="pager_container clearfix" >
+        <input id="totalcount" type="hidden" value="0" />
+        <input id="pagenumber" type="hidden" value="1" />
+    	<div id="pager"></div>
+    </div>
+    <!-- 添加实例  --> 
+	<div id="addBoxa" class="add-uer-box" style="display:none">
+		<div style="margin:20px 20px 0px 0px;">
+	        <form id="editForm" class="form-horizontal" method="post"> 
+	        	<div class="form-group">
+	            	<label class="col-sm-3 control-label">实例：</label> 
+	            	<div class="col-sm-8">        
+	            		<select class="form-control" id="instanceList" style="width:200px;"></select>  
+	           		</div>     
+	            </div>    
+	        </form>
+        </div>
+	</div>
+</div>                                              
+<!--右侧内容区 结束-->
+</div>
+</div>
+</body>
+</html>

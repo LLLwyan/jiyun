@@ -1,0 +1,9 @@
+.cloud-buy-block-left{
+    width: 30px; float: left; min-height: 60px;
+}
+.cloud-buy-block-left i{
+    width: 30px; margin-top: 15px; min-height: 30px;
+}
+.cloud-buy-block-right {
+    width: 1060px; float: left; min-height: 60px;
+}

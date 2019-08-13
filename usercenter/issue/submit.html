@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>用户管理中心</title>
+	<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+	<script src="../../publicD/maincss.js"></script>
+</head>
+<body style="overflow:auto;">
+<div id="MainContentDIV">
+<div id="SitePath">
+	<ul>
+	     <li><a href="javascript:void(0);">会员中心</a></li>
+	     <li><a href="javascript:void(0);">工单管理</a></li>
+	     <li><a href="javascript:void(0);">提交工单</a></li>
+	</ul>
+</div>
+   	<div class="ManagerRightuser">
+   		<div id="realname-auth" class="nav-content active">
+   			<div class="mt-20" style="overflow:visible;position:relative">
+   				<form class="form-inline" issue="form" method="post">
+   				 <form name="regForm" onsubmit="return checkReg()" action="password.asp" method="post">
+                     <table class="manager-table form-table">
+   					 	<tbody>					
+   							<tr>
+           					<th width="150" >工单类型：</th>
+                            	<td align="left"> 
+          							<select class="manager-select m-select" style="width:150px;" id="issueType" onchange="selectIssueType()"></select>   
+                                </td>  
+         					</tr>
+         					<tr id="identTr" style="display:none;"> 
+           						<th width="150" ><strong class="redColor">*</strong><span id="identTitle"></span></th> 
+           						<td colspan="3" align="left"><input class="manager-input m-input width288" value="" size="40" placeholder="" id="identName" maxlength="30"></td> 
+         					</tr>
+         					<tr> 
+           						<th width="150" ><strong class="redColor">*</strong>工单标题：</th> 
+           						<td colspan="3" align="left"><input class="manager-input m-input width288" value="" size="40" placeholder="请输入工单标题(不超过30个字)" id="businessName" maxlength="30"></td> 
+         					</tr>	
+         					<tr>				
+           						<th width="150" ><strong class="redColor">*</strong>工单描述：</th> 
+           						<td colspan="3" align="left"><textarea id="issueDesc" style="height:150px;width:700px;resize:none" class="form-control" size="40" placeholder="请输入问题描述,并且字数不能超过120个字"></textarea></td>
+         					</tr>   
+         					<tr>				
+           						<th width="150" >机密信息：</th>
+           						<td colspan="3" align="left"><textarea id="secretInfo" style="height:80px;width:700px;resize:none" class="form-control" size="40" placeholder="(非必填)请在此处填写实例名、账号、密码机密信息等，机密信息将做加密处理"></textarea></td>
+         					</tr>
+         					<tr> 
+           						<th width="150" >联系邮箱：</th> 
+           						<td colspan="3" align="left"><input id="email" class="manager-input m-input width288" value="" size="40" placeholder="请输入联系邮箱"><input type="checkbox" checked ="checked" id="chkemail" value="1" style="margin-left:10px;zoom:130%;"/>接收邮件通知</td>
+         					</tr>  
+         					<tr>     
+           						<th width="150" >联系手机：</th>   
+           						<td colspan="3" align="left"><input id="mobile" class="manager-input m-input width288" value="" size="40" placeholder="请输入联系手机"><input type="checkbox" name="chktype" id="chksms" value="2" style="margin-left:10px;zoom:130%;"/>接收短信通知</td>
+         					</tr>    		  			
+         					<tr>
+                            	<th>上传附件：</th>
+                               	<td colspan="1" align="left">
+	                        	 	<div  id="updateSmallImg" class="doctor-info-img" > 
+	                                	<input type="hidden" id="weblogo" />
+	                    				<input style="width: 66px; padding: 5px 0 0px 0px" type="file" title="点击上传文件" value="点击上传文件" id="SmallImg" onChange="upload('SmallImg','SmallImgV');" onpaste="return false" name="0" />
+                    					<div id="filediv" style="display: none;">
+                    						<span id="fileup"></span>
+                    						<button type="button" onclick="delloadwork()">删除</button>
+                    						<span style="display: none;" id="filesrc"></span>
+                    					</div>
+	                                    <br /><span style="font-size: 12px;">可上传<i style=" font-style:normal;color: red; " >1个附件</i>每个附件不得超过2M,附件支持的格式有'jpg','gif','png','jpeg','zip','rar','bmp'</span>
+	                                </div>
+                            	</td>
+         					</tr>
+         					<tr class="no-border">
+	           					<td colspan="2" align="left">
+									<div class="tipinfo"></div>
+	                                	<div class="searchbtn" style="text-align:left;margin-left:150px;">
+	                           			<input type="button" onclick="addUserIssue();" class="manager-btn  mr-10" value="提交">
+	                           		</div>
+			  					</td>
+         					</tr>
+         					<tr class="no-border">
+   						</tbody>
+                    </table>
+   				</form>
+   			</div>
+   		</div>
+   	</div>
+</div>
+<script src="../../publicD/memberjs.js"></script>
+<script src="../../../public/js/upload.js"></script>
+<script src="js/submit.js"></script>
+</body>
+</html>		

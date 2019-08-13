@@ -1,0 +1,693 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>云服务器</title>
+<script type="text/javascript" src="../publicD/maincss.js"></script>
+<script type="text/javascript" src="../publicD/jmaincss.js"></script>
+<style>
+	.main-menu>li>a{
+		color: #333;
+	}
+	.mini-cart>a{
+		color: #333;
+	}
+	.header-sticky.is-sticky{
+		background: #fff;
+	}
+	.mini-cart-log>a{
+		color: #333;
+	}
+</style>
+</head>
+<body style="background-color:#f7f7f7;">
+<!--头部开始-->
+<header> 
+		    <div class="header-container"> 
+		     <div class="header-area header-absolute header-sticky pt-10" style="position: relative;"> 
+		      <div class="container"> 
+		       <div class="row"> 
+		        <div class="col-lg-2 col-md-2 col-sm-2"> 
+		         <div class="logo-area"> 
+		          <a href="/index.html"> <img src="/img/jy-logo-b.png" alt="极云天下" style="width: 80%;"/> </a> 
+		         </div> 
+		        </div> 
+		        <div class="col-lg-10 col-md-10 col-sm-10 text-lg-right"> 
+		         <div class="header-menu"> 
+		          <nav> 
+		           <ul class="main-menu"> 
+		            <li><a href="/index.html">首页</a> 
+		            </li> 
+		            <li><a href="/cloud/hwAct.html">最新活动</a></li> 
+		            <li><a href="/domain/index.html">域名注册</a></li> 
+		            <li><a href="#">华为云</a>
+		              <ul class="dropdown"> 
+		              <li><a href="/cloud/hw.html">华为云产品介绍</a></li> 
+		              <li><a href="/cloud/thrid-two.html">在线购买</a></li> 
+		              <li><a href="/cloud/gl.html">关联账号购买</a></li> 
+		              <li><a href="/about/about.html?content=zhizi">合作伙伴证书</a></li> 
+		             </ul> 
+		            </li> 
+		            <li><a href="#">IDC服务</a> 
+		             <ul class="dropdown"> 
+		              <li><a href="/idc/xxtg.html">服务器托管</a></li> 
+		              <li><a href="/idc/xxzy.html">服务器租用</a></li> 
+		              <li><a href="/idc/HK.html">海外服务器</a></li> 
+		              <li><a href="/idc/ddk.html">四川大带宽</a></li> 
+		             </ul> </li> 
+		            <li><a href="#">行业解决方案</a> 
+		              <ul class="dropdown"> 
+		              <li><a href="/solution/dskj.html">电商跨境贸易解决方案</a></li> 
+		              <li><a href="/solution/idc.html">混合云IDC解决方案</a></li> 
+		              <li><a href="/solution/ds.html">电商解决方案</a></li> 
+		             </ul></li> 
+		             <li><a href="#">增值服务</a> 
+		              <ul class="dropdown"> 
+			              <li><a href="/value/web.html">网站建设</a></li> 
+			              <li><a href="/value/dwA.html">服务器代维</a></li> 
+			               
+		              </ul>
+		           </ul> 
+		          </nav> 
+		         </div> 
+		        
+		        <div class="header-option" id="yeslogged"> 
+		          <div class="mini-cart-search"> 
+		           	
+		            <div class="mini-cart-log"> 
+		            	<a href="/usercenter/index.html" id="hluserName" style="color: red;"></a>
+		            </div>
+		            <div class="mini-cart-log"> 
+		            	<a class="nav-shopcar" href="/usercenter/shopping/shoppinglist.html" class="cart">&nbsp;&nbsp;购物车&nbsp;<span id="cartCount">0</span></a>
+		           </div>
+		           <div class="mini-cart-log"> 
+		            	<a href="javascript:void(0)" onClick="Cancellation();" >退出</a>
+		            </div>
+		          </div> 
+		        </div> 
+		         <div class="header-option" id="nologged" > 
+		          <div class="mini-cart-search"> 
+		           <div class="mini-cart"> 
+		            <a href="/login.html"> 登 &nbsp;录</a> 
+		           </div> 
+		           
+		           <div class="currency"> 
+		            <div class="currency-box"> 
+		             <a href="/register/register.html">
+		             	<button class="login-btn">免费注册</button>
+		             </a> 
+		             
+		            </div> 
+		           </div> 
+		          </div> 
+		         </div> 
+		        </div> 
+		       </div> 
+		       <div class="row"> 
+		        <div class="col-12"> 
+		         <div class="mobile-menu d-lg-none"></div> 
+		        </div> 
+		       </div> 
+		      </div> 
+		     </div> 
+		    </div> 
+		   </header>
+<!--头部结束-->
+ <div class="container" style="background-color:#fff;margin-top:30px;">
+<div class="bg_buy_body1">
+		<div class="hl_page_title">
+			<div class="hl_row hl_span1">
+			</div>
+		</div>
+		<div class="hl_row hl_mt1">
+			<div class="hl_span2">
+				<div class="hl_tab">
+					<ul>
+						<li style="border-right: solid 1px #ddd;">
+							<a href="#" class="hl_item hl_item_sub">自由选购</a>
+						</li>
+						<li><span>依照您的方式分配各种资源，弹性购买更划算</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+    <div class="container"  style="background-color:#fff;">
+    <div class="bg_buy_body2">
+		<div class="hl_row hl_mt1">
+			<div class="hl_view">
+				<div style="float: right;width: 282px;">
+				   <div class="hl_buy_side add_buy_side" style="top: 0px;">
+					<div class="hl_buy_side_main" style="background:#f2f9fb;">
+						<div class="hl_buy_side_main_title">当前配置</div>
+						<div class="hl_buy_side_main_list">
+							<input type="hidden" name="sys_product_priceBo.productCode" id="productCode" value="321">
+							<ul style="list-style:none;">
+								<li>
+									<span class="hl_buy_side_main_list_name">地域：</span> 
+									<span class="hl_buy_side_main_list_name1" id="hly_regionName">福州</span>
+								</li>
+								<li>
+									<span class="hl_buy_side_main_list_name">CPU：</span> 
+									<span class="hl_buy_side_main_list_name1" id="hly_cpu">1核</span>
+								</li>
+								<li>
+									<span class="hl_buy_side_main_list_name">内存：</span> 
+									<span class="hl_buy_side_main_list_name1" id="hly_memory">512MB</span>
+								</li>
+								<li>
+									<span class="hl_buy_side_main_list_name">镜像：</span> 
+									<span class="hl_buy_side_main_list_name1" id="hly_os"></span>
+								</li>
+								<li>
+									<span class="hl_buy_side_main_list_name">存储：</span> 
+									<span class="hl_buy_side_main_list_name1" id="hly_cdisk">10GB</span>
+								</li>
+								<li>
+									<span class="hl_buy_side_main_list_name">带宽：</span> 
+									<span class="hl_buy_side_main_list_name1" id="hly_set_band">1Mbps</span>
+								</li>
+								<li>
+									<span class="hl_buy_side_main_list_name">购买量：</span> 
+									<span class="hl_buy_side_main_list_name1"><font id="hly_set_applyTime">1月</font> x <font id="hly_set_number">1</font>台</span>
+								</li>
+							</ul>
+						</div>
+						<div style="width: 262px;height: 53px;">
+							<div style="color: #999 !important;margin:0 20px;">配置费用：</div>
+							<div class="hl_buy_side_main_pay" style="padding-left:20px">
+								<span class="hl_bk_cny">￥</span>
+								<span class="hl_bk_cny" id="hly_pay_price">42</span>
+							</div>
+						</div>
+						<div class="hl_buy_side_main_buy">
+							<!--<button class="hl_buy_side_button_buynow" style="position:absolute;">立即购买</button>
+							--><button class="hl_buy_side_button_shopping">加入购物车</button>
+						</div>
+					</div>
+					<div class="hl_buy_side_shoppingbox" style="display:none;">
+						<a class="mbClose" href="javascript:;">×</a>
+				        <h2 class="boxtitle">商品已成功加入购物车</h2>
+				        <div class="mbOp">
+				            <button class="hl_buy_side_button_goshopping">继续购物</button>
+				            <button class="hl_buy_side_button_gojiesuan">去结算</button>
+				        </div>
+					</div>
+				</div>
+				</div>
+				<div style="margin-right: 292px">
+				<form action="user_order_orderPre" method="post" name="F1">
+				<input type="hidden" id="hly_set_proCode" value="321">
+				<input type="hidden" id="hly_set_proType" value="cloud">
+				<input type="hidden" id="regType" value="lce">
+				<input type="hidden" id="hly_set_applyType" value="m">
+				<div class="hl_buy_main">
+					<dl class="hl_buy_main_dl">
+						<dt class="hl_buy_main_basename">基本配置</dt>
+						<dd class="hl_buy_main_basedetail">
+							<div>
+								<div class="hl_buy_main_base">
+									<input type="hidden" id="hly_set_regionId" value="fz">
+									<input type="hidden" id="hly_set_regionName" value="福州">
+									<label class="hl_buy_main_baselabel">地域：</label>
+									<div class="hl_buy_main_baserow">
+										<div class="hl_buy_main_baserow_li">
+											<div class="hl_buy_main_baserow_button" id="place_button">
+                                                        <button type="button" 
+                                                        class="hl_buy_main_baserow_button1 hl_hl_buy_main_baserow_place">
+															<span class="hly_regionName" value="fz">福州</span>
+														</button>
+												<span id="passSpan" class="hl_buy_main_text">请慎重选择地域，开通后不可更改</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="hl_buy_main_base">
+									<input type="hidden" id="hly_set_cpu" value="1">
+									<label class="hl_buy_main_baselabel">CPU：</label>
+									<div class="hl_buy_main_baserow">
+										<div class="hl_buy_main_baserow_li">
+											<div class="hl_buy_main_baserow_button hly_cpu_list" id="cpuButton">
+												
+													<button type="button" class="hl_buy_main_baserow_button1 hl_hl_buy_main_baserow_place">
+													<span class="hly_cpu" value="1">1核</span>
+												</button>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="hl_buy_main_base">
+									<input type="hidden" id="hly_set_memory" value="0.5">
+									<label class="hl_buy_main_baselabel">内存：</label>
+									<div class="hl_buy_main_baserow">
+										<div class="hl_buy_main_baserow_li">
+											<div class="hl_buy_main_baserow_button hly_memory_list">
+												<button type="button" class="hl_hl_buy_main_baserow_place hl_buy_main_baserow_button1">
+													<span class="hly_memory" id="hly_memory0" value="0.5">512MB</span>
+												</button>
+												<button type="button" class="hl_buy_main_baserow_button1">
+													<span class="hly_memory" id="hly_memory1" value="1">1GB</span>
+												</button>
+												<button type="button" class="hl_buy_main_baserow_button1">
+													<span class="hly_memory" id="hly_memory2" value="2">2GB</span>
+												</button>
+												<button type="button" class="hl_buy_main_baserow_button1">
+													<span class="hly_memory" id="hly_memory4" value="4">4GB</span>
+												</button>
+												<button type="button" class="hl_buy_main_baserow_button1">
+													<span class="hly_memory" id="hly_memory8" value="8">8GB</span>
+												</button>
+												<button type="button" class="hl_buy_main_baserow_button1" style="display:none">
+													<span class="hly_memory" id="hly_memory16" value="16">16GB</span>
+												</button>
+												<button type="button" class="hl_buy_main_baserow_button1" style="display:none">
+													<span class="hly_memory" id="hly_memory16" value="32">32GB</span>
+												</button>
+												<button type="button" class="hl_buy_main_baserow_button1" style="display:none">
+													<span class="hly_memory" id="hly_memory16" value="64">64GB</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</dd>
+					</dl>
+					<dl class="hl_buy_main_dl">
+						<dt class="hl_buy_main_basename">网络</dt>
+						<dd class="hl_buy_main_basedetail">
+							<div class="hl_buy_main_base">
+								<label class="hl_buy_main_baselabel">公网带宽：</label>
+								<div class="hl_buy_main_box_cell">
+									<div class="hl_buy_main_box_li">
+										<div class="hl_buy_main_box_n">
+											<div class="hl_buy_main_box" id="hl_buy_main_box_band" for="hly_band">
+												<div class="hl_buy_main_box1" style="width:428px;">
+													<div class="hl_buy_main_box11">
+														<div class="hl_buy_main_box111">200M</div>
+													</div>
+												</div>
+												<div class="hl_buy_main_box_y trans03s" id="hl_buy_main_box_band_left" style="width:4.12px;">
+												</div>
+												<div class="hl_buy_main_box3 trans03s" id="hl_buy_main_box_band_item" style="left:4.12px;">
+													<i></i>
+													<i></i>												
+												</div>
+											</div>
+										</div>
+										<span class="hl_buy_main_number" style="margin-left:10px !important">
+											<input type="text" value="1" id="hly_band" class="hl_buy_main_base_input" style="float:left;">
+											<span class="hl_buy_main_bk_number">Mbps</span>
+											<span class="hl_number_control">
+												<span class="hl_number_up">
+													<i class="hl_number_arrow" style="border:solid 5px transparent;border-bottom-color:#999;margin-top:5px;"></i>
+												</span>
+												<span class="hl_number_down">
+													<i class="hl_number_arrow"></i>
+												</span>
+												<!--<span class="hl_number_down hl_number_down1">
+													<i class="hl_number_arrow_disable"></i>
+												</span>-->
+											</span>
+										</span>
+									</div>
+								</div>
+							</div>
+						</dd>		
+					</dl>
+					<dl class="hl_buy_main_dl">
+						<dt class="hl_buy_main_basename">镜像</dt>
+						<dd class="hl_buy_main_basedetail">
+							<div class="hl_buy_main_base">
+								<label class="hl_buy_main_baselabel">镜像类型：</label>
+								<div class="hl_buy_main_baserow">
+									<div class="hl_buy_main_baserow_li">
+										<div class="hl_buy_main_baserow_button">
+											<button type="button" class="hl_hl_buy_main_baserow_place hl_buy_main_baserow_button1" id="publicos" onClick="ChangeOs(this.id)">
+													<span>公共镜像</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="hl_buy_main_base hl_buy_main_base1">
+								<input type="hidden" id="hly_set_imageId">
+								<input type="hidden" id="hly_set_imageType" value="1">
+								<input type="hidden" id="osType">
+								<label class="hl_buy_main_baselabel">公共镜像：</label>
+								<div class="hl_buy_main_baserow">
+									<div class="hl_buy_main_baserow_li">
+										<div class="hl_pz_select">
+											<div class="hl_pz_select_czxt fleft" style="position:relative;">
+												<span class="hl_pz_select_span" style="width:217px;">
+													<span class="hl_pz_select_span_xz">选择操作系统</span>
+													<span class="hl_pz_select_span_arrow trans03s btc9 idown"></span>
+												</span>
+												<ul class="hl_pz_select_os hide" style="width:237px">
+													
+														<li class="hl_pz_select_osdetail">
+															<span class="hl_pz_select_osbox">
+																<i class="hl_pz_select_os_icon_box hl_pz_select_osimg" style="background-position:0 -60px"></i>
+															</span>
+															<span id="hl_pz_select_os_Type">windows</span>
+														</li>
+													
+												</ul>
+											</div>
+											<div class="hl_pz_select_bb" style="display:inline-block;position:relative;">
+												<span class="hl_pz_select_span" style="width:326px;cursor:auto;">
+													<span class="hl_pz_select_span_xz">选择版本</span>
+													<span class="hl_pz_select_span_arrow btc9 trans03s hide"></span>
+												</span>
+                                                <ul class="hl_pz_select_os hide" style="width:347px"><li class="hl_pz_select_osdetail" onclick="chooseOsVersion(this)"><span id="OS_Version">windows server 2003</span><font class="hide">I1473755232845</font></li></ul>
+											</div>	
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="hl_buy_main_base hl_buy_main_base2" style="display:none;">
+								<label class="hl_buy_main_baselabel">镜像名称：</label>
+								<div class="hl_buy_main_baserow">
+									<div class="hl_buy_main_baserow_li">
+										<span style="cursor:pointer;">
+											<i class="hl_marketplace_icon">
+												<em class="hl_marketplace_icon_rect"></em>
+												<em class="hl_marketplace_icon_rect"></em>
+												<em class="hl_marketplace_icon_rect"></em>
+												<em class="hl_marketplace_icon_rect"></em>
+											</i>
+											<span class="hl_buy_main_add_icon_txt">从镜像市场选择</span>
+										</span>
+									</div>
+								</div>
+							</div>
+						</dd>
+					</dl>
+					<dl class="hl_buy_main_dl">
+						<input type="hidden" id="dataDisk" value="200">
+						<dt class="hl_buy_main_basename">存储</dt>
+						<dd class="hl_buy_main_basedetail">
+							<div class="hl_buy_main_base">
+								<label class="hl_buy_main_baselabel">系统盘：</label>
+								<div class="hl_buy_main_baserow">
+									<div class="hl_buy_main_baserow_li">
+										<div class="hl_buy_main_baserow_button">
+											<span class="hl_buy_main_text" style="margin-left: 10px;line-height:36px;">系统盘分配大小为30GB</span>
+											<input type="hidden" id="hly_set_systemDisk" value="30">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="hl_buy_main_base">
+								<label class="hl_buy_main_baselabel">数据盘：</label>
+								<div class="hl_buy_main_baserow">
+									<div class="hl_buy_main_baserow_li" style="padding-bottom:5px;">
+										<div class="hl_cdisk">
+											<span class="hl_cdisk_storage">
+												<input type="text" id="hly_set_dataDisk" class="hl_cdisk_input" value="10">
+												<span class="hl_cdisk_unit">GB</span>
+											</span>
+											<span style="height:35px;float:left;line-height:35px;margin-left:10px;">范围：10-200GB</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</dd>
+					</dl>
+					<dl class="hl_buy_main_dl">
+						<dt class="hl_buy_main_basename">密码</dt>
+						<dd class="hl_buy_main_basedetail">
+							<div class="hl_buy_main_base">
+								<label class="hl_buy_main_baselabel">设置密码：</label>
+								<div class="hl_buy_main_baserow">
+									<div class="hl_buy_main_baserow_li">
+										<div class="hl_buy_main_baserow_button">
+											<button type="button" class="hl_hl_buy_main_baserow_place hl_buy_main_baserow_button1 hl_setpassword">
+												<span>立即设置</span>
+											</button>
+											<button type="button" class="hl_buy_main_baserow_button1 hl_setpassword_disable">
+												<span>创建后设置</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div style="padding:0 10px 20px 105px;line-height:0px;">
+								<span style="color:#f60;">请牢记您所设置的密码，如遗忘可登录用户中心重置密码。</span>
+							</div>
+							<div class="hl_buy_main_base hl_loginpass">
+								<label class="hl_buy_main_baselabel">登录密码：</label>
+								<div class="hl_buy_main_baserow">
+									<div class="hl_buy_main_baserow_li">
+										<input type="password" class="hl_buy_main_base_input_style1 hl_buy_main_base_input" id="hly_loginPass">
+										<span id="passSpan" class="hl_buy_main_text">6-16个字符，同时包含大小写字母和数字，不支持特殊符号</span>	
+									</div>
+								</div>
+							</div>
+							<div class="hl_buy_main_base hl_confirmpass">
+								<label class="hl_buy_main_baselabel">确认密码：</label>
+								<div class="hl_buy_main_baserow">
+									<div class="hl_buy_main_baserow_li">
+										<input type="password" name="loginPassComfirm" class="hl_buy_main_base_input_style1 hl_buy_main_base_input" id="hly_confirmPass">
+										<span id="confirmSpan"></span>
+									</div>
+								</div>
+							</div>
+						</dd>
+					</dl>
+					<dl class="hl_buy_main_dl">
+						<dt class="hl_buy_main_basename">购买数量</dt>
+						<dd class="hl_buy_main_basedetail">
+							<div class="hl_buy_main_base">
+								<input type="hidden" value="1" id="hly_set_applyTime" class="hl_buy_main_base_input">
+								<label class="hl_buy_main_baselabel">购买时长：</label>
+								<div class="hl_buy_main_baserow">
+									<div class="hl_buy_main_baserow_li">
+										<div class="hl_buy_main_baserow_button" id="applyTimeButton">
+											
+												<button type="button" class="hl_buy_main_baserow_button1 hl_hl_buy_main_baserow_place" style="width:45px;">
+												
+													<span class="hly_applyTime" value="1">1月</span>
+												
+												
+												<span class="hly_applyType hide" value="m">m</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+													<span class="hly_applyTime" value="2">2月</span>
+												
+												
+												<span class="hly_applyType hide" value="m">m</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+													<span class="hly_applyTime" value="3">3月</span>
+												
+												
+												<span class="hly_applyType hide" value="m">m</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+													<span class="hly_applyTime" value="4">4月</span>
+												
+												
+												<span class="hly_applyType hide" value="m">m</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+													<span class="hly_applyTime" value="5">5月</span>
+												
+												
+												<span class="hly_applyType hide" value="m">m</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+													<span class="hly_applyTime" value="6">6月</span>
+												
+												
+												<span class="hly_applyType hide" value="m">m</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+													<span class="hly_applyTime" value="7">7月</span>
+												
+												
+												<span class="hly_applyType hide" value="m">m</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+													<span class="hly_applyTime" value="8">8月</span>
+												
+												
+												<span class="hly_applyType hide" value="m">m</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+													<span class="hly_applyTime" value="9">9月</span>
+												
+												
+												<span class="hly_applyType hide" value="m">m</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+												
+													<span class="hly_applyTime" value="1">1年</span>
+												
+												<span class="hly_applyType hide" value="y">y</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+												
+													<span class="hly_applyTime" value="2">2年</span>
+												
+												<span class="hly_applyType hide" value="y">y</span>
+												</button>
+											
+												<button type="button" class="hl_buy_main_baserow_button1" style="width:45px;">
+												
+												
+													<span class="hly_applyTime" value="3">3年</span>
+												
+												<span class="hly_applyType hide" value="y">y</span>
+												</button>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="hl_buy_main_base">
+								<label class="hl_buy_main_baselabel">数量：</label>
+								<div class="hl_buy_main_baserow">
+									<div class="hl_buy_main_baserow_li">
+										<span class="hl_buy_main_number">
+											<input type="text" value="1" id="hly_number" class="hl_buy_main_base_input" style="float:left;">
+											<span class="hl_buy_main_bk_number">台</span>
+											<span class="hl_number_control">
+												<span class="hl_number_up">
+													<i class="hl_number_arrow" style="border:solid 5px transparent;border-bottom-color:#999;margin-top:5px;"></i>
+												</span>
+												<span class="hl_number_down">
+													<i class="hl_number_arrow"></i>
+												</span>
+											</span>
+										</span>
+									</div>
+								</div>
+							</div>
+						</dd>
+					</dl>
+				</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+    <br/>
+    <hr/>
+<!--底部开始-->
+<footer>
+    	<div class="service-footer container">
+    		<div class="row">
+    			<div class="col-md-3 col-sm-3">
+    				<img src="/img/service-footer1.png" alt="服务"/>
+    				<div class="service-footer-info">
+    					<p class="service-footer-title">服务</p>
+    					<p class="service-footer-contant">7*24小时服务支持</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 col-sm-3">
+   				<img src="/img/service-footer2.png" alt="备案"/>
+   				<div class="service-footer-info">
+    					<p class="service-footer-title">备案</p>
+    					<p class="service-footer-contant">0元快速备案</p>
+    				</div>
+    			</div>
+   			<div class="col-md-3 col-sm-3">
+    				<img src="/img/service-footer3.png" alt="保障"/>
+   				<div class="service-footer-info">
+    					<p class="service-footer-title">保障</p>
+    					<p class="service-footer-contant">100倍故障赔偿</p>
+    				</div>
+    			</div>
+    			<div class="col-md-3 col-sm-3">
+   				<img src="/img/service-footer4.png" alt="退款"/>
+    				<div class="service-footer-info">
+    					<p class="service-footer-title">退款</p>
+    					<p class="service-footer-contant">5天无理由退款</p>
+    				</div> 				
+    			</div>
+    		</div>
+    	</div>
+    	<div class="container-fluid pt-50 footer-intr">
+    		<div class="container">
+    			<div class="row">
+    				<div class="footer-info-link">
+    					<p class="footer-title">热门产品</p>
+    					<a class="footer-link" href="/domain/index.html">域名注册</a>
+    					<a class="footer-link" href="/cloud/thrid-two.html">云服务器</a>
+    					<a class="footer-link" href="/idc/wjzy.html">服务器租用</a>
+    					<a class="footer-link" href="/idc/HK.html">香港服务器</a>
+    					<a class="footer-link" href="/idc/USA.html">美国服务器</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">帮助中心</p>
+    					<a class="footer-link" href="/support/domainHelp.html">域名备案</a>
+    					<a class="footer-link" href="/support/cloudHelp.html">云服务</a>
+    					<a class="footer-link" href="/support/IDCHelp.html">IDC服务</a>
+    					<a class="footer-link" href="/support/kfHelp.html">应用开发</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">产品与支持</p>
+    					<a class="footer-link" href="/about/about.html?content=beian">备案流程</a>
+    					<a class="footer-link" href="/about/about.html?content=shengqing">测试机申请</a>
+    				</div>
+    				<div class="footer-info-link">
+    					<p class="footer-title">关于极云</p>
+    					<a class="footer-link" href="/about/index.html">关于我们</a>
+    					<a class="footer-link" href="/about/connect.html">联系方式</a>
+    					<a class="footer-link" href="/about/about.html?content=corporateculture">企业文化</a>
+    					<a class="footer-link" href="/about/about.html?content=zhizi">公司资质</a>
+    				</div>
+    				<div class="col-md-2 col-sm-2">
+    					<div class="footer-wx">
+  					<img src="/img/footer-wx.png" alt="极云天下公众号">
+  					<p>关注微信公众号</p>
+    				    </div>
+    			    </div>
+    				<div class="col-md-4 col-sm-4">
+    					<div class="mc-list-items1"> 
+  	  	          <p></p> 
+  		  	          <p style="font-size:24px">028-65773958</p> 
+  		              <div> 
+  		  	         <a class="footer-sale1" data-title="电话：18584883263" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=167730759&site=qq&menu=yes" rel="nofollow">售前咨询</a>
+  		  	         <a class="footer-sale2" data-title="电话：18512828895" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=766686207&site=qq&menu=yes" rel="nofollow">售后服务</a>
+  		              </div> 
+  		  	          <p style="margin-top:10px">地址：中国（四川）自由贸易试验区成都高新区天府四街199号2栋11楼1110室</p> 
+  		  	          </div> 
+    				</div>
+    			<div class="footer-line"><img style="width: 100%;height: 1px;" src="/img/footer-line.png" alt=""></div>
+  
+    			<div class="beian-info pb-10">
+     				<p>版权所有 © 成都极云天下科技有限公司 保留一切权利  <a href="http://www.beian.miit.gov.cn" rel="nofollow">蜀ICP备17027862号-1</a></p>
+    				<p>《中华人民共和国增值电信业务经营许可证》经营许可证编号 川B1-20170453</p>
+     			</div>
+    		</div>
+    	</div>
+    </footer>
+<!--底部结束-->
+<script type="text/javascript" src="../publicD/main.js"></script>
+<script src="cloud.js"></script>
+</body>
+</html>

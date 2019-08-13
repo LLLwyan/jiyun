@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+    <script src="../../../publicD/membercss.js"></script>
+
+
+    <!--element vue start-->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--element vue end-->
+
+    <style>
+        .cloud-main-l .l-l {
+            min-height:0;
+            padding:0;
+            width: 400px;
+        }
+        .cloud-main-l .l-l .slider-m-o .sys-m .sel{
+            width:220px;
+        }
+        .cloud-main-l .l-l .slider-m-o .sys-m .sel-m-o {
+            width: 220px;
+        }
+    </style>
+</head>
+<body id="thrColEls" style="overflow:auto;">
+<div id="MainContentDIV">
+    <div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+            <li><a href="javascript:void(0);">我的服务器</a></li>
+        </ul>
+    </div>
+    <!--右侧内容区 开始-->
+    <div class="ManagerRightuser">
+        <div style="margin:10px -20px 0px -20px">
+            <div class="server-title">
+                <b>实例：</b><span id="instanceId"></span>
+            </div>
+        </div>
+        <div style="margin:10px -20px 0px -20px">
+            <ul class="manager-tab bind-tab">
+                <li class="liactive"><a id="instanceDetail" href="javascript:;">当前实例详情</a></li>
+                <li><a id="instanceDisk" href="javascript:;">当前实例硬盘</a></li>
+                <li><a id="instanceSnapshot" href="javascript:;">当前实例快照</a></li>
+                <!--<li><a id="instanceResource" href="javascript:;">当前实例资源</a></li>-->
+            </ul>
+        </div>
+        <div class="server-control">
+            <input type="button" class="manager-btn mr-10" id="btnBackList" value="返回实例列表">
+        </div>
+        <div style="margin-top:20px;border-left: 3px solid #6d7781">
+            <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                <b>端口列表</b>
+            </div>
+        </div>
+        <div class="right_side_bottom">
+            <el-card class="box-card" style="width: 100%; margin-top: 10px">
+                <el-table
+                        v-loading="loading"
+                        ref="multipleTable"
+                        :data="tableData"
+                        tooltip-effect="dark"
+                        style="width: 100%"
+                        @selection-change="handleSelectionChange">
+                    <el-table-column
+                            type="selection"
+                            width="55">
+                    </el-table-column>
+                    <el-table-column
+                            prop="proto"
+                            label="协议">
+                        <template scope="scope">
+                            <span v-html="scope.row.proto" v-if="scope.row.id!=''"></span>
+                            <el-select v-model="scope.row.proto" placeholder="请选择" v-if="scope.row.id==''">
+                                <el-option
+                                        v-for="item in protoType"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="publicPort"
+                            label="公网端口号">
+                        <template scope="scope">
+                            <span v-html="scope.row.publicPort" v-if="scope.row.id!=''"></span>
+                            <el-input-number v-model="scope.row.publicPort" :min="1" :max="65535" label="端口号" v-if="scope.row.id==''"></el-input-number>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            prop="privatePort"
+                            label="内网端口号">
+                        <template scope="scope">
+                            <span v-html="scope.row.privatePort" v-if="scope.row.id!=''"></span>
+                            <el-input-number v-model="scope.row.privatePort" :min="1" :max="65535" label="端口号" v-if="scope.row.id==''"></el-input-number>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            label="操作">
+                        <template slot-scope="scope">
+                            <el-button size="medium" type="danger" icon="el-icon-delete" circle v-if="scope.row.id!=''" @click="deleteLine(scope.row)" title="删除"></el-button>
+                            <el-button size="medium" type="success" icon="el-icon-check" circle v-if="scope.row.id==''" @click="saveEditLine(scope.row)" title="保存"></el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <div style="margin-top: 20px">
+                    您总共选择了（<span v-html="multipleSelection.length"></span>）条数据
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <el-button type="warning" @click="deleteChoose">删除选中项</el-button>
+                    <el-button type="primary" @click="addPageLine">添加一行</el-button>
+                </div>
+                <div class="block" style="margin: 0 0 0 10px;">
+                    <el-pagination
+                            layout="prev, pager, next"
+                            @current-change="changePage"
+                            @prev-click="changePage"
+                            @next-click="changePage"
+                            :total="page.total">
+                    </el-pagination>
+                </div>
+            </el-card>
+        </div>
+    </div>
+
+</div>
+</div>
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/vpsportmap.js"></script>
+</body>
+</html>

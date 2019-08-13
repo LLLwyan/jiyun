@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品迁入引导首页</title>
+    <script src="../../public/maincss.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="../cloud/yunconfig.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight" id="main-block" v-cloak>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content" _funCode="queryBizTransfer">
+                    <div>
+                        <el-row>
+                            <el-radio-group v-model="dataForm.status" @change="dataLoad">
+                                <el-radio-button label="全部"></el-radio-button>
+                                <el-radio-button label="交易中"></el-radio-button>
+                                <el-radio-button label="已完成"></el-radio-button>
+                                <el-radio-button label="已取消"></el-radio-button>
+                                <el-radio-button label="已过期"></el-radio-button>
+                            </el-radio-group>
+                        </el-row>
+                    </div>
+                    <div style="margin-top: 10px; border: 1px solid #cdcdcd;">
+                        <el-table
+                                :data="dataForm.tableData"
+                                style="width: 100%"
+                                :default-sort = "{prop: 'createTime', order: 'descending'}"
+                        >
+                            <el-table-column
+                                    label="发起日期"
+                                    sortable
+                                    width="180">
+                                <template scope="scope">
+                                    <span v-html="formatTime(scope.row.createTime)"></span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                    prop="productTypeName"
+                                    label="产品类型"
+                                    sortable>
+                            </el-table-column>
+                            <el-table-column
+                                    prop="bizName"
+                                    label="业务名称（唯一标识）">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="fromUserName"
+                                    sortable
+                                    label="转让人账号">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="toUserName"
+                                    sortable
+                                    label="接收人账号">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="statusName"
+                                    sortable
+                                    label="状态">
+                            </el-table-column>
+                            <el-table-column
+                                    label="操作">
+                                <template scope="scope">
+                                    <el-button type="primary" size="small" plain @click="showInfo(scope.row)">详情</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                    <div class="block" style="margin: 0 0 0 10px;">
+                        <el-pagination
+                                layout="prev, pager, next"
+                                @current-change="changePage"
+                                @prev-click="changePage"
+                                @next-click="changePage"
+                                :total="dataForm.page.total">
+                        </el-pagination>
+                    </div>
+
+                    <el-dialog title="业务转让详情" :visible.sync="dialogFormVisibleDetail">
+                        <el-form>
+                            <el-form-item label="转让方账号：">
+                                <span v-html="info.fromUserName"></span>
+                            </el-form-item>
+                            <el-form-item label="接收方账号：">
+                                <span v-html="info.toUserName"></span>
+                            </el-form-item>
+                            <el-form-item label="发起时间：">
+                                <span v-html="formatTime(info.createTime)"></span>
+                            </el-form-item>
+                            <el-form-item label="业务类型：">
+                                <span v-html="info.productTypeName"></span>
+                            </el-form-item>
+                            <el-form-item label="业务名称（唯一标识）：">
+                                <span v-html="info.bizName"></span>
+                            </el-form-item>
+
+                            <el-divider content-position="left">明细</el-divider>
+                            <div style="border: 1px solid #efefef">
+                                <el-table
+                                        :data="info.detail"
+                                        style="width: 100%"
+                                        :default-sort = "{prop: 'createTime', order: 'descending'}"
+                                >
+                                    <el-table-column
+                                            label="时间"
+                                            width="180">
+                                        <template scope="scope">
+                                            <span v-html="formatTime({time:scope.row.createTime})"></span>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column
+                                            label="操作人">
+                                        <template scope="scope">
+                                            <span v-if="scope.row.userId == info.fromUserId" v-html="info.fromUserName"></span>
+                                            <span v-if="scope.row.userId == info.toUserId" v-html="info.toUserName"></span>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="remark"
+                                            label="说明">
+                                    </el-table-column>
+                                </el-table>
+                            </div>
+                        </el-form>
+                    </el-dialog>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../public/main.js"></script>
+<script language="JavaScript">
+    document.write('<link rel="stylesheet" href="'+realPath+'/public/fonts/iconfont.css">');
+</script>
+<script src="../../public/right.js"></script>
+<script src="index.js"></script>
+</html>

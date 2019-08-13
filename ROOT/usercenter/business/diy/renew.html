@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>用户管理中心</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+    <script src="../../../publicD/membercss.js"></script>
+    <link href="../../../css/cloudservice.css" rel="stylesheet" type="text/css">
+    <style>
+    </style>
+</head>
+<body id="thrColEls" style="overflow:auto;">
+<div id="MainContentDIV">
+    <div id="SitePath">
+        <ul>
+            <li><a href="javascript:void(0);">会员中心</a></li>
+            <li><a href="javascript:void(0);">业务管理</a></li>
+            <li><a href="javascript:void(0);">其他服务</a></li>
+            <li><a href="javascript:void(0);">续费</a></li>
+        </ul>
+    </div>
+    <!--右侧内容区 开始-->
+    <div class="ManagerRightuser">
+        <div style="margin:10px -20px 0px -20px">
+            <div class="server-title">
+                <b>实例：</b><span id="instanceIdShow"></span>
+            </div>
+        </div>
+        <div class="server-control">
+            <input type="button" class="manager-btn mr-10" id="btnBackList" value="返回列表">
+            <input type="hidden" id="hostType" value="vhost"/>
+            <input type="hidden" id="productCode" value=""/>
+        </div>
+        <div style="margin-top:20px;border-left: 3px solid #6d7781">
+            <div style="background: #F4F4F4;padding: 10px 0 10px 10px">
+                <b>续费时间选择</b>
+            </div>
+        </div>
+        <div class="right_side_bottom">
+            <table width="100%" class="" id="view">
+                <tr>
+                    <td style="width: 850px">
+                        <div class="cloud-main">
+                            <div id="main-m">
+                                <div class="cloud-main-l nav-main" id="a1">
+                                    <div style="width: 100%">
+                                        <div class="sliderbox">
+                                            <div class="l-l fl">
+                                                <div class="slider-m">
+
+                                                    <div class="config-box cl" style="overflow: visible;">
+                                                        <span class="buycount" style="line-height: 40px">购买时长：</span>
+                                                        <dl id="timelist" class="config-time cl"></dl>
+                                                    </div>
+
+                                                    <div class="slice filter-web">产品信息</div>
+                                                    <div class="slider-m-o filter-web webScriptType">
+                                                        <div class="slider-m-o-b" id="productDetail">
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td valign="top">
+                        <div class="cloud-main-l" style="position: relative; top: 0px; left: 0px;">
+                            <div class="l-r fr" style="position: relative; top: 0px; left: 0px;">
+                                <div id="set-m" class=""  style="position: relative; top: 0px; left: 0px;">
+                                    <i class="discount-icon"></i>
+                                    <h4>续费配置</h4>
+                                    <ul>
+                                        <li>
+                                            <p class="p-o">续期时长：</p>
+                                            <p id="curApplyTime" time="" type="" class="p-t">1个月<span></span></p>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li class="pri" style="padding-top:40px;">
+                                            <p class="p-o" style="width:60px;">费用总计：</p>
+                                            <p class="p-s">￥<span id="price"></span></p>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li id="discountMsg">
+                                            <s style="color:#CCC;font-size:14px;">价格￥<span id="totalPrice"></span></s>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#01bd01;font-size:14px;">省￥<span id="discountPrice"></span></span>
+                                        </li>
+                                        <li>
+                                            <span style="color:red;font-size:14px;" id="discountInfo"></span>
+                                        </li>
+                                    </ul>
+                                    <a href="javascript:void(0);" id="btnBuyNow" class="but disable">确认续费</a>
+                                    <div id="remark" style="color:red"></div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="../../../publicD/memberjs.js"></script>
+<script src="js/vhostpublic.js"></script>
+<script src="js/renew.js"></script>
+</body>
+</html>

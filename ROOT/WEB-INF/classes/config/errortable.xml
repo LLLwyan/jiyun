@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ErrTable>
+	<data code="S000" value="操作成功"/>
+	<data code="S001" value="操作失败"/>
+	<!-- 框架基础服务,从S002~S00X -->
+	<data code="S002" value="系统框架异常，请联系管理员"/>
+	<data code="S003" value="未知接口调用"/>
+	<data code="S004" value="验证码错误"/>
+	<data code="S005" value="接口参数错误或不完整"/>
+	<data code="S006" value="无数据/记录"/>
+	<data code="S007" value="数据已存在"/>
+	<data code="S008" value="邮件参数错误"/>
+	<data code="S009" value="邮件发送失败"/>
+	<data code="S00A" value="非法访问,请停止访问"/>
+	<data code="S00B" value="未配置接口名称"/>
+	<data code="S00C" value="未配置接口类名称"/>
+	<data code="S00D" value="获取Cookie失败，请检查浏览器是否禁用  Cookie !"/>
+	<data code="S00E" value="系统异常，请关闭浏览器或清空Cookie后重试！"/>
+	<!-- 文件系统,从S100~S10X -->
+	<data code="S100" value="文件不存在"/>
+	<data code="S101" value="未知类型附件上传接口"/>
+	<data code="S102" value="附件上传表单格式错误"/>
+	<data code="S103" value="系统异常，文件上传失败"/>
+	<data code="S104" value="上传附件个数超出"/>
+	<data code="S105" value="附件大小超出系统设定值"/>
+	<data code="S106" value="附件格式错误"/>
+	<!-- 数据库相关错误,从S200~S20X -->
+	<data code="S200" value="数据库未知异常"/>
+	<data code="S201" value="数据库连接异常"/>
+	<data code="S202" value="表不存在"/>
+	<data code="S203" value="数据库SQL异常"/>
+	<data code="S204" value="数据库启动事务异常"/>
+	<data code="S205" value="数据库提交事务异常"/>
+	<data code="S206" value="数据库回滚事务异常"/>
+	<!-- 权限相关，从S300~S300X -->
+	<data code="S300" value="登录成功"/>
+	<data code="S301" value="已登录，无需再登录"/>
+	<data code="S302" value="未登录,请先登录"/>
+	<data code="S303" value="密码错误"/>
+	<data code="S304" value="原密码错误"/>
+	<data code="S305" value="帐号不存在"/>
+	<data code="S306" value="该帐号已存在"/>
+	<data code="S307" value="管理员帐号会话已过期，请重新登录"/>
+	<data code="S308" value="您无访问权限"/>
+	<data code="S309" value="帐号未激活"/>
+	<data code="S30A" value="帐号被冻结"/>
+	<data code="S30B" value="内置帐号，不可删除"/>
+	<data code="S30C" value="角色已存在"/>
+	<data code="S30D" value="角色不存在"/>
+	<data code="S30E" value="系统内置角色，不允许此操作"/>
+	<!-- 通知模板及通知记录相关 -->
+	<data code="S400" value="已存在此名称模板"/>
+	<data code="S401" value="此名称的模板不存在"/>
+	<data code="S402" value="系统内置模板，不可操作"/>	
+
+	<!-- 迁移错误字典 -->
+	<data code="SD01" value="表不存在"/>
+	<data code="SD02" value="数据库未知异常"/>
+	<data code="SD03" value="系统管理员账号，不允许此操作"/>
+	<data code="SD04" value="系统管理员角色，不允许此操作"/>
+	<!-- 域名以及系统配置 -->
+	<date code="D100" value="字典代码不能重复"/>
+	<date code="D101" value="参数不能为空"/>
+	<date code="D102" value="该域名不能注册"/>
+	<date code="D103" value="域名已经存在"/>
+	<date code="D104" value="请输入正确的域名"/>
+	<date code="D105" value="数据值不能重复"/>
+	<date code="D106" value="模板名称不能为空"/>
+	<date code="D108" value="模板名称不能重复"/>
+	<date code="D109" value="会员等级不能重复"/>
+	<date code="D110" value="域名后缀重复"/>
+	<!-- 会员相关  -->
+	<data code="T001" value="帐号已停用"/>
+	<data code="T002" value="帐号已冻结"/>
+	<data code="C212" value="帐号已激活，不需要再次激活"/>
+	<data code="C211" value="错误激活码，可能已失效"/>
+	<data code="C214" value="邮箱已被注册，请更换邮箱"/>
+	<data code="C215" value="电话已被注册，请更换电话号码"/>
+	<!-- 产品相关 -->
+	<data code="P001" value="产品编号已存在"/>
+	<data code="P002" value="产品信息不存在"/>
+	<!-- 发票相关 -->
+	<data code="I001" value="完成的发票不允许更新"/>
+	<data code="I002" value="发票模板名称 不能重复"/>
+	<data code="I003" value="未选中需要打印的发票"/>
+	<!-- 云主机相关 -->
+	<data code="V001" value="未找到云主机实例" />
+	<data code="V002" value="删除云主机快照失败" />
+	<data code="V003" value="查询云主机状态失败" />
+	<data code="V004" value="云主机未关闭，不能进行该操作" />
+	<data code="V005" value="云主机快照还原失败" />
+	<!--虚拟主机相关-->
+	<data code="VH01" value="没有可用的虚拟主机服务器" />
+	<data code="VH02" value="开通WEB目录失败" />
+	<data code="VH03" value="开通WEB失败" />
+	<data code="VH04" value="开通MySQL失败" />
+	<data code="VH05" value="开通SQL Server失败" />
+	<data code="VH06" value="开通FTP失败" />
+	<data code="VHD1" value="绑定域名超出了最大数量限制" />
+	<data code="VHD2" value="域名已被同组其他站点绑定" />
+</ErrTable>

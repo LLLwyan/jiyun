@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../public/maincss.js"></script>
+
+    <!--element vue start-->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--element vue end-->
+</head>
+
+<body class="gray-bg">
+    <div id="MainContentDIV" class="wrapper wrapper-content animated fadeInRight" v-cloak>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                <div class="managertitle">
+                       <div style="margin:10px -20px 0px -20px">
+                        <div class="server-title">
+                            <b>实例：</b><span id="instanceId">61c5e898-d991-44e6-8306-96e9407fa091</span>
+                            <!--
+                            <div class="btn-group fr mr-10 autosuo"><a href="javascript:void(0)" class="manager-btn" onclick="snapshotDialog('5322bb6e-7e67-4a30-8876-cc9c7b5d758c')">创建快照</a><a href="javascript:void(0)" class="manager-btn editsnap"><span class="btn-caret"></span></a>	<ul class="edit-ul" flag="0" style="display: none;">    <li><a href="#">编辑快照</a></li>    <li><a href="#">删除云硬盘快照</a></li>	</ul></div>
+                        	-->
+                        </div>
+                    </div>
+				</div>
+                <div class="managertitle">
+                          <ul id="ulTab" class="manager-tab full-manager-tab bind-tab">
+                          <li value="domain"><a id="instanceDetail" href="serverdetail.html?iId=">当前实例详情</a></li>
+                          <li value="cloud" ><a id="instanceDisk" href="serverdisk.html?iId=">当前实例硬盘</a></li>
+                           <li value="cloud" class="liactive" ><a id="instanceSnapshot" href="serverdisk.html?iId=">当前实例快照</a></li>
+                          </ul>
+					</div>
+                    <div class="ibox-content">
+                    <div class="mt-20" style="overflow:visible;position:relative; text-align:center">
+
+					</div>
+                        <div  v-if="hostType=='hyperv'">
+                            <table class="table table-striped table-bordered table-hover " id="editable" >
+                                <thead>
+                                    <tr>
+                                        <th>快照名称</th>
+                                        <th>创建时间</th>
+                                        <!--
+                                        <th>操作</th>
+                                         -->
+                                    </tr>
+                                </thead>
+                                <tbody id="snapshotList">
+                                </tbody>
+                            </table>
+                            <div class="add-uer-box" id="addBox" style="display:none">
+                        <div style="height:100px;padding:30px;">
+                            快照名称：
+                            <input id="snapshotName" class="manager-input m-input width200" value="" maxlength="20" placeholder="请输入快照名称">
+                            <input type="hidden" id="diskId"/>
+                        </div>
+                    </div>
+                            <div id="page" class="pager_container clearfix" >
+                                <input id="totalcount" type="hidden" value="0" />
+                                <input id="pagenumber" type="hidden" value="1" />
+                                <div id="pager"></div>
+                            </div>
+	    			    </div>
+
+                        <div v-if="hostType=='aliyun'">
+                            <el-table
+                                    :data="tableData"
+                                    border
+                                    ref="multipleTable"
+                                    @selection-change="handleSelectionChange"
+                                    style="width: 100%; margin-top: 10px;">
+                                <el-table-column
+                                        prop="snapshotName"
+                                        label="名称">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="progress"
+                                        label="创建进度">
+                                    <template scope="scope">
+                                        <span v-html="scope.row.progress"></span>%
+                                    </template>
+                                </el-table-column>
+                                <el-table-column
+                                        width="180"
+                                        prop="retentionDays"
+                                        label="快照保留天数">
+                                </el-table-column>
+                            </el-table>
+
+                            <div class="block" style="margin-top: 10px">
+                                <el-pagination
+                                        layout="prev, pager, next"
+                                        :current-change="changePage"
+                                        :prev-click="changePage"
+                                        :next-click="changePage"
+                                        :total="page.total">
+                                </el-pagination>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="../public/main.js"></script>
+<script src="js/serversnapshot.js"></script>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>购物车中心</title>
+	<script src="../../publicD/maincss.js"></script>
+	<script type="text/javascript" src="../../publicD/jmaincss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/manager.css">
+	<script src="../../publicD/main.js"></script>
+	<script src="js/settlement.js"></script>
+	<style>
+	.cssmod_banks .banks_normal {
+	    width: 100%;
+	    _width: auto;
+	}
+
+	.panel_gateway ul {
+	    padding: 0;
+	    margin: 0;
+	    list-style: none;
+	}
+	.banks_normal li {
+	    float: left;
+	    list-style: none;
+	    margin-right: 10px;
+	    _display: inline;
+	    height: 50px;
+	    width: 165px;
+	}
+	.bankradio {
+	    vertical-align: middle;
+	}
+	.banks-item {
+	    display: inline-block;
+	    vertical-align: middle;
+	    width: 126px;
+	    background-color: #fff;
+	    border: 1px solid #ccc;
+	    padding-top: 5px;
+	    margin-left: 10px;
+	    _zoom: 1;
+	    position: relative;
+	    z-index: 50;
+	    overflow: hidden;
+	}
+	.cssmod_banks .banks_normal .bank_ceb {
+	    background-position: 0px -350px;
+	}
+	.cssmod_banks .banks_normal label {
+	    float: none;
+	    margin-left: 0;
+	    width: 126px;
+	    height: 25px;
+	    display: inline-block;
+	    text-align: left;
+	    background-image:url(../../images/banks3.png);
+	    background-repeat: no-repeat;
+	    cursor: pointer;
+	}
+	.cssmod_banks .banks_normal .bank_icbc {
+	    background-position: 7px -2545px;
+	}
+	.cssmod_banks .banks_normal .bank_abc {
+	    background-position: 5px -595px;
+	}
+	.cssmod_banks .banks_normal .bank_hxb {
+	    background-position: 5px -1348px;
+	}
+	.cssmod_banks .banks_normal .bank_bos {
+	    background-position: 14px -548px;
+	}
+	.cssmod_banks .banks_normal .bank_spdb {
+	    background-position: 16px -446px;
+	}
+	.cssmod_banks .banks_normal .bank_cmb {
+	    background-position: 10px -46px;
+	}
+	.cssmod_banks .banks_normal .bank_ccb {
+	    background-position: 6px -396px;
+	}
+	.cssmod_banks .banks_normal .bank_boc {
+	    background-position: 15px -297px;
+	}
+	.cssmod_banks .banks_normal .bank_cmbc {
+	    background-position: 4px -496px;
+	}
+	.cssmod_banks .banks_normal .bank_psbc {
+	    background-position: 0px -1250px;
+	}
+	.cssmod_banks .banks_normal .bank_szpab {
+	    background-position: 5px -198px;
+	}
+	</style>
+</head>
+<body id="thrColEls" style="overflow-y: auto;">
+<div class="Style2009">
+<!-- 最顶部导航条 -->
+<div id="header"></div>
+<!-- 最顶部导航条 -->
+<div class="main" style="background:#f2f2f2;padding-top:20px;">
+   <div class="container">
+       <div class="clearfix">
+           <div class="registerSteps">
+           		<div class="order_process" style="margin-top:20px;">
+				    <span class="order_pass_process process">查看购物车</span>
+					<span class="order_arrow_process order_arrow_complete_process" style="background:#00a2ca">
+						<span class="order_next_process"></span>
+						<span class="order_prev_process" style="border-left-color:#9cddf5"></span>
+					</span>
+					<span class="order_current_process process">订单结算</span>
+					<span class="order_arrow_process order_arrow_complete_process">
+						<span class="order_next_process"></span>
+						<span class="order_prev_process" style="border-left-color:#00a2ca"></span>
+					</span>
+					<span class="order_nopass_process process">支付结果</span>
+				</div>
+           </div>
+           <div style="width:1090px;margin:0 auto;">
+			   <div class="shoppingcart_center2">
+			   	   <form action="user_order_getUser_orderHandle" method="post" name="F1">
+            	   		<input type="hidden" id="orderIds" name="orderIds" value="G1476930714991,G1476930715007">
+            	   </form>
+                   <div id="divcartcenter" class="payment_center">
+                       <ul class="payment_center1">
+                           <li class="payment_center2">您已选择购买的商品，请尽快支付！</li>
+                           <li class="payment_center3">应付金额：<span id="show_price"></span>元
+                           </li>
+                       </ul>
+                       <ul class="payment_center6">
+                           <li class="payment_center6_left">账户：<span id="userName"></span>
+                               <span class="payment_center32">可用余额：<span id="balance" class="payment_center31"></span>元</span>
+                               <p id="payMsg" class="payment_center6_left1"></p>
+                           </li>
+                           <li>
+                           		<a href="javascript:void(null);" class="payment_center6_right" style="float:left;display:none;" onclick="window.location.href='payment.html'" id="onlinePay">余额支付</a>
+                           </li>
+                       </ul>
+                   </div>
+                   <div class="payment_center7">
+                      <!-- <span class="payment_center9a">使用其它支付方式：</span>-->
+                       <ul class="payment_center9">
+                           <li><a href="javascript:void(null);" class="payment_center10">在线支付</a></li>
+                           <li><a href="javascript:void(null);" class="payment_center10out">银行汇款</a></li>
+                           <li><a href="javascript:void(null);" class="payment_center10out">来公司付款</a></li>
+                       </ul>
+                       <div class="payment_center8aa">
+                           <ul class="payment_center8">
+                               <p class="payment_center11">支付平台</p>
+                               <div class="cssmod_banks" style="margin-top:20px;">
+                            <ul class="banks_normal">
+                            <div id="sftbank" style="display:none">
+	                               <!-- <li>
+	                                   <input type="radio" class="bankradio" name="bankId" id="CEB" value="sftpay" instcode="CEB" >
+	                                   <span class="banks-item" alt="光大银行" title="光大银行">
+	                                       <label class="bank_ceb" for="CEB"></label>
+	                                   </span>
+	                                </li>
+	                                <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="ICBC" value="sftpay" instcode="ICBC">
+	                                    <span  class="banks-item" alt="工商银行" title="工商银行">
+	                                        <label class="bank_icbc" for="ICBC" ></label>
+	                                     </span>
+	                                </li>
+	                                <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="ABC" value="sftpay" instcode="ABC">
+	                                    <span class="banks-item" alt="农业银行" title="农业银行">
+	                                        <label class="bank_abc" for="ABC" ></label>
+	                                    </span>
+	                                 </li>
+	                                 <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="HXB" value="sftpay" instcode="HXB">
+	                                    <span class="banks-item" alt="华夏银行" title="华夏银行">
+	                                        <label class="bank_hxb" for="HXB" ></label>
+	                                     </span>
+	                                 </li>
+	                                 <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="BOS" value="sftpay" instcode="BOS">
+	                                    <span class="banks-item" alt="上海银行" title="上海银行">
+	                                        <label class="bank_bos" for="BOS"></label>
+	                                    </span>
+	                                </li>
+	                                <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="SPDB" value="sftpay" instcode="SPDB">
+	                                    <span class="banks-item" alt="浦东发展银行" title="浦东发展银行">
+	                                        <label class="bank_spdb" for="SPDB"></label>
+	                                    </span>
+	                                </li>
+	                                <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="CMB" value="sftpay" instcode="CMB">
+	                                    <span class="banks-item" alt="招商银行" title="招商银行">
+	                                        <label class="bank_cmb" for="CMB"></label>
+	                                    </span>
+	                                </li>
+	                                <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="CCB" value="sftpay" instcode="CCB">
+	                                    <span class="banks-item" alt="建设银行" title="建设银行">
+	                                        <label class="bank_ccb" for="CCB"></label>
+	                                    </span>
+	                                </li>
+	                                <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="BOC" value="sftpay" instcode="BOC">
+	                                    <span class="banks-item" alt="中国银行" title="中国银行">
+	                                        <label class="bank_boc" for="BOC"></label>
+	                                    </span>
+	                                </li>
+	                                <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="CMBC" value="sftpay" instcode="CMBC">
+	                                    <span class="banks-item" alt="民生银行" title="民生银行">
+	                                        <label class="bank_cmbc" for="CMBC"></label>
+	                                    </span>
+	                                </li>
+	                                <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="PSBC" value="sftpay" instcode="PSBC">
+	                                    <span class="banks-item" alt="中国邮储银行" title="中国邮储银行">
+	                                        <label class="bank_psbc" for="PSBC"></label>
+	                                    </span>
+	                                </li>
+	                                <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="SZPAB" value="sftpay" instcode="SZPAB">
+	                                    <span class="banks-item" alt="平安银行" title="平安银行">
+	                                        <label class="bank_szpab" for="SZPAB"></label>
+	                                    </span>
+	                                </li> -->
+                               </div>
+                               <div id="alibank" style="display:none">
+								    <li>
+	                                    <input type="radio" class="bankradio" name="bankId" id="alipay"  value="alipay">
+	                                    <span alt="支付宝" title="支付宝">
+	                                   		<label for="alipay"> <img src="../../images/alipay.gif" width="126" height="41" align="absmiddle" style="border:1px solid #ccc;margin-left:10px;"></label>
+	                               	   </span>
+	                                </li>
+                                </div>
+								<!-- <div id="wxbank" style="display:none">
+									<li>
+										<input type="radio" class="bankradio" name="bankId"  id="wxpay" value="wxpay">
+										<span alt="微信支付" title="微信支付">
+	                                   		<label for="alipay"> <img src="../../images/wxpay.jpg" width="126" height="41" align="absmiddle" style="border:1px solid #ccc;margin-left:10px;"></label>
+	                               	   </span>
+									</li>
+								</div> -->
+                              </ul>
+                        </div>
+                           </ul>
+                           <a href="javascript:void(null);" class="payment_center12" onclick="OnlineRecharge();" style="float: left;" id="onlinePay">立即支付</a>
+                       </div>
+                   </div>
+	           </div>
+           </div>
+       </div>
+   </div>
+</div>
+
+<div class="add-uer-box" id="addBox" style="display:none">
+	<form name="form1" target="_parent"  id="form1" action="https://mas.shengpay.com/web-acquire-channel/cashier.htm" method="post" >
+		<div>
+			<table>
+				<input  name="Name" type="hidden" id="Name" value="B2CPayment" />
+				<input  name="Version" type="hidden" id="Version" value="V4.1.1.1.1" />
+				<input  name="Charset" type="hidden" id="Charset" value="UTF-8" />
+				<input  name="PayType" type="hidden" id="PayType" value="PT001" />
+				<input  name="PayChannel" type="hidden" id="PayChannel" value="19" />
+				<input  name="InstCode" type="hidden" id="InstCode" value="" />
+				<input  name="MsgSender" type="hidden" id="MsgSender" value="" />
+				<input  name="SendTime" type="hidden" id="SendTime" value="" />
+				<input  name="OrderTime" type="hidden" id="OrderTime" value="" />
+				<input  name="PageUrl" type="hidden" id="PageUrl" value="" />
+				<input  name="NotifyUrl" type="hidden" id="NotifyUrl" value=""/>
+				<input  name="BuyerIp" type="hidden" id="BuyerIp" value="" />
+				<input  name="Ext1" type="hidden" id="Ext1" value="" />
+				<input  name="SignType" type="hidden" id="SignType" value="MD5" />
+				<input  name="SignMsg" type="hidden" id="SignMsg" value="" />
+				<input  name="OrderNo" type="text" id="OrderNo" value="" />
+				<input  name="OrderAmount" type="text" id="OrderAmount" value="" />
+				<input  name="ProductName" type="text" id="ProductName" value="" />
+				<input  name="BuyerContact" type="text" id="BuyerContact" value="" />
+				<input type="submit" value="确认支付" style="width: 70px;"  />
+			</table>
+		</div>
+	</form>
+</div>
+<!-- 页脚部分 开始-->
+<div style="margin-left:0px;" id="footer"></div>
+<!-- 页脚部分 结束 -->
+</div>
+
+<!-- 弹出层 -->
+<!-- 二维码支付页面 -->
+<div id="_wxPayPage">
+	<div class="modal fade" id="wxPayPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						微信扫码支付，金额：<span style="font-weight: bold; color: #ff4800" id="payMoney"></span>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<table class="gridtable">
+						<tbody>
+						<tr>
+							<td align="center">
+								<img id="qrCodeImg" src="" width="288" height="288" />
+							</td>
+						</tr>
+						</tbody>
+						<tbody id="defOldArea">
+						</tbody>
+						<tbody>
+						<tr>
+							<td align="center">
+								<button type="button" class="btn-primary manager-btn">支付已完成</button>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<div style="margin-top: 10px">
+						说明：<br />
+						1、请使用微信扫描上方二维码进行支付。<br />
+						2、支付完成请点击上方“支付已完成”按钮，进入会员中心查看订单处理结果。
+					</div>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
+</div>
+<div id="_ParentModal"></div>
+<script language="javascript">
+    var ParentModel = {
+        _id : '',
+        o : function() {
+            return $('#'+this._id);
+        },
+        add:function(id, html) {
+            this._id = id;
+            return this;
+        },
+        show: function() {
+            this.o().modal('show');
+            return this;
+        },
+        hide : function () {
+            this.o().modal('hide');
+            return this;
+        },
+        submit : function (func) {
+            this.o().find('.btn-primary').click(function () {
+                func();
+            });
+            return this;
+        },
+        find : function(findStr) {
+            return this.o().find(findStr);
+        },
+        onHide : function(func) {
+            this.o().on('hide.bs.modal', function () {
+                func();
+            });
+        },
+        onShow : function (func) {
+            this.o().on('show.bs.modal', function () {
+                func();
+            });
+        }
+    };
+
+    function _topError(message) {
+        alertNew(message);
+    }
+
+    function _topSuccess(message) {
+        alertSuccess(message);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>升级配置</title>
+	<script src="../../../publicD/membercss.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../css/manager.css">
+	<script src="../../../publicD/memberjs.js"></script>
+
+
+	<!--element vue start-->
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<!-- import Vue before Element -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- import JavaScript -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<!--element vue end-->
+
+	<script src="js/serverinfo.js"></script>
+
+	<style type="text/css">
+		.el-input-number__decrease{height: 38px}
+		.el-input-number__decrease .el-icon-minus {line-height: 38px}
+		.el-input-number__increase{height: 38px}
+		.el-input-number__increase .el-icon-plus {line-height: 38px}
+		._this_td {font-size: 14px; line-height: 28px; width: 300px; padding-top: 8px; padding-bottom: 8px}
+	</style>
+</head>
+<body>
+<div id="MainContentDIV"  v-cloak>
+<div id="SitePath">
+        <ul>
+             <li><a href="javascript:void(0);">会员中心</a></li>
+             <li><a href="javascript:void(0);">业务管理</a></li>
+              <li><a href="javascript:void(0);">我的服务器</a></li>
+
+        </ul>
+	</div>
+	  	<div class="ManagerRightuser">
+      	<div class="pay_title">升级配置<input type="button" class="manager-btn ml-20" value="返回实例列表" onclick="gotoServerList()"></div>
+      	<!--中间代码开始-->
+		<table class="manager-table form-table">
+	     	<tr>
+	         	<td colspan="6" align="left">当前配置：</td>
+	     	</tr>
+	     	<tbody id="view">
+	     	</tbody>
+      	</table>
+      	<input type="hidden" id="productCode"/>
+      	<input type="hidden" id="hostType"/>
+        <input type="hidden" id="modelId"/>
+        <input type="hidden" id="cpu_new"/>
+       	<input type="hidden" id="memory_new"/>
+        <div class="pay_title">升级配置</div>
+        <div id="detaliBoxd" style="display:block;">
+		<div class="kuang" style="width:100%">
+        <form class="form-horizontal mt-40" role="form" v-if="'hyperv' == hostType">
+        	<div class="form-group">
+               	<label class="col-sm-2">原配置：</label>
+               	<div class="col-sm-8">
+                   <label class="col-sm-8" style="width:100px;" id="curSpec">1核1GB</label>
+               	</div>
+           	</div>
+            <div class="form-group">
+            	<label class="col-sm-2">CPU核数：</label>
+                <div class="col-sm-8 cpu">
+                    <dl id="cpulist" class="config-time cl" style="margin-left:18px;"></dl>
+                </div>
+            </div>
+            <div class="form-group">
+            	<label class="col-sm-2">内存容量：</label>
+                <div class="col-sm-8 memory">
+                    <dl id="memorylist" class="config-time cl" style="margin-left:18px;"></dl>
+                </div>
+            </div>
+            <div class="form-group">
+            	<label class="col-sm-2">支付费用：</label>
+           	 	<div class="col-sm-8">
+            		<label class="col-sm-8 orange" style="width:200px;" id="resizeprice" ></label>
+            	</div>
+            </div>
+        </form>
+    	</div>
+        </div>
+        <div class="searchbtn" style="text-align:center;" v-if="'hyperv' == hostType">
+        	<input type="button" onclick="confirmUpgrade()" class="manager-btn  mr-10" value="确定">
+		</div>
+
+			<el-form v-model="form" label-width="100px"  class="demo-form-inline" :inline="true" v-if="'aliyun' == hostType">
+				<el-card class="box-card" style="width: 100%">
+					<el-row>
+						<el-form-item label="CPU：">
+							<el-autocomplete
+									class="inline-input"
+									v-model="form.cpu"
+									:fetch-suggestions="querySearchCpu"
+									placeholder="请输入CPU核数"
+									@select="handleSelectCpu"
+									style="width: 130px"
+									@blur="queryTableData"
+							></el-autocomplete>
+						</el-form-item>
+						<el-form-item label="内存：">
+							<el-autocomplete
+									class="inline-input"
+									v-model="form.memory"
+									:fetch-suggestions="querySearchMemory"
+									placeholder="请输入内存大小"
+									@select="handleSelectMemory"
+									@blur="queryTableData"
+									style="width: 130px"
+							></el-autocomplete>
+						</el-form-item>
+					</el-row>
+
+					<el-row>
+						<template>
+							<el-table
+									:data="instanceTableData"
+									style="width: 100%; border-bottom: 2px solid #F2F2F2;"
+									@row-click="instanceTableRowClick"
+									height="400">
+								<el-table-column
+										fixed
+										width="50"
+										label="">
+									<template scope="scope">
+										<el-radio v-model="form.typeIndex" :label="scope.$index">&nbsp;</el-radio>
+									</template>
+								</el-table-column>
+								<el-table-column
+										fixed
+										prop="familyName"
+										label="规格族">
+								</el-table-column>
+								<el-table-column
+										fixed
+										prop="instanceTypeId"
+										label="实例规格">
+								</el-table-column>
+								<el-table-column
+										label="vCPU">
+									<template scope="scope">
+										<span v-html="scope.row.cpuCoreCount + ' vCPU'"></span>
+									</template>
+								</el-table-column>
+								<el-table-column
+										prop="内存"
+										label="内存">
+									<template scope="scope">
+										<span v-html="scope.row.memorySize + ' GiB'"></span>
+									</template>
+								</el-table-column>
+								<el-table-column
+										prop="physicalProcessor"
+										label="处理器型号">
+								</el-table-column>
+								<el-table-column
+										prop="clockSpeed"
+										label="处理器主频">
+								</el-table-column>
+								<el-table-column
+										prop="zip"
+										label="内网带宽">
+									<template scope="scope">
+										<span v-html="scope.row.intranetBandwidth"></span> Gbps
+									</template>
+								</el-table-column>
+								<el-table-column
+										prop="zip"
+										label="内网收发包">
+									<template scope="scope">
+										<span v-html="scope.row.privatePPS"></span> 万 PPS
+									</template>
+								</el-table-column>
+								<el-table-column
+										label="支持 IPv6">
+									<template scope="scope">
+										<span v-if="scope.row.eniIpv6AddressQuantity==1">支持</span>
+										<span v-else>-</span>
+									</template>
+								</el-table-column>
+							</el-table>
+						</template>
+					</el-row>
+
+				</el-card>
+
+				<el-card class="box-card" style="width: 100%; margin-top: 10px;">
+					<el-row>
+						<el-form-item label="选择带宽：">
+							<div class="block" style="width: 600px">
+								<el-slider
+										v-model="form.bandWith"
+										:min="1"
+										:max="100"
+										:format-tooltip="formatBandWidthTooltip"
+										@change="getPrice"
+								>
+								</el-slider>
+								<el-input-number @change="getPrice" v-model="form.bandWith" :min="bandWithMin" :max="100" label="描述文字"></el-input-number> Mbps
+							</div>
+						</el-form-item>
+					</el-row>
+				</el-card>
+
+				<el-card class="box-card" style="width: 100%; margin-top: 10px;">
+					<el-row>
+						<el-form-item label="升级费用：">
+							<span style="color: #FF0000" v-if="form.moneyTotal>0">￥<span v-html="form.moneyTotal"></span></span>
+							<span style="color: #d58512" v-if="form.moneyTotal==-1">计算中...</span>
+							<span v-if="form.moneyTotal==0">请选择需要升级的配置</span>
+						</el-form-item>
+						<el-button type="primary" @click="clickUpgrade" :disabled="form.moneyTotal<=0">确认升级</el-button>
+					</el-row>
+				</el-card>
+			</el-form>
+
+			<el-form v-model="form" label-width="100px"  class="demo-form-inline" :inline="true" v-if="'huawei' == hostType">
+				<el-card class="box-card" style="width: 100%">
+					<el-row>
+						<el-form-item label="CPU：">
+							<el-autocomplete
+									class="inline-input"
+									v-model="form.cpu"
+									:fetch-suggestions="querySearchCpu"
+									placeholder="请输入CPU核数"
+									@select="handleSelectCpu"
+									style="width: 130px"
+									@blur="queryTableData"
+							></el-autocomplete>
+						</el-form-item>
+						<el-form-item label="内存：">
+							<el-autocomplete
+									class="inline-input"
+									v-model="form.memory"
+									:fetch-suggestions="querySearchMemory"
+									placeholder="请输入内存大小"
+									@select="handleSelectMemory"
+									@blur="queryTableData"
+									style="width: 130px"
+							></el-autocomplete>
+						</el-form-item>
+					</el-row>
+
+					<el-row>
+						<template>
+							<el-table
+									:data="instanceTableData"
+									style="width: 100%; border-bottom: 2px solid #F2F2F2;"
+									@row-click="instanceTableRowClick"
+									height="400">
+								<el-table-column
+										fixed
+										width="50"
+										label="">
+									<template scope="scope">
+										<el-radio v-model="form.typeIndex" :label="scope.$index">&nbsp;</el-radio>
+									</template>
+								</el-table-column>
+								<el-table-column
+										fixed
+										prop="name"
+										sortable
+										label="规格名称">
+								</el-table-column>
+								<el-table-column
+										sortable
+										prop="cpuCoreCount"
+										label="vCPU">
+									<template scope="scope">
+										<span v-html="scope.row.cpuCoreCount + ' vCPU'"></span>
+									</template>
+								</el-table-column>
+								<el-table-column
+										prop="memorySize"
+										sortable
+										label="内存">
+									<template scope="scope">
+										<span v-html="scope.row.memorySize + ' GiB'"></span>
+									</template>
+								</el-table-column>
+								<el-table-column
+										sortable
+										width="200"
+										label="CPU型号">
+									<template scope="scope">
+										<span v-html="scope.row.extra_specs['info:cpu:name']"></span>
+									</template>
+								</el-table-column>
+								<el-table-column
+										sortable
+										prop="extra_specs['quota:min_rate']"
+										label="基准 / 最大带宽">
+									<template scope="scope">
+										<span v-html="(scope.row.extra_specs['quota:min_rate']/1000) + '/' + (scope.row.extra_specs['quota:max_rate']/1000) + ' Gbit/s'"></span>
+									</template>
+								</el-table-column>
+								<el-table-column
+										sortable
+										prop="extra_specs['quota:max_pps']"
+										label="基准 / 最大带宽">
+									<template scope="scope">
+										<span v-html="scope.row.extra_specs['quota:max_pps']"></span>
+									</template>
+								</el-table-column>
+							</el-table>
+						</template>
+					</el-row>
+
+				</el-card>
+
+				<el-card class="box-card" style="width: 100%; margin-top: 10px;">
+					<el-row>
+						<el-form-item label="升级费用：">
+							<span style="color: #FF0000" v-if="form.moneyTotal>0">￥<span v-html="form.moneyTotal"></span></span>
+							<span style="color: #d58512" v-if="form.moneyTotal==-1">计算中...</span>
+							<span v-if="form.moneyTotal==0">请选择实例规格</span>
+						</el-form-item>
+						<el-button type="primary" @click="clickUpgrade" :disabled="form.moneyTotal<=0">确认升级</el-button>
+					</el-row>
+				</el-card>
+			</el-form>
+		</div>
+    </div>
+</div>
+</body>
+<script src="js/resizeconfig.js"></script>
+</html>
